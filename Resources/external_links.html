@@ -30,7 +30,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 120px;
+        min-height: 120px;
+        height: auto;
     }
 
     .resource-card:hover {
@@ -51,6 +52,13 @@
         box-shadow: 0 10px 30px rgba(234, 179, 8, 0.15); /* Gold Shadow */
         border-color: rgba(234, 179, 8, 0.8); /* Strong Gold on Hover */
         background: rgba(40, 40, 50, 0.9);
+    }
+
+    /* --- Official Link Style (Paris Brand Color/Highlight) --- */
+    /* Optional: Make your official links stand out slightly differently if desired */
+    .official-card {
+        border-color: rgba(96, 165, 250, 0.3);
+        background: rgba(30, 41, 59, 0.8);
     }
 
     .card-header {
@@ -74,7 +82,7 @@
         margin: 10px 0 0 0;
         font-size: 0.9rem;
         color: #94a3b8;
-        line-height: 1.4;
+        line-height: 1.5;
     }
 
     .arrow {
@@ -82,13 +90,15 @@
         color: #3b82f6;
         font-weight: bold;
         font-size: 1.2rem;
+        margin-top: 15px;
     }
-    
+
     .broker-arrow {
         align-self: flex-end;
         color: #fbbf24; /* Gold Arrow */
         font-weight: bold;
         font-size: 1.2rem;
+        margin-top: 15px;
     }
 
     /* --- Section Header --- */
@@ -96,13 +106,20 @@
         margin: 40px 0 20px 0;
         padding-bottom: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        color: #e2e8f0;
-        font-size: 1.2rem;
-        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .header-title-row {
         display: flex;
         align-items: center;
         gap: 10px;
+        color: #e2e8f0;
+        font-size: 1.2rem;
+        font-weight: 600;
     }
+
     .badge-promo {
         background: rgba(234, 179, 8, 0.2);
         color: #fbbf24;
@@ -111,34 +128,64 @@
         border-radius: 4px;
         border: 1px solid rgba(234, 179, 8, 0.3);
     }
+
+    .section-promo-text {
+        color: #fbbf24; /* Gold color */
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .highlight-code {
+        color: #fbbf24;
+        font-weight: 500;
+        display: block;
+        margin-top: 4px;
+        font-size: 0.85rem;
+    }
 </style>
 </head>
 <body>
 
     <div class="section-header">
-        <span>🛠️ Daily Trading Tools</span>
+        <div class="header-title-row">
+            <span>📚 官方資源 & 常用工具 (Resources & Tools)</span>
+        </div>
     </div>
 
     <div class="grid-container">
-        
-        <a href="https://www.investing.com/economic-calendar/" target="_blank" class="resource-card">
+
+        <a href="https://parisprogram.uk" target="_blank" class="resource-card official-card">
             <div>
                 <div class="card-header">
-                    <span class="icon">📅</span>
-                    <h3>Economic Calendar</h3>
+                    <span class="icon">🎓</span>
+                    <h3>Paris Program 官網</h3>
                 </div>
-                <p>Investing.com global economic data schedule and forecasts.</p>
+                <p>我的會員教學官網及 Blog。提供深度量化交易策略與宏觀分析文章。</p>
             </div>
-            <span class="arrow">&nearr;</span>
+            <span class="arrow">Visit Site &nearr;</span>
         </a>
 
-        <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" class="resource-card">
+        <a href="https://t.me/algoparistrader" target="_blank" class="resource-card official-card">
             <div>
                 <div class="card-header">
-                    <span class="icon">😨</span>
-                    <h3>Fear & Greed Index</h3>
+                    <span class="icon">✈️</span>
+                    <h3>Telegram 公眾號</h3>
                 </div>
-                <p>CNN's market sentiment indicator. Gauge market emotion.</p>
+                <p>即時資訊頻道。發布個人操作 Recap、市場突發新聞與即時觀點。</p>
+            </div>
+            <span class="arrow">Join Channel &nearr;</span>
+        </a>
+
+        <a href="https://www.coinglass.com/pro/futures/liquidation_map" target="_blank" class="resource-card">
+            <div>
+                <div class="card-header">
+                    <span class="icon">🔥</span>
+                    <h3>CoinGlass Heatmap</h3>
+                </div>
+                <p>Crypto 爆倉熱力圖。捕捉市場流動性與潛在轉折點的神器。</p>
             </div>
             <span class="arrow">&nearr;</span>
         </a>
@@ -154,45 +201,30 @@
             <span class="arrow">&nearr;</span>
         </a>
 
-        <a href="https://www.tradingview.com/" target="_blank" class="resource-card">
-            <div>
-                <div class="card-header">
-                    <span class="icon">📈</span>
-                    <h3>TradingView</h3>
-                </div>
-                <p>Advanced charting platform and social network for traders.</p>
-            </div>
-            <span class="arrow">&nearr;</span>
-        </a>
-
-        <a href="https://finviz.com/map.ashx" target="_blank" class="resource-card">
-            <div>
-                <div class="card-header">
-                    <span class="icon">🗺️</span>
-                    <h3>Finviz Heatmap</h3>
-                </div>
-                <p>Visualizing market performance across sectors and industries.</p>
-            </div>
-            <span class="arrow">&nearr;</span>
-        </a>
-
     </div>
 
 
     <div class="section-header">
-        <span>💎 嚴選合作券商 (Partner Brokers)</span>
-        <span class="badge-promo">全港獨家獎勵</span>
+        <div class="header-title-row">
+            <span>💎 嚴選合作券商 (Partner Brokers)</span>
+            <span class="badge-promo">全港獨家獎勵</span>
+        </div>
+        <div class="section-promo-text">
+            🎁 任何券商開戶後 PM 我們，即可獲得 999 開運金牌一塊！
+        </div>
     </div>
 
     <div class="grid-container">
-        
+
         <a href="https://vigco.co/la-com/LyingFlat" target="_blank" class="resource-card broker-card">
             <div>
                 <div class="card-header">
                     <span class="icon">🚀</span>
                     <h3>Vantage Markets</h3>
                 </div>
-                <p>全球領先 CFD 券商，透過此連結開戶享額外獨家獎勵。</p>
+                <p>全球領先 CFD 券商，透過此連結開戶享額外獨家獎勵。
+                <span class="highlight-code">Referral Invitation Code: ParisTrader</span>
+                </p>
             </div>
             <span class="broker-arrow">Open Account &nearr;</span>
         </a>
@@ -204,6 +236,19 @@
                     <h3>IC Markets</h3>
                 </div>
                 <p>極低點差與頂級流動性，Paris Trader 專屬開戶優惠。</p>
+            </div>
+            <span class="broker-arrow">Open Account &nearr;</span>
+        </a>
+
+        <a href="https://ultgo.com/r63qYb" target="_blank" class="resource-card broker-card">
+            <div>
+                <div class="card-header">
+                    <span class="icon">🌟</span>
+                    <h3>Ultima Markets</h3>
+                </div>
+                <p>低交易成本、高槓桿 (1:2000)。
+                <span class="highlight-code">填寫 Referred By: paristrader</span>
+                </p>
             </div>
             <span class="broker-arrow">Open Account &nearr;</span>
         </a>
