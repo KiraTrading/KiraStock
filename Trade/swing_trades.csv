@@ -1,20 +1,20 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice
-GOOGL,LONG,2025/11/19,298,328.57,500,164285,OPEN,15285,Gemini 3 AI dominance. Fundamental value gap.,6015,316.54
-RKLB,LONG,2025/12/9,53.4,84.85,1500,127275,OPEN,47175,SpaceX sympathy play. Options flow bullish.,10065,78.14
-AMC,SHORT,2025/12/9,2.33,1.64,53000,86920,OPEN,36570,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",-5830,1.53
-ALB,LONG,2025/12/17,135,161.29,500,80645,OPEN,13145,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,7579.99,146.13
-RTX,LONG,2025/12/19,181.76,188.5,500,94250,OPEN,3370,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
-",120,188.26
-STT,LONG,2025/12/23,129.74,132.57,600,79542,OPEN,1698,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-263.99,133.01
+GOOGL,LONG,2025/11/19,298.0,328.57,500,164285.0,OPEN,15285.0,Gemini 3 AI dominance. Fundamental value gap.,6015.0,316.54
+RKLB,LONG,2025/12/9,53.4,84.85,1500,127275.0,OPEN,47175.0,SpaceX sympathy play. Options flow bullish.,10065.0,78.14
+AMC,SHORT,2025/12/9,2.33,1.64,53000,86920.0,OPEN,36570.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",-5830.0,1.53
+ALB,LONG,2025/12/17,135.0,161.29,500,80645.0,OPEN,13145.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,7579.99,146.13
+RTX,LONG,2025/12/19,181.76,188.5,500,94250.0,OPEN,3370.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
+",120.0,188.26
+STT,LONG,2025/12/23,129.74,132.57,600,79542.0,OPEN,1698.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-263.99,133.01
 AVGO,LONG,2025/12/24,350.2,344.97,250,86242.5,OPEN,-1307.5,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.
 ",387.5,343.42
-SOFI,LONG,2025/11/25,28.45,27.4,2000,54800,OPEN,-2100,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-3760,29.28
-NVDA,SHORT,2025/11/18,179.28,188,1000,179280,CLOSED,-8720,AI reset theme,0,0
-USDJPY,LONG,2025/12/18,155.714,157,20000,20000,CLOSED,25720,Betting on Friday event on raising interest rate.dovish hike,0,0
-NQ=F,SHORT,2025/12/17,25358,25750,1,507160,CLOSED,-7840,"day chart tp break to tp2.(March future),SL on 22Dec",0,0
-META,LONG,2025/12/23,671.2,661,100,66100,CLOSED,-1020,Option abnormal move,0,0
-SI=F,LONG,2025/12/5,53.36,79,1000,76486,CLOSED,25640,Breakout at resistance with new US policy.,0,0
-BABA,LONG,2026/1/2,153.45,150.96,700,105672,OPEN,-1743,Day chart call tp in fate,-3709.99,156.26
-PLTR,LONG,2026/1/5,174.7,177.49,500,88745,OPEN,1395,war theme venezuela,1395,174.04
+SOFI,LONG,2025/11/25,28.45,27.4,2000,54800.0,OPEN,-2100.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-3760.0,29.28
+NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0
+USDJPY,LONG,2025/12/18,155.714,157.0,20000,20000.0,CLOSED,25720.0,Betting on Friday event on raising interest rate.dovish hike,0.0,0.0
+NQ=F,SHORT,2025/12/17,25358.0,25750.0,1,507160.0,CLOSED,-7840.0,"day chart tp break to tp2.(March future),SL on 22Dec",0.0,0.0
+META,LONG,2025/12/23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move,0.0,0.0
+SI=F,LONG,2025/12/5,53.36,79.0,1000,76486.0,CLOSED,25640.0,Breakout at resistance with new US policy.,0.0,0.0
+BABA,LONG,2026/1/2,153.45,150.96,700,105672.0,OPEN,-1743.0,Day chart call tp in fate,-3709.99,156.26
+PLTR,LONG,2026/1/5,174.7,177.49,500,88745.0,OPEN,1395.0,war theme venezuela,1395.0,174.04
 SI=F,LONG,2026/1/9,78.2,79.341,1,396705.02,OPEN,5705.02,"Retry on engulfing pattarn ,bet on gap up play on 12Jan Monday, potential war is one of the reason as well
 ",5705.02,76.164
