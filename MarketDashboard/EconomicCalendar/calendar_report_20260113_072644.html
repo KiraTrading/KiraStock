@@ -1,0 +1,663 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            :root {
+                --bg-color: #0b0e14;
+                --card-bg: #1e293b;
+                --text-main: #e2e8f0;
+                --text-sub: #94a3b8;
+                --accent: #3b82f6;
+                --border: #334155;
+            }
+            body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); color: var(--text-main); padding: 20px; }
+            h2 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.5em; }
+
+            /* Table Styling */
+            table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9em; }
+            th { background: #0f172a; color: var(--text-sub); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+            tr:last-child td { border-bottom: none; }
+
+            /* Badges */
+            .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+
+            /* Impact Colors */
+            .badge-high { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.5); }
+            .badge-mid { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.5); }
+            .badge-low { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.5); }
+
+            /* Currency Colors */
+            .curr-usd { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; } /* Greenish */
+            .curr-jpy { background: rgba(236, 72, 153, 0.15); color: #f9a8d4; } /* Pinkish */
+            .curr-cny { background: rgba(239, 68, 68, 0.15); color: #fca5a5; } /* Reddish */
+
+            /* High Impact Row Highlight */
+            .row-high { background: rgba(239, 68, 68, 0.08); }
+
+            .footer { margin-top: 20px; text-align: right; color: var(--text-sub); font-size: 0.8em; font-style: italic; }
+        </style>
+    </head>
+    <body>
+        <h2>📅 Economic Calendar (This Week)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time (ET)</th>
+                    <th>Cur</th>
+                    <th>Impact</th>
+                    <th>Event</th>
+                    <th>Forecast</th>
+                    <th>Previous</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr class="">
+                <td>2026-01-11</td>
+                <td>19:00</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Bank Holiday</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-12</td>
+                <td>12:45</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Barkin Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-12</td>
+                <td>13:01</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">10-y Bond Auction</td>
+                <td></td>
+                <td>4.18|2.6</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-12</td>
+                <td>18:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Williams Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-12</td>
+                <td>18:50</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Bank Lending y/y</td>
+                <td>4.1%</td>
+                <td>4.2%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-12</td>
+                <td>18:50</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Current Account</td>
+                <td>3.04T</td>
+                <td>2.48T</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>00:00</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Economy Watchers Sentiment</td>
+                <td>48.7</td>
+                <td>48.7</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>04:03</td>
+                <td><span class="badge curr-cny">CNY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">M2 Money Supply y/y</td>
+                <td>8.0%</td>
+                <td>8.0%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>04:03</td>
+                <td><span class="badge curr-cny">CNY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">New Loans</td>
+                <td>820B</td>
+                <td>390B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>06:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">NFIB Small Business Index</td>
+                <td>99.5</td>
+                <td>99.0</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>08:20</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-mid">Med</span></td>
+                <td style="font-weight:500;">ADP Weekly Employment Change</td>
+                <td></td>
+                <td>11.5K</td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-13</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">Core CPI m/m</td>
+                <td>0.3%</td>
+                <td>0.2%</td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-13</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">CPI m/m</td>
+                <td>0.3%</td>
+                <td>0.3%</td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-13</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">CPI y/y</td>
+                <td>2.7%</td>
+                <td>2.7%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>10:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-mid">Med</span></td>
+                <td style="font-weight:500;">New Home Sales</td>
+                <td>716K</td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>10:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Musalem Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>10:07</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">New Home Sales</td>
+                <td></td>
+                <td>800K</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>10:10</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">RCM/TIPP Economic Optimism</td>
+                <td>48.2</td>
+                <td>47.9</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>13:01</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">30-y Bond Auction</td>
+                <td></td>
+                <td>4.77|2.4</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>14:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Federal Budget Balance</td>
+                <td>-140.7B</td>
+                <td>-173.3B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>16:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Barkin Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>16:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">API Weekly Statistical Bulletin</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>18:50</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">M2 Money Stock y/y</td>
+                <td>1.9%</td>
+                <td>1.8%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>22:03</td>
+                <td><span class="badge curr-cny">CNY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Trade Balance</td>
+                <td>805B</td>
+                <td>793B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-13</td>
+                <td>22:04</td>
+                <td><span class="badge curr-cny">CNY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">USD-Denominated Trade Balance</td>
+                <td>114.3B</td>
+                <td>111.7B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>01:00</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Prelim Machine Tool Orders y/y</td>
+                <td></td>
+                <td>14.2%</td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">Core PPI m/m</td>
+                <td>0.2%</td>
+                <td></td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">Core Retail Sales m/m</td>
+                <td>0.4%</td>
+                <td>0.4%</td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">PPI m/m</td>
+                <td>0.2%</td>
+                <td></td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">Retail Sales m/m</td>
+                <td>0.5%</td>
+                <td>0.0%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Current Account</td>
+                <td>-238B</td>
+                <td>-251B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-mid">Med</span></td>
+                <td style="font-weight:500;">Core PPI m/m</td>
+                <td></td>
+                <td>0.1%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-mid">Med</span></td>
+                <td style="font-weight:500;">PPI m/m</td>
+                <td></td>
+                <td>0.3%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>09:50</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Paulson Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>10:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Business Inventories m/m</td>
+                <td>0.2%</td>
+                <td>0.2%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>10:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Existing Home Sales</td>
+                <td>4.21M</td>
+                <td>4.13M</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>10:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Miran Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>10:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Crude Oil Inventories</td>
+                <td></td>
+                <td>-3.8M</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>12:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Bostic Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>12:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Kashkari Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>14:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Beige Book</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>14:10</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Williams Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-14</td>
+                <td>18:50</td>
+                <td><span class="badge curr-jpy">JPY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">PPI y/y</td>
+                <td>2.4%</td>
+                <td>2.7%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>02:02</td>
+                <td><span class="badge curr-cny">CNY</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Foreign Direct Investment ytd/y</td>
+                <td></td>
+                <td>-7.5%</td>
+            </tr>
+            
+            <tr class="row-high">
+                <td>2026-01-15</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td style="font-weight:500;">Unemployment Claims</td>
+                <td>215K</td>
+                <td>208K</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-mid">Med</span></td>
+                <td style="font-weight:500;">Empire State Manufacturing Index</td>
+                <td>0.8</td>
+                <td>-3.9</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-mid">Med</span></td>
+                <td style="font-weight:500;">Philly Fed Manufacturing Index</td>
+                <td>-1.6</td>
+                <td>-10.2</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Import Prices m/m</td>
+                <td>-0.1%</td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>08:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Import Prices m/m</td>
+                <td></td>
+                <td>0.0%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>08:35</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Bostic Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>09:15</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Barr Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>10:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Natural Gas Storage</td>
+                <td></td>
+                <td>-119B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>12:40</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Barkin Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>13:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Schmid Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-15</td>
+                <td>16:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">TIC Long-Term Purchases</td>
+                <td>48.7B</td>
+                <td>17.5B</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-16</td>
+                <td>09:15</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Capacity Utilization Rate</td>
+                <td>76.0%</td>
+                <td>76.0%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-16</td>
+                <td>09:15</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">Industrial Production m/m</td>
+                <td>0.1%</td>
+                <td>0.2%</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-16</td>
+                <td>10:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">NAHB Housing Market Index</td>
+                <td>40</td>
+                <td>39</td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-16</td>
+                <td>11:00</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Bowman Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <tr class="">
+                <td>2026-01-16</td>
+                <td>15:30</td>
+                <td><span class="badge curr-usd">USD</span></td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td style="font-weight:500;">FOMC Member Jefferson Speaks</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </body>
+    </html>
+    
