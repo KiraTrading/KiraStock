@@ -516,7 +516,7 @@ if target_page == "Home":
         # 🆕 新增功能：網站教學影片 & 分析文章連結
         # ==========================================
         st.subheader("📺 網站使用教學")
-        st.video("https://www.youtube.com/watch?v=HCR5DDy8Nb0")
+        st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
 
         st.markdown("<br>", unsafe_allow_html=True)
 
