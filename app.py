@@ -399,11 +399,11 @@ with st.sidebar:
         menu_title="Navigation",
         options=[
             "Home", "Market Intelligence", "Stock", "Option",
-            "Future", "My Portfolio", "MT5 EA", "Education", "Resources", "Membership"
+            "Future", "My Portfolio", "MT5 EA", "Education", "Community", "Resources", "Membership"
         ],
         icons=[
             "house", "globe", "search", "layers",
-            "graph-up-arrow", "briefcase", "robot", "mortarboard", "collection", "gem"
+            "graph-up-arrow", "briefcase", "robot", "mortarboard", "people-fill", "collection", "gem"
         ],
         menu_icon="compass",
         default_index=0,
@@ -950,6 +950,21 @@ elif target_page == "Resources":
     else:
         st.warning("⚠️ Resources file not found.")
         st.info(f"Please ensure `{html_path}` exists.")
+
+elif target_page == "Community":
+    # 不顯示 Streamlit 預設標題，因為 HTML 裡已經有了
+
+    html_file_path = os.path.join("Community", "community_promo.html")
+
+    if os.path.exists(html_file_path):
+        with open(html_file_path, 'r', encoding='utf-8') as f:
+            html_content = f.read()
+            # 使用 components.html 渲染，height 設定高一點以容納整個頁面
+            # scrolling=True 讓用戶可以捲動
+            components.html(html_content, height=1200, scrolling=True)
+    else:
+        st.error(f"⚠️ Community page file not found at: {html_file_path}")
+
 
 # [PAGE] Education Hub
 elif target_page == "Education":

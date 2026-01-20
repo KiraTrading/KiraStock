@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* 基礎設定 */
+        :root {
+            --bg-color: #0B0E14;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --accent: #3b82f6;
+            --gold: #fbbf24;
+            --text: #e2e8f0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent; /* 透明背景以融入 Streamlit */
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* 標題區 */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+        .highlight { color: var(--accent); font-weight: bold; }
+
+        /* 雙欄佈局 */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .left-col { flex: 1; min-width: 300px; }
+        .right-col { flex: 1; min-width: 300px; }
+
+        /* 特色卡片 */
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        .icon { font-size: 1.5rem; margin-right: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: bold; color: #fff; display: flex; align-items: center; margin-bottom: 10px; }
+
+        /* === 創意核心：模擬聊天室 (Live Feed Simulator) === */
+        .chat-simulator {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .chat-header {
+            background: #1e293b;
+            padding: 15px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #fff;
+        }
+        .live-dot {
+            width: 10px; height: 10px; background: #22c55e; border-radius: 50%;
+            margin-right: 10px; box-shadow: 0 0 10px #22c55e;
+        }
+        .chat-content {
+            padding: 20px;
+            position: absolute;
+            width: 100%;
+            animation: scrollUp 20s linear infinite; /* 自動滾動動畫 */
+        }
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .msg-bubble {
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+        .admin-msg {
+            align-items: flex-start;
+        }
+        .admin-msg .msg-bubble {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #e2e8f0;
+            border-top-left-radius: 2px;
+        }
+        .news-msg .msg-bubble {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: #fbbf24;
+            border-left: 3px solid #fbbf24;
+        }
+        .user-name { font-size: 0.75rem; color: #64748b; margin-bottom: 4px; }
+        .time { font-size: 0.7rem; color: #475569; float: right; margin-top: 5px; }
+
+        /* 速度對比條 */
+        .speed-bar-container { margin-top: 30px; }
+        .speed-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
+        .bar-bg { background: #334155; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 15px; }
+        .bar-fill { height: 100%; border-radius: 5px; }
+        .paris-fill { background: var(--accent); width: 95%; animation: loadBar 1s ease-out; }
+        .retail-fill { background: #64748b; width: 40%; }
+
+        /* CTA 按鈕 */
+        .cta-box {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(180deg, rgba(37,99,235,0.1), transparent);
+            border-radius: 20px;
+            border: 1px solid rgba(37,99,235,0.3);
+        }
+        .cta-btn {
+            background: var(--gold);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+        }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
+
+        /* 動畫 Keyframes */
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); } /* 循環滾動 */
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes loadBar { from { width: 0; } }
+
+        /* 暫停動畫 (滑鼠懸停時) */
+        .chat-content:hover { animation-play-state: paused; }
+
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>不僅僅是群組，這是你的 <span class="highlight">華爾街交易室</span></h1>
+        <p>告別滯後資訊。與前投行家同步，捕捉每一個 Alpha 機會。</p>
+    </div>
+
+    <div class="container">
+        <div class="left-col">
+            <div class="feature-card">
+                <div class="card-title">⚡ 比市場快 15 分鐘的資訊流</div>
+                <p>我們直接接入 Bloomberg 與 Reuters 終端源。當散戶還在看 AAStocks 的二手翻譯新聞時，我們已經進場了。</p>
+
+                <div class="speed-bar-container">
+                    <div class="speed-label"><span>Paris VIP News Speed</span> <span>🚀 Real-time</span></div>
+                    <div class="bar-bg"><div class="bar-fill paris-fill"></div></div>
+
+                    <div class="speed-label"><span>Retail Apps (AAStocks/Fxxxbull)</span> <span>🐌 +15 min delay</span></div>
+                    <div class="bar-bg"><div class="bar-fill retail-fill"></div></div>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-title">🧠 前投行家 Trade Ideas</div>
+                <p>我不只提機Number參考，我給邏輯。每日盤前/盤中發布我的個人交易計劃。
+                <br><br>
+                ✅ <b>Entry:</b> 精確點位<br>
+                ✅ <b>Stop:</b> 風險控管<br>
+                ✅ <b>Why:</b> 機構思維解析
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-title">🤝 高質素 Alpha Community</div>
+                <p>群內無小白問題，只有深度的市場討論。與全職交易員、資深投資者一同成長。拒絕雜訊，專注獲利。</p>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <div class="chat-simulator">
+                <div class="chat-header">
+                    <div class="live-dot"></div> Paris Trader VIP (Live Feed)
+                </div>
+
+                <div class="chat-content">
+                    <div class="message admin-msg">
+                        <div class="user-name">Paris Trader 👑</div>
+                        <div class="msg-bubble">
+                            【Trade Idea】關注 NVDA。<br>
+                            剛才 1分鐘圖出現大量 Institution Block Trade。<br>
+                            現價 885.5 BLOCK嘗試 Long，❌882，✅895。<br>
+                            邏輯：Gamma Exposure 在 880 有強支撐。
+                            <span class="time">10:32 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="message news-msg">
+                        <div class="user-name">⚡ Paris News Bot</div>
+                        <div class="msg-bubble">
+                            [BREAKING] OPEC+ delegates say oil output cuts likely to be extended. Oil spikes +1.5% instantly.
+                            <span class="time">10:35 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="user-name">Member_Jason</div>
+                        <div class="msg-bubble">收到，已跟進 NVDA。AAStocks 好像還沒出 OPEC 新聞？</div>
+                    </div>
+
+                    <div class="message admin-msg">
+                        <div class="user-name">Paris Trader 👑</div>
+                        <div class="msg-bubble">
+                            散戶新聞通常慢 10-15 分鐘。我們現在已經有 2.5% 利潤墊底，可以推保底了。
+                            <span class="time">10:40 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="user-name">Member_Sarah</div>
+                        <div class="msg-bubble">這速度太誇張了... 剛才那波金價拉升直接抓到。</div>
+                    </div>
+
+                    <div class="message admin-msg">
+                        <div class="user-name">Paris Trader 👑</div>
+                        <div class="msg-bubble">
+                            【盤後分析】今天大市回調是健康的。注意觀察 10年期美債息，如果不破 4.2%，明天科技股會有反彈。
+                            <span class="time">04:05 PM</span>
+                        </div>
+                    </div>
+
+                    <div class="message admin-msg">
+                        <div class="user-name">Paris Trader 👑</div>
+                        <div class="msg-bubble">
+                            【Trade Idea】關注 NVDA。<br>
+                            剛才 1分鐘圖出現大量 Institution Block Trade。<br>
+                            現價 885.5 HF嘗試 Long，❌ 882，✅895。<br>
+                            邏輯：Gamma Exposure 在 880 有強支撐。
+                            <span class="time">10:32 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="message news-msg">
+                        <div class="user-name">⚡ Paris News Bot</div>
+                        <div class="msg-bubble">
+                            [BREAKING] OPEC+ delegates say oil output cuts likely to be extended. Oil spikes +1.5% instantly.
+                            <span class="time">10:35 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="user-name">Member_Jason</div>
+                        <div class="msg-bubble">收到，已跟進 NVDA。AAStocks 好像還沒出 OPEC 新聞？</div>
+                    </div>
+
+                    <div class="message admin-msg">
+                        <div class="user-name">Paris Trader 👑</div>
+                        <div class="msg-bubble">
+                            散戶新聞通常慢 10-15 分鐘。我們現在已經有 3.5% 利潤墊底，可以推保本損了。
+                            <span class="time">10:40 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <div class="user-name">Member_Sarah</div>
+                        <div class="msg-bubble">這速度太誇張了... 剛才那波油價拉升直接抓到。</div>
+                    </div>
+
+                    <div class="message admin-msg">
+                        <div class="user-name">Paris Trader 👑</div>
+                        <div class="msg-bubble">
+                            【盤後分析】今天大市回調是健康的。注意觀察 10年期美債息，如果不破 4.2%，明天科技股會有反彈。
+                            <span class="time">04:05 PM</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <h2 style="color:white; margin-bottom: 20px;">停止單打獨鬥，加入專業交易團隊</h2>
+        <p style="color:#94a3b8; margin-bottom: 30px;">每月僅需一頓飯錢，獲取機構級資訊優勢。</p>
+        <a href="https://t.me/Ho777ggg" target="_blank" class="cta-btn">🔥 (DM查詢)</a>
+        <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-btn">🔥 立即申請加入 VIP</a>
+
+
+    </div>
+
+</body>
+</html>
