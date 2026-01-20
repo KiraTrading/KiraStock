@@ -1063,7 +1063,7 @@ elif target_page == "Education":
             st.error("Error loading article.")
 
 # [PAGE] Membership (Sales Page)
-elif target_page == "💎 Membership":
+elif target_page == "Membership":
     st.title("💎 Upgrade to Institutional Level")
     st.caption("Stop guessing. Start trading with data used by professionals.")
 
