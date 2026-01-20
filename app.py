@@ -41,9 +41,12 @@ def login_system():
 
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.markdown(
-            "<div style='text-align: center; margin-top: 50px;'><h2>🔒 ParisTrader Pro</h2><p style='color:#94A3B8'>Member Access Only</p></div>",
-            unsafe_allow_html=True)
+        st.markdown("""
+                <div style='text-align: center; margin-top: 50px; border: 1px solid #333; padding: 40px; background-color: #050505;'>
+                    <h2 style='color:#ffb700;'>🔒 SECURE ACCESS REQUIRED</h2>
+                    <p style='color:#00ff41; font-family: monospace;'>ENTER CREDENTIALS TO UNLOCK INSTITUTIONAL DATA</p>
+                </div>
+            """, unsafe_allow_html=True)
 
         with st.form("login_form"):
             email_input = st.text_input("Email Address")
