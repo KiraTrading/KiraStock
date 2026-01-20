@@ -224,11 +224,10 @@ st.markdown("""
 import base64
 import re
 
-
 def load_markdown_with_images(file_path):
     """
-    讀取 Markdown 檔案，並自動將本地圖片路徑轉換為 Base64 編碼，
-    讓 st.markdown 可以直接顯示本地圖片。
+    讀取 Markdown 檔案，並自動將本地圖片路徑轉換為 Base64 編碼。
+    修復了 PC 版圖片過大導致版面跑位的問題。
     """
     if not os.path.exists(file_path):
         return f"<div style='color:red'>⚠️ File not found: {file_path}</div>"
@@ -237,7 +236,6 @@ def load_markdown_with_images(file_path):
         content = f.read()
 
     # 正則表達式：尋找 ![alt](path) 格式的圖片語法
-    # 這裡會捕捉所有 markdown 圖片語法
     image_pattern = re.compile(r'!\[(.*?)\]\((.*?)\)')
 
     def replace_image_link(match):
@@ -248,26 +246,31 @@ def load_markdown_with_images(file_path):
         if not image_path.startswith('http') and os.path.exists(image_path):
             try:
                 with open(image_path, "rb") as img_file:
-                    # 讀取圖片並轉為 base64
                     b64_string = base64.b64encode(img_file.read()).decode()
-                    # 判斷副檔名
                     ext = image_path.split('.')[-1].lower()
                     mime_type = f"image/{ext}"
                     if ext == 'svg': mime_type = "image/svg+xml"
 
-                    # 重新組合成 HTML img 標籤 (這樣更穩)
-                    # 加入 width=100% 讓圖片適應手機和電腦寬度
-                    return f'<img src="data:{mime_type};base64,{b64_string}" alt="{alt_text}" style="width:100%; border-radius:10px; margin: 10px 0;">'
+                    # [關鍵修改]
+                    # 1. 外層 div 加入 text-align: center 讓圖片在 PC 上置中
+                    # 2. img 標籤改用 max-width: 100% (不強制拉伸，只限制最大寬度)
+                    # 3. 加入 max-height: 600px 限制 PC 上圖片不要高過 600px，避免佔滿畫面
+                    # 4. width: auto; height: auto 保持圖片原始比例
+                    return (
+                        f'<div style="width:100%; text-align: center; margin: 20px 0;">'
+                        f'<img src="data:{mime_type};base64,{b64_string}" alt="{alt_text}" '
+                        f'style="max-width: 100%; max-height: 800px; width: auto; height: auto; '
+                        f'border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">'
+                        f'</div>'
+                    )
             except Exception as e:
                 return f"⚠️ Image Load Error: {str(e)}"
 
-        # 如果是網羅連結或檔案找不到，保持原樣
         return match.group(0)
 
     # 執行替換
     enhanced_content = image_pattern.sub(replace_image_link, content)
     return enhanced_content
-
 def load_weekly_analysis():
     file_path = os.path.join("WeeklyContent", "latest_analysis.md")
     if os.path.exists(file_path):
@@ -974,7 +977,37 @@ elif target_page == "Education":
             "file": "3_naked_long_strategy.md",
             "icon": "⏳",  # 使用沙漏代表時間 Theta
             "desc": "為什麼橫盤不要買 Weekly？Python 數據回測告訴你真相。"
-        }
+        },
+        "ea_manual": {
+            "title": "MT5 神器：Paris摩打手Assistant",
+            "file": "4_mt5_ea_manual.md",
+            "icon": "🤖",
+            "desc": "告別手動算點數，隱形止損與一鍵反手神器。"
+        },
+        "gold_excalibur": {
+            "title": "MT5 神器：黃金自動現金流馬丁策略",
+            "file": "5_paris_gold_excalibur.md",
+            "icon": "⚔️",
+            "desc": "結合 Fate 趨勢引擎與 ATR 動態網格的機構級黃金策略。"
+        },
+        "fate_indicator": {
+            "title": "MT5 指標：Fate 趨勢判定反轉系統",
+            "file": "6_paris_fate_indicator_guide.md",
+            "icon": "🧭",
+            "desc": "整合波動率與動能的機構級圖表系統，自動繪製 TP/SL。"
+        },
+        "tv_heatmap": {
+            "title": "TradingView 神器：期貨動能熱力圖",
+            "file": "7_tv_volume_heatmap.md",
+            "icon": "📊",
+            "desc": "一眼看穿大戶資金流向，監控全球 18 大資產 Z-Score。"
+        },
+        "risk_sizing": {
+            "title": "交易操作教室：何為波動性<均注>",
+            "file": "8_volatility_sizing.md",
+            "icon": "⚖️",
+            "desc": "贏單常有卻輸在資金管理？學會 ATR 動態注碼，像機構一樣控盤。"
+        },
     }
 
     # 準備選單需要的標題列表和圖標列表
