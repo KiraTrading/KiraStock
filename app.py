@@ -1023,6 +1023,12 @@ elif target_page == "Education":
             "icon": "⚖️",
             "desc": "贏單常有卻輸在資金管理？學會 ATR 動態注碼，像機構一樣控盤。"
         },
+        "risk_monitor_guide": {
+            "title": "大市雷達：如何識別見頂/見底信號？",
+            "file": "9_risk_dashboard_guide.md",
+            "icon": "📟",
+            "desc": "學會解讀 VIX, Skew 與 Z-Score，像機構一樣捕捉轉折點。"
+        },
     }
 
     # 準備選單需要的標題列表和圖標列表
