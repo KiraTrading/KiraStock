@@ -369,9 +369,8 @@ with st.sidebar:
     if selected_nav == "Market Intelligence":
         st.caption("MARKET MODULES")
         target_page = option_menu(
-            # [NEW] Added Economic Calendar to options
             menu_title=None,
-            options=["Market Risk", "Market Breadth", "Economic Calendar"],
+            options=["Market Risk", "Market Breadth"],
             icons=["activity", "bar-chart-line", "calendar-event"],
             styles={
                 "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
@@ -626,24 +625,6 @@ elif target_page == "Market Breadth":
     else:
         st.warning("⚠️ Market Breadth report not found.")
         st.info(f"Please ensure `{path}` contains `market_breadth_*.html` files.")
-
-# [PAGE] Economic Calendar (NEW)
-elif target_page == "Economic Calendar":
-    st.title("📅 Weekly Economic Calendar")
-
-    # Points to EconomicCalendar folder
-    #path = "EconomicCalendar"
-    path = os.path.join("MarketDashboard", "EconomicCalendar")
-
-    # Matches the prefix defined in the python script: calendar_report_
-    html_content, filename = get_latest_file_content(path, "calendar_report_*.html")
-
-    if html_content:
-        st.caption(f"📅 Report Generated: {filename}")
-        components.html(html_content, height=1200, scrolling=True)
-    else:
-        st.warning("⚠️ No Economic Calendar report found.")
-        st.info("Please run `python macro_dashboard.py` to generate the latest report.")
 
 # [PAGE] Industry Sector Heatmap
 elif target_page == "Industry Sector Heatmap":
