@@ -17,59 +17,70 @@ except ImportError:
 # ==========================================
 # 🔐 Security Login System
 # ==========================================
-def login_system():
+
+
+def check_access_or_show_teaser(page_name, teaser_image_url=None, description=None):
     """
-    Simple login verification: Checks if Email is in whitelist + verifies universal password
+    如果已登入 -> 返回 True
+    如果未登入 -> 顯示該功能的銷售文案 (Teaser) + 登入/購買按鈕 -> 返回 False
     """
     if "authentication_status" in st.session_state and st.session_state["authentication_status"]:
         return True
 
-    st.markdown("""
-    <style>
-        .stApp { background: #0B0E14; }
-        .login-box { 
-            background: rgba(30, 41, 59, 0.5); 
-            padding: 40px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            max-width: 500px;
-            margin: 100px auto;
-        }
-    </style>
+    # --- 未登入狀態下的 Teaser 介面 ---
+    st.markdown(f"""
+    <div style="text-align: center; padding: 40px 20px; background: rgba(17, 24, 39, 0.6); border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3);">
+        <h2 style="color: #60a5fa;">🔒 Locked Feature: {page_name}</h2>
+        <p style="font-size: 1.2em; color: #e2e8f0; max-width: 600px; margin: 0 auto;">
+            {description if description else "This institutional-grade tool is reserved for VIP members."}
+        </p>
+        <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
     """, unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown("#### 🔑 Member Login")
+        with st.form(f"login_form_{page_name}"):
+            email_input = st.text_input("Email", key=f"email_{page_name}")
+            password_input = st.text_input("Password", type="password", key=f"pw_{page_name}")
+            submit = st.form_submit_button("Login to Access", type="secondary", use_container_width=True)
+
+            if submit:
+                # 這裡填入你的驗證邏輯
+                try:
+                    valid_emails = st.secrets["allowed_users"]["emails"]
+                    correct_password = st.secrets["access_password"]
+                    if email_input in valid_emails and password_input == correct_password:
+                        st.session_state["authentication_status"] = True
+                        st.session_state["user_email"] = email_input
+                        st.success("Access Granted.")
+                        time.sleep(0.5)
+                        st.rerun()
+                    else:
+                        st.error("Invalid Credentials")
+                except:
+                    st.error("System Config Error")
+
+    with c2:
+        st.markdown("#### 🚀 Not a Member?")
         st.markdown("""
-                <div style='text-align: center; margin-top: 50px; border: 1px solid #333; padding: 40px; background-color: #050505;'>
-                    <h2 style='color:#ffb700;'>🔒 SECURE ACCESS REQUIRED</h2>
-                    <p style='color:#00ff41; font-family: monospace;'>ENTER CREDENTIALS TO UNLOCK INSTITUTIONAL DATA</p>
-                </div>
-            """, unsafe_allow_html=True)
+        <div style="background: rgba(37, 99, 235, 0.1); padding: 20px; border-radius: 10px; border: 1px solid #2563EB;">
+            <p style="font-size: 0.9em; margin-bottom: 15px;">
+                Unlock this tool and get full access to Stock DNA, Option Flows, and my personal trade portfolio.
+            </p>
+            <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" style="text-decoration: none;">
+                <button style="width: 100%; background-color: #fbbf24; color: black; border: none; padding: 10px; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                    Get VIP Access Now
+                </button>
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
 
-        with st.form("login_form"):
-            email_input = st.text_input("Email Address")
-            password_input = st.text_input("Access Password", type="password")
-            submit_button = st.form_submit_button("Login", type="primary", use_container_width=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-        if submit_button:
-            try:
-                valid_emails = st.secrets["allowed_users"]["emails"]
-                correct_password = st.secrets["access_password"]
-            except FileNotFoundError:
-                st.error("⚠️ System Error: Secrets not set (Please contact admin)")
-                return False
-
-            if email_input in valid_emails and password_input == correct_password:
-                st.session_state["authentication_status"] = True
-                st.session_state["user_email"] = email_input
-                st.success("Login Successful! Redirecting...")
-                time.sleep(1)
-                st.rerun()
-            else:
-                st.session_state["authentication_status"] = False
-                st.error("❌ Access Denied: Email not in whitelist or wrong password.")
+    # 如果有預覽圖，可以放在下面 (Optional)
+    if teaser_image_url:
+        st.image(teaser_image_url, caption="Preview of Tool (Blur)", use_column_width=True)
 
     return False
 
@@ -322,20 +333,28 @@ with st.sidebar:
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
         <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>ParisTrader</h2>
-        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Algo & Quant Research</p>
+        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Quant Research</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # 4. Create Navigation Menu
+    # -------------------------------------------------------------------------
+    # IMPROVED NAVIGATION LOGIC
+    # -------------------------------------------------------------------------
+
+    # 1. Capture the URL param FIRST (before option_menu can overwrite it)
+    query_params = st.query_params
+    url_page = query_params.get("page", None)
+
+    # 2. Render the Sidebar Menu
     selected_nav = option_menu(
         menu_title="Navigation",
         options=[
             "Home", "Market Intelligence", "Stock", "Option",
-            "Future", "My Portfolio", "MT5 EA", "Legal", "Resources", "Promotion"
+            "Future", "My Portfolio", "MT5 EA", "Resources", "💎 Membership"
         ],
         icons=[
             "house", "globe", "search", "layers",
-            "graph-up-arrow", "briefcase", "robot", "file-text", "collection", "gift"
+            "graph-up-arrow", "briefcase", "robot", "collection", "gem"
         ],
         menu_icon="compass",
         default_index=0,
@@ -350,23 +369,25 @@ with st.sidebar:
         }
     )
 
-    # 在您的 option_menu 下方加入這段，將選單同步到網址參數
-    if selected_nav:
-        st.query_params["page"] = selected_nav
+    # 3. Routing Logic (Fixed Priority: Selection > URL)
+    # Logic: If you click a specific sidebar item (like My Portfolio), that takes priority.
+    # Only show "Legal" if the sidebar is at the default "Home" AND the URL requests "Legal".
 
-    # 程式啟動時，讀取參數來決定預設頁面
-    default_index = 0
-    if "page" in st.query_params:
-        try:
-            # 找出該參數對應的 index
-            # (這裡需要您維護一個選單 list 來查找 index)
-            pass
-        except:
-            pass
+    if selected_nav != "Home":
+        # User explicitly clicked a sidebar item (e.g. My Portfolio, Stock, etc.)
+        target_page = selected_nav
+        st.query_params["page"] = selected_nav  # Update URL immediately to remove "Legal"
 
+    elif url_page == "Legal":
+        # Sidebar is at default "Home", but URL specifically asks for "Legal" (Footer click)
+        target_page = "Legal"
 
-    # Default routing: Assume target is what is clicked in main sidebar
-    target_page = selected_nav
+    else:
+        # Default state
+        target_page = "Home"
+        if selected_nav:
+            st.query_params["page"] = "Home"
+    # -------------------------------------------------------------------------
 
     # --- Sub-menu Logic ---
     if selected_nav == "Market Intelligence":
@@ -385,7 +406,6 @@ with st.sidebar:
 
     elif selected_nav == "Stock":
         st.caption("STOCK RESEARCH")
-        # [UPDATE] Added "Short Squeeze"
         target_page = option_menu(
             menu_title=None,
             options=["Earnings", "Stock DNA", "Thematic Basket", "ETF Smart Money", "Insider Trading",
@@ -420,7 +440,7 @@ with st.sidebar:
         target_page = option_menu(
             menu_title=None,
             options=["US Option", "HK Option"],
-            icons=["currency-dollar", "globe-asia-australia"],  # US用美元符號, HK用亞洲地球符號
+            icons=["currency-dollar", "globe-asia-australia"],
             styles={
                 "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
                               "border-radius": "10px"},
@@ -433,7 +453,7 @@ with st.sidebar:
         st.caption("AUTOMATED TRADING")
         target_page = option_menu(
             menu_title=None,
-            options=["EA Introduction", "Daily Report"],
+            options=["EA Introduction"],
             icons=["robot", "file-earmark-bar-graph"],
             styles={
                 "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
@@ -444,14 +464,22 @@ with st.sidebar:
         )
 
     st.markdown("---")
-    st.link_button("✈️VIP Channel", "https://parisprogram.uk/", use_container_width=True)
-
+    st.markdown("""
+            <div style="background: linear-gradient(45deg, #1e3a8a, #3b82f6); padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 10px;">
+                <h4 style="color: white; margin:0; font-size: 16px;">🚀 Unlock Pro Data</h4>
+                <p style="color: #dbeafe; font-size: 12px; margin: 5px 0;">Access Insider & Option Flows</p>
+                <a href="https://parisprogram.uk/" target="_blank" style="text-decoration: none;">
+                    <button style="width: 100%; background: #ffffff; color: #2563EB; border: none; padding: 8px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 5px;">
+                        Join VIP Now
+                    </button>
+                </a>
+            </div>
+        """, unsafe_allow_html=True)
 
 # ==========================================
-# 🔒 權限控制中心 (Security Check)
+# 🔒 權限控制與銷售轉化中心
 # ==========================================
-# 定義需要鎖定（強制登入）的頁面名稱
-# 這裡包含：My Trade, 指定的 Stock 功能, 以及所有 Option 和 Future 的子頁面
+
 locked_pages = [
     "My Portfolio",
     "Stock DNA",
@@ -459,18 +487,30 @@ locked_pages = [
     "Insider Trading",
     "Short Squeeze",
     "Volatility Target",
-    # Option 的子頁面
-    "US Option", "HK Option",
-    # Future 的子頁面
-    "Volume Profile", "Intraday Volatility", "HSI CBBC Ladder"
+    "US Option",
+    "HK Option",
+    "Volume Profile",
+    "Intraday Volatility",
+    "HSI CBBC Ladder"
 ]
 
-# 邏輯：如果當前目標頁面在鎖定清單中，且未登入，則呼叫 login_system() 並停止執行
+teaser_content = {
+    "Stock DNA": "Discover the hidden factors driving stock prices using Fama-French models. Identify high-quality alpha before the market moves.",
+    "ETF Smart Money": "Track leveraged ETF flows to spot market reversals instantly. Don't fight the trend, ride the institutional wave.",
+    "Insider Trading": "See what CEOs and CFOs are doing with their own money. Real-time cluster buying alerts.",
+    "Short Squeeze": "Identify the next GME/AMC before it explodes. High short interest + High borrow cost scanner.",
+    "US Option": "Follow the Smart Money. Real-time unusual options activity and gamma exposure levels.",
+    "HK Option": "Advanced market scanner for HK derivatives. Visualise the heavy zones and institutional positioning.",
+    "My Portfolio": "Access my personal trade journal. See exactly when I enter and exit positions in Stocks and Options.",
+    "Volume Profile": "Professional grade Volume Profile analysis to identify key support and resistance levels.",
+    "Intraday Volatility": "Monitor real-time volatility spikes to capture intraday momentum.",
+    "HSI CBBC Ladder": "Visualise the Bear/Bull contract heavy zones to predict market dealer hedging moves."
+}
+
 if target_page in locked_pages:
-    if not login_system():
+    desc = teaser_content.get(target_page, "Access professional-grade tools designed for serious traders.")
+    if not check_access_or_show_teaser(target_page, description=desc):
         st.stop()
-
-
 
 # --- Content Routing (Based on target_page) ---
 # [PAGE] HOME
@@ -491,7 +531,6 @@ if target_page == "Home":
 
         st.markdown("---")
 
-        # [RESTORED] TradingView Widget
         components.html("""
         <div class="tradingview-widget-container">
           <div class="tradingview-widget-container__widget"></div>
@@ -514,24 +553,19 @@ if target_page == "Home":
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # ==========================================
-        # 🆕 新增功能：網站教學影片 & 分析文章連結
-        # ==========================================
         st.subheader("📺 網站使用教學")
         st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # 下周大市分析連結按鈕
         st.link_button(
             label="📊 點擊閱讀：下周大市分析 (Weekly Market Analysis)",
             url="https://parisprogram.uk/zh/member/post/RPT-20260117202415071?hash=c2894152df242ddf36604b022a1fbf98fe6b210be085496dba758628c35ebbc4",
-            type="primary",  # 使用主要按鈕樣式使其更顯眼
+            type="primary",
             use_container_width=True
         )
 
         st.markdown("---")
-        # ==========================================
 
         st.subheader("🧠 Week Ahead")
 
@@ -615,11 +649,7 @@ elif target_page == "Market Risk":
 # [PAGE] Market Breadth
 elif target_page == "Market Breadth":
     st.title("🌊 Market Breadth")
-
-    # [修正] 路徑指向新的子資料夾 MarketBreadth
     path = os.path.join("MarketDashboard", "MarketBreadth")
-
-    # [修正] 自動讀取該資料夾內最新的 html 檔案 (market_breadth_*.html)
     html_content, filename = get_latest_file_content(path, "market_breadth_*.html")
 
     if html_content:
@@ -633,7 +663,6 @@ elif target_page == "Market Breadth":
 elif target_page == "Industry Sector Heatmap":
     st.title("🔥 Industry Sector Heatmap")
     st.caption("Daily Return Heatmap (Last 20 Days)")
-
     path = "MarketDashboard"
     pattern = "sector_etf_heatmap_*.html"
     html_content, filename = get_latest_file_content(path, pattern)
@@ -648,8 +677,6 @@ elif target_page == "Industry Sector Heatmap":
 # [PAGE] Earnings
 elif target_page == "Earnings":
     st.title("📅 Earnings Calendar Analysis")
-
-    # Use get_latest_file_content to automatically fetch the latest html
     path = "Earnings"
     html_content, filename = get_latest_file_content(path)
 
@@ -669,8 +696,6 @@ elif target_page == "Stock DNA":
     else:
         st.error("FamaFrench/index.html not found")
 
-
-
 # [PAGE] Thematic Basket
 elif target_page == "Thematic Basket":
     st.title("🧺 Thematic Basket Analysis")
@@ -688,7 +713,6 @@ elif target_page == "Thematic Basket":
 elif target_page == "ETF Smart Money":
     st.title("🚀 ETF Smart Money Tracker")
     st.caption("Tracking Leveraged ETF Relative Volume Spikes")
-
     path = "xETF"
     html_content, filename = get_latest_file_content(path, "ETF_Smart_Money_Report_*.html")
 
@@ -703,7 +727,6 @@ elif target_page == "ETF Smart Money":
 elif target_page == "Insider Trading":
     st.title("🕴️ Insider Trading Activity")
     st.caption("Daily Cluster Buys & Significant Insider Transactions")
-
     path = "Insider"
     html_content, filename = get_latest_file_content(path, "Insider_Trading_Report_*.html")
 
@@ -714,13 +737,11 @@ elif target_page == "Insider Trading":
         st.warning("⚠️ No Insider Trading reports found.")
         st.info(f"Please ensure `{path}` folder exists and contains `Insider_Trading_Report_*.html` files.")
 
-# [PAGE] Short Squeeze (NEW)
+# [PAGE] Short Squeeze
 elif target_page == "Short Squeeze":
     st.title("⚡ Short Squeeze Scanner")
     st.caption("Retail Hype & High Short Interest Candidates")
-
     path = "Short_squeeze"
-    # Match the filename format from your Python script: Short_squeeze_YYYYMMDD_HHMMSS.html
     html_content, filename = get_latest_file_content(path, "Short_squeeze_*.html")
 
     if html_content:
@@ -730,12 +751,9 @@ elif target_page == "Short Squeeze":
         st.warning("⚠️ No Short Squeeze reports found.")
         st.info(f"Please ensure `{path}` folder exists and contains `Short_squeeze_*.html` files.")
 
-
-# [PAGE] Reddit Sentiment (NEW)
+# [PAGE] Reddit Sentiment
 elif target_page == "Reddit Sentiment":
-    # st.title("🤖 Reddit Sentiment Scanner")
     path = "Rddt"
-    # Assuming your script outputs files like reddit_scanner_YYYY-MM-DD.html
     html_content, filename = get_latest_file_content(path, "reddit_scanner_*.html")
 
     if html_content:
@@ -758,19 +776,12 @@ elif target_page == "Volatility Target":
         st.warning("⚠️ Volatility Tool not found.")
         st.info("Please ensure `vol_tool_*.html` exists in the `VolTarget` folder.")
 
-# ==========================================
-# [PAGE] US Option (原有的 Option Strike Analysis)
-# ==========================================
+# [PAGE] US Option
 elif target_page == "US Option":
     st.title("🇺🇸 US Option Strike Analysis")
     st.caption("Tracking Unusual Options Activity & Gamma Levels")
-
-    # 設定資料夾路徑
     path = "Option"
-
-    # 設定 US Option 的檔案搜尋模式
     search_pattern = "option_strike_analysis_*.html"
-
     html_content, filename = get_latest_file_content(path, search_pattern)
 
     if html_content:
@@ -780,19 +791,12 @@ elif target_page == "US Option":
         st.warning("⚠️ No US Option reports found.")
         st.info(f"Please ensure `{path}` folder exists and contains `{search_pattern}` files.")
 
-# ==========================================
-# [PAGE] HK Option (新的 Market Analysis v6)
-# ==========================================
+# [PAGE] HK Option
 elif target_page == "HK Option":
     st.title("🇭🇰 HK Option Market Analysis")
     st.caption("Market Scanner, Stock Ranking & Heatmaps")
-
-    # 設定資料夾路徑 (假設 HK 檔案也在 Option 資料夾內)
     path = "Option"
-
-    # 設定 HK Option 的檔案搜尋模式 (v6 版本)
     search_pattern = "HK_Option_Market_Analysis_v6_*.html"
-
     html_content, filename = get_latest_file_content(path, search_pattern)
 
     if html_content:
@@ -836,36 +840,30 @@ elif target_page == "HSI CBBC Ladder":
         st.warning("⚠️ 尚未生成牛熊證分佈報告")
         st.info(f"請確認檔案 `{html_path}` 是否存在。")
 
-# [PAGE] My Trade
+# [PAGE] My Portfolio
 elif target_page == "My Portfolio":
     st.title("💼 Paris Picks")
     path = "Trade"
 
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
 
-    # Tab 1: Original Stock/Futures Record
     with tab1:
         html_content, filename = get_latest_file_content(path, "trade_record_*.html")
-
         if html_content:
             st.caption(f"📅 Stock Report: {filename}")
             components.html(html_content, height=1200, scrolling=True)
         else:
             st.warning("⚠️ Trade Record HTML not found.")
-            st.info(
-                "Please verify that the GitHub Action has run successfully and generated a `trade_record_*.html` file in the `Trade` folder.")
+            st.info("Please verify that the GitHub Action has run successfully.")
 
-    # Tab 2: New Option Record
     with tab2:
         html_content_opt, filename_opt = get_latest_file_content(path, "option_record_*.html")
-
         if html_content_opt:
             st.caption(f"📅 Option Report: {filename_opt}")
             components.html(html_content_opt, height=1200, scrolling=True)
         else:
             st.warning("⚠️ Option Record HTML not found.")
             st.info("Please verify `option_record_*.html` exists in `Trade` folder.")
-
 
 # [PAGE] MT5 EA - Introduction
 elif target_page == "EA Introduction":
@@ -878,18 +876,6 @@ elif target_page == "EA Introduction":
         st.warning("⚠️ No marketing content found.")
         st.info("Please ensure `MT5EA/ea_marketing.html` exists.")
 
-# [PAGE] MT5 EA - Daily Report (NEW)
-elif target_page == "Daily Report":
-    st.title("📄 Algo Daily Report")
-    path = "MT5EA"
-    html_content, filename = get_latest_file_content(path, "DailyReport_*.html")
-
-    if html_content:
-        st.caption(f"📅 Report Date: {filename}")
-        components.html(html_content, height=2000, scrolling=True)
-    else:
-        st.warning("⚠️ No Daily Reports found.")
-        st.info("Please ensure files named `DailyReport_*.html` exist in `MT5EA` folder.")
 
 # [PAGE] LEGAL
 elif target_page == "Legal":
@@ -916,19 +902,93 @@ elif target_page == "Resources":
         st.warning("⚠️ Resources file not found.")
         st.info(f"Please ensure `{html_path}` exists.")
 
-# [PAGE] Promotion (NEW)
-elif target_page == "Promotion":
-    html_path = os.path.join("Promotion", "promo.html")
-    html_content = load_html_file(html_path)
-    if html_content and "File not found" not in html_content:
-        components.html(html_content, height=1600, scrolling=True)
-    else:
-        st.warning("⚠️ Promotion page not found.")
-        st.info(f"Please ensure `{html_path}` exists.")
+# [PAGE] Membership (Sales Page)
+elif target_page == "💎 Membership":
+    st.title("💎 Upgrade to Institutional Level")
+    st.caption("Stop guessing. Start trading with data used by professionals.")
+
+    st.markdown("""
+    <style>
+        .plan-card {
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        .plan-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+        .plan-title { font-size: 1.5rem; font-weight: bold; color: #fff; }
+        .plan-price { font-size: 2.5rem; font-weight: 700; color: #3b82f6; margin: 20px 0; }
+        .plan-price span { font-size: 1rem; color: #9ca3af; font-weight: 400; }
+        .feature-list { list-style: none; padding: 0; text-align: left; margin: 20px 0; color: #e2e8f0; }
+        .feature-list li { margin-bottom: 12px; display: flex; align-items: center; }
+        .feature-list li::before { content: "✓"; color: #10b981; margin-right: 10px; font-weight: bold; }
+        .locked-feature { color: #6b7280; text-decoration: line-through; }
+        .locked-feature::before { content: "✕"; color: #ef4444; }
+        .cta-button {
+            background: linear-gradient(90deg, #2563EB, #1d4ed8);
+            color: white; padding: 12px 25px; border-radius: 8px;
+            text-decoration: none; display: inline-block; width: 100%;
+            font-weight: bold; margin-top: 20px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    col1, col2 = st.columns([1, 1], gap="large")
+
+    with col1:
+        st.markdown("""
+        <div class="plan-card">
+            <div class="plan-title">Basic Visitor</div>
+            <div class="plan-price">$0 <span>/ month</span></div>
+            <ul class="feature-list">
+                <li>Daily Market Risk Dashboard</li>
+                <li>Basic Stock Function</li>
+                <li>Weekly Market Analysis Blog</li>
+                <li class="locked-feature">Investing community access</li>
+                <li class="locked-feature">Institutional Factor Model on Stock DNA</li>
+                <li class="locked-feature">Smart Money Flow (Options&ETF)</li>
+                <li class="locked-feature">Insider Trading Alerts</li>
+                <li class="locked-feature">Volume Profile & Directional Tradingview indicators(with tp/sl)</li>
+                <li class="locked-feature">Paris Top Picks (My Portfolio on stock & options)</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div style="position: relative;">
+            <div style="position: absolute; top: -15px; right: 0; left: 0; margin: auto; width: 120px; background: #fbbf24; color: black; font-weight: bold; text-align: center; padding: 5px; border-radius: 20px; z-index: 10;">MOST POPULAR</div>
+            <div class="plan-card" style="border: 2px solid #3b82f6; background: rgba(30, 58, 138, 0.2);">
+                <div class="plan-title">VIP Access</div>
+                <div class="plan-price">HK$1200 <span>/ month</span></div>
+                <p style="color:#94a3b8; font-size:0.9em;">For serious traders aiming for consistent profitability.</p>
+                <ul class="feature-list">
+                    <li><b>Everything in Basic</b></li>
+                    <li>🧬 <b>Stock DNA:</b> Factor-based stock scoring</li>
+                    <li>⚡ <b>Option Flow:</b> Track unusual institutional activity</li>
+                    <li>🕴️ <b>Insider Trading:</b> Real-time CEO/CFO buys</li>
+                    <li>🎯 <b>TradingView Indicators:</b> provide direction(key support/resistant level)</li>
+                    <li>📊 <b>Futures Algo:</b> Volume Profile & Heavy Zone</li>
+                    <li>💼 <b>My Portfolio:</b> Follow my profitable trade selection</li>
+                </ul>
+                <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-button">UNLOCK NOW 🔓</a>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.subheader("💡 Why Upgrade?")
+    st.info(
+        "The data provided in the VIP section is the same data I used during my time as an Investment Banker. Retail tools show you 'what' happened. Our tools show you 'where' the money is going before the move happens.")
+
 
 # ==========================================
 # 5. Global Footer
 # ==========================================
+# [UPDATED] Added Legal link in footer
 st.markdown("""
 <div class="custom-footer">
     <p>
@@ -938,7 +998,8 @@ st.markdown("""
         </span>
     </p>
     <p>
-        <a href="https://t.me/algoparistrader" target="_blank">@ParisTrader on TG</a>
+        <a href="https://t.me/algoparistrader" target="_blank">@ParisTrader on TG</a> | 
+        <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal & Compliance</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
