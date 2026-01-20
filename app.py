@@ -328,7 +328,7 @@ with st.sidebar:
         menu_title="Navigation",
         options=[
             "Home", "Market Intelligence", "Stock", "Option",
-            "Future", "My Trade", "MT5 EA", "Legal", "Resources", "Promotion"
+            "Future", "My Portfolio", "MT5 EA", "Legal", "Resources", "Promotion"
         ],
         icons=[
             "house", "globe", "search", "layers",
@@ -451,7 +451,7 @@ with st.sidebar:
 # 定義需要鎖定（強制登入）的頁面名稱
 # 這裡包含：My Trade, 指定的 Stock 功能, 以及所有 Option 和 Future 的子頁面
 locked_pages = [
-    "My Trade",
+    "My Portfolio",
     "Stock DNA",
     "ETF Smart Money",
     "Insider Trading",
@@ -523,7 +523,7 @@ if target_page == "Home":
         # 下周大市分析連結按鈕
         st.link_button(
             label="📊 點擊閱讀：下周大市分析 (Weekly Market Analysis)",
-            url="https://parisprogram.uk/zh/member/post/RPT-20260103199214386?hash=df6a6830b6176c7ea95cc12ebe1c8de50a2b1f90fa8a79ddbbb5be18dcd92c39",
+            url="https://parisprogram.uk/zh/member/post/RPT-20260117202415071?hash=c2894152df242ddf36604b022a1fbf98fe6b210be085496dba758628c35ebbc4",
             type="primary",  # 使用主要按鈕樣式使其更顯眼
             use_container_width=True
         )
@@ -853,8 +853,8 @@ elif target_page == "HSI CBBC Ladder":
         st.info(f"請確認檔案 `{html_path}` 是否存在。")
 
 # [PAGE] My Trade
-elif target_page == "My Trade":
-    st.title("💼 My Trading Desk")
+elif target_page == "My Portfolio":
+    st.title("💼 Paris Picks")
     path = "Trade"
 
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
