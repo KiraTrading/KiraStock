@@ -46,6 +46,7 @@ def check_access_or_show_teaser(page_name, teaser_image_url=None, description=No
             submit = st.form_submit_button("Login to Access", type="secondary", use_container_width=True)
 
             if submit:
+                login_success = False
                 # 這裡填入你的驗證邏輯
                 try:
                     valid_emails = st.secrets["allowed_users"]["emails"]
@@ -54,13 +55,15 @@ def check_access_or_show_teaser(page_name, teaser_image_url=None, description=No
                         st.session_state["authentication_status"] = True
                         st.session_state["user_email"] = email_input
                         st.success("Access Granted.")
-                        time.sleep(0.5)
-                        st.rerun()
+                        login_success = True  # 標記為成功
                     else:
                         st.error("Invalid Credentials")
-                except:
-                    st.error("System Config Error")
-
+                except Exception as e:  # ⚠️ 修改這裡：只捕捉一般錯誤，不捕捉系統訊號
+                    st.error(f"System Config Error: {e}")
+                # ⚠️ 將 rerun 移到 try/except 外面執行
+                if login_success:
+                    time.sleep(0.5)
+                    st.rerun()
     with c2:
         st.markdown("#### 🚀 Not a Member?")
         st.markdown("""
