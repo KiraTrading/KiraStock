@@ -387,26 +387,36 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     # -------------------------------------------------------------------------
-    # IMPROVED NAVIGATION LOGIC
+    # IMPROVED NAVIGATION LOGIC WITH DEEP LINKING
     # -------------------------------------------------------------------------
 
-    # 1. Capture the URL param FIRST (before option_menu can overwrite it)
+    # 1. Capture the URL params
     query_params = st.query_params
-    url_page = query_params.get("page", None)
+    url_main_page = query_params.get("page", "Home")  # Default to Home
+    url_sub_page = query_params.get("sub", None)  # Capture sub-page
 
-    # 2. Render the Sidebar Menu
+    # Define Main Menu Options
+    main_options = [
+        "Home", "Market Intelligence", "Stock", "Option",
+        "Future", "My Portfolio", "MT5 EA", "Education", "Community", "Resources", "Membership"
+    ]
+
+    # Determine default index for Main Menu based on URL
+    try:
+        main_default_index = main_options.index(url_main_page)
+    except ValueError:
+        main_default_index = 0
+
+    # 2. Render the Main Sidebar Menu
     selected_nav = option_menu(
         menu_title="Navigation",
-        options=[
-            "Home", "Market Intelligence", "Stock", "Option",
-            "Future", "My Portfolio", "MT5 EA", "Education", "Community", "Resources", "Membership"
-        ],
+        options=main_options,
         icons=[
             "house", "globe", "search", "layers",
             "graph-up-arrow", "briefcase", "robot", "mortarboard", "people-fill", "collection", "gem"
         ],
         menu_icon="compass",
-        default_index=0,
+        default_index=main_default_index,  # Sync with URL
         styles={
             "container": {"padding": "0!important", "background-color": "transparent"},
             "icon": {"color": "#9CA3AF", "font-size": "15px"},
@@ -418,102 +428,97 @@ with st.sidebar:
         }
     )
 
-    # 3. Routing Logic (Fixed Priority: Selection > URL)
-    # Logic: If you click a specific sidebar item (like My Portfolio), that takes priority.
-    # Only show "Legal" if the sidebar is at the default "Home" AND the URL requests "Legal".
+    # 3. Handle Sub-Menus and Update URL for Sub-Pages
+    target_page = selected_nav  # Default target is the main selection
 
-    if selected_nav != "Home":
-        # User explicitly clicked a sidebar item (e.g. My Portfolio, Stock, etc.)
-        target_page = selected_nav
-        st.query_params["page"] = selected_nav  # Update URL immediately to remove "Legal"
 
-    elif url_page == "Legal":
-        # Sidebar is at default "Home", but URL specifically asks for "Legal" (Footer click)
-        target_page = "Legal"
+    # --- Helper to handle sub-menu logic ---
+    def handle_submenu(key_name, options, icons):
+        # Calculate default index for sub-menu based on URL 'sub' param
+        # Only if the main page matches the current selection
+        default_sub_index = 0
+        if url_main_page == selected_nav and url_sub_page in options:
+            default_sub_index = options.index(url_sub_page)
 
-    else:
-        # Default state
-        target_page = "Home"
-        if selected_nav:
-            st.query_params["page"] = "Home"
-    # -------------------------------------------------------------------------
+        selection = option_menu(
+            menu_title=None,
+            options=options,
+            icons=icons,
+            default_index=default_sub_index,
+            styles={
+                "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
+                              "border-radius": "10px"},
+                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
+                "nav-link-selected": {"background-color": "#4B5563"},
+            },
+            key=key_name  # Unique key is important
+        )
+        return selection
+
 
     # --- Sub-menu Logic ---
     if selected_nav == "Market Intelligence":
         st.caption("MARKET MODULES")
-        target_page = option_menu(
-            menu_title=None,
-            options=["Market Risk", "Market Breadth"],
-            icons=["activity", "bar-chart-line", "calendar-event"],
-            styles={
-                "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
-                              "border-radius": "10px"},
-                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
-                "nav-link-selected": {"background-color": "#4B5563"},
-            }
+        target_page = handle_submenu(
+            "sub_market",
+            ["Market Risk", "Market Breadth"],
+            ["activity", "bar-chart-line"]
         )
 
     elif selected_nav == "Stock":
         st.caption("STOCK RESEARCH")
-        target_page = option_menu(
-            menu_title=None,
-            # Added "S&P 500 Heatmap" to the end of options
-            options=["Earnings", "Stock DNA", "Thematic Basket", "ETF Smart Money", "Insider Trading",
-                     "Short Squeeze", "Volatility Target", "Industry Sector Heatmap", "S&P 500 Heatmap"],
-            # Added "fire" icon to the end of icons
-            icons=["cash-coin", "radar", "basket", "graph-up-arrow", "people", "lightning-charge", "bullseye",
-                   "grid-3x3", "fire"],
-            styles={
-                "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
-                              "border-radius": "10px"},
-                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
-                "nav-link-selected": {"background-color": "#4B5563"},
-            }
+        target_page = handle_submenu(
+            "sub_stock",
+            ["Earnings", "Stock DNA", "Thematic Basket", "ETF Smart Money", "Insider Trading",
+             "Short Squeeze", "Volatility Target", "Industry Sector Heatmap", "S&P 500 Heatmap"],
+            ["cash-coin", "radar", "basket", "graph-up-arrow", "people", "lightning-charge", "bullseye",
+             "grid-3x3", "fire"]
         )
 
     elif selected_nav == "Future":
         st.caption("FUTURES & TRENDS")
-        target_page = option_menu(
-            menu_title=None,
-            options=["Volume Profile", "Intraday Volatility", "HSI CBBC Ladder"],
-            icons=["bar-chart-steps", "lightning-charge", "distribute-vertical"],
-            styles={
-                "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
-                              "border-radius": "10px"},
-                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
-                "nav-link-selected": {"background-color": "#4B5563"},
-            }
+        target_page = handle_submenu(
+            "sub_future",
+            ["Volume Profile", "Intraday Volatility", "HSI CBBC Ladder"],
+            ["bar-chart-steps", "lightning-charge", "distribute-vertical"]
         )
 
     elif selected_nav == "Option":
         st.caption("DERIVATIVES ANALYTICS")
-        target_page = option_menu(
-            menu_title=None,
-            options=["US Option", "HK Option"],
-            icons=["currency-dollar", "globe-asia-australia"],
-            styles={
-                "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
-                              "border-radius": "10px"},
-                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
-                "nav-link-selected": {"background-color": "#4B5563"},
-            }
+        target_page = handle_submenu(
+            "sub_option",
+            ["US Option", "HK Option"],
+            ["currency-dollar", "globe-asia-australia"]
         )
 
     elif selected_nav == "MT5 EA":
         st.caption("AUTOMATED TRADING")
-        target_page = option_menu(
-            menu_title=None,
-            options=["EA Introduction"],
-            icons=["robot", "file-earmark-bar-graph"],
-            styles={
-                "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
-                              "border-radius": "10px"},
-                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
-                "nav-link-selected": {"background-color": "#4B5563"},
-            }
+        target_page = handle_submenu(
+            "sub_ea",
+            ["EA Introduction"],
+            ["robot"]
         )
 
+    # --- 4. Deep Linking: Update URL based on final selection ---
+    # Case A: Sidebar item matches target (Home, Education, etc. - No sub-menu)
+    if selected_nav == target_page:
+        # Check if we need to update URL (avoid infinite rerun loops)
+        if url_main_page != selected_nav or url_sub_page is not None:
+            st.query_params["page"] = selected_nav
+            # Remove 'sub' param if it exists, as this page has no sub-menu
+            if "sub" in st.query_params:
+                del st.query_params["sub"]
+            # time.sleep(0.1) # Optional: sometimes helps with race conditions
+
+    # Case B: Target is a sub-menu item
+    else:
+        # Check if URL needs update
+        if url_main_page != selected_nav or url_sub_page != target_page:
+            st.query_params["page"] = selected_nav
+            st.query_params["sub"] = target_page
+
     st.markdown("---")
+    # ... (Keep your existing Promo Button code here) ...
     st.markdown("""
             <div style="background: linear-gradient(45deg, #1e3a8a, #3b82f6); padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 10px;">
                 <h4 style="color: white; margin:0; font-size: 16px;">🚀 Unlock Pro Data</h4>
@@ -525,6 +530,10 @@ with st.sidebar:
                 </a>
             </div>
         """, unsafe_allow_html=True)
+
+# Handle Legal from Footer (Special Case)
+if url_main_page == "Legal" and selected_nav == "Home":
+    target_page = "Legal"
 
 # ==========================================
 # 🔒 權限控制與銷售轉化中心
