@@ -457,11 +457,12 @@ with st.sidebar:
         st.caption("STOCK RESEARCH")
         target_page = option_menu(
             menu_title=None,
+            # Added "S&P 500 Heatmap" to the end of options
             options=["Earnings", "Stock DNA", "Thematic Basket", "ETF Smart Money", "Insider Trading",
-                     "Short Squeeze",
-                     "Volatility Target", "Industry Sector Heatmap"],
+                     "Short Squeeze", "Volatility Target", "Industry Sector Heatmap", "S&P 500 Heatmap"],
+            # Added "fire" icon to the end of icons
             icons=["cash-coin", "radar", "basket", "graph-up-arrow", "people", "lightning-charge", "bullseye",
-                   "grid-3x3"],
+                   "grid-3x3", "fire"],
             styles={
                 "container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
                               "border-radius": "10px"},
@@ -744,6 +745,26 @@ elif target_page == "Stock DNA":
         components.html(html_content, height=1200, scrolling=True)
     else:
         st.error("FamaFrench/index.html not found")
+
+# [PAGE] S&P 500 Heatmap
+elif target_page == "S&P 500 Heatmap":
+    st.title("🔥 S&P 500 Performance Heatmap (YTD)")
+    st.caption("Top 50 Best Performers - Daily Returns Tracking")
+
+    # Assumes the script saves the file into the 'Stock' folder.
+    # If the script runs in the root, change this to path = "."
+    path = "Stock"
+
+    # Look for files matching the new timestamped pattern
+    html_content, filename = get_latest_file_content(path, "sp500_clean_heatmap_*.html")
+
+    if html_content:
+        st.caption(f"📅 Report Date: {filename}")
+        # Height is adjustable depending on how many rows (50 rows needs ~1500px)
+        components.html(html_content, height=1600, scrolling=True)
+    else:
+        st.warning("⚠️ No S&P 500 Heatmap found.")
+        st.info(f"Please run `sp500_ytd_ranking.py` and ensure the output is saved in `{path}` folder.")
 
 # [PAGE] Thematic Basket
 elif target_page == "Thematic Basket":
