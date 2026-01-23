@@ -1,0 +1,2856 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Global Thematic Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; background: #f4f7f6; padding: 40px; color: #333; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 40px; }
+
+        /* Region Header */
+        .region-divider { 
+            margin-top: 60px; margin-bottom: 20px; border-bottom: 3px solid #007bff; 
+            padding-bottom: 10px; font-size: 2em; font-weight: bold; color: #007bff; 
+        }
+
+        /* --- Chart Styles --- */
+        .summary-section { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .chart-row { display: flex; align-items: center; margin-bottom: 8px; cursor: pointer; padding: 4px; border-radius: 4px; }
+        .chart-row:hover { background-color: #f8f9fa; }
+        .chart-label { width: 200px; font-weight: 600; font-size: 0.9em; }
+        .bar-wrapper { flex-grow: 1; position: relative; height: 24px; background: #e9ecef; margin: 0 15px; border-radius: 3px; }
+        .zero-line { position: absolute; left: 50%; top: 0; height: 100%; width: 2px; background: #adb5bd; z-index: 1; }
+        .bar-fill { height: 100%; position: absolute; top: 0; z-index: 2; border-radius: 2px; }
+        .bar-pos { background: #28a745; left: 50%; }
+        .bar-neg { background: #dc3545; right: 50%; }
+        .chart-val { width: 60px; text-align: right; font-weight: bold; font-family: monospace; }
+        .text-pos { color: #28a745; }
+        .text-neg { color: #dc3545; }
+
+        /* --- Table Styles --- */
+        .basket-card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid #6c757d; }
+        .basket-card.bullish { border-left-color: #28a745; }
+        .basket-card.bearish { border-left-color: #dc3545; }
+
+        .theme-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .theme-title { font-size: 1.25em; font-weight: bold; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+        th { text-align: left; color: #666; font-weight: 600; padding: 8px; border-bottom: 2px solid #eee; }
+        td { padding: 8px; border-bottom: 1px solid #f2f2f2; }
+
+        .pos { color: #28a745; }
+        .neg { color: #dc3545; }
+        .ticker-cell { font-weight: bold; color: #007bff; position: relative; cursor: help; }
+
+        /* Tooltip */
+        .tooltip-text {
+            visibility: hidden; width: 300px; background-color: #333; color: #fff;
+            text-align: left; border-radius: 6px; padding: 10px; position: absolute;
+            z-index: 10; bottom: 100%; left: 50%; margin-left: -150px; opacity: 0; transition: opacity 0.3s;
+            font-size: 0.85em; font-weight: normal; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .ticker-cell:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+        .rsi-badge { padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 0.85em; }
+        .rsi-low { background: #d4edda; color: #155724; }
+        .rsi-high { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🌍 Global Elite Thematic Dashboard</h1>
+    <p style="text-align:center; color:#777;">Generated: 2026-01-23 05:53:52</p>
+<div class="region-divider">United States 🇺🇸 Market Overview</div><div class="summary-section">
+            <div class="chart-row" ondblclick="document.getElementById('United_States____LEO_Satellites').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">LEO Satellites</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 45.0%;"></div>
+                </div>
+                <div class="chart-val text-pos">+7.24%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Space').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Space</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 24.99016549190816%;"></div>
+                </div>
+                <div class="chart-val text-pos">+4.02%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Retail_Favorites___Flows').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Retail Favorites & Flows</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 20.739766218615596%;"></div>
+                </div>
+                <div class="chart-val text-pos">+3.34%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Fintech___Payments').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Fintech - Payments</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 16.188063406187208%;"></div>
+                </div>
+                <div class="chart-val text-pos">+2.60%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Bio_Revolution').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Bio-Revolution</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 13.770894031346211%;"></div>
+                </div>
+                <div class="chart-val text-pos">+2.22%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Google_Supplier').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Google Supplier</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 12.743433579488753%;"></div>
+                </div>
+                <div class="chart-val text-pos">+2.05%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____EV_Hangover').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">EV Hangover</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 12.717264383118918%;"></div>
+                </div>
+                <div class="chart-val text-pos">+2.05%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____AI_Value_Reset').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">AI Value Reset</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 12.612546006342292%;"></div>
+                </div>
+                <div class="chart-val text-pos">+2.03%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Quantum_Computing').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Quantum Computing</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 11.409187240011168%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.84%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Autonomous_Driving').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Autonomous Driving</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 11.116201967551659%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.79%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Cybersecurity').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Cybersecurity</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 10.31293444116974%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.66%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Datacenter_Suppliers').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Datacenter Suppliers</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 10.152044596678024%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.63%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Fintech___High_Beta').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Fintech - High Beta</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 7.592529719001765%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.22%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Open_AI').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Open AI</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 6.775599674361363%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.09%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Robotics').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Robotics</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 6.464672882659732%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.04%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Nuclear_Energy').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Nuclear Energy</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 6.428785828720544%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.03%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Heat_Dissipation').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Heat Dissipation</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 4.437239337446743%;"></div>
+                </div>
+                <div class="chart-val text-pos">+0.71%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____AI_Energy___Grid').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">AI Energy & Grid</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 3.191523550045196%;"></div>
+                </div>
+                <div class="chart-val text-pos">+0.51%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Drones').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Drones</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 2.7961601633673268%;"></div>
+                </div>
+                <div class="chart-val text-pos">+0.45%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Fintech_Broker').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Fintech-Broker</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 0.4441368268942568%;"></div>
+                </div>
+                <div class="chart-val text-neg">-0.07%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Deregulation').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Deregulation</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 1.0131850229068928%;"></div>
+                </div>
+                <div class="chart-val text-neg">-0.16%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Silicon_Photonics').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Silicon Photonics</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 2.7610708513916227%;"></div>
+                </div>
+                <div class="chart-val text-neg">-0.44%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Neocloud_Providers').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Neocloud Providers</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 9.136802112545276%;"></div>
+                </div>
+                <div class="chart-val text-neg">-1.47%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('United_States____Crypto_Companies').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Crypto Companies</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 10.781897370500266%;"></div>
+                </div>
+                <div class="chart-val text-neg">-1.74%</div>
+            </div>
+            </div>
+        <div class="basket-card bullish" id="United_States____AI_Energy___Grid">
+            <div class="theme-header">
+                <div class="theme-title">AI Energy & Grid</div>
+                <div style="font-weight:bold;" class="pos">Avg: +0.51%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">CEG<span class="tooltip-text">Largest U.S. nuclear fleet with long-term contracts to hyperscalers, providing baseload power for AI data centers.</span></td>
+                <td>Constellation Energy</td>
+                <td>104.10B</td>
+                <td>$287.35</td>
+                <td>1.6x</td>
+                <td class="neg">-2.38%</td>
+                <td class="neg">-13.02%</td>
+                <td><span class="rsi-badge rsi-low">28.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">VST<span class="tooltip-text">Growing generation and retail portfolio with increasing exposure to data-center co-location and AI-driven power demand.</span></td>
+                <td>Vistra Corp</td>
+                <td>54.33B</td>
+                <td>$160.36</td>
+                <td>0.7x</td>
+                <td class="pos">+0.21%</td>
+                <td class="neg">-5.10%</td>
+                <td><span class="">49.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GEV<span class="tooltip-text">Key supplier of grid equipment and emerging small modular reactor solutions, leveraged to large-scale power and grid upgrades.</span></td>
+                <td>GE Vernova</td>
+                <td>180.12B</td>
+                <td>$661.67</td>
+                <td>0.8x</td>
+                <td class="neg">-0.93%</td>
+                <td class="pos">+2.72%</td>
+                <td><span class="">52.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">EOSE<span class="tooltip-text">Zinc-based long-duration storage is a high-risk, high-reward way to play renewable and data-center balancing needs.</span></td>
+                <td>Eos Energy</td>
+                <td>5.91B</td>
+                <td>$18.22</td>
+                <td>1.4x</td>
+                <td class="pos">+3.94%</td>
+                <td class="pos">+5.32%</td>
+                <td><span class="rsi-badge rsi-high">91.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">OKLO<span class="tooltip-text">Microreactor developer aligned with demand for distributed, reliable power near AI and HPC facilities, but still pre-revenue.</span></td>
+                <td>Oklo Inc</td>
+                <td>14.21B</td>
+                <td>$90.93</td>
+                <td>0.8x</td>
+                <td class="pos">+0.17%</td>
+                <td class="neg">-5.25%</td>
+                <td><span class="rsi-badge rsi-high">66.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">PWR<span class="tooltip-text">Engineering and construction leader in high-voltage transmission, substations and grid hardening, directly tied to data-center-driven grid investment.</span></td>
+                <td>Quanta Services</td>
+                <td>69.90B</td>
+                <td>$468.78</td>
+                <td>1.0x</td>
+                <td class="neg">-0.94%</td>
+                <td class="pos">+7.26%</td>
+                <td><span class="rsi-badge rsi-high">67.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NEE<span class="tooltip-text">Large renewable and transmission developer that offers lower-volatility exposure to rising global electricity demand from AI.</span></td>
+                <td>NextEra Energy</td>
+                <td>177.17B</td>
+                <td>$85.07</td>
+                <td>1.0x</td>
+                <td class="pos">+1.45%</td>
+                <td class="pos">+3.77%</td>
+                <td><span class="rsi-badge rsi-high">71.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AES<span class="tooltip-text">Actively invests in storage and high-voltage projects, positioning it as a beneficiary of the AI and data-center power build-out.</span></td>
+                <td>AES Corp</td>
+                <td>10.40B</td>
+                <td>$14.61</td>
+                <td>1.0x</td>
+                <td class="pos">+2.60%</td>
+                <td class="pos">+4.36%</td>
+                <td><span class="">53.5</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____AI_Value_Reset">
+            <div class="theme-header">
+                <div class="theme-title">AI Value Reset</div>
+                <div style="font-weight:bold;" class="pos">Avg: +2.03%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">ORCL<span class="tooltip-text">AI infra narrative supported the rerating, but latest results show cloud growth slowing and capex delays, making it a key name for AI capex deceleration.</span></td>
+                <td>Oracle</td>
+                <td>511.93B</td>
+                <td>$178.18</td>
+                <td>0.7x</td>
+                <td class="pos">+2.47%</td>
+                <td class="neg">-7.97%</td>
+                <td><span class="">37.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AVGO<span class="tooltip-text">AI chip segment is strong but offset by weaker legacy and memory businesses; market questions the durability of peak AI margins, making it a high-beta de-rating candidate.</span></td>
+                <td>Broadcom</td>
+                <td>1.54T</td>
+                <td>$325.49</td>
+                <td>0.7x</td>
+                <td class="neg">-1.01%</td>
+                <td class="neg">-4.24%</td>
+                <td><span class="">38.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ADBE<span class="tooltip-text">Generative AI tools threaten Creative Cloud pricing power and user growth, turning Adobe into a classic incumbent at risk of AI disruption.</span></td>
+                <td>Adobe</td>
+                <td>125.47B</td>
+                <td>$299.73</td>
+                <td>1.1x</td>
+                <td class="pos">+1.87%</td>
+                <td class="neg">-1.55%</td>
+                <td><span class="rsi-badge rsi-low">20.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">INTC<span class="tooltip-text">Demand is shifting toward GPUs and custom AI silicon while foundry investments compress margins, making Intel a relative loser in the AI infrastructure build-out.</span></td>
+                <td>Intel</td>
+                <td>259.11B</td>
+                <td>$54.32</td>
+                <td>1.9x</td>
+                <td class="pos">+0.13%</td>
+                <td class="pos">+11.49%</td>
+                <td><span class="rsi-badge rsi-high">82.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">DOCU<span class="tooltip-text">LLMs and AI agents can automate drafting and contract workflows, undermining DocuSignâs seat-based model and long-term pricing power.</span></td>
+                <td>DocuSign</td>
+                <td>11.52B</td>
+                <td>$57.50</td>
+                <td>1.5x</td>
+                <td class="pos">+2.62%</td>
+                <td class="neg">-7.06%</td>
+                <td><span class="rsi-badge rsi-low">28.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">WDAY<span class="tooltip-text">AI copilots and automation can reduce the need for human seats in HR and finance tools, exposing Workdayâs growth and high multiple to downside risk.</span></td>
+                <td>Workday</td>
+                <td>50.24B</td>
+                <td>$188.18</td>
+                <td>0.8x</td>
+                <td class="pos">+2.60%</td>
+                <td class="neg">-3.00%</td>
+                <td><span class="rsi-badge rsi-low">22.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">CRM<span class="tooltip-text">Einstein and AI add-ons have limited revenue impact versus expectations; if enterprise IT spend slows, Salesforceâs premium SaaS valuation is vulnerable.</span></td>
+                <td>Salesforce</td>
+                <td>217.14B</td>
+                <td>$228.09</td>
+                <td>1.2x</td>
+                <td class="pos">+2.94%</td>
+                <td class="neg">-4.79%</td>
+                <td><span class="rsi-badge rsi-low">26.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SNOW<span class="tooltip-text">Positioned as AI data infrastructure, but usage-based revenue is very sensitive to delayed AI workloads, making its rich multiple at risk in a slowdown.</span></td>
+                <td>Snowflake</td>
+                <td>72.25B</td>
+                <td>$211.13</td>
+                <td>0.8x</td>
+                <td class="pos">+2.24%</td>
+                <td class="pos">+2.41%</td>
+                <td><span class="">43.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MDB<span class="tooltip-text">Faces pressure from open-source and cloud-native databases; the AI story supports high multiples that can unwind quickly if growth normalizes.</span></td>
+                <td>MongoDB</td>
+                <td>32.93B</td>
+                <td>$404.64</td>
+                <td>0.7x</td>
+                <td class="pos">+6.08%</td>
+                <td class="pos">+4.59%</td>
+                <td><span class="">46.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">PLTR<span class="tooltip-text">Retail investors treat Palantir as a combined defense, AI and big-data story; price is highly sensitive to headlines and narrative shifts.</span></td>
+                <td>Palantir</td>
+                <td>395.41B</td>
+                <td>$165.90</td>
+                <td>0.7x</td>
+                <td class="pos">+0.34%</td>
+                <td class="neg">-7.01%</td>
+                <td><span class="">37.0</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Autonomous_Driving">
+            <div class="theme-header">
+                <div class="theme-title">Autonomous Driving</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.79%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">TSLA<span class="tooltip-text">Vertical integration of hardware, software and data positions Tesla as a leading end-to-end full self-driving and Robotaxi platform candidate.</span></td>
+                <td>Tesla</td>
+                <td>1.49T</td>
+                <td>$449.36</td>
+                <td>1.0x</td>
+                <td class="pos">+4.15%</td>
+                <td class="pos">+2.31%</td>
+                <td><span class="">49.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MBLY<span class="tooltip-text">Computer-vision and ADAS supplier to many global OEMs, providing a leveraged way to play gradual adoption of higher-level driver assistance.</span></td>
+                <td>Mobileye</td>
+                <td>8.55B</td>
+                <td>$10.51</td>
+                <td>2.0x</td>
+                <td class="neg">-3.40%</td>
+                <td class="neg">-3.93%</td>
+                <td><span class="">50.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AUR<span class="tooltip-text">Focused on Level 4 autonomous trucking, targeting long-haul freight where labor shortages and economics strongly favor autonomy.</span></td>
+                <td>Aurora Innovation</td>
+                <td>9.44B</td>
+                <td>$4.88</td>
+                <td>1.3x</td>
+                <td class="pos">+4.72%</td>
+                <td class="pos">+5.63%</td>
+                <td><span class="rsi-badge rsi-high">77.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">CRNC<span class="tooltip-text">Voice assistant and in-car AI software vendor capturing the shift toward intelligent, AI-driven cockpit experiences.</span></td>
+                <td>Cerence</td>
+                <td>517.23M</td>
+                <td>$11.49</td>
+                <td>0.8x</td>
+                <td class="pos">+1.68%</td>
+                <td class="neg">-6.81%</td>
+                <td><span class="">57.1</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Bio_Revolution">
+            <div class="theme-header">
+                <div class="theme-title">Bio-Revolution</div>
+                <div style="font-weight:bold;" class="pos">Avg: +2.22%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">LLY<span class="tooltip-text">The king of weight-loss drugs, its market capitalization is approaching that of Trillion.</span></td>
+                <td>Eli Lilly</td>
+                <td>974.79B</td>
+                <td>$1087.38</td>
+                <td>0.8x</td>
+                <td class="pos">+0.82%</td>
+                <td class="pos">+1.31%</td>
+                <td><span class="">52.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NVO<span class="tooltip-text">Europe's top stock, developer of Wegovy.</span></td>
+                <td>Novo Nordisk</td>
+                <td>276.52B</td>
+                <td>$62.23</td>
+                <td>1.0x</td>
+                <td class="pos">+4.91%</td>
+                <td class="pos">+5.64%</td>
+                <td><span class="rsi-badge rsi-high">74.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">VKTX<span class="tooltip-text">High-beta - A favorite potential acquisition target on Reddit, possessing next-generation oral drug technology.</span></td>
+                <td>Viking Therapeutics</td>
+                <td>3.85B</td>
+                <td>$34.09</td>
+                <td>1.0x</td>
+                <td class="pos">+2.13%</td>
+                <td class="neg">-0.73%</td>
+                <td><span class="">46.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMGN<span class="tooltip-text">Defensive - Developing MariTide, which has a different pharmacological mechanism.</span></td>
+                <td>Amgen</td>
+                <td>186.89B</td>
+                <td>$347.07</td>
+                <td>1.1x</td>
+                <td class="pos">+1.01%</td>
+                <td class="pos">+5.50%</td>
+                <td><span class="">64.5</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="United_States____Crypto_Companies">
+            <div class="theme-header">
+                <div class="theme-title">Crypto Companies</div>
+                <div style="font-weight:bold;" class="neg">Avg: -1.74%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">COIN<span class="tooltip-text">Leading regulated U.S. crypto exchange and custodian, central to institutional and retail access to digital assets.</span></td>
+                <td>Coinbase Global</td>
+                <td>60.17B</td>
+                <td>$223.14</td>
+                <td>0.9x</td>
+                <td class="neg">-1.67%</td>
+                <td class="neg">-12.79%</td>
+                <td><span class="">48.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MSTR<span class="tooltip-text">Acts as a levered listed proxy for Bitcoin via its balance sheet strategy, amplifying BTC upside and downside.</span></td>
+                <td>MicroStrategy</td>
+                <td>46.58B</td>
+                <td>$160.98</td>
+                <td>0.5x</td>
+                <td class="neg">-1.73%</td>
+                <td class="neg">-10.23%</td>
+                <td><span class="">54.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MARA<span class="tooltip-text">North American miner pivoting toward HPC and AI hosting, providing exposure to both mining economics and compute infrastructure.</span></td>
+                <td>MARA Holdings</td>
+                <td>3.89B</td>
+                <td>$10.29</td>
+                <td>1.1x</td>
+                <td class="neg">-2.56%</td>
+                <td class="neg">-7.38%</td>
+                <td><span class="">60.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">RIOT<span class="tooltip-text">Large-scale miner that complements MARA in a pair trade, giving broader coverage of listed Bitcoin mining risk.</span></td>
+                <td>Riot Platforms</td>
+                <td>6.35B</td>
+                <td>$17.08</td>
+                <td>0.8x</td>
+                <td class="neg">-0.99%</td>
+                <td class="neg">-1.33%</td>
+                <td><span class="rsi-badge rsi-high">71.0</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Cybersecurity">
+            <div class="theme-header">
+                <div class="theme-title">Cybersecurity</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.66%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">PANW<span class="tooltip-text">The clear winner in platformization; consolidating security spend from enterprises into a single unified platform.</span></td>
+                <td>Palo Alto Networks</td>
+                <td>124.67B</td>
+                <td>$182.27</td>
+                <td>1.2x</td>
+                <td class="pos">+0.44%</td>
+                <td class="neg">-4.54%</td>
+                <td><span class="">47.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">CRWD<span class="tooltip-text">Despite past outages, remains the gold standard for endpoint protection and cloud security with high switching costs.</span></td>
+                <td>CrowdStrike</td>
+                <td>114.39B</td>
+                <td>$453.77</td>
+                <td>0.6x</td>
+                <td class="pos">+1.77%</td>
+                <td class="neg">-1.50%</td>
+                <td><span class="">42.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">FTNT<span class="tooltip-text">High-margin, profitable growth story focusing on firewalls and secure networking; defensive valuation compared to peers.</span></td>
+                <td>Fortinet</td>
+                <td>59.48B</td>
+                <td>$77.62</td>
+                <td>0.8x</td>
+                <td class="pos">+2.47%</td>
+                <td class="pos">+1.61%</td>
+                <td><span class="">43.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NET<span class="tooltip-text">Essential infrastructure for the internet; acts as the 'gatekeeper' for AI traffic and edge computing.</span></td>
+                <td>Cloudflare</td>
+                <td>60.70B</td>
+                <td>$173.30</td>
+                <td>1.8x</td>
+                <td class="pos">+1.96%</td>
+                <td class="neg">-8.01%</td>
+                <td><span class="rsi-badge rsi-low">28.7</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Datacenter_Suppliers">
+            <div class="theme-header">
+                <div class="theme-title">Datacenter Suppliers</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.63%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">VRT<span class="tooltip-text">Leader in high-density racks and liquid cooling, directly leveraged to thermal challenges of AI GPU servers.</span></td>
+                <td>Vertiv Holdings</td>
+                <td>69.25B</td>
+                <td>$181.12</td>
+                <td>0.9x</td>
+                <td class="neg">-0.19%</td>
+                <td class="pos">+6.00%</td>
+                <td><span class="rsi-badge rsi-high">66.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ANET<span class="tooltip-text">Top supplier of high-speed switches and data-center networking, essential for scaling AI clusters across thousands of GPUs.</span></td>
+                <td>Arista Networks</td>
+                <td>174.30B</td>
+                <td>$138.41</td>
+                <td>2.2x</td>
+                <td class="pos">+8.74%</td>
+                <td class="pos">+10.65%</td>
+                <td><span class="">57.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ETN<span class="tooltip-text">Provides transformers, switchgear and power distribution gear that connect the grid to racks in power-hungry data centers.</span></td>
+                <td>Eaton Corp</td>
+                <td>130.04B</td>
+                <td>$334.04</td>
+                <td>0.9x</td>
+                <td class="neg">-1.16%</td>
+                <td class="pos">+0.88%</td>
+                <td><span class="">60.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">JCI<span class="tooltip-text">Building automation and HVAC systems play a key role in cooling and managing next-generation high-density data centers.</span></td>
+                <td>Johnson Controls</td>
+                <td>70.09B</td>
+                <td>$114.51</td>
+                <td>0.6x</td>
+                <td class="neg">-0.85%</td>
+                <td class="pos">+2.12%</td>
+                <td><span class="">36.7</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="United_States____Deregulation">
+            <div class="theme-header">
+                <div class="theme-title">Deregulation</div>
+                <div style="font-weight:bold;" class="neg">Avg: -0.16%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">GS<span class="tooltip-text">Primary beneficiary of revived IPO markets and M&A activity driven by expected looser financial regulations.</span></td>
+                <td>Goldman Sachs</td>
+                <td>288.99B</td>
+                <td>$954.65</td>
+                <td>1.1x</td>
+                <td class="pos">+0.17%</td>
+                <td class="pos">+2.36%</td>
+                <td><span class="rsi-badge rsi-high">67.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">KKR<span class="tooltip-text">Private equity giant poised to deploy massive dry powder as deal-making environments improve.</span></td>
+                <td>KKR & Co</td>
+                <td>114.33B</td>
+                <td>$123.48</td>
+                <td>0.7x</td>
+                <td class="neg">-0.68%</td>
+                <td class="neg">-6.51%</td>
+                <td><span class="">44.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">XOM<span class="tooltip-text">Energy giant benefiting from 'drill baby drill' policies; serves as a defensive hedge against tech volatility.</span></td>
+                <td>Exxon Mobil</td>
+                <td>569.74B</td>
+                <td>$133.64</td>
+                <td>0.9x</td>
+                <td class="pos">+0.02%</td>
+                <td class="pos">+2.64%</td>
+                <td><span class="rsi-badge rsi-high">71.9</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Drones">
+            <div class="theme-header">
+                <div class="theme-title">Drones</div>
+                <div style="font-weight:bold;" class="pos">Avg: +0.45%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">LMT<span class="tooltip-text">Major defense contractor with various UAV systems.</span></td>
+                <td>Lockheed Martin</td>
+                <td>138.66B</td>
+                <td>$593.91</td>
+                <td>0.8x</td>
+                <td class="pos">+1.31%</td>
+                <td class="pos">+3.70%</td>
+                <td><span class="rsi-badge rsi-high">81.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NOC<span class="tooltip-text">Maker of Global Hawk and other advanced UAVs.</span></td>
+                <td>Northrop Grumman</td>
+                <td>96.00B</td>
+                <td>$670.44</td>
+                <td>0.7x</td>
+                <td class="pos">+0.95%</td>
+                <td class="pos">+2.65%</td>
+                <td><span class="rsi-badge rsi-high">75.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GD<span class="tooltip-text">Defense products including drone technology.</span></td>
+                <td>General Dynamics</td>
+                <td>98.82B</td>
+                <td>$365.83</td>
+                <td>0.7x</td>
+                <td class="pos">+0.29%</td>
+                <td class="pos">+0.36%</td>
+                <td><span class="rsi-badge rsi-high">69.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">BA<span class="tooltip-text">Military drones like ScanEagle.</span></td>
+                <td>Boeing</td>
+                <td>196.87B</td>
+                <td>$251.41</td>
+                <td>1.3x</td>
+                <td class="pos">+0.54%</td>
+                <td class="pos">+3.63%</td>
+                <td><span class="rsi-badge rsi-high">89.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">RTX<span class="tooltip-text">Advanced defense tech including drone systems.</span></td>
+                <td>RTX Corp</td>
+                <td>263.25B</td>
+                <td>$196.34</td>
+                <td>0.8x</td>
+                <td class="neg">-0.59%</td>
+                <td class="neg">-1.26%</td>
+                <td><span class="rsi-badge rsi-high">68.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AVAV<span class="tooltip-text">Leader in tactical drones and Switchblade loitering munitions.</span></td>
+                <td>AeroVironment</td>
+                <td>15.58B</td>
+                <td>$312.12</td>
+                <td>0.8x</td>
+                <td class="neg">-2.35%</td>
+                <td class="neg">-18.25%</td>
+                <td><span class="">63.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">KTOS<span class="tooltip-text">High-performance target drones and combat UAVs.</span></td>
+                <td>Kratos Defense</td>
+                <td>19.22B</td>
+                <td>$113.85</td>
+                <td>1.7x</td>
+                <td class="neg">-5.59%</td>
+                <td class="neg">-6.30%</td>
+                <td><span class="rsi-badge rsi-high">76.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TXT<span class="tooltip-text">Produces Shadow tactical UAVs.</span></td>
+                <td>Textron</td>
+                <td>17.11B</td>
+                <td>$96.03</td>
+                <td>0.6x</td>
+                <td class="neg">-0.30%</td>
+                <td class="pos">+1.98%</td>
+                <td><span class="rsi-badge rsi-high">75.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LHX<span class="tooltip-text">Unmanned systems and defense technology.</span></td>
+                <td>L3Harris</td>
+                <td>66.56B</td>
+                <td>$355.75</td>
+                <td>0.9x</td>
+                <td class="pos">+2.28%</td>
+                <td class="pos">+3.76%</td>
+                <td><span class="rsi-badge rsi-high">86.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">UMAC<span class="tooltip-text">Drone manufacturer gaining attention after Elon Musk comments.</span></td>
+                <td>Unusual Machines</td>
+                <td>697.41M</td>
+                <td>$18.30</td>
+                <td>1.2x</td>
+                <td class="pos">+7.96%</td>
+                <td class="pos">+10.71%</td>
+                <td><span class="rsi-badge rsi-high">70.6</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____EV_Hangover">
+            <div class="theme-header">
+                <div class="theme-title">EV Hangover</div>
+                <div style="font-weight:bold;" class="pos">Avg: +2.05%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">RIVN<span class="tooltip-text">High cash burn, heavy capex and scaling risk make Rivian very sensitive to higher rates and weaker EV demand.</span></td>
+                <td>Rivian</td>
+                <td>20.01B</td>
+                <td>$16.32</td>
+                <td>0.5x</td>
+                <td class="neg">-0.91%</td>
+                <td class="neg">-6.74%</td>
+                <td><span class="rsi-badge rsi-low">18.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LCID<span class="tooltip-text">Luxury-only positioning and limited scale hurt economics, making the stock a favored short when EV sentiment deteriorates.</span></td>
+                <td>Lucid Group</td>
+                <td>3.72B</td>
+                <td>$11.47</td>
+                <td>1.3x</td>
+                <td class="neg">+0.00%</td>
+                <td class="pos">+5.81%</td>
+                <td><span class="">58.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ALB<span class="tooltip-text">Lithium oversupply and lower prices have compressed margins and earnings, linking Albemarle to the downside of the EV raw materials cycle.</span></td>
+                <td>Albemarle</td>
+                <td>22.16B</td>
+                <td>$188.32</td>
+                <td>1.3x</td>
+                <td class="pos">+4.59%</td>
+                <td class="pos">+6.07%</td>
+                <td><span class="rsi-badge rsi-high">78.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LAC<span class="tooltip-text">Pre-revenue, capital-intensive projects make it highly exposed to delayed EV capex and funding risk.</span></td>
+                <td>Lithium Americas</td>
+                <td>1.86B</td>
+                <td>$6.13</td>
+                <td>1.8x</td>
+                <td class="pos">+8.11%</td>
+                <td class="pos">+1.16%</td>
+                <td><span class="rsi-badge rsi-high">78.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">STLA<span class="tooltip-text">More measured EV/hybrid roadmap and strong legacy cash flows provide downside protection versus aggressive pure-play EV makers.</span></td>
+                <td>Stellantis</td>
+                <td>28.28B</td>
+                <td>$9.79</td>
+                <td>1.5x</td>
+                <td class="neg">-1.31%</td>
+                <td class="neg">-3.74%</td>
+                <td><span class="">36.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TM<span class="tooltip-text">Hybrid-first strategy has proven resilient in a high-rate, infrastructure-constrained environment, offering a rational transition path rather than pure EV risk.</span></td>
+                <td>Toyota</td>
+                <td>297.31B</td>
+                <td>$227.04</td>
+                <td>0.7x</td>
+                <td class="neg">-0.31%</td>
+                <td class="neg">-0.11%</td>
+                <td><span class="">62.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TSLA<span class="tooltip-text">High-margin EV business funds long-dated AI, Robotaxi and humanoid robot options, while maintaining one of the deepest global retail investor followings.</span></td>
+                <td>Tesla</td>
+                <td>1.49T</td>
+                <td>$449.36</td>
+                <td>1.0x</td>
+                <td class="pos">+4.15%</td>
+                <td class="pos">+2.31%</td>
+                <td><span class="">49.9</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Fintech___High_Beta">
+            <div class="theme-header">
+                <div class="theme-title">Fintech - High Beta</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.22%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">SOFI<span class="tooltip-text">Fintech - Digital Banking category.</span></td>
+                <td>SoFi Technologies</td>
+                <td>32.97B</td>
+                <td>$26.09</td>
+                <td>0.8x</td>
+                <td class="pos">+1.76%</td>
+                <td class="neg">-2.17%</td>
+                <td><span class="">49.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">UPST<span class="tooltip-text">Fintech - Lending category.</span></td>
+                <td>Upstart</td>
+                <td>4.50B</td>
+                <td>$46.28</td>
+                <td>0.5x</td>
+                <td class="pos">+0.41%</td>
+                <td class="neg">-0.37%</td>
+                <td><span class="">55.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AFRM<span class="tooltip-text">Fintech - BNPL category.</span></td>
+                <td>Affirm</td>
+                <td>24.04B</td>
+                <td>$72.83</td>
+                <td>0.9x</td>
+                <td class="pos">+1.50%</td>
+                <td class="pos">+0.31%</td>
+                <td><span class="">47.3</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Fintech___Payments">
+            <div class="theme-header">
+                <div class="theme-title">Fintech - Payments</div>
+                <div style="font-weight:bold;" class="pos">Avg: +2.60%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">PAYO<span class="tooltip-text">Fintech - Remittance category.</span></td>
+                <td>Payoneer</td>
+                <td>2.14B</td>
+                <td>$5.94</td>
+                <td>2.4x</td>
+                <td class="pos">+8.59%</td>
+                <td class="pos">+12.08%</td>
+                <td><span class="">62.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MA<span class="tooltip-text">Fintech - Insurtech category.</span></td>
+                <td>Mastercard</td>
+                <td>481.71B</td>
+                <td>$532.86</td>
+                <td>1.6x</td>
+                <td class="pos">+1.00%</td>
+                <td class="neg">-2.55%</td>
+                <td><span class="rsi-badge rsi-low">28.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">V<span class="tooltip-text">Fintech - Insurtech category.</span></td>
+                <td>Visa</td>
+                <td>629.84B</td>
+                <td>$326.36</td>
+                <td>0.9x</td>
+                <td class="pos">+0.33%</td>
+                <td class="neg">-0.85%</td>
+                <td><span class="rsi-badge rsi-low">26.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">PYPL<span class="tooltip-text">Fintech - Payments category.</span></td>
+                <td>PayPal</td>
+                <td>54.60B</td>
+                <td>$57.15</td>
+                <td>0.9x</td>
+                <td class="pos">+2.25%</td>
+                <td class="neg">-0.88%</td>
+                <td><span class="">44.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ADYEY<span class="tooltip-text">Fintech - Payments category.</span></td>
+                <td>Adyen</td>
+                <td>52.79B</td>
+                <td>$16.74</td>
+                <td>1.4x</td>
+                <td class="pos">+0.84%</td>
+                <td class="pos">+4.36%</td>
+                <td><span class="">60.8</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="United_States____Fintech_Broker">
+            <div class="theme-header">
+                <div class="theme-title">Fintech-Broker</div>
+                <div style="font-weight:bold;" class="neg">Avg: -0.07%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">HOOD<span class="tooltip-text">Fintech - Brokerage category.</span></td>
+                <td>Robinhood</td>
+                <td>95.54B</td>
+                <td>$106.25</td>
+                <td>0.7x</td>
+                <td class="pos">+0.31%</td>
+                <td class="neg">-11.21%</td>
+                <td><span class="">41.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">IBKR<span class="tooltip-text">Fintech - Brokerage category.</span></td>
+                <td>Interactive Brokers</td>
+                <td>131.25B</td>
+                <td>$77.21</td>
+                <td>1.4x</td>
+                <td class="pos">+1.86%</td>
+                <td class="pos">+8.21%</td>
+                <td><span class="rsi-badge rsi-high">77.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">FUTU<span class="tooltip-text">Fintech - Brokerage category.</span></td>
+                <td>Futu Holdings</td>
+                <td>22.55B</td>
+                <td>$162.00</td>
+                <td>1.4x</td>
+                <td class="neg">-2.39%</td>
+                <td class="neg">-6.92%</td>
+                <td><span class="">48.3</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Google_Supplier">
+            <div class="theme-header">
+                <div class="theme-title">Google Supplier</div>
+                <div style="font-weight:bold;" class="pos">Avg: +2.05%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">AVGO<span class="tooltip-text">Co-designer of Google's custom TPU chips.</span></td>
+                <td>Broadcom</td>
+                <td>1.54T</td>
+                <td>$325.49</td>
+                <td>0.7x</td>
+                <td class="neg">-1.01%</td>
+                <td class="neg">-4.24%</td>
+                <td><span class="">38.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ANET<span class="tooltip-text">Key supplier for high-speed data center networking.</span></td>
+                <td>Arista Networks</td>
+                <td>174.30B</td>
+                <td>$138.41</td>
+                <td>2.2x</td>
+                <td class="pos">+8.74%</td>
+                <td class="pos">+10.65%</td>
+                <td><span class="">57.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MRVL<span class="tooltip-text">Supplier of optical interconnects and custom silicon.</span></td>
+                <td>Marvell Technology</td>
+                <td>71.64B</td>
+                <td>$83.10</td>
+                <td>0.8x</td>
+                <td class="pos">+0.67%</td>
+                <td class="pos">+2.33%</td>
+                <td><span class="">45.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">VRT<span class="tooltip-text">Critical power and cooling infrastructure for high-density racks.</span></td>
+                <td>Vertiv</td>
+                <td>69.25B</td>
+                <td>$181.12</td>
+                <td>0.9x</td>
+                <td class="neg">-0.19%</td>
+                <td class="pos">+6.00%</td>
+                <td><span class="rsi-badge rsi-high">66.3</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Heat_Dissipation">
+            <div class="theme-header">
+                <div class="theme-title">Heat Dissipation</div>
+                <div style="font-weight:bold;" class="pos">Avg: +0.71%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">VRT<span class="tooltip-text">Leader in data center thermal management, including liquid cooling for AI.</span></td>
+                <td>Vertiv</td>
+                <td>69.25B</td>
+                <td>$181.12</td>
+                <td>0.9x</td>
+                <td class="neg">-0.19%</td>
+                <td class="pos">+6.00%</td>
+                <td><span class="rsi-badge rsi-high">66.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NVDA<span class="tooltip-text">High-performance GPUs driving the need for advanced liquid cooling solutions.</span></td>
+                <td>NVIDIA</td>
+                <td>4.50T</td>
+                <td>$184.84</td>
+                <td>0.8x</td>
+                <td class="pos">+0.83%</td>
+                <td class="pos">+0.93%</td>
+                <td><span class="">47.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMD<span class="tooltip-text">High-performance chips requiring advanced cooling; partnering on liquid cooling tech.</span></td>
+                <td>AMD</td>
+                <td>413.08B</td>
+                <td>$253.73</td>
+                <td>1.2x</td>
+                <td class="pos">+1.57%</td>
+                <td class="pos">+13.47%</td>
+                <td><span class="rsi-badge rsi-high">74.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">INTC<span class="tooltip-text">Developing immersion cooling and cold plate technologies for data centers.</span></td>
+                <td>Intel</td>
+                <td>259.11B</td>
+                <td>$54.32</td>
+                <td>1.9x</td>
+                <td class="pos">+0.13%</td>
+                <td class="pos">+11.49%</td>
+                <td><span class="rsi-badge rsi-high">82.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MSFT<span class="tooltip-text">Investing in liquid cooling (immersion) for Azure data centers.</span></td>
+                <td>Microsoft</td>
+                <td>3.35T</td>
+                <td>$451.14</td>
+                <td>1.1x</td>
+                <td class="pos">+1.58%</td>
+                <td class="neg">-1.79%</td>
+                <td><span class="rsi-badge rsi-low">28.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">EQIX<span class="tooltip-text">Data center provider implementing liquid cooling for high-density workloads.</span></td>
+                <td>Equinix</td>
+                <td>77.84B</td>
+                <td>$792.76</td>
+                <td>0.7x</td>
+                <td class="neg">-0.34%</td>
+                <td class="neg">-0.78%</td>
+                <td><span class="">60.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GOOGL<span class="tooltip-text">Investing in liquid cooling for TPUs and AI workloads.</span></td>
+                <td>Alphabet</td>
+                <td>4.00T</td>
+                <td>$330.54</td>
+                <td>0.9x</td>
+                <td class="pos">+0.66%</td>
+                <td class="neg">-1.58%</td>
+                <td><span class="rsi-badge rsi-high">67.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">HON<span class="tooltip-text">Solstice fluid technology for phase-change liquid cooling.</span></td>
+                <td>Honeywell</td>
+                <td>149.96B</td>
+                <td>$222.54</td>
+                <td>1.0x</td>
+                <td class="pos">+1.54%</td>
+                <td class="pos">+4.46%</td>
+                <td><span class="rsi-badge rsi-high">79.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SMCI<span class="tooltip-text">Integrates liquid cooling technology into high-performance server racks.</span></td>
+                <td>Super Micro Computer</td>
+                <td>19.37B</td>
+                <td>$32.45</td>
+                <td>1.1x</td>
+                <td class="pos">+0.65%</td>
+                <td class="pos">+14.79%</td>
+                <td><span class="">62.7</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____LEO_Satellites">
+            <div class="theme-header">
+                <div class="theme-title">LEO Satellites</div>
+                <div style="font-weight:bold;" class="pos">Avg: +7.24%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">IRDM<span class="tooltip-text">Global satellite comms with operational LEO constellation.</span></td>
+                <td>Iridium Communications</td>
+                <td>2.31B</td>
+                <td>$21.79</td>
+                <td>2.1x</td>
+                <td class="pos">+11.06%</td>
+                <td class="pos">+10.67%</td>
+                <td><span class="rsi-badge rsi-high">83.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GSAT<span class="tooltip-text">Satellite voice/data services provider.</span></td>
+                <td>Globalstar</td>
+                <td>8.33B</td>
+                <td>$65.67</td>
+                <td>1.0x</td>
+                <td class="pos">+7.99%</td>
+                <td class="pos">+3.37%</td>
+                <td><span class="">58.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ASTS<span class="tooltip-text">Direct-to-cell satellite broadband network.</span></td>
+                <td>AST SpaceMobile</td>
+                <td>42.75B</td>
+                <td>$116.37</td>
+                <td>1.1x</td>
+                <td class="pos">+12.43%</td>
+                <td class="pos">+22.21%</td>
+                <td><span class="rsi-badge rsi-high">71.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SPIR<span class="tooltip-text">Data analytics via LEO satellite constellation (weather/tracking).</span></td>
+                <td>Spire Global</td>
+                <td>407.46M</td>
+                <td>$12.31</td>
+                <td>1.4x</td>
+                <td class="pos">+6.40%</td>
+                <td class="pos">+12.63%</td>
+                <td><span class="rsi-badge rsi-high">90.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SATL<span class="tooltip-text">High-resolution earth observation imagery.</span></td>
+                <td>Satellogic</td>
+                <td>617.73M</td>
+                <td>$4.56</td>
+                <td>2.7x</td>
+                <td class="pos">+27.02%</td>
+                <td class="pos">+24.59%</td>
+                <td><span class="rsi-badge rsi-high">89.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMZN<span class="tooltip-text">Project Kuiper LEO broadband constellation.</span></td>
+                <td>Amazon</td>
+                <td>2.51T</td>
+                <td>$234.34</td>
+                <td>0.8x</td>
+                <td class="pos">+1.31%</td>
+                <td class="neg">-0.98%</td>
+                <td><span class="">53.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MSFT<span class="tooltip-text">Azure Space integrating satellite connectivity.</span></td>
+                <td>Microsoft</td>
+                <td>3.35T</td>
+                <td>$451.14</td>
+                <td>1.1x</td>
+                <td class="pos">+1.58%</td>
+                <td class="neg">-1.79%</td>
+                <td><span class="rsi-badge rsi-low">28.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AAPL<span class="tooltip-text">Satellite connectivity for iPhone emergency services.</span></td>
+                <td>Apple</td>
+                <td>3.67T</td>
+                <td>$248.35</td>
+                <td>0.9x</td>
+                <td class="pos">+0.28%</td>
+                <td class="neg">-4.47%</td>
+                <td><span class="rsi-badge rsi-low">11.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TSLA<span class="tooltip-text">SpaceX (Starlink) connection; operates massive LEO internet constellation.</span></td>
+                <td>Tesla</td>
+                <td>1.49T</td>
+                <td>$449.36</td>
+                <td>1.0x</td>
+                <td class="pos">+4.15%</td>
+                <td class="pos">+2.31%</td>
+                <td><span class="">49.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">RKLB<span class="tooltip-text">Launch provider and space systems; competitor to SpaceX.</span></td>
+                <td>Rocket Lab</td>
+                <td>47.00B</td>
+                <td>$87.98</td>
+                <td>1.0x</td>
+                <td class="pos">+0.18%</td>
+                <td class="neg">-4.16%</td>
+                <td><span class="rsi-badge rsi-high">69.9</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="United_States____Neocloud_Providers">
+            <div class="theme-header">
+                <div class="theme-title">Neocloud Providers</div>
+                <div style="font-weight:bold;" class="neg">Avg: -1.47%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">IREN<span class="tooltip-text">Transitioning from crypto mining to purpose-built, high-density AI data centers, offering alternative cloud capacity for AI workloads.</span></td>
+                <td>IREN Limited</td>
+                <td>17.16B</td>
+                <td>$52.26</td>
+                <td>0.9x</td>
+                <td class="neg">-2.28%</td>
+                <td class="neg">-1.17%</td>
+                <td><span class="rsi-badge rsi-high">69.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">CORZ<span class="tooltip-text">Repurposes mining infrastructure into large-scale AI and HPC hosting, giving direct exposure to outsourced compute demand.</span></td>
+                <td>Core Scientific</td>
+                <td>5.61B</td>
+                <td>$18.08</td>
+                <td>0.9x</td>
+                <td class="neg">-0.66%</td>
+                <td class="pos">+0.89%</td>
+                <td><span class="rsi-badge rsi-high">77.2</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Nuclear_Energy">
+            <div class="theme-header">
+                <div class="theme-title">Nuclear Energy</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.03%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">CEG<span class="tooltip-text">Largest US nuclear operator; supplying Microsoft data centers.</span></td>
+                <td>Constellation Energy</td>
+                <td>104.10B</td>
+                <td>$287.35</td>
+                <td>1.6x</td>
+                <td class="neg">-2.38%</td>
+                <td class="neg">-13.02%</td>
+                <td><span class="rsi-badge rsi-low">28.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">VST<span class="tooltip-text">Power generator with significant nuclear assets.</span></td>
+                <td>Vistra</td>
+                <td>54.33B</td>
+                <td>$160.36</td>
+                <td>0.7x</td>
+                <td class="pos">+0.21%</td>
+                <td class="neg">-5.10%</td>
+                <td><span class="">49.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">EXC<span class="tooltip-text">Major utility with large nuclear fleet.</span></td>
+                <td>Exelon</td>
+                <td>45.05B</td>
+                <td>$44.60</td>
+                <td>1.3x</td>
+                <td class="neg">-0.89%</td>
+                <td class="pos">+2.29%</td>
+                <td><span class="">59.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">D<span class="tooltip-text">Utility with nuclear assets.</span></td>
+                <td>Dominion Energy</td>
+                <td>51.18B</td>
+                <td>$59.93</td>
+                <td>0.7x</td>
+                <td class="neg">-1.63%</td>
+                <td class="neg">-0.53%</td>
+                <td><span class="">58.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">DUK<span class="tooltip-text">Major utility with nuclear facilities.</span></td>
+                <td>Duke Energy</td>
+                <td>91.54B</td>
+                <td>$117.71</td>
+                <td>1.1x</td>
+                <td class="neg">-1.39%</td>
+                <td class="neg">-0.82%</td>
+                <td><span class="">52.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">OKLO<span class="tooltip-text">SMR developer backed by Sam Altman.</span></td>
+                <td>Oklo</td>
+                <td>14.21B</td>
+                <td>$90.93</td>
+                <td>0.8x</td>
+                <td class="pos">+0.17%</td>
+                <td class="neg">-5.25%</td>
+                <td><span class="rsi-badge rsi-high">66.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SMR<span class="tooltip-text">SMR technology developer.</span></td>
+                <td>NuScale Power</td>
+                <td>5.84B</td>
+                <td>$20.64</td>
+                <td>1.2x</td>
+                <td class="pos">+4.51%</td>
+                <td class="pos">+4.08%</td>
+                <td><span class="rsi-badge rsi-high">74.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">BWXT<span class="tooltip-text">Nuclear components and fuel; involved in fusion R&D.</span></td>
+                <td>BWX Technologies</td>
+                <td>18.86B</td>
+                <td>$206.33</td>
+                <td>1.1x</td>
+                <td class="neg">-1.52%</td>
+                <td class="pos">+1.10%</td>
+                <td><span class="rsi-badge rsi-high">70.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NEE<span class="tooltip-text">Renewables giant with nuclear assets.</span></td>
+                <td>NextEra Energy</td>
+                <td>177.17B</td>
+                <td>$85.07</td>
+                <td>1.0x</td>
+                <td class="pos">+1.45%</td>
+                <td class="pos">+3.77%</td>
+                <td><span class="rsi-badge rsi-high">71.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SO<span class="tooltip-text">Nuclear power facilities and tech development.</span></td>
+                <td>Southern Company</td>
+                <td>96.36B</td>
+                <td>$87.51</td>
+                <td>1.5x</td>
+                <td class="neg">-1.84%</td>
+                <td class="neg">-1.03%</td>
+                <td><span class="">52.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ETR<span class="tooltip-text">Operates multiple nuclear power plants.</span></td>
+                <td>Entergy</td>
+                <td>41.77B</td>
+                <td>$93.54</td>
+                <td>1.3x</td>
+                <td class="neg">-2.29%</td>
+                <td class="neg">-1.71%</td>
+                <td><span class="">53.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">PEG<span class="tooltip-text">Nuclear assets and tech development.</span></td>
+                <td>Public Service Enterprise Group</td>
+                <td>39.63B</td>
+                <td>$79.40</td>
+                <td>1.5x</td>
+                <td class="neg">-0.46%</td>
+                <td class="pos">+0.62%</td>
+                <td><span class="">43.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AEP<span class="tooltip-text">Nuclear facilities and tech.</span></td>
+                <td>American Electric Power</td>
+                <td>62.72B</td>
+                <td>$117.18</td>
+                <td>0.9x</td>
+                <td class="neg">-1.51%</td>
+                <td class="neg">-0.79%</td>
+                <td><span class="">56.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">CCJ<span class="tooltip-text">World's largest publicly traded uranium miner.</span></td>
+                <td>Cameco</td>
+                <td>53.21B</td>
+                <td>$121.87</td>
+                <td>1.1x</td>
+                <td class="neg">-0.38%</td>
+                <td class="pos">+10.00%</td>
+                <td><span class="rsi-badge rsi-high">94.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">UUUU<span class="tooltip-text">Uranium and rare earth production.</span></td>
+                <td>Energy Fuels</td>
+                <td>5.79B</td>
+                <td>$24.42</td>
+                <td>1.7x</td>
+                <td class="pos">+8.44%</td>
+                <td class="pos">+16.79%</td>
+                <td><span class="rsi-badge rsi-high">86.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">DNN<span class="tooltip-text">Uranium mining and exploration.</span></td>
+                <td>Denison Mines</td>
+                <td>3.52B</td>
+                <td>$3.92</td>
+                <td>1.4x</td>
+                <td class="pos">+4.53%</td>
+                <td class="pos">+12.32%</td>
+                <td><span class="rsi-badge rsi-high">96.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">UEC<span class="tooltip-text">Uranium exploration and mining.</span></td>
+                <td>Uranium Energy Corp</td>
+                <td>9.60B</td>
+                <td>$19.86</td>
+                <td>1.5x</td>
+                <td class="pos">+5.53%</td>
+                <td class="pos">+15.53%</td>
+                <td><span class="rsi-badge rsi-high">94.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">FLR<span class="tooltip-text">Nuclear facility design, construction, and management.</span></td>
+                <td>Fluor Corporation</td>
+                <td>7.37B</td>
+                <td>$45.61</td>
+                <td>0.7x</td>
+                <td class="pos">+1.81%</td>
+                <td class="pos">+2.96%</td>
+                <td><span class="rsi-badge rsi-high">73.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">J<span class="tooltip-text">Engineering and tech services for nuclear industry.</span></td>
+                <td>Jacobs Engineering</td>
+                <td>16.64B</td>
+                <td>$140.09</td>
+                <td>0.8x</td>
+                <td class="pos">+1.17%</td>
+                <td class="pos">+0.78%</td>
+                <td><span class="rsi-badge rsi-high">65.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">BW<span class="tooltip-text">Nuclear equipment design and manufacturing.</span></td>
+                <td>Babcock & Wilcox</td>
+                <td>979.90M</td>
+                <td>$8.82</td>
+                <td>0.9x</td>
+                <td class="pos">+7.17%</td>
+                <td class="pos">+7.30%</td>
+                <td><span class="rsi-badge rsi-high">76.7</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Open_AI">
+            <div class="theme-header">
+                <div class="theme-title">Open AI</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.09%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">MSFT<span class="tooltip-text">Core partner and Azure cloud provider.</span></td>
+                <td>Microsoft</td>
+                <td>3.35T</td>
+                <td>$451.14</td>
+                <td>1.1x</td>
+                <td class="pos">+1.58%</td>
+                <td class="neg">-1.79%</td>
+                <td><span class="rsi-badge rsi-low">28.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NVDA<span class="tooltip-text">Primary GPU supplier for training clusters.</span></td>
+                <td>NVIDIA</td>
+                <td>4.50T</td>
+                <td>$184.84</td>
+                <td>0.8x</td>
+                <td class="pos">+0.83%</td>
+                <td class="pos">+0.93%</td>
+                <td><span class="">47.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ORCL<span class="tooltip-text">Provides overflow cloud infrastructure capacity.</span></td>
+                <td>Oracle</td>
+                <td>511.93B</td>
+                <td>$178.18</td>
+                <td>0.7x</td>
+                <td class="pos">+2.47%</td>
+                <td class="neg">-7.97%</td>
+                <td><span class="">37.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AVGO<span class="tooltip-text">Partner for custom in-house AI inference chips.</span></td>
+                <td>Broadcom</td>
+                <td>1.54T</td>
+                <td>$325.49</td>
+                <td>0.7x</td>
+                <td class="neg">-1.01%</td>
+                <td class="neg">-4.24%</td>
+                <td><span class="">38.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMD<span class="tooltip-text">Diversified supplier of AI accelerators (MI300).</span></td>
+                <td>Advanced Micro Devices</td>
+                <td>413.08B</td>
+                <td>$253.73</td>
+                <td>1.2x</td>
+                <td class="pos">+1.57%</td>
+                <td class="pos">+13.47%</td>
+                <td><span class="rsi-badge rsi-high">74.7</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Quantum_Computing">
+            <div class="theme-header">
+                <div class="theme-title">Quantum Computing</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.84%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">IONQ<span class="tooltip-text">Leader in trapped-ion quantum computing, offering cloud-based quantum services.</span></td>
+                <td>IonQ</td>
+                <td>17.48B</td>
+                <td>$49.33</td>
+                <td>1.0x</td>
+                <td class="pos">+2.07%</td>
+                <td class="neg">-3.05%</td>
+                <td><span class="">59.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">RGTI<span class="tooltip-text">Developing superconducting quantum processors and hybrid quantum-classical computing.</span></td>
+                <td>Rigetti Computing</td>
+                <td>8.24B</td>
+                <td>$24.96</td>
+                <td>1.0x</td>
+                <td class="pos">+5.45%</td>
+                <td class="neg">-2.95%</td>
+                <td><span class="">61.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">QBTS<span class="tooltip-text">Commercial leader in quantum annealing technology for optimization problems.</span></td>
+                <td>D-Wave Quantum</td>
+                <td>10.22B</td>
+                <td>$27.43</td>
+                <td>1.0x</td>
+                <td class="pos">+5.34%</td>
+                <td class="neg">-9.02%</td>
+                <td><span class="">54.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GOOGL<span class="tooltip-text">Achieved 'Quantum Supremacy' with Sycamore processor; investing heavily in hardware/algo.</span></td>
+                <td>Alphabet</td>
+                <td>4.00T</td>
+                <td>$330.54</td>
+                <td>0.9x</td>
+                <td class="pos">+0.66%</td>
+                <td class="neg">-1.58%</td>
+                <td><span class="rsi-badge rsi-high">67.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">IBM<span class="tooltip-text">Pioneer with IBM Q System One and cloud-based quantum services.</span></td>
+                <td>IBM</td>
+                <td>275.44B</td>
+                <td>$294.67</td>
+                <td>0.9x</td>
+                <td class="neg">-0.96%</td>
+                <td class="neg">-4.65%</td>
+                <td><span class="">49.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MSFT<span class="tooltip-text">Azure Quantum platform and topological qubit research.</span></td>
+                <td>Microsoft</td>
+                <td>3.35T</td>
+                <td>$451.14</td>
+                <td>1.1x</td>
+                <td class="pos">+1.58%</td>
+                <td class="neg">-1.79%</td>
+                <td><span class="rsi-badge rsi-low">28.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">HON<span class="tooltip-text">Quantinuum subsidiary focuses on trapped-ion quantum processors.</span></td>
+                <td>Honeywell</td>
+                <td>149.96B</td>
+                <td>$222.54</td>
+                <td>1.0x</td>
+                <td class="pos">+1.54%</td>
+                <td class="pos">+4.46%</td>
+                <td><span class="rsi-badge rsi-high">79.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NVDA<span class="tooltip-text">Provides cuQuantum SDK for quantum simulation on GPUs.</span></td>
+                <td>NVIDIA</td>
+                <td>4.50T</td>
+                <td>$184.84</td>
+                <td>0.8x</td>
+                <td class="pos">+0.83%</td>
+                <td class="pos">+0.93%</td>
+                <td><span class="">47.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMZN<span class="tooltip-text">AWS Braket service providing access to multiple quantum hardware providers.</span></td>
+                <td>Amazon</td>
+                <td>2.51T</td>
+                <td>$234.34</td>
+                <td>0.8x</td>
+                <td class="pos">+1.31%</td>
+                <td class="neg">-0.98%</td>
+                <td><span class="">53.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AEVA<span class="tooltip-text">LiDAR specialist whose quantum sensing tech has potential computing applications.</span></td>
+                <td>Aeva Technologies</td>
+                <td>1.10B</td>
+                <td>$18.29</td>
+                <td>0.9x</td>
+                <td class="pos">+0.55%</td>
+                <td class="neg">-11.60%</td>
+                <td><span class="rsi-badge rsi-high">66.9</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Retail_Favorites___Flows">
+            <div class="theme-header">
+                <div class="theme-title">Retail Favorites & Flows</div>
+                <div style="font-weight:bold;" class="pos">Avg: +3.34%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">HOOD<span class="tooltip-text">Core venue for U.S. retail trading, options flow and meme activity, making it a useful proxy for retail risk appetite.</span></td>
+                <td>Robinhood</td>
+                <td>95.54B</td>
+                <td>$106.25</td>
+                <td>0.7x</td>
+                <td class="pos">+0.31%</td>
+                <td class="neg">-11.21%</td>
+                <td><span class="">41.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ARM<span class="tooltip-text">Owns key CPU IP for mobile and emerging AI workloads; valuation depends heavily on the âAI on Armâ narrative, driving high volatility.</span></td>
+                <td>Arm Holdings</td>
+                <td>126.47B</td>
+                <td>$119.20</td>
+                <td>2.6x</td>
+                <td class="pos">+4.63%</td>
+                <td class="pos">+13.53%</td>
+                <td><span class="rsi-badge rsi-high">65.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TSLA<span class="tooltip-text">Iconic global retail favorite whose trading intensity often tracks overall speculative sentiment and liquidity conditions.</span></td>
+                <td>Tesla</td>
+                <td>1.49T</td>
+                <td>$449.36</td>
+                <td>1.0x</td>
+                <td class="pos">+4.15%</td>
+                <td class="pos">+2.31%</td>
+                <td><span class="">49.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SOFI<span class="tooltip-text">High-growth fintech and neo-bank name frequently used by retail investors to express bullish views on digital finance.</span></td>
+                <td>SoFi Technologies</td>
+                <td>32.97B</td>
+                <td>$26.09</td>
+                <td>0.8x</td>
+                <td class="pos">+1.76%</td>
+                <td class="neg">-2.17%</td>
+                <td><span class="">49.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GME<span class="tooltip-text">Symbolic meme stock used to monitor extremes in retail speculation and social-media-driven trading regimes.</span></td>
+                <td>GameStop</td>
+                <td>10.37B</td>
+                <td>$23.14</td>
+                <td>2.7x</td>
+                <td class="pos">+6.69%</td>
+                <td class="pos">+10.09%</td>
+                <td><span class="rsi-badge rsi-high">83.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMC<span class="tooltip-text">Another core meme stock whose price action reflects the strength or weakness of meme-style risk-taking.</span></td>
+                <td>AMC Entertainment</td>
+                <td>846.36M</td>
+                <td>$1.65</td>
+                <td>1.4x</td>
+                <td class="pos">+2.48%</td>
+                <td class="pos">+6.45%</td>
+                <td><span class="">55.3</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Robotics">
+            <div class="theme-header">
+                <div class="theme-title">Robotics</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.04%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">ROK<span class="tooltip-text">Global leader in industrial automation and information solutions.</span></td>
+                <td>Rockwell Automation</td>
+                <td>47.82B</td>
+                <td>$425.32</td>
+                <td>1.2x</td>
+                <td class="pos">+1.19%</td>
+                <td class="pos">+1.94%</td>
+                <td><span class="rsi-badge rsi-high">70.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NVDA<span class="tooltip-text">GPU manufacturer whose high-performance computing is essential for AI and robotics.</span></td>
+                <td>NVIDIA</td>
+                <td>4.50T</td>
+                <td>$184.84</td>
+                <td>0.8x</td>
+                <td class="pos">+0.83%</td>
+                <td class="pos">+0.93%</td>
+                <td><span class="">47.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">EMR<span class="tooltip-text">Provides automation solutions for industrial and commercial applications.</span></td>
+                <td>Emerson Electric</td>
+                <td>84.49B</td>
+                <td>$150.26</td>
+                <td>0.8x</td>
+                <td class="pos">+0.46%</td>
+                <td class="pos">+1.42%</td>
+                <td><span class="rsi-badge rsi-high">76.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">ISRG<span class="tooltip-text">Leader in robotic-assisted minimally invasive surgery (da Vinci systems).</span></td>
+                <td>Intuitive Surgical</td>
+                <td>188.49B</td>
+                <td>$525.81</td>
+                <td>1.7x</td>
+                <td class="pos">+0.40%</td>
+                <td class="neg">-3.83%</td>
+                <td><span class="rsi-badge rsi-low">31.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">HON<span class="tooltip-text">Diversified tech and manufacturing giant with strong foothold in industrial automation.</span></td>
+                <td>Honeywell</td>
+                <td>149.96B</td>
+                <td>$222.54</td>
+                <td>1.0x</td>
+                <td class="pos">+1.54%</td>
+                <td class="pos">+4.46%</td>
+                <td><span class="rsi-badge rsi-high">79.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TER<span class="tooltip-text">Automated test equipment and industrial automation solutions.</span></td>
+                <td>Teradyne</td>
+                <td>36.45B</td>
+                <td>$229.14</td>
+                <td>1.0x</td>
+                <td class="neg">-1.19%</td>
+                <td class="neg">-0.46%</td>
+                <td><span class="rsi-badge rsi-high">72.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">TSLA<span class="tooltip-text">Developing Optimus humanoid robot and autonomous technologies.</span></td>
+                <td>Tesla</td>
+                <td>1.49T</td>
+                <td>$449.36</td>
+                <td>1.0x</td>
+                <td class="pos">+4.15%</td>
+                <td class="pos">+2.31%</td>
+                <td><span class="">49.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AMZN<span class="tooltip-text">Amazon Robotics (Kiva) for warehouse efficiency and Scout delivery robots.</span></td>
+                <td>Amazon</td>
+                <td>2.51T</td>
+                <td>$234.34</td>
+                <td>0.8x</td>
+                <td class="pos">+1.31%</td>
+                <td class="neg">-0.98%</td>
+                <td><span class="">53.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GOOGL<span class="tooltip-text">Intrinsic subsidiary developing software to make industrial robots more flexible.</span></td>
+                <td>Alphabet</td>
+                <td>4.00T</td>
+                <td>$330.54</td>
+                <td>0.9x</td>
+                <td class="pos">+0.66%</td>
+                <td class="neg">-1.58%</td>
+                <td><span class="rsi-badge rsi-high">67.6</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="United_States____Silicon_Photonics">
+            <div class="theme-header">
+                <div class="theme-title">Silicon Photonics</div>
+                <div style="font-weight:bold;" class="neg">Avg: -0.44%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">INTC<span class="tooltip-text">Silicon photonics for data center optical comms.</span></td>
+                <td>Intel</td>
+                <td>259.11B</td>
+                <td>$54.32</td>
+                <td>1.9x</td>
+                <td class="pos">+0.13%</td>
+                <td class="pos">+11.49%</td>
+                <td><span class="rsi-badge rsi-high">82.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">CSCO<span class="tooltip-text">Networking leader using SiPh for high-speed data transmission.</span></td>
+                <td>Cisco</td>
+                <td>293.68B</td>
+                <td>$74.33</td>
+                <td>0.6x</td>
+                <td class="pos">+0.87%</td>
+                <td class="neg">-0.11%</td>
+                <td><span class="">37.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LITE<span class="tooltip-text">Optical products for telecom and datacom.</span></td>
+                <td>Lumentum</td>
+                <td>25.14B</td>
+                <td>$354.49</td>
+                <td>1.1x</td>
+                <td class="neg">-2.19%</td>
+                <td class="pos">+6.90%</td>
+                <td><span class="">47.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AVGO<span class="tooltip-text">High-performance semi and optical components.</span></td>
+                <td>Broadcom</td>
+                <td>1.54T</td>
+                <td>$325.49</td>
+                <td>0.7x</td>
+                <td class="neg">-1.01%</td>
+                <td class="neg">-4.24%</td>
+                <td><span class="">38.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MTSI<span class="tooltip-text">Analog and photonics solutions for telecom/datacenters.</span></td>
+                <td>MACOM</td>
+                <td>16.82B</td>
+                <td>$224.29</td>
+                <td>0.9x</td>
+                <td class="neg">-0.87%</td>
+                <td class="pos">+4.32%</td>
+                <td><span class="rsi-badge rsi-high">86.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">AAOI<span class="tooltip-text">Optical modules for data centers.</span></td>
+                <td>Applied Optoelectronics</td>
+                <td>2.60B</td>
+                <td>$38.15</td>
+                <td>0.8x</td>
+                <td class="neg">-0.60%</td>
+                <td class="pos">+10.68%</td>
+                <td><span class="">56.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">GFS<span class="tooltip-text">Foundry manufacturing silicon photonics chips.</span></td>
+                <td>GlobalFoundries</td>
+                <td>25.01B</td>
+                <td>$45.01</td>
+                <td>0.8x</td>
+                <td class="neg">-1.93%</td>
+                <td class="pos">+8.84%</td>
+                <td><span class="rsi-badge rsi-high">81.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">MRVL<span class="tooltip-text">Connectivity/storage semi with SiPh focus.</span></td>
+                <td>Marvell</td>
+                <td>71.64B</td>
+                <td>$83.10</td>
+                <td>0.8x</td>
+                <td class="pos">+0.67%</td>
+                <td class="pos">+2.33%</td>
+                <td><span class="">45.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NOK<span class="tooltip-text">Integrating silicon photonics into network infrastructure.</span></td>
+                <td>Nokia</td>
+                <td>36.84B</td>
+                <td>$6.50</td>
+                <td>1.2x</td>
+                <td class="pos">+0.93%</td>
+                <td class="pos">+2.20%</td>
+                <td><span class="">51.0</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="United_States____Space">
+            <div class="theme-header">
+                <div class="theme-title">Space</div>
+                <div style="font-weight:bold;" class="pos">Avg: +4.02%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">ASTS<span class="tooltip-text">Direct-to-handset satellite model with major carrier partners; successful test satellites create upside if execution and financing risks are managed.</span></td>
+                <td>AST SpaceMobile</td>
+                <td>42.75B</td>
+                <td>$116.37</td>
+                <td>1.1x</td>
+                <td class="pos">+12.43%</td>
+                <td class="pos">+22.21%</td>
+                <td><span class="rsi-badge rsi-high">71.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">RKLB<span class="tooltip-text">Most credible commercial small-launch provider after SpaceX, with a growing manifest and Neutron in development, leveraged to rising launch demand.</span></td>
+                <td>Rocket Lab</td>
+                <td>47.00B</td>
+                <td>$87.98</td>
+                <td>1.0x</td>
+                <td class="pos">+0.18%</td>
+                <td class="neg">-4.16%</td>
+                <td><span class="rsi-badge rsi-high">69.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LHX<span class="tooltip-text">Defense and space systems prime with recurring government contracts, providing cash-flow stability to balance higher-beta pure-play space names.</span></td>
+                <td>L3Harris</td>
+                <td>66.56B</td>
+                <td>$355.75</td>
+                <td>0.9x</td>
+                <td class="pos">+2.28%</td>
+                <td class="pos">+3.76%</td>
+                <td><span class="rsi-badge rsi-high">86.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LMT<span class="tooltip-text">Major defense prime with significant space segment exposure via missiles, satellites and launch partnerships, providing a stable cash-flow anchor in the theme.</span></td>
+                <td>Lockheed Martin</td>
+                <td>138.66B</td>
+                <td>$593.91</td>
+                <td>0.8x</td>
+                <td class="pos">+1.31%</td>
+                <td class="pos">+3.70%</td>
+                <td><span class="rsi-badge rsi-high">81.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">NOC<span class="tooltip-text">Key contractor for national-security space and missile-defense programs, giving exposure to government space budgets with strong balance sheet and backlog.</span></td>
+                <td>Northrop Grumman</td>
+                <td>96.00B</td>
+                <td>$670.44</td>
+                <td>0.7x</td>
+                <td class="pos">+0.95%</td>
+                <td class="pos">+2.65%</td>
+                <td><span class="rsi-badge rsi-high">75.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">KTOS<span class="tooltip-text">Specialized defense and space contractor focused on drones and satellite communications, offering higher growth but more execution risk than large primes.</span></td>
+                <td>Kratos Defense & Security</td>
+                <td>19.22B</td>
+                <td>$113.85</td>
+                <td>1.7x</td>
+                <td class="neg">-5.59%</td>
+                <td class="neg">-6.30%</td>
+                <td><span class="rsi-badge rsi-high">76.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">SPCE<span class="tooltip-text">Tourism-only model with minimal revenue and high cash burn; a classic concept stock to short versus profitable aerospace and defense names.</span></td>
+                <td>Virgin Galactic</td>
+                <td>232.55M</td>
+                <td>$3.18</td>
+                <td>1.4x</td>
+                <td class="pos">+6.00%</td>
+                <td class="pos">+2.91%</td>
+                <td><span class="">48.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">DXYZ<span class="tooltip-text">Broad tech exposure vehicle sometimes traded as a speculative proxy for innovation themes; not a pure space play and can be shorted as a froth indicator.</span></td>
+                <td>Destiny Tech 100</td>
+                <td>426.20M</td>
+                <td>$29.54</td>
+                <td>0.5x</td>
+                <td class="pos">+3.69%</td>
+                <td class="neg">-3.31%</td>
+                <td><span class="">45.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">USAR<span class="tooltip-text">Identified as a critical domestic supplier of antimony, a strategic mineral essential for munitions, night-vision, and infrared sensors in defense/space applications.</span></td>
+                <td>U.S. Antimony</td>
+                <td>3.16B</td>
+                <td>$22.71</td>
+                <td>2.8x</td>
+                <td class="pos">+17.49%</td>
+                <td class="pos">+24.23%</td>
+                <td><span class="rsi-badge rsi-high">80.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">PLTR<span class="tooltip-text">Clarified its specific role in Space as a provider of Data-as-a-Service (Warp Core) to the U.S. Space Force for satellite command and control.</span></td>
+                <td>Palantir</td>
+                <td>395.41B</td>
+                <td>$165.90</td>
+                <td>0.7x</td>
+                <td class="pos">+0.34%</td>
+                <td class="neg">-7.01%</td>
+                <td><span class="">37.0</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">LUNR<span class="tooltip-text">Lunar services and lander business with binary contract outcomes and limited diversification, appropriate as a speculative short against core holdings.</span></td>
+                <td>Intuitive Machines</td>
+                <td>2.93B</td>
+                <td>$20.61</td>
+                <td>0.6x</td>
+                <td class="pos">+5.15%</td>
+                <td class="pos">+4.30%</td>
+                <td><span class="">64.9</span></td>
+            </tr>
+            </tbody></table></div><div class="region-divider">Japan 🇯🇵 Market Overview</div><div class="summary-section">
+            <div class="chart-row" ondblclick="document.getElementById('Japan____Japan___Financial_Normalization').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Japan - Financial Normalization</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 34.448683843329015%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.71%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Japan____Japan___Wage___Consumption').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Japan - Wage & Consumption</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 1.6341515513892382%;"></div>
+                </div>
+                <div class="chart-val text-pos">+0.08%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Japan____Japan___Trading_Majors').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Japan - Trading Majors</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 6.518451093322568%;"></div>
+                </div>
+                <div class="chart-val text-neg">-0.32%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Japan____Japan___Hidden_Champions').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Japan - Hidden Champions</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 21.07495554420212%;"></div>
+                </div>
+                <div class="chart-val text-neg">-1.05%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Japan____Japan___Semiconductor_Renaissance').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Japan - Semiconductor Renaissance</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 28.629086335933216%;"></div>
+                </div>
+                <div class="chart-val text-neg">-1.42%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Japan____Japan___Policy___Defence').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">Japan - Policy & Defence</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 45.0%;"></div>
+                </div>
+                <div class="chart-val text-neg">-2.24%</div>
+            </div>
+            </div>
+        <div class="basket-card bullish" id="Japan____Japan___Financial_Normalization">
+            <div class="theme-header">
+                <div class="theme-title">Japan - Financial Normalization</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.71%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">8306.T<span class="tooltip-text">Largest bank benefiting from BOJ yield curve control adjustments and interest rate normalization; improves net interest margins.</span></td>
+                <td>Mitsubishi UFJ Financial</td>
+                <td>32.19T</td>
+                <td>¥2840.00</td>
+                <td>0.6x</td>
+                <td class="pos">+0.80%</td>
+                <td class="neg">-5.02%</td>
+                <td><span class="rsi-badge rsi-high">73.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">8316.T<span class="tooltip-text">Strong global presence and beneficiary of domestic rate hikes; offers a mix of yield and growth from higher lending rates.</span></td>
+                <td>Sumitomo Mitsui Financial</td>
+                <td>21.25T</td>
+                <td>¥5550.00</td>
+                <td>0.7x</td>
+                <td class="pos">+2.63%</td>
+                <td class="neg">-1.35%</td>
+                <td><span class="rsi-badge rsi-high">65.8</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="Japan____Japan___Hidden_Champions">
+            <div class="theme-header">
+                <div class="theme-title">Japan - Hidden Champions</div>
+                <div style="font-weight:bold;" class="neg">Avg: -1.05%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">6315.T<span class="tooltip-text">Global leader in compression molding equipment essential for HBM (High Bandwidth Memory) packaging; a prime beneficiary of the AI semiconductor boom.</span></td>
+                <td>TOWA Corp</td>
+                <td>223.80B</td>
+                <td>¥2983.00</td>
+                <td>0.7x</td>
+                <td class="neg">-3.46%</td>
+                <td class="neg">-2.20%</td>
+                <td><span class="rsi-badge rsi-high">80.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">6146.T<span class="tooltip-text">Dominant global market share in semiconductor dicing and grinding equipment; a classic 'Hidden Champion' with high margins and moat.</span></td>
+                <td>Disco Corp</td>
+                <td>7.45T</td>
+                <td>¥68690.00</td>
+                <td>1.9x</td>
+                <td class="pos">+0.18%</td>
+                <td class="pos">+13.35%</td>
+                <td><span class="rsi-badge rsi-high">82.7</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">6323.T<span class="tooltip-text">Specialist in wafer transfer robots and automation; key supplier to major fabs with strong technical leverage in the chip supply chain.</span></td>
+                <td>Rorze Corp</td>
+                <td>612.38B</td>
+                <td>¥3531.00</td>
+                <td>1.0x</td>
+                <td class="pos">+0.57%</td>
+                <td class="pos">+11.11%</td>
+                <td><span class="rsi-badge rsi-high">86.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">7735.T<span class="tooltip-text">Leader in semiconductor wafer cleaning equipment; overlooked critical infrastructure for advanced node manufacturing.</span></td>
+                <td>Screen Holdings</td>
+                <td>1.84T</td>
+                <td>¥19415.00</td>
+                <td>1.0x</td>
+                <td class="neg">-1.47%</td>
+                <td class="pos">+8.65%</td>
+                <td><span class="rsi-badge rsi-high">82.3</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="Japan____Japan___Policy___Defence">
+            <div class="theme-header">
+                <div class="theme-title">Japan - Policy & Defence</div>
+                <div style="font-weight:bold;" class="neg">Avg: -2.24%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">7011.T<span class="tooltip-text">Primary contractor for Japan's defense buildup; benefits from increased government spending and space/energy projects.</span></td>
+                <td>Mitsubishi Heavy Industries</td>
+                <td>15.49T</td>
+                <td>¥4611.00</td>
+                <td>0.8x</td>
+                <td class="neg">-1.83%</td>
+                <td class="neg">-1.05%</td>
+                <td><span class="rsi-badge rsi-high">71.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">7012.T<span class="tooltip-text">Defense and robotics exposure; active in liquid hydrogen transport technology which aligns with long-term energy security policies.</span></td>
+                <td>Kawasaki Heavy Industries</td>
+                <td>2.22T</td>
+                <td>¥13265.00</td>
+                <td>0.9x</td>
+                <td class="neg">-2.64%</td>
+                <td class="neg">-5.01%</td>
+                <td><span class="rsi-badge rsi-high">72.4</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="Japan____Japan___Semiconductor_Renaissance">
+            <div class="theme-header">
+                <div class="theme-title">Japan - Semiconductor Renaissance</div>
+                <div style="font-weight:bold;" class="neg">Avg: -1.42%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">9509.T<span class="tooltip-text">Regional utility powering the Rapidus project and new data centers in Hokkaido; a direct play on Japan's 'Silicon Island' national policy.</span></td>
+                <td>Hokkaido Electric Power</td>
+                <td>228.35B</td>
+                <td>¥1112.00</td>
+                <td>0.8x</td>
+                <td class="neg">-3.35%</td>
+                <td class="neg">-4.43%</td>
+                <td><span class="">61.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">6501.T<span class="tooltip-text">Successfully restructured conglomerate focused on power grids, AI infrastructure, and IoT; beneficiary of data center power demand.</span></td>
+                <td>Hitachi</td>
+                <td>23.87T</td>
+                <td>¥5291.00</td>
+                <td>0.9x</td>
+                <td class="pos">+0.51%</td>
+                <td class="pos">+1.67%</td>
+                <td><span class="">62.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">8035.T<span class="tooltip-text">Japan's premier semi-cap equipment maker; essential for global chip supply chains and a proxy for the broader sector recovery.</span></td>
+                <td>Tokyo Electron</td>
+                <td>19.20T</td>
+                <td>¥41890.00</td>
+                <td>0.8x</td>
+                <td class="neg">-1.44%</td>
+                <td class="neg">-0.62%</td>
+                <td><span class="rsi-badge rsi-high">75.4</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="Japan____Japan___Trading_Majors">
+            <div class="theme-header">
+                <div class="theme-title">Japan - Trading Majors</div>
+                <div style="font-weight:bold;" class="neg">Avg: -0.32%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">8058.T<span class="tooltip-text">Diversified trading house (Sogo Shosha) favored by value investors (Buffett); offers exposure to energy, metals, and shareholder returns.</span></td>
+                <td>Mitsubishi Corp</td>
+                <td>14.99T</td>
+                <td>¥4046.00</td>
+                <td>0.5x</td>
+                <td class="neg">-0.88%</td>
+                <td class="neg">-0.22%</td>
+                <td><span class="rsi-badge rsi-high">74.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">8002.T<span class="tooltip-text">Trading house with strong pivots toward green energy and food security; lower P/B ratio offers value reset potential.</span></td>
+                <td>Marubeni Corp</td>
+                <td>8.44T</td>
+                <td>¥5141.00</td>
+                <td>0.6x</td>
+                <td class="pos">+0.23%</td>
+                <td class="neg">-1.12%</td>
+                <td><span class="rsi-badge rsi-high">89.2</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="Japan____Japan___Wage___Consumption">
+            <div class="theme-header">
+                <div class="theme-title">Japan - Wage & Consumption</div>
+                <div style="font-weight:bold;" class="pos">Avg: +0.08%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">9983.T<span class="tooltip-text">Beneficiary of rising real wages in Japan and continued global expansion; a proxy for robust consumer sentiment.</span></td>
+                <td>Fast Retailing (Uniqlo)</td>
+                <td>18.60T</td>
+                <td>¥60610.00</td>
+                <td>0.7x</td>
+                <td class="neg">-0.39%</td>
+                <td class="neg">-3.26%</td>
+                <td><span class="">60.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">4661.T<span class="tooltip-text">Operator of Tokyo Disney Resort; benefits from inbound tourism recovery and increased domestic leisure spending power.</span></td>
+                <td>Oriental Land</td>
+                <td>4.59T</td>
+                <td>¥2799.00</td>
+                <td>0.5x</td>
+                <td class="pos">+0.56%</td>
+                <td class="neg">-0.80%</td>
+                <td><span class="rsi-badge rsi-low">34.5</span></td>
+            </tr>
+            </tbody></table></div><div class="region-divider">Hong Kong 🇭🇰 Market Overview</div><div class="summary-section">
+            <div class="chart-row" ondblclick="document.getElementById('Hong_Kong____HK___Tech_Giants__ATMXJ_').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">HK - Tech Giants (ATMXJ)</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 45.0%;"></div>
+                </div>
+                <div class="chart-val text-pos">+1.47%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Hong_Kong____HK___EV___Auto').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">HK - EV & Auto</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 5.166378846355241%;"></div>
+                </div>
+                <div class="chart-val text-pos">+0.17%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Hong_Kong____HK___Financials').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">HK - Financials</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-pos" style="width: 0.7930005554390455%;"></div>
+                </div>
+                <div class="chart-val text-pos">+0.03%</div>
+            </div>
+            
+            <div class="chart-row" ondblclick="document.getElementById('Hong_Kong____HK___Semiconductors').scrollIntoView({behavior: 'smooth'});">
+                <div class="chart-label">HK - Semiconductors</div>
+                <div class="bar-wrapper">
+                    <div class="zero-line"></div>
+                    <div class="bar-fill bar-neg" style="width: 19.02627608785201%;"></div>
+                </div>
+                <div class="chart-val text-neg">-0.62%</div>
+            </div>
+            </div>
+        <div class="basket-card bullish" id="Hong_Kong____HK___EV___Auto">
+            <div class="theme-header">
+                <div class="theme-title">HK - EV & Auto</div>
+                <div style="font-weight:bold;" class="pos">Avg: +0.17%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">1211.HK<span class="tooltip-text">Global EV leader with vertical integration (batteries); export growth driving next leg of expansion.</span></td>
+                <td>BYD Co.</td>
+                <td>904.88B</td>
+                <td>HK$99.25</td>
+                <td>0.3x</td>
+                <td class="neg">-0.50%</td>
+                <td class="pos">+0.05%</td>
+                <td><span class="">58.2</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">2015.HK<span class="tooltip-text">Leading EREV (Range extender) maker targeting premium family SUV segment; strong cash flow relative to pure EV peers.</span></td>
+                <td>Li Auto</td>
+                <td>134.06B</td>
+                <td>HK$66.10</td>
+                <td>1.3x</td>
+                <td class="pos">+0.84%</td>
+                <td class="pos">+5.25%</td>
+                <td><span class="">49.0</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="Hong_Kong____HK___Financials">
+            <div class="theme-header">
+                <div class="theme-title">HK - Financials</div>
+                <div style="font-weight:bold;" class="pos">Avg: +0.03%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">0005.HK<span class="tooltip-text">Global bank with strong pivot to Asia; beneficiary of high interest rates and returning capital to shareholders via dividends.</span></td>
+                <td>HSBC Holdings</td>
+                <td>2.24T</td>
+                <td>HK$129.80</td>
+                <td>0.6x</td>
+                <td class="pos">+0.08%</td>
+                <td class="pos">+1.01%</td>
+                <td><span class="">63.1</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">2388.HK<span class="tooltip-text">Dominant banknote-issuing bank in HK with strong capitalization; direct play on Greater Bay Area integration.</span></td>
+                <td>BOC Hong Kong</td>
+                <td>415.51B</td>
+                <td>HK$39.26</td>
+                <td>0.4x</td>
+                <td class="pos">+0.56%</td>
+                <td class="neg">-2.58%</td>
+                <td><span class="">48.3</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">0388.HK<span class="tooltip-text">Operator of the HK stock exchange; high-beta play on overall market sentiment and IPO connecting flows.</span></td>
+                <td>HKEX</td>
+                <td>534.89B</td>
+                <td>HK$424.00</td>
+                <td>0.6x</td>
+                <td class="neg">-0.56%</td>
+                <td class="neg">-3.28%</td>
+                <td><span class="">53.8</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bearish" id="Hong_Kong____HK___Semiconductors">
+            <div class="theme-header">
+                <div class="theme-title">HK - Semiconductors</div>
+                <div style="font-weight:bold;" class="neg">Avg: -0.62%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">0981.HK<span class="tooltip-text">China's largest foundry and key to national self-sufficiency drive; heavy government support but geopolitical risks.</span></td>
+                <td>SMIC</td>
+                <td>748.06B</td>
+                <td>HK$77.35</td>
+                <td>0.4x</td>
+                <td class="neg">-0.64%</td>
+                <td class="neg">-2.34%</td>
+                <td><span class="">52.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">1347.HK<span class="tooltip-text">Specialty foundry focused on mature nodes (embedded non-volatile memory, power discretes); less exposed to cutting-edge sanctions.</span></td>
+                <td>Hua Hong Semi</td>
+                <td>217.41B</td>
+                <td>HK$107.80</td>
+                <td>0.3x</td>
+                <td class="neg">-1.28%</td>
+                <td class="pos">+0.94%</td>
+                <td><span class="rsi-badge rsi-high">77.4</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">0285.HK<span class="tooltip-text">Diversified component supplier (Apple & Android) expanding into automotive electronics and sensors.</span></td>
+                <td>BYD Electronic</td>
+                <td>77.33B</td>
+                <td>HK$34.32</td>
+                <td>0.5x</td>
+                <td class="pos">+0.06%</td>
+                <td class="neg">-2.11%</td>
+                <td><span class="">47.3</span></td>
+            </tr>
+            </tbody></table></div>
+        <div class="basket-card bullish" id="Hong_Kong____HK___Tech_Giants__ATMXJ_">
+            <div class="theme-header">
+                <div class="theme-title">HK - Tech Giants (ATMXJ)</div>
+                <div style="font-weight:bold;" class="pos">Avg: +1.47%</div>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>Price</th><th>RVOL</th><th>Today</th><th>5D</th><th>RSI</th></tr>
+                </thead>
+                <tbody>
+        
+            <tr>
+                <td class="ticker-cell">0700.HK<span class="tooltip-text">Social media and gaming giant with massive sticky user base (WeChat); key beneficiary of easing regulatory tech crackdown.</span></td>
+                <td>Tencent</td>
+                <td>5.39T</td>
+                <td>HK$597.00</td>
+                <td>0.7x</td>
+                <td class="neg">-0.08%</td>
+                <td class="neg">-3.32%</td>
+                <td><span class="rsi-badge rsi-low">34.8</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">9988.HK<span class="tooltip-text">E-commerce and cloud leader trading at historical low valuations; restructuring into business units could unlock value.</span></td>
+                <td>Alibaba</td>
+                <td>3.23T</td>
+                <td>HK$169.10</td>
+                <td>0.7x</td>
+                <td class="pos">+2.61%</td>
+                <td class="pos">+1.74%</td>
+                <td><span class="">63.9</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">3690.HK<span class="tooltip-text">Dominant food delivery and local services platform; highly sensitive to consumption recovery in mainland China.</span></td>
+                <td>Meituan</td>
+                <td>596.34B</td>
+                <td>HK$97.65</td>
+                <td>0.5x</td>
+                <td class="pos">+0.67%</td>
+                <td class="neg">-2.35%</td>
+                <td><span class="rsi-badge rsi-low">33.5</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">1810.HK<span class="tooltip-text">Top smartphone maker expanding aggressively into EVs; consumer electronics recovery play.</span></td>
+                <td>Xiaomi</td>
+                <td>936.70B</td>
+                <td>HK$36.18</td>
+                <td>0.8x</td>
+                <td class="pos">+2.67%</td>
+                <td class="neg">-2.48%</td>
+                <td><span class="rsi-badge rsi-low">27.6</span></td>
+            </tr>
+            
+            <tr>
+                <td class="ticker-cell">9618.HK<span class="tooltip-text">Supply-chain centric e-commerce player with margins improving; defensive choice in the tech sector.</span></td>
+                <td>JD.com</td>
+                <td>356.78B</td>
+                <td>HK$115.60</td>
+                <td>0.6x</td>
+                <td class="pos">+1.49%</td>
+                <td class="pos">+1.76%</td>
+                <td><span class="">54.8</span></td>
+            </tr>
+            </tbody></table></div></body></html>
