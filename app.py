@@ -782,7 +782,7 @@ elif target_page == "S&P 500 Heatmap":
 elif target_page == "Thematic Basket":
     st.title("🧺 Thematic Basket Analysis")
     path = "ThematicBasket"
-    html_content, filename = get_latest_file_content(path, "elite_signal_dashboard_*.html")
+    html_content, filename = get_latest_file_content(path, "elite_dashboard_*.html")
 
     if html_content:
         st.caption(f"📅 Strategy Report: {filename}")
