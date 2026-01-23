@@ -21,9 +21,14 @@
         td { padding: 12px; border-bottom: 1px solid #334155; font-family: 'Roboto Mono'; font-size: 0.9rem; text-align: right; }
         td:first-child { text-align: left; font-family: 'Inter'; font-weight: 600; color: #fff; }
 
-        .badge { padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-right: 5px; }
+        /* BADGES */
+        .badge { padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-right: 5px; font-weight: 600; }
         .b-call { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
         .b-put { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+
+        /* DIRECTION BADGES */
+        .b-long { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .b-short { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
 
         .tab-nav { display: flex; gap: 20px; margin-bottom: 15px; border-bottom: 1px solid #334155; }
         .tab-btn { background: none; border: none; padding: 10px 0; color: #64748b; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; }
@@ -31,7 +36,6 @@
         .hidden { display: none; }
         .chart-box { background: #1e293b; border: 1px solid #334155; border-radius: 6px; padding: 15px; margin-bottom: 30px; }
 
-        /* DISCLAIMER FOOTER */
         .footer { 
             margin-top: 50px; 
             padding-top: 20px; 
@@ -47,7 +51,7 @@
     <div class="container">
         <div class="header">
             <div><h2 style="margin:0;">My Option Trade Journal</h2></div>
-            <div style="text-align:right; font-size:0.8rem; color:#64748b;">2026-01-23 01:36</div>
+            <div style="text-align:right; font-size:0.8rem; color:#64748b;">2026-01-23 05:13</div>
         </div>
 
         <div class="metrics">
@@ -61,13 +65,13 @@
             </div>
              <div class="box">
                 <div class="label">Weekly P&L</div>
-                <div class="val p-green">+130,300</div>
+                <div class="val p-green">+129,400</div>
             </div>
         </div>
 
         <div class="chart-box">
             <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.1.min.js" integrity="sha256-4rD3fugVb/nVJYUv5Ky3v+fYXoouHaBSP20WIJuEiWg=" crossorigin="anonymous"></script>                <div id="c59abcf9-70c8-4691-bdbe-68f34caeb156" class="plotly-graph-div" style="height:350px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("c59abcf9-70c8-4691-bdbe-68f34caeb156")) {                    Plotly.newPlot(                        "c59abcf9-70c8-4691-bdbe-68f34caeb156",                        [{"customdata":[250,22750,39100,72250,141750],"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003eValue: $%{customdata:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"rgba(59, 130, 246, 0.25)","line":{"color":"#3b82f6","width":1}},"name":"Market Value","orientation":"h","x":[250,22750,39100,72250,141750],"y":["RKLB C100","MU P320","MU P340","GOOGL C330","ASML C1350"],"type":"bar"},{"customdata":[-7250,-18400,35900,13250,110850],"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003ePnL: %{customdata:+$,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#F43F5E","#F43F5E","#10B981","#10B981","#10B981"],"line":{"width":0}},"name":"PnL","orientation":"h","width":0.5,"x":[7250,18400,35900,13250,110850],"y":["RKLB C100","MU P320","MU P340","GOOGL C330","ASML C1350"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Portfolio: Market Value vs PnL","font":{"size":14,"color":"#e2e8f0"}},"margin":{"l":0,"r":0,"t":40,"b":0},"font":{"family":"Inter, sans-serif","color":"#94a3b8"},"xaxis":{"showgrid":true,"gridcolor":"rgba(255,255,255,0.1)","zeroline":false,"tickprefix":"$"},"yaxis":{"tickfont":{"color":"#e2e8f0","size":12,"weight":"bold"},"showgrid":false},"barmode":"overlay","paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":350,"showlegend":false},                        {"responsive": true}                    )                };            </script>        </div>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.1.min.js" integrity="sha256-4rD3fugVb/nVJYUv5Ky3v+fYXoouHaBSP20WIJuEiWg=" crossorigin="anonymous"></script>                <div id="e93c04a6-4fd4-4cc9-9554-d9ce04e0debb" class="plotly-graph-div" style="height:350px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("e93c04a6-4fd4-4cc9-9554-d9ce04e0debb")) {                    Plotly.newPlot(                        "e93c04a6-4fd4-4cc9-9554-d9ce04e0debb",                        [{"customdata":[250,22750,39100,72250,141750],"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003eValue: $%{customdata:,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"rgba(59, 130, 246, 0.25)","line":{"color":"#3b82f6","width":1}},"name":"Market Value","orientation":"h","x":[250,22750,39100,72250,141750],"y":["RKLB L C100","MU L P320","MU S P340","GOOGL L C330","ASML L C1350"],"type":"bar"},{"customdata":[-7250,-18400,35900,13250,110850],"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003ePnL: %{customdata:+$,.0f}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#F43F5E","#F43F5E","#10B981","#10B981","#10B981"],"line":{"width":0}},"name":"PnL","orientation":"h","width":0.5,"x":[7250,18400,35900,13250,110850],"y":["RKLB L C100","MU L P320","MU S P340","GOOGL L C330","ASML L C1350"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Portfolio: Market Value vs PnL","font":{"size":14,"color":"#e2e8f0"}},"margin":{"l":0,"r":0,"t":40,"b":0},"font":{"family":"Inter, sans-serif","color":"#94a3b8"},"xaxis":{"showgrid":true,"gridcolor":"rgba(255,255,255,0.1)","zeroline":false,"tickprefix":"$"},"yaxis":{"tickfont":{"color":"#e2e8f0","size":12},"showgrid":false},"barmode":"overlay","paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":350,"showlegend":false},                        {"responsive": true}                    )                };            </script>        </div>
         </div>
 
         <div class="tab-nav">
@@ -94,7 +98,11 @@
                     <tbody>
     
             <tr>
-                <td>RKLB <span class="badge b-call">C</span></td>
+                <td>
+                    RKLB 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td>100.0 | 2026/1/23</td>
                 <td style="text-align:right">50</td>
                 <td style="text-align:right">$1.50</td>
@@ -106,7 +114,11 @@
             </tr>
             
             <tr>
-                <td>ASML <span class="badge b-call">C</span></td>
+                <td>
+                    ASML 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td>1350.0 | 2026/1/23</td>
                 <td style="text-align:right">30</td>
                 <td style="text-align:right">$10.30</td>
@@ -118,7 +130,11 @@
             </tr>
             
             <tr>
-                <td>GOOGL <span class="badge b-call">C</span></td>
+                <td>
+                    GOOGL 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td>330.0 | 2026/2/20</td>
                 <td style="text-align:right">50</td>
                 <td style="text-align:right">$11.80</td>
@@ -130,19 +146,27 @@
             </tr>
             
             <tr>
-                <td>MU <span class="badge b-put">P</span></td>
+                <td>
+                    MU 
+                    <span class="badge b-short">SHORT</span>
+                    <span class="badge b-put">PUT</span>
+                </td>
                 <td>340.0 | 2026/2/13</td>
                 <td style="text-align:right">50</td>
                 <td style="text-align:right">$15.00</td>
                 <td style="text-align:right">$7.82</td>
                 <td style="text-align:right; color:#3b82f6; font-weight:600;">$39,100</td>
                 <td style="text-align:right" class="p-green">$+35,900</td>
-                <td style="text-align:right" class="p-green">$+36,300</td>
+                <td style="text-align:right" class="p-green">$+35,400</td>
                 <td style="text-align:left; color:#64748b; font-size:0.8rem; padding-left:15px;">Put Ratio, CEO Bot event driven</td>
             </tr>
             
             <tr>
-                <td>MU <span class="badge b-put">P</span></td>
+                <td>
+                    MU 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-put">PUT</span>
+                </td>
                 <td>320.0 | 2026/2/13</td>
                 <td style="text-align:right">50</td>
                 <td style="text-align:right">$8.23</td>
@@ -159,7 +183,7 @@
                 <thead>
                     <tr>
                         <th>Contract</th>
-                        <th>Type</th>
+                        <th>Strike/Exp</th>
                         <th style="text-align:right">Entry Date</th>
                         <th style="text-align:right">Entry Price</th>
                         <th style="text-align:right">Exit Price</th>
@@ -170,7 +194,11 @@
                 <tbody>
     
             <tr>
-                <td>RKLB <span class="badge b-call">C</span></td>
+                <td>
+                    RKLB 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td style="color:#94a3b8; font-size:0.8rem;">95.0 2026/1/23</td>
                 <td style="text-align:right">2026/1/6</td>
                 <td style="text-align:right">$1.56</td>
@@ -180,7 +208,11 @@
             </tr>
             
             <tr>
-                <td>RKLB <span class="badge b-call">C</span></td>
+                <td>
+                    RKLB 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td style="color:#94a3b8; font-size:0.8rem;">85.0 2026/1/23</td>
                 <td style="text-align:right">2026/1/5</td>
                 <td style="text-align:right">$2.33</td>
@@ -190,7 +222,11 @@
             </tr>
             
             <tr>
-                <td>BABA <span class="badge b-call">C</span></td>
+                <td>
+                    BABA 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td style="color:#94a3b8; font-size:0.8rem;">160.0 2026/1/23</td>
                 <td style="text-align:right">2026/1/8</td>
                 <td style="text-align:right">$3.12</td>
@@ -200,7 +236,11 @@
             </tr>
             
             <tr>
-                <td>PLTR <span class="badge b-call">C</span></td>
+                <td>
+                    PLTR 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td style="color:#94a3b8; font-size:0.8rem;">180.0 2026/2/20</td>
                 <td style="text-align:right">2026/1/8</td>
                 <td style="text-align:right">$12.80</td>
@@ -210,7 +250,11 @@
             </tr>
             
             <tr>
-                <td>ONDS <span class="badge b-call">C</span></td>
+                <td>
+                    ONDS 
+                    <span class="badge b-long">LONG</span>
+                    <span class="badge b-call">CALL</span>
+                </td>
                 <td style="color:#94a3b8; font-size:0.8rem;">16.0 2026/2/13</td>
                 <td style="text-align:right">2026/1/8</td>
                 <td style="text-align:right">$1.15</td>
