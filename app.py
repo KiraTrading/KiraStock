@@ -6,6 +6,8 @@ import sys
 import glob
 import time
 
+maxMessageSize = 600
+
 # Add Trade folder path
 sys.path.append('Trade')
 try:
@@ -357,6 +359,37 @@ def load_stock_dna_with_injection():
     return html_content
 
 
+def load_options_strategy_dashboard():
+    """
+    Reads the options dashboard HTML and injects the JSON data
+    directly into the script to avoid local file loading issues.
+    """
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    html_path = os.path.join(current_dir, "Option", "options_dashboard.html")
+    json_path = os.path.join(current_dir, "Option", "all_strategies_data.json")
+
+    if not os.path.exists(html_path):
+        return f"<div style='padding:20px; color:red;'>⚠️ HTML File not found: {html_path}</div>"
+
+    with open(html_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    if os.path.exists(json_path):
+        with open(json_path, 'r', encoding='utf-8') as f:
+            json_data = f.read()
+
+        # We inject the JSON data as a global JS variable.
+        # You may need to ensure your HTML script uses 'window.allStrategiesData'
+        # instead of fetch('all_strategies_data.json').
+        injection_js = f"<script>window.allStrategiesData = {json_data};</script>"
+
+        if "<head>" in html_content:
+            html_content = html_content.replace("<head>", f"<head>{injection_js}")
+        else:
+            html_content = injection_js + html_content
+
+    return html_content
+
 def get_latest_file_content(folder_path, pattern="*.html"):
     if not os.path.exists(folder_path):
         return None, f"Directory not found: {folder_path}"
@@ -490,8 +523,8 @@ with st.sidebar:
         st.caption("DERIVATIVES ANALYTICS")
         target_page = handle_submenu(
             "sub_option",
-            ["US Option", "HK Option"],
-            ["currency-dollar", "globe-asia-australia"]
+            ["US Option", "HK Option", "Options Strategy"],  # Added here
+            ["currency-dollar", "globe-asia-australia", "cpu"]  # Added icon
         )
 
     elif selected_nav == "MT5 EA":
@@ -550,9 +583,9 @@ locked_pages = [
     "Short Squeeze",
     "Volatility Target",
     "US Option",
-    "HK Option",
     "Volume Profile",
     "Intraday Volatility",
+    "Options Strategy",
     "HSI CBBC Ladder"
 ]
 
@@ -680,6 +713,20 @@ elif target_page == "Market Dashboard":
     else:
         st.warning("⚠️ No dashboard files found.")
         st.error(f"Error: {filename}")
+
+# [PAGE] Options Strategy Dashboard
+elif target_page == "Options Strategy":
+    st.title("🎯 Options Strategy Dashboard")
+    st.caption("Quantitative Analysis & Strategy Performance")
+
+    # Load and inject the HTML/JSON
+    html_content = load_options_strategy_dashboard()
+
+    if "⚠️" not in html_content:
+        # Increase height as needed for your specific dashboard
+        components.html(html_content, height=1500, scrolling=True)
+    else:
+        st.error(html_content)
 
 # [PAGE] Market Risk
 elif target_page == "Market Risk":
