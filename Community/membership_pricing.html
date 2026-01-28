@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: transparent;
+            color: #e2e8f0;
+            box-sizing: border-box;
+        }
+
+        /* --- Header Section --- */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header-subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Pricing Container --- */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto 50px auto;
+        }
+
+        .plan-card {
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* VIP Styling */
+        .plan-card.vip {
+            border: 2px solid #3b82f6;
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.3) 0%, rgba(17, 24, 39, 0.8) 100%);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.15);
+        }
+        .plan-card.vip:hover {
+            transform: translateY(-5px);
+            border-color: #fbbf24;
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #fbbf24, #d97706);
+            color: #000;
+            font-weight: 800;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4);
+        }
+
+        .plan-title { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .plan-subtitle { font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px; min-height: 2.5em; }
+
+        .plan-price { font-size: 2.5rem; font-weight: 700; color: #60a5fa; margin: 10px 0 20px 0; }
+        .plan-price.vip-price { color: #fbbf24; }
+        .plan-price span { font-size: 1rem; color: #9ca3af; font-weight: 400; }
+
+        /* Feature List Styling */
+        .feature-list { list-style: none; padding: 0; text-align: left; margin: 0 0 30px 0; flex-grow: 1; }
+        .feature-list li { margin-bottom: 14px; display: flex; align-items: flex-start; line-height: 1.4; font-size: 0.95rem; color: #cbd5e1; }
+
+        .feature-list li.unlocked::before { content: "✓"; color: #10b981; margin-right: 10px; font-weight: bold; flex-shrink: 0; }
+        .feature-list li.locked { color: #64748b; }
+        .feature-list li.locked::before { content: "🔒"; margin-right: 10px; filter: grayscale(1); flex-shrink: 0; }
+
+        .highlight { color: #f8fafc; font-weight: 600; }
+        .vip-desc { font-size: 0.85rem; color: #94a3b8; display: block; margin-top: 2px; }
+
+        /* Buttons */
+        .cta-button {
+            display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: 700; text-decoration: none;
+            transition: all 0.2s; text-align: center; box-sizing: border-box;
+        }
+        .btn-free { background: rgba(255,255,255,0.05); color: #64748b; border: 1px solid rgba(255,255,255,0.1); cursor: default; }
+        .btn-vip {
+            background: linear-gradient(90deg, #2563EB, #1d4ed8); color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-vip:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); }
+
+        /* --- VALUE GRID SECTION (New) --- */
+        .value-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .value-header { text-align: center; margin-bottom: 30px; }
+        .value-header h3 { color: #fff; font-size: 1.6rem; margin-bottom: 10px; }
+        .value-header p { color: #94a3b8; }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .value-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            transition: hover 0.3s;
+        }
+        .value-card:hover { background: rgba(30, 41, 59, 0.8); border-color: #3b82f6; }
+
+        .value-icon { font-size: 2rem; margin-bottom: 15px; display: block; }
+        .value-title { font-weight: 700; color: #f8fafc; font-size: 1.1rem; margin-bottom: 8px; display: block; }
+        .value-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; }
+
+        .gold-text { color: #fbbf24; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <div class="header-title">升級機構級視野 Institutional Edge</div>
+        <div class="header-subtitle">別再做資訊滯後的散戶。掌握投行交易員的底牌，比市場快一步行動。</div>
+    </div>
+
+    <div class="container">
+        <div class="plan-card">
+            <div class="plan-title">免費訪客 Basic</div>
+            <div class="plan-subtitle">適合觀望及學習基礎知識的新手</div>
+            <div class="plan-price">$0 <span>/ month</span></div>
+
+            <ul class="feature-list">
+                <li class="unlocked">每日大市風險儀表板 (Risk Dashboard)</li>
+                <li class="unlocked">每週大市分析文章 (Weekly Analysis)</li>
+                <li class="unlocked">基礎個股圖表查詢</li>
+                <li class="locked">Stock DNA 因子模型透視</li>
+                <li class="locked">Smart Money 聰明錢流向</li>
+                <li class="locked">Paris 實戰持倉 & 交易日誌</li>
+                <li class="locked">TradingView 獨家策略指標</li>
+                <li class="locked">40+ 堂機構級交易心法課程</li>
+            </ul>
+
+            <a href="#" class="cta-button btn-free">CURRENT PLAN</a>
+        </div>
+
+        <div class="plan-card vip">
+            <div class="badge">BEST VALUE 🔥</div>
+            <div class="plan-title">VIP 全面通行證</div>
+            <div class="plan-subtitle">解鎖「散戶黑科技」，專為實戰交易員打造</div>
+            <div class="plan-price vip-price">HK$1200 <span>/ month</span></div>
+
+            <ul class="feature-list">
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">🧬 Stock DNA 因子分析儀</span>
+                        <span class="vip-desc">一眼看穿股票屬性，用數學模型拆解升跌主因</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">⚡ 期權異動 Option Flow</span>
+                        <span class="vip-desc">全港獨家！即時捕捉大戶 Block 與 Gamma 佈局</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">💼 Paris 實戰持倉 (My Portfolio)</span>
+                        <span class="vip-desc">不只是理論！直接參考我的買賣點位與倉位管理學習</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">🎯 TV & MT5 獨家指標</span>
+                        <span class="vip-desc">Trend Table, VV, ST... 直接將我的交易系統安裝到你的圖表觀摩</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">🕴️ 內部交易 & 挾淡倉雷達</span>
+                        <span class="vip-desc">監控 CEO 買賣與 Short Squeeze 爆發潛力股</span>
+                    </div>
+                </li>
+            </ul>
+
+            <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-button btn-vip">
+                立即獲取優勢 UNLOCK NOW 🔓
+            </a>
+        </div>
+    </div>
+
+    <div class="value-section">
+        <div class="value-header">
+            <h3>為什麼你需要 VIP 權限？</h3>
+            <p>市面上很多新聞和圖表，但只有這裡提供「資金流向」與「機構底牌」</p>
+        </div>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <span class="value-icon">👁️</span>
+                <span class="value-title">上帝視角 God Mode</span>
+                <p class="value-text">
+                    不要再畫趨勢線猜測了。透過 <span class="gold-text">牛熊重貨區</span>、<span class="gold-text">Option Gamma Levels</span> 和 <span class="gold-text">Insider Buying</span>，直接看穿莊家防守位和進攻目標。這是香港散戶平時接觸不到的數據層次。
+                </p>
+            </div>
+            <div class="value-card">
+                <span class="value-icon">🧬</span>
+                <span class="value-title">量化選股 Alpha</span>
+                <p class="value-text">
+                    利用前投行 <span class="gold-text">Fama-French 模型</span> (Stock DNA)，科學化篩選優質股。我們不講故事，只講數學概率。配合 <span class="gold-text">Sector Heatmap</span>，資金輪動一目了然。
+                </p>
+            </div>
+            <div class="value-card">
+                <span class="value-icon">🛡️</span>
+                <span class="value-title">跟隨贏家 Portfolio</span>
+                <p class="value-text">
+                    交易是孤獨的？VIP 會員可查閱我的 <span class="gold-text">個人交易日誌 (Trade Journal)</span>。看我如何在實戰中運用這些工具，何時止賺、何時止損，這是最真實的教學。
+                </p>
+            </div>
+            <div class="value-card">
+                <span class="value-icon">🎓</span>
+                <span class="value-title">完整交易員培訓</span>
+                <p class="value-text">
+                    解鎖超過 40 篇 VIP 專屬文章。從 <span class="gold-text">心法 (Mindset)</span> 到 <span class="gold-text">系統 (System)</span>，再到 <span class="gold-text">期權策略 (Options)</span>。這不是碎片化知識，而是建立一個可盈利的交易生涯架構。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px; color: #64748b; font-size: 0.8rem;">
+        * 數據源自機構級 API，經 ParisTrader 獨家算法處理。<br>投資涉及風險，過往表現不代表將來結果。
+    </div>
+
+</body>
+</html>
