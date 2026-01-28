@@ -5,7 +5,8 @@ import os
 import sys
 import glob
 import time
-import glob
+import base64
+import re
 
 maxMessageSize = 600
 
@@ -122,6 +123,16 @@ st.markdown("""
         color: #e2e8f0;
     }
 
+    /* Navigation Font Optimization for Bilingual Headers */
+    [data-testid="stSidebarNav"] span {
+        font-size: 14px !important;
+        white-space: nowrap;
+    }
+    .nav-link {
+        font-size: 14px !important;
+        padding: 8px 10px !important;
+    }
+
     @media (min-width: 768.1px) {
         header { visibility: hidden !important; }
         [data-testid="stSidebarCollapseButton"] { display: none !important; }
@@ -227,8 +238,6 @@ st.markdown("""
 # ==========================================
 # 3. Helper Functions
 # ==========================================
-import base64
-import re
 
 def load_markdown_with_images(file_path):
     """
@@ -277,6 +286,8 @@ def load_markdown_with_images(file_path):
     # 執行替換
     enhanced_content = image_pattern.sub(replace_image_link, content)
     return enhanced_content
+
+
 def load_weekly_analysis():
     file_path = os.path.join("WeeklyContent", "latest_analysis.md")
     if os.path.exists(file_path):
@@ -292,10 +303,6 @@ def load_html_file(file_path):
             return f.read()
     else:
         return f"<div style='padding:20px; color:red;'>⚠️ File not found: {file_path}</div>"
-
-
-import os
-import streamlit.components.v1 as components
 
 
 def load_stock_dna_with_injection():
@@ -391,6 +398,7 @@ def load_options_strategy_dashboard():
 
     return html_content
 
+
 def get_latest_file_content(folder_path, pattern="*.html"):
     if not os.path.exists(folder_path):
         return None, f"Directory not found: {folder_path}"
@@ -424,32 +432,46 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     # -------------------------------------------------------------------------
-    # IMPROVED NAVIGATION LOGIC WITH DEEP LINKING
+    # IMPROVED NAVIGATION LOGIC WITH DEEP LINKING (HK Style)
     # -------------------------------------------------------------------------
 
     # 1. Capture the URL params
     query_params = st.query_params
-    url_main_page = query_params.get("page", "Home")  # Default to Home
+    url_main_page = query_params.get("page", "首頁 Home")  # Default to Home
     url_sub_page = query_params.get("sub", None)  # Capture sub-page
 
-    # Define Main Menu Options
+    # Define Main Menu Options (HK Style)
     main_options = [
-        "Home", "Market Intelligence", "My Research", "Stock", "Option",
-        "Future", "My Portfolio","MT5 EA", "Education", "Community", "Resources", "Membership"
+        "首頁 Home",
+        "大市情報 Intelligence",
+        "研究專欄 Research",
+        "美股數據 Stock",
+        "期權分析 Option",
+        "期貨/牛熊 Future",
+        "實戰持倉 Portfolio",
+        "自動交易 MT5 EA",
+        "交易學院 Education",
+        "交易社群 Community",
+        "工具資源 Resources",
+        "升級會員 VIP"
     ]
 
     # Determine default index for Main Menu based on URL
+    # Support for legacy URLs (e.g., "Home" maps to "首頁 Home")
     try:
+        # Try exact match first
         main_default_index = main_options.index(url_main_page)
     except ValueError:
-        main_default_index = 0
+        # Fallback: fuzzy match (e.g. url "Home" finds "首頁 Home")
+        matches = [i for i, opt in enumerate(main_options) if url_main_page in opt]
+        main_default_index = matches[0] if matches else 0
 
     # 2. Render the Main Sidebar Menu
     selected_nav = option_menu(
         menu_title="Navigation",
         options=main_options,
         icons=[
-            "house", "globe","list-task", "search", "layers",
+            "house", "globe", "list-task", "search", "layers",
             "graph-up-arrow", "briefcase", "robot", "mortarboard", "people-fill", "collection", "gem"
         ],
         menu_icon="compass",
@@ -474,8 +496,13 @@ with st.sidebar:
         # Calculate default index for sub-menu based on URL 'sub' param
         # Only if the main page matches the current selection
         default_sub_index = 0
-        if url_main_page == selected_nav and url_sub_page in options:
+        if (url_main_page in selected_nav) and (url_sub_page in options):
             default_sub_index = options.index(url_sub_page)
+        # Robust check for partial matches in URL sub params
+        elif (url_main_page in selected_nav) and url_sub_page:
+            matches = [i for i, opt in enumerate(options) if url_sub_page in opt]
+            if matches:
+                default_sub_index = matches[0]
 
         selection = option_menu(
             menu_title=None,
@@ -493,29 +520,29 @@ with st.sidebar:
         return selection
 
 
-    # --- Sub-menu Logic ---
-    if selected_nav == "Market Intelligence":
+    # --- Sub-menu Logic (HK Style) ---
+    if selected_nav == "大市情報 Intelligence":
         st.caption("MARKET MODULES")
         target_page = handle_submenu(
             "sub_market",
-            ["Market Risk", "Market Breadth"],
+            ["風險指標 Market Risk", "市寬 Market Breadth"],
             ["activity", "bar-chart-line"]
         )
 
-    elif selected_nav == "Stock":
+    elif selected_nav == "美股數據 Stock":
         st.caption("STOCK RESEARCH")
         target_page = handle_submenu(
             "sub_stock",
             [
-                "ETF Smart Money",
-                "Industry Sector Heatmap",
-                "Thematic Basket",
-                "Earnings",
-                "Insider Trading",
-                "Short Squeeze",
-                "Stock DNA",
-                "Volatility Target",
-                "S&P 500 Heatmap"  # 保留此項以免遺失，若不需要可刪除
+                "ETF資金流 Smart Money",
+                "板塊熱力圖 Sector Heatmap",
+                "主題籃子 Thematic Basket",
+                "業績公佈 Earnings",
+                "內部交易 Insider",
+                "挾淡倉 Short Squeeze",
+                "因子模型 Stock DNA",
+                "波動率策略 Volatility Target",
+                "標普熱力圖 S&P 500"  # 保留此項以免遺失，若不需要可刪除
             ],
 
             [
@@ -531,27 +558,27 @@ with st.sidebar:
             ]
         )
 
-    elif selected_nav == "Future":
+    elif selected_nav == "期貨/牛熊 Future":
         st.caption("FUTURES & TRENDS")
         target_page = handle_submenu(
             "sub_future",
-            ["Volume Profile", "Intraday Volatility", "HSI CBBC Ladder"],
+            ["成交分佈 Volume Profile", "日內波幅 Volatility", "牛熊重貨區 CBBC Ladder"],
             ["bar-chart-steps", "lightning-charge", "distribute-vertical"]
         )
 
-    elif selected_nav == "Option":
+    elif selected_nav == "期權分析 Option":
         st.caption("DERIVATIVES ANALYTICS")
         target_page = handle_submenu(
             "sub_option",
-            ["US Option", "HK Option", "Options Strategy"],  # Added here
+            ["美股期權 US Option", "港股期權 HK Option", "期權策略 Strategy"],  # Added here
             ["currency-dollar", "globe-asia-australia", "cpu"]  # Added icon
         )
 
-    elif selected_nav == "MT5 EA":
+    elif selected_nav == "自動交易 MT5 EA":
         st.caption("AUTOMATED TRADING")
         target_page = handle_submenu(
             "sub_ea",
-            ["EA Introduction"],
+            ["EA 介紹 Introduction"],
             ["robot"]
         )
 
@@ -588,38 +615,41 @@ with st.sidebar:
         """, unsafe_allow_html=True)
 
 # Handle Legal from Footer (Special Case)
-if url_main_page == "Legal" and selected_nav == "Home":
+if url_main_page == "Legal" and selected_nav == "首頁 Home":
     target_page = "Legal"
 
 # ==========================================
 # 🔒 權限控制與銷售轉化中心
 # ==========================================
 
+# Updated keys to match HK Style names
 locked_pages = [
-    "My Portfolio",
-    "Stock DNA",
-    "ETF Smart Money",
-    "Insider Trading",
-    "Short Squeeze",
-    "Volatility Target",
-    "US Option",
-    "Volume Profile",
-    "Intraday Volatility",
-    "Options Strategy",
-    "HSI CBBC Ladder"
+    "實戰持倉 Portfolio",
+    "因子模型 Stock DNA",
+    "ETF資金流 Smart Money",
+    "內部交易 Insider",
+    "挾淡倉 Short Squeeze",
+    "波動率策略 Volatility Target",
+    "美股期權 US Option",
+    "成交分佈 Volume Profile",
+    "日內波幅 Volatility",
+    "期權策略 Strategy",
+    "牛熊重貨區 CBBC Ladder"
 ]
 
+# Updated keys for teaser content
 teaser_content = {
-    "Stock DNA": "Discover the hidden factors driving stock prices using Fama-French models. Identify high-quality alpha before the market moves.",
-    "ETF Smart Money": "Track leveraged ETF flows to spot market reversals instantly. Don't fight the trend, ride the institutional wave.",
-    "Insider Trading": "See what CEOs and CFOs are doing with their own money. Real-time cluster buying alerts.",
-    "Short Squeeze": "Identify the next GME/AMC before it explodes. High short interest + High borrow cost scanner.",
-    "US Option": "Follow the Smart Money. Real-time unusual options activity and gamma exposure levels.",
-    "HK Option": "Advanced market scanner for HK derivatives. Visualise the heavy zones and institutional positioning.",
-    "My Portfolio": "Access my personal trade journal. See exactly when I enter and exit positions in Stocks and Options.",
-    "Volume Profile": "Professional grade Volume Profile analysis to identify key support and resistance levels.",
-    "Intraday Volatility": "Monitor real-time volatility spikes to capture intraday momentum.",
-    "HSI CBBC Ladder": "Visualise the Bear/Bull contract heavy zones to predict market dealer hedging moves."
+    "因子模型 Stock DNA": "Discover the hidden factors driving stock prices using Fama-French models. Identify high-quality alpha before the market moves.",
+    "ETF資金流 Smart Money": "Track leveraged ETF flows to spot market reversals instantly. Don't fight the trend, ride the institutional wave.",
+    "內部交易 Insider": "See what CEOs and CFOs are doing with their own money. Real-time cluster buying alerts.",
+    "挾淡倉 Short Squeeze": "Identify the next GME/AMC before it explodes. High short interest + High borrow cost scanner.",
+    "美股期權 US Option": "Follow the Smart Money. Real-time unusual options activity and gamma exposure levels.",
+    "港股期權 HK Option": "Advanced market scanner for HK derivatives. Visualise the heavy zones and institutional positioning.",
+    "實戰持倉 Portfolio": "Access my personal trade journal. See exactly when I enter and exit positions in Stocks and Options.",
+    "成交分佈 Volume Profile": "Professional grade Volume Profile analysis to identify key support and resistance levels.",
+    "日內波幅 Volatility": "Monitor real-time volatility spikes to capture intraday momentum.",
+    "牛熊重貨區 CBBC Ladder": "Visualise the Bear/Bull contract heavy zones to predict market dealer hedging moves.",
+    "期權策略 Strategy": "Quantitative Analysis & Strategy Performance."
 }
 
 if target_page in locked_pages:
@@ -629,7 +659,7 @@ if target_page in locked_pages:
 
 # --- Content Routing (Based on target_page) ---
 # [PAGE] HOME
-if target_page == "Home":
+if target_page == "首頁 Home":
     col_main, col_profile = st.columns([0.7, 0.3], gap="large")
 
     with col_main:
@@ -734,7 +764,7 @@ elif target_page == "Market Dashboard":
         st.warning("⚠️ No dashboard files found.")
         st.error(f"Error: {filename}")
 
-elif target_page == "My Research":
+elif target_page == "研究專欄 Research":
     st.title("🦅 Research Paper from Paris")
     st.caption("Institutional Perspectives on Daily Flows")
 
@@ -785,7 +815,7 @@ elif target_page == "My Research":
                         st.markdown("---")
 
 # [PAGE] Options Strategy Dashboard
-elif target_page == "Options Strategy":
+elif target_page == "期權策略 Strategy":
     st.title("🎯 Options Strategy Dashboard")
     st.caption("Quantitative Analysis & Strategy Performance")
 
@@ -799,7 +829,7 @@ elif target_page == "Options Strategy":
         st.error(html_content)
 
 # [PAGE] Market Risk
-elif target_page == "Market Risk":
+elif target_page == "風險指標 Market Risk":
     st.title("⚠️ Market Implied Risk")
     path = "ImpliedParameters"
 
@@ -826,7 +856,7 @@ elif target_page == "Market Risk":
         st.info("Please ensure `ImpliedParameters/implied_params_*.html` exists.")
 
 # [PAGE] Market Breadth
-elif target_page == "Market Breadth":
+elif target_page == "市寬 Market Breadth":
     st.title("🌊 Market Breadth")
     path = os.path.join("MarketDashboard", "MarketBreadth")
     html_content, filename = get_latest_file_content(path, "market_breadth_*.html")
@@ -839,7 +869,7 @@ elif target_page == "Market Breadth":
         st.info(f"Please ensure `{path}` contains `market_breadth_*.html` files.")
 
 # [PAGE] Industry Sector Heatmap
-elif target_page == "Industry Sector Heatmap":
+elif target_page == "板塊熱力圖 Sector Heatmap":
     st.title("🔥 Industry Sector Heatmap")
     st.caption("Daily Return Heatmap (Last 20 Days)")
     path = "MarketDashboard"
@@ -854,7 +884,7 @@ elif target_page == "Industry Sector Heatmap":
         st.info(f"Please ensure `{path}/{pattern}` exists.")
 
 # [PAGE] Earnings
-elif target_page == "Earnings":
+elif target_page == "業績公佈 Earnings":
     st.title("📅 Earnings Calendar Analysis")
     path = "Earnings"
     html_content, filename = get_latest_file_content(path)
@@ -867,7 +897,7 @@ elif target_page == "Earnings":
         st.info("Please ensure there is an `Earnings` folder in the root directory containing .html files.")
 
 # [PAGE] Stock DNA
-elif target_page == "Stock DNA":
+elif target_page == "因子模型 Stock DNA":
     st.title("🧬 Stock Factor DNA")
     html_content = load_stock_dna_with_injection()
     if html_content and "HTML not found" not in html_content:
@@ -876,7 +906,7 @@ elif target_page == "Stock DNA":
         st.error("FamaFrench/index.html not found")
 
 # [PAGE] S&P 500 Heatmap
-elif target_page == "S&P 500 Heatmap":
+elif target_page == "標普熱力圖 S&P 500":
     st.title("🔥 S&P 500 Performance Heatmap (YTD)")
     st.caption("Top 50 Best Performers - Daily Returns Tracking")
 
@@ -896,7 +926,7 @@ elif target_page == "S&P 500 Heatmap":
         st.info(f"Please run `sp500_ytd_ranking.py` and ensure the output is saved in `{path}` folder.")
 
 # [PAGE] Thematic Basket
-elif target_page == "Thematic Basket":
+elif target_page == "主題籃子 Thematic Basket":
     st.title("🧺 Thematic Basket Analysis")
     path = "ThematicBasket"
     html_content, filename = get_latest_file_content(path, "elite_dashboard_*.html")
@@ -909,7 +939,7 @@ elif target_page == "Thematic Basket":
         st.info(f"Checking path: {os.path.abspath(path)}")
 
 # [PAGE] ETF Smart Money
-elif target_page == "ETF Smart Money":
+elif target_page == "ETF資金流 Smart Money":
     st.title("🚀 ETF Smart Money Tracker")
     st.caption("Tracking Leveraged ETF Relative Volume Spikes")
     path = "xETF"
@@ -923,7 +953,7 @@ elif target_page == "ETF Smart Money":
         st.info(f"Please ensure `{path}` folder exists and contains `ETF_Smart_Money_Report_*.html` files.")
 
 # [PAGE] Insider Trading
-elif target_page == "Insider Trading":
+elif target_page == "內部交易 Insider":
     st.title("🕴️ Insider Trading Activity")
     st.caption("Daily Cluster Buys & Significant Insider Transactions")
     path = "Insider"
@@ -937,7 +967,7 @@ elif target_page == "Insider Trading":
         st.info(f"Please ensure `{path}` folder exists and contains `Insider_Trading_Report_*.html` files.")
 
 # [PAGE] Short Squeeze
-elif target_page == "Short Squeeze":
+elif target_page == "挾淡倉 Short Squeeze":
     st.title("⚡ Short Squeeze Scanner")
     st.caption("Retail Hype & High Short Interest Candidates")
     path = "Short_squeeze"
@@ -963,7 +993,7 @@ elif target_page == "Reddit Sentiment":
         st.info(f"Please ensure `{path}` folder exists and contains `reddit_scanner_*.html` files.")
 
 # [PAGE] Volatility Target
-elif target_page == "Volatility Target":
+elif target_page == "波動率策略 Volatility Target":
     st.title("📉 Volatility Target Strategy")
     path = "VolTarget"
     html_content, filename = get_latest_file_content(path, "vol_tool_*.html")
@@ -976,7 +1006,7 @@ elif target_page == "Volatility Target":
         st.info("Please ensure `vol_tool_*.html` exists in the `VolTarget` folder.")
 
 # [PAGE] US Option
-elif target_page == "US Option":
+elif target_page == "美股期權 US Option":
     st.title("🇺🇸 US Option Strike Analysis")
     st.caption("Tracking Unusual Options Activity & Gamma Levels")
     path = "Option"
@@ -991,7 +1021,7 @@ elif target_page == "US Option":
         st.info(f"Please ensure `{path}` folder exists and contains `{search_pattern}` files.")
 
 # [PAGE] HK Option
-elif target_page == "HK Option":
+elif target_page == "港股期權 HK Option":
     st.title("🇭🇰 HK Option Market Analysis")
     st.caption("Market Scanner, Stock Ranking & Heatmaps")
     path = "Option"
@@ -1006,7 +1036,7 @@ elif target_page == "HK Option":
         st.info(f"Please ensure `{path}` folder exists and contains `{search_pattern}` files.")
 
 # [PAGE] Volume Profile
-elif target_page == "Volume Profile":
+elif target_page == "成交分佈 Volume Profile":
     st.title("📊 Volume Profile Analysis")
     path = "VP"
     html_content, filename = get_latest_file_content(path)
@@ -1018,7 +1048,7 @@ elif target_page == "Volume Profile":
         st.warning("⚠️ 尚未部署 Volume Profile 模組 (VP 資料夾為空)")
 
 # [PAGE] Future -> Intraday Volatility
-elif target_page == "Intraday Volatility":
+elif target_page == "日內波幅 Volatility":
     st.title("⚡ Intraday Volatility Analysis")
     html_path = os.path.join("MarketDashboard", "Intraday_Volatility.html")
     html_content = load_html_file(html_path)
@@ -1029,7 +1059,7 @@ elif target_page == "Intraday Volatility":
         st.info(f"請確認檔案 `{html_path}` 是否存在。")
 
 # [PAGE] Future -> HSI CBBC Ladder
-elif target_page == "HSI CBBC Ladder":
+elif target_page == "牛熊重貨區 CBBC Ladder":
     st.title("🐻 HSI CBBC Heavy Zone (牛熊重貨區)")
     html_path = os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html")
     html_content = load_html_file(html_path)
@@ -1040,7 +1070,7 @@ elif target_page == "HSI CBBC Ladder":
         st.info(f"請確認檔案 `{html_path}` 是否存在。")
 
 # [PAGE] My Portfolio
-elif target_page == "My Portfolio":
+elif target_page == "實戰持倉 Portfolio":
     st.title("💼 Paris Picks")
     path = "Trade"
 
@@ -1065,7 +1095,7 @@ elif target_page == "My Portfolio":
             st.info("Please verify `option_record_*.html` exists in `Trade` folder.")
 
 # [PAGE] MT5 EA - Introduction
-elif target_page == "EA Introduction":
+elif target_page == "EA 介紹 Introduction":
     st.title("🤖 MT5 Expert Advisor")
     html_path = os.path.join("MT5EA", "ea_marketing.html")
     html_content = load_html_file(html_path)
@@ -1091,7 +1121,7 @@ elif target_page == "Legal":
         st.html(html)
 
 # [PAGE] Resources
-elif target_page == "Resources":
+elif target_page == "工具資源 Resources":
     st.title("🔗 Trading Resources")
     html_path = os.path.join("Resources", "external_links.html")
     html_content = load_html_file(html_path)
@@ -1101,7 +1131,7 @@ elif target_page == "Resources":
         st.warning("⚠️ Resources file not found.")
         st.info(f"Please ensure `{html_path}` exists.")
 
-elif target_page == "Community":
+elif target_page == "交易社群 Community":
     # 不顯示 Streamlit 預設標題，因為 HTML 裡已經有了
 
     html_file_path = os.path.join("Community", "community_promo.html")
@@ -1116,7 +1146,7 @@ elif target_page == "Community":
         st.error(f"⚠️ Community page file not found at: {html_file_path}")
 
 # [PAGE] Education Hub
-elif target_page == "Education":
+elif target_page == "交易學院 Education":
     st.title("🎓 Quant Academy")
     st.caption("Institutional Trading Knowledge & Strategies")
 
@@ -1464,88 +1494,22 @@ elif target_page == "Education":
             st.error("Error loading article.")
 
 # [PAGE] Membership (Sales Page)
-elif target_page == "Membership":
-    st.title("💎 Upgrade to Institutional Level")
+elif target_page == "升級會員 VIP":
+    # 標題仍保留在 Streamlit，方便 SEO 和結構，內容則用 HTML 渲染
+    st.title("💎 升級機構級數據 Upgrade to Institutional Level")
+    st.caption("停止猜測。像專業人士一樣，利用數據進行交易。")
     st.caption("Stop guessing. Start trading with data used by professionals.")
 
-    st.markdown("""
-    <style>
-        .plan-card {
-            background: rgba(17, 24, 39, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            height: 100%;
-            transition: transform 0.3s;
-        }
-        .plan-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
-        .plan-title { font-size: 1.5rem; font-weight: bold; color: #fff; }
-        .plan-price { font-size: 2.5rem; font-weight: 700; color: #3b82f6; margin: 20px 0; }
-        .plan-price span { font-size: 1rem; color: #9ca3af; font-weight: 400; }
-        .feature-list { list-style: none; padding: 0; text-align: left; margin: 20px 0; color: #e2e8f0; }
-        .feature-list li { margin-bottom: 12px; display: flex; align-items: center; }
-        .feature-list li::before { content: "✓"; color: #10b981; margin-right: 10px; font-weight: bold; }
-        .locked-feature { color: #6b7280; text-decoration: line-through; }
-        .locked-feature::before { content: "✕"; color: #ef4444; }
-        .cta-button {
-            background: linear-gradient(90deg, #2563EB, #1d4ed8);
-            color: white; padding: 12px 25px; border-radius: 8px;
-            text-decoration: none; display: inline-block; width: 100%;
-            font-weight: bold; margin-top: 20px;
-        }
-    </style>
-    """, unsafe_allow_html=True)
+    # 定義 HTML 檔案路徑
+    html_file_path = os.path.join("Community", "membership_pricing.html")
 
-    col1, col2 = st.columns([1, 1], gap="large")
-
-    with col1:
-        st.markdown("""
-        <div class="plan-card">
-            <div class="plan-title">Basic Visitor</div>
-            <div class="plan-price">$0 <span>/ month</span></div>
-            <ul class="feature-list">
-                <li>Daily Market Risk Dashboard</li>
-                <li>Basic Stock Function</li>
-                <li>Weekly Market Analysis Blog</li>
-                <li class="locked-feature">Investing community access</li>
-                <li class="locked-feature">Institutional Factor Model on Stock DNA</li>
-                <li class="locked-feature">Smart Money Flow (Options&ETF)</li>
-                <li class="locked-feature">Insider Trading Alerts</li>
-                <li class="locked-feature">Volume Profile & Directional Tradingview indicators(with tp/sl)</li>
-                <li class="locked-feature">Paris Top Picks (My Portfolio on stock & options)</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown("""
-        <div style="position: relative;">
-            <div style="position: absolute; top: -15px; right: 0; left: 0; margin: auto; width: 120px; background: #fbbf24; color: black; font-weight: bold; text-align: center; padding: 5px; border-radius: 20px; z-index: 10;">MOST POPULAR</div>
-            <div class="plan-card" style="border: 2px solid #3b82f6; background: rgba(30, 58, 138, 0.2);">
-                <div class="plan-title">VIP Access</div>
-                <div class="plan-price">HK$1200 <span>/ month</span></div>
-                <p style="color:#94a3b8; font-size:0.9em;">For serious traders aiming for consistent profitability.</p>
-                <ul class="feature-list">
-                    <li><b>Everything in Basic</b></li>
-                    <li>🧬 <b>Stock DNA:</b> Factor-based stock scoring</li>
-                    <li>⚡ <b>Option Flow:</b> Track unusual institutional activity</li>
-                    <li>🕴️ <b>Insider Trading:</b> Real-time CEO/CFO buys</li>
-                    <li>🎯 <b>TradingView Indicators:</b> provide direction(key support/resistant level)</li>
-                    <li>📊 <b>Futures Algo:</b> Volume Profile & Heavy Zone</li>
-                    <li>💼 <b>My Portfolio:</b> Follow my profitable trade selection</li>
-                </ul>
-                <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-button">UNLOCK NOW 🔓</a>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.subheader("💡 Why Upgrade?")
-    st.info(
-        "The data provided in the VIP section is the same data I used during my time as an Investment Banker. Retail tools show you 'what' happened. Our tools show you 'where' the money is going before the move happens.")
-
-
+    if os.path.exists(html_file_path):
+        with open(html_file_path, 'r', encoding='utf-8') as f:
+            html_content = f.read()
+            # 設定 height=1000 或更高，以確保卡片能完整顯示不需捲動
+            components.html(html_content, height=1100, scrolling=True)
+    else:
+        st.error(f"⚠️ Membership page file not found at: {html_file_path}")
 # ==========================================
 # 5. Global Footer
 # ==========================================
