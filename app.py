@@ -1007,10 +1007,10 @@ elif target_page == "波動率策略 Volatility Target":
 
 # [PAGE] US Option
 elif target_page == "美股期權 US Option":
-    st.title("🇺🇸 US Option Strike Analysis")
+    st.title("US Option Strike Analysis")
     st.caption("Tracking Unusual Options Activity & Gamma Levels")
     path = "Option"
-    search_pattern = "option_strike_analysis_*.html"
+    search_pattern = "option_strike_*.html"
     html_content, filename = get_latest_file_content(path, search_pattern)
 
     if html_content:
@@ -1022,10 +1022,10 @@ elif target_page == "美股期權 US Option":
 
 # [PAGE] HK Option
 elif target_page == "港股期權 HK Option":
-    st.title("🇭🇰 HK Option Market Analysis")
+    st.title("HK Option Market Analysis")
     st.caption("Market Scanner, Stock Ranking & Heatmaps")
     path = "Option"
-    search_pattern = "HK_Option_Market_Analysis_v6_*.html"
+    search_pattern = "HK_Option_Market_*.html"
     html_content, filename = get_latest_file_content(path, search_pattern)
 
     if html_content:
