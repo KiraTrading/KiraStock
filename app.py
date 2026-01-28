@@ -530,7 +530,7 @@ with st.sidebar:
                 "fire"  # S&P 500 Heatmap
             ]
         )
-        
+
     elif selected_nav == "Future":
         st.caption("FUTURES & TRENDS")
         target_page = handle_submenu(
@@ -780,7 +780,7 @@ elif target_page == "My Research":
 
                 with col_text:
                     # 使用 expander 讓畫面保持整潔，標題直接顯示
-                    with st.expander(f"📄 {title}", expanded=True):  # 預設展開最新的
+                    with st.expander(f"📄 {title}", expanded=False):  # 預設展開最新的
                         st.markdown(body)
                         st.markdown("---")
 
