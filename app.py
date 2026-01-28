@@ -5,6 +5,7 @@ import os
 import sys
 import glob
 import time
+import glob
 
 maxMessageSize = 600
 
@@ -433,8 +434,8 @@ with st.sidebar:
 
     # Define Main Menu Options
     main_options = [
-        "Home", "Market Intelligence", "Stock", "Option",
-        "Future", "My Portfolio", "MT5 EA", "Education", "Community", "Resources", "Membership"
+        "Home", "Market Intelligence", "My Research", "Stock", "Option",
+        "Future", "My Portfolio","MT5 EA", "Education", "Community", "Resources", "Membership"
     ]
 
     # Determine default index for Main Menu based on URL
@@ -448,7 +449,7 @@ with st.sidebar:
         menu_title="Navigation",
         options=main_options,
         icons=[
-            "house", "globe", "search", "layers",
+            "house", "globe","list-task", "search", "layers",
             "graph-up-arrow", "briefcase", "robot", "mortarboard", "people-fill", "collection", "gem"
         ],
         menu_icon="compass",
@@ -713,6 +714,56 @@ elif target_page == "Market Dashboard":
     else:
         st.warning("⚠️ No dashboard files found.")
         st.error(f"Error: {filename}")
+
+elif target_page == "My Research":
+    st.title("🦅 Research Paper from Paris")
+    st.caption("Institutional Perspectives on Daily Flows")
+
+    # 1. 讀取所有 MD 檔
+    # 假設檔名格式為: YYYY-MM-DD_Title.md，這樣 sort 會自然按日期排
+    files = sorted(glob.glob(os.path.join("DailyInsights", "*.md")), reverse=True)
+
+    if not files:
+        st.info("No insights published yet. Stay tuned.")
+    else:
+        # 2. 顯示邏輯 (Timeline 樣式)
+        for file_path in files:
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            # 簡單解析內容 (假設第一行是標題，第二行是日期，之後是內文)
+            # 你也可以用 regex 做更精細的解析
+            lines = content.split('\n')
+            title = lines[0].replace('# ', '')
+
+            # 嘗試找日期
+            date_display = "Recent"
+            body_start_index = 1
+            for i, line in enumerate(lines):
+                if "**Date:**" in line:
+                    date_display = line.replace("**Date:**", "").strip()
+                    body_start_index = i + 1
+                    break
+
+            body = "\n".join(lines[body_start_index:])
+
+            # 3. UI 呈現：使用 Expander 或 Styled Container
+            # 這裡用一個帶有日期標籤的卡片風格
+            with st.container():
+                col_date, col_text = st.columns([1, 5])
+
+                with col_date:
+                    st.markdown(f"""
+                    <div style="background: rgba(37, 99, 235, 0.2); padding: 5px; border-radius: 5px; text-align: center; border: 1px solid #3b82f6;">
+                        <span style="font-size: 0.8em; color: #93c5fd; font-weight: bold;">{date_display}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                with col_text:
+                    # 使用 expander 讓畫面保持整潔，標題直接顯示
+                    with st.expander(f"📄 {title}", expanded=True):  # 預設展開最新的
+                        st.markdown(body)
+                        st.markdown("---")
 
 # [PAGE] Options Strategy Dashboard
 elif target_page == "Options Strategy":
