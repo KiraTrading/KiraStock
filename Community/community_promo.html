@@ -20,11 +20,63 @@
             overflow-x: hidden;
         }
 
+        /* === 新增：實戰成績展示區 (移至頂部並縮小) === */
+        .results-section {
+            margin-top: 10px;
+            margin-bottom: 60px; /* 增加底部間距，與標題區隔開 */
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+        .results-title {
+            font-size: 1.6rem; /* 稍微縮小標題字體 */
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .results-sub {
+            color: #94a3b8;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        .gallery-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .gallery-item {
+            flex: 1;
+            min-width: 280px;
+            max-width: 380px; /* [修改] 縮小最大寬度 (原 500px) */
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
+        }
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            max-height: 280px; /* [新增] 限制最大高度，防止過高 */
+            object-fit: cover; /* 保持比例填滿 */
+            border-radius: 8px;
+            display: block;
+        }
+        .gallery-caption {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            font-style: italic;
+        }
+
         /* 標題區 */
         .hero {
             text-align: center;
             margin-bottom: 50px;
-            animation: fadeIn 1s ease-in;
+            /* animation: fadeIn 1s ease-in; (移除這裡的動畫，避免與頂部衝突) */
         }
         .hero h1 {
             font-size: 3rem;
@@ -156,6 +208,7 @@
             display: inline-block;
             transition: 0.3s;
             box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+            margin: 10px;
         }
         .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
 
@@ -173,6 +226,22 @@
     </style>
 </head>
 <body>
+
+    <div class="results-section">
+        <h2 class="results-title">真實會員回饋 & 策略驗證</h2>
+        <p class="results-sub">我們不賣必勝公式，我們分享一致性的交易邏輯。見證會員如何利用 Alpha 資訊優勢，從市場中捕捉機會。</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl1.jpg" alt="Member PnL 1" class="gallery-img">
+                <div class="gallery-caption">"執行力與紀律的展現 - 策略成功捕捉波段"</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl2.jpg" alt="Member PnL 2" class="gallery-img">
+                <div class="gallery-caption">"群組即時提示驗證 - 把握非農數據後的反轉"</div>
+            </div>
+        </div>
+    </div>
 
     <div class="hero">
         <h1>不僅僅是群組，這是你的 <span class="highlight">華爾街交易室</span></h1>
@@ -227,7 +296,6 @@
                             <span class="time">10:32 AM</span>
                         </div>
                     </div>
-
                     <div class="message news-msg">
                         <div class="user-name">⚡ Paris News Bot</div>
                         <div class="msg-bubble">
@@ -235,12 +303,10 @@
                             <span class="time">10:35 AM</span>
                         </div>
                     </div>
-
                     <div class="message">
                         <div class="user-name">Member_Jason</div>
                         <div class="msg-bubble">收到，已跟進 NVDA。AAStocks 好像還沒出 OPEC 新聞？</div>
                     </div>
-
                     <div class="message admin-msg">
                         <div class="user-name">Paris Trader 👑</div>
                         <div class="msg-bubble">
@@ -248,12 +314,10 @@
                             <span class="time">10:40 AM</span>
                         </div>
                     </div>
-
                     <div class="message">
                         <div class="user-name">Member_Sarah</div>
                         <div class="msg-bubble">這速度太誇張了... 剛才那波金價拉升直接抓到。</div>
                     </div>
-
                     <div class="message admin-msg">
                         <div class="user-name">Paris Trader 👑</div>
                         <div class="msg-bubble">
@@ -267,12 +331,11 @@
                         <div class="msg-bubble">
                             【Trade Idea】關注 NVDA。<br>
                             剛才 1分鐘圖出現大量 Institution Block Trade。<br>
-                            現價 885.5 HF嘗試 Long，❌ 882，✅895。<br>
+                            現價 885.5 BLOCK嘗試 Long，❌882，✅895。<br>
                             邏輯：Gamma Exposure 在 880 有強支撐。
                             <span class="time">10:32 AM</span>
                         </div>
                     </div>
-
                     <div class="message news-msg">
                         <div class="user-name">⚡ Paris News Bot</div>
                         <div class="msg-bubble">
@@ -280,12 +343,10 @@
                             <span class="time">10:35 AM</span>
                         </div>
                     </div>
-
                     <div class="message">
                         <div class="user-name">Member_Jason</div>
                         <div class="msg-bubble">收到，已跟進 NVDA。AAStocks 好像還沒出 OPEC 新聞？</div>
                     </div>
-
                     <div class="message admin-msg">
                         <div class="user-name">Paris Trader 👑</div>
                         <div class="msg-bubble">
@@ -293,12 +354,10 @@
                             <span class="time">10:40 AM</span>
                         </div>
                     </div>
-
                     <div class="message">
                         <div class="user-name">Member_Sarah</div>
                         <div class="msg-bubble">這速度太誇張了... 剛才那波油價拉升直接抓到。</div>
                     </div>
-
                     <div class="message admin-msg">
                         <div class="user-name">Paris Trader 👑</div>
                         <div class="msg-bubble">
@@ -306,7 +365,6 @@
                             <span class="time">04:05 PM</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -317,8 +375,6 @@
         <p style="color:#94a3b8; margin-bottom: 30px;">每月僅需一頓飯錢，獲取機構級資訊優勢。</p>
         <a href="https://t.me/Ho777ggg" target="_blank" class="cta-btn">🔥 (DM查詢)</a>
         <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-btn">🔥 立即申請加入 VIP</a>
-
-
     </div>
 
 </body>
