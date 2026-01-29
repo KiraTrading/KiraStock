@@ -102,6 +102,7 @@ def get_local_data(ticker):
 
     return df_hist, options_data, data_date
 
+
 def generate_strategy_html(ticker, spread_width, otm_pct, itm_pct):
     """
     Replicates the logic of your original script but using offline data.
@@ -937,11 +938,24 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
+
     # -------------------------------------------------------------------------
-    # IMPROVED NAVIGATION LOGIC WITH DEEP LINKING (HK Style)
+    # IMPROVED NAVIGATION LOGIC (Fixing the Double-Click Bug)
     # -------------------------------------------------------------------------
 
-    # 1. Capture the URL params
+    # 1. 定義 Callback 函數：當選單改變時，立即更新 URL
+    def on_nav_change(key):
+        # 獲取選單現在的選擇 (透過 key)
+        if "main_nav_key" in st.session_state:
+            new_selection = st.session_state["main_nav_key"]
+            # 立即更新 URL，這樣下一次 Rerun 時讀取到的就是正確的 Page
+            st.query_params["page"] = new_selection
+            # 切換主頁面時，清除子頁面參數，避免邏輯衝突
+            if "sub" in st.query_params:
+                del st.query_params["sub"]
+
+
+    # 2. Capture the URL params
     query_params = st.query_params
     url_main_page = query_params.get("page", "首頁 Home")  # Default to Home
     url_sub_page = query_params.get("sub", None)  # Capture sub-page
@@ -972,7 +986,7 @@ with st.sidebar:
         matches = [i for i, opt in enumerate(main_options) if url_main_page in opt]
         main_default_index = matches[0] if matches else 0
 
-    # 2. Render the Main Sidebar Menu
+    # 3. Render the Main Sidebar Menu
     selected_nav = option_menu(
         menu_title="Navigation",
         options=main_options,
@@ -982,6 +996,8 @@ with st.sidebar:
         ],
         menu_icon="compass",
         default_index=main_default_index,  # Sync with URL
+        key="main_nav_key",  # 設定一個唯一的 key
+        on_change=on_nav_change,  # 綁定回調函數
         styles={
             "container": {"padding": "0!important", "background-color": "transparent"},
             "icon": {"color": "#9CA3AF", "font-size": "15px"},
@@ -1068,7 +1084,7 @@ with st.sidebar:
         st.caption("FUTURES & TRENDS")
         target_page = handle_submenu(
             "sub_future",
-            ["成交分佈 Volume Profile", "日內波幅 Volatility", "牛熊重貨區 CBBC Ladder"],
+            ["日內波幅 Volatility", "成交分佈 Volume Profile", "牛熊重貨區 CBBC Ladder"],
             ["bar-chart-steps", "lightning-charge", "distribute-vertical"]
         )
 
@@ -1076,7 +1092,7 @@ with st.sidebar:
         st.caption("DERIVATIVES ANALYTICS")
         target_page = handle_submenu(
             "sub_option",
-            ["港股期權 HK Option","美股期權 US Option",  "期權策略 Strategy"],  # Added here
+            ["港股期權 HK Option", "美股期權 US Option", "期權策略 Strategy"],  # Added here
             ["currency-dollar", "globe-asia-australia", "cpu"]  # Added icon
         )
 
@@ -1089,36 +1105,92 @@ with st.sidebar:
         )
 
     # --- 4. Deep Linking: Update URL based on final selection ---
+
     # Case A: Sidebar item matches target (Home, Education, etc. - No sub-menu)
-    if selected_nav == target_page:
-        # Check if we need to update URL (avoid infinite rerun loops)
-        if url_main_page != selected_nav or url_sub_page is not None:
-            st.query_params["page"] = selected_nav
-            # Remove 'sub' param if it exists, as this page has no sub-menu
-            if "sub" in st.query_params:
-                del st.query_params["sub"]
-            # time.sleep(0.1) # Optional: sometimes helps with race conditions
+    # COMMENTED OUT TO FIX DOUBLE CLICK BUG (Handled by on_nav_change)
+    # if selected_nav == target_page:
+    #     if url_main_page != selected_nav or url_sub_page is not None:
+    #         st.query_params["page"] = selected_nav
+    #         # Remove 'sub' param if it exists, as this page has no sub-menu
+    #         if "sub" in st.query_params:
+    #             del st.query_params["sub"]
+    #         # time.sleep(0.1) # Optional: sometimes helps with race conditions
 
     # Case B: Target is a sub-menu item
-    else:
+    if selected_nav != target_page:
         # Check if URL needs update
         if url_main_page != selected_nav or url_sub_page != target_page:
             st.query_params["page"] = selected_nav
             st.query_params["sub"] = target_page
 
     st.markdown("---")
-    # ... (Keep your existing Promo Button code here) ...
+
+    # ---------------------------------------------------------
+    # ✨ 改良後的 VIP 升級按鈕 (Gold/Pulse Effect) - [已修復連結]
+    # ---------------------------------------------------------
     st.markdown("""
-            <div style="background: linear-gradient(45deg, #1e3a8a, #3b82f6); padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 10px;">
-                <h4 style="color: white; margin:0; font-size: 16px;">🚀 Unlock Pro Data</h4>
-                <p style="color: #dbeafe; font-size: 12px; margin: 5px 0;">Access Insider & Option Flows</p>
-                <a href="https://parisprogram.uk/" target="_blank" style="text-decoration: none;">
-                    <button style="width: 100%; background: #ffffff; color: #2563EB; border: none; padding: 8px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 5px;">
-                        Join VIP Now
-                    </button>
-                </a>
-            </div>
-        """, unsafe_allow_html=True)
+        <style>
+            /* 定義呼吸燈動畫 */
+            @keyframes pulse-gold {
+                0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+                70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+            }
+
+            .vip-promo-card {
+                background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%);
+                padding: 15px;
+                border-radius: 12px;
+                text-align: center;
+                margin-bottom: 20px;
+                margin-top: 10px;
+                border: 1px solid #FCD34D;
+                animation: pulse-gold 2s infinite;
+            }
+
+            /* 修改重點：直接將 link 變成按鈕樣式，移除 button 標籤以修復點擊問題 */
+            a.vip-button-link {
+                display: block;
+                width: 100%;
+                background: #FFFFFF;
+                color: #B45309 !important; /* 強制深金色文字 */
+                border: none;
+                padding: 10px;
+                border-radius: 6px;
+                font-weight: 800;
+                cursor: pointer;
+                margin-top: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+                transition: transform 0.1s;
+                text-decoration: none !important; /* 移除底線 */
+                text-align: center;
+                box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
+            }
+
+            a.vip-button-link:hover {
+                transform: scale(1.02);
+                background: #FEF3C7;
+                color: #92400E !important;
+            }
+
+            a.vip-button-link:visited, a.vip-button-link:active {
+                color: #B45309 !important;
+            }
+        </style>
+
+        <div class="vip-promo-card">
+            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
+                👑 升級 VIP 會員
+            </h3>
+            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0; line-height: 1.4;">
+                解鎖機構級數據 (Stock DNA)<br>
+                & 實戰倉位 (Portfolio)
+            </p>
+            <a href="?page=升級會員 VIP" target="_self" class="vip-button-link">
+                🚀 立即加入 (Join Now)
+            </a>
+        </div>
+    """, unsafe_allow_html=True)
 
 # Handle Legal from Footer (Special Case)
 if url_main_page == "Legal" and selected_nav == "首頁 Home":
@@ -1130,6 +1202,7 @@ if url_main_page == "Legal" and selected_nav == "首頁 Home":
 
 # Updated keys to match HK Style names
 locked_pages = [
+    # "實戰持倉 Portfolio",  <-- REMOVED as per request to allow partial access
     "因子模型 Stock DNA",
     "ETF資金流 Smart Money",
     "內部交易 Insider",
@@ -1137,7 +1210,6 @@ locked_pages = [
     "波動率策略 Volatility Target",
     "美股期權 US Option",
     "成交分佈 Volume Profile",
-    "日內波幅 Volatility",
     "期權策略 Strategy",
     "牛熊重貨區 CBBC Ladder"
 ]
@@ -1169,13 +1241,10 @@ if target_page == "首頁 Home":
 
     with col_main:
         st.markdown("""
-        <h1 style='color:white;'>前Ibanker開發-香港首個機構級數據</h1>
-        <h3 style='color:#94a3b8;'>美股分析|期權策略|期貨自動交易EA Algo</h3>
+        <h1 style='color:white;'>Ex-Ibanker開發-首個機構級黑科技</h1>
+        <h3 style='color:#94a3b8;'>美股期權策略|NQ HSI 金期貨自動交易EA </h3>
         <p style='font-size: 1.1em; color: #64748b;'>
-        2026散戶黑科技,你不是只看圖表交易吧?!
-        </p>
-                <p style='font-size: 1.1em; color: #64748b;'>
-        有志加入投行工作,或成為持續盈利交易員必備學習資源平台!
+        贏錢不可能只看圖表交易 ,持續盈利交易員必備學習資源平台!
         </p>
         """, unsafe_allow_html=True)
 
