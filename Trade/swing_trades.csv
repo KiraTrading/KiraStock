@@ -8,7 +8,7 @@ RTX,LONG,2025/12/19,181.76,199.46,500,99730.0,OPEN,8850.0,"day chart TA (engulfi
 STT,LONG,2025/12/23,129.74,128.02,600,76812.0,OPEN,-1032.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",258.0,127.59
 AVGO,LONG,2025/12/24,350.2,333.24,250,83310.0,OPEN,-4240.0,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.
 ",2097.5,324.85
-SOFI,LONG,2025/11/25,28.45,24.6,1000,24600.0,OPEN,-3850.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-1200.0,25.8
+SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6
 NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0
 USDJPY,LONG,2025/12/18,155.714,157.0,20000,20000.0,CLOSED,25720.0,Betting on Friday event on raising interest rate.dovish hike,0.0,0.0
 NQ=F,SHORT,2025/12/17,25358.0,25750.0,1,507160.0,CLOSED,-7840.0,"day chart tp break to tp2.(March future),SL on 22Dec",0.0,0.0
@@ -21,3 +21,4 @@ SI=F,LONG,2026/1/9,78.2,85.0,1,396705.02,CLOSED,6800.0,"Retry on engulfing patta
 ASML,LONG,2026/1/5,1215.0,1422.92,150,213438.01,OPEN,31188.01,day gap up,1435.51,1413.35
 MU,LONG,2026/1/28,400.0,435.28,450,195876.0,OPEN,15876.0,day cc tp new,15876.0,389.09
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-2320.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",,
+WDC,LONG,2026/1/28,266.0,279.7,300,83910.0,OPEN,4110.0,day cc tp new,4110.0,240.85
