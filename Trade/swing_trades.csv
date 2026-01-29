@@ -1,24 +1,24 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice
-GOOGL,LONG,2025/11/19,298.0,336.01,500,168005.0,OPEN,19005.0,Gemini 3 AI dominance. Fundamental value gap.,1375.0,333.26
-RKLB,LONG,2025/12/9,53.4,88.57,1500,132855.0,OPEN,52755.0,SpaceX sympathy play. Options flow bullish.,12134.99,80.48
-AMC,SHORT,2025/12/9,2.33,1.43,53000,75790.0,OPEN,47700.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",3180.0,1.49
-ALB,LONG,2025/12/17,135.0,184.33,500,92165.0,OPEN,24665.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-2710.0,189.75
-RTX,LONG,2025/12/19,181.76,199.46,500,99730.0,OPEN,8850.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
-",2665.0,194.13
-STT,LONG,2025/12/23,129.74,128.02,600,76812.0,OPEN,-1032.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",258.0,127.59
-AVGO,LONG,2025/12/24,350.2,333.24,250,83310.0,OPEN,-4240.0,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.
-",2097.5,324.85
+GOOGL,LONG,2025/11/19,298.0,338.25,500,169125.0,OPEN,20125.0,Gemini 3 AI dominance. Fundamental value gap.,2495.0,333.26
+RKLB,LONG,2025/12/9,53.4,85.68,1500,128520.0,OPEN,48420.0,SpaceX sympathy play. Options flow bullish.,7800.0,80.48
+AMC,SHORT,2025/12/9,2.33,1.37,53000,72610.0,OPEN,50880.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",6360.0,1.49
+ALB,LONG,2025/12/17,135.0,180.7,500,90350.0,OPEN,22850.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-4525.0,189.75
+RTX,LONG,2025/12/19,181.76,199.88,500,99940.0,OPEN,9060.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
+",2875.0,194.13
+STT,LONG,2025/12/23,129.74,131.43,600,78858.0,OPEN,1014.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",2304.0,127.59
+AVGO,LONG,2025/12/24,350.2,330.73,250,82682.5,OPEN,-4867.5,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.
+",1470.0,324.85
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6
 NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0
 USDJPY,LONG,2025/12/18,155.714,157.0,20000,20000.0,CLOSED,25720.0,Betting on Friday event on raising interest rate.dovish hike,0.0,0.0
 NQ=F,SHORT,2025/12/17,25358.0,25750.0,1,507160.0,CLOSED,-7840.0,"day chart tp break to tp2.(March future),SL on 22Dec",0.0,0.0
 META,LONG,2025/12/23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move,0.0,0.0
 SI=F,LONG,2025/12/5,53.36,79.0,1000,76486.0,CLOSED,25640.0,Breakout at resistance with new US policy.,0.0,0.0
-BABA,LONG,2026/1/2,153.45,175.66,700,122962.0,OPEN,15547.0,Day chart call tp in fate,3003.01,171.37
-PLTR,LONG,2026/1/5,174.7,157.35,500,78675.0,OPEN,-8675.0,war theme venezuela,-5060.0,167.47
+BABA,LONG,2026/1/2,153.45,174.31,700,122017.0,OPEN,14602.0,Day chart call tp in fate,2058.0,171.37
+PLTR,LONG,2026/1/5,174.7,151.86,500,75930.0,OPEN,-11420.0,war theme venezuela,-7805.0,167.47
 SI=F,LONG,2026/1/9,78.2,85.0,1,396705.02,CLOSED,6800.0,"Retry on engulfing pattarn ,bet on gap up play on 12Jan Monday, potential war is one of the reason as well
 ",6800.0,76.164
-ASML,LONG,2026/1/5,1215.0,1422.92,150,213438.01,OPEN,31188.01,day gap up,1435.51,1413.35
-MU,LONG,2026/1/28,400.0,435.28,450,195876.0,OPEN,15876.0,day cc tp new,15876.0,389.09
+ASML,LONG,2026/1/5,1215.0,1455.16,150,218274.01,OPEN,36024.01,day gap up,6271.51,1413.35
+MU,LONG,2026/1/28,400.0,435.79,450,196105.5,OPEN,16105.5,day cc tp new,16105.5,389.09
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-2320.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",,
-WDC,LONG,2026/1/28,266.0,279.7,300,83910.0,OPEN,4110.0,day cc tp new,4110.0,240.85
+WDC,LONG,2026/1/28,266.0,278.41,300,83523.0,OPEN,3723.0,day cc tp new,3723.0,240.85
