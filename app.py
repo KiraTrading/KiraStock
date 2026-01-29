@@ -1056,27 +1056,29 @@ with st.sidebar:
         target_page = handle_submenu(
             "sub_stock",
             [
-                "ETF資金流 Smart Money",
-                "板塊熱力圖 Sector Heatmap",
                 "主題籃子 Thematic Basket",
+                "ETF資金流 Smart Money",
+                "標普熱力圖 S&P 500"
+                "板塊熱力圖 Sector Heatmap",
                 "業績公佈 Earnings",
                 "內部交易 Insider",
                 "挾淡倉 Short Squeeze",
                 "因子模型 Stock DNA",
                 "波動率策略 Volatility Target",
-                "標普熱力圖 S&P 500"  # 保留此項以免遺失，若不需要可刪除
+
             ],
 
             [
-                "graph-up-arrow",  # ETF Smart Money
-                "grid-3x3",  # Industry Sector Heatmap
                 "basket",  # Thematic Basket
+                "graph-up-arrow",  # ETF Smart Money
+                "fire"  # S&P 500 Heatmap
+                "grid-3x3",  # Industry Sector Heatmap
                 "cash-coin",  # Earnings
                 "people",  # Insider Trading
                 "lightning-charge",  # Short Squeeze
                 "radar",  # Stock DNA
                 "bullseye",  # Volatility Target
-                "fire"  # S&P 500 Heatmap
+
             ]
         )
 
