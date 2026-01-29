@@ -1076,7 +1076,7 @@ with st.sidebar:
         st.caption("DERIVATIVES ANALYTICS")
         target_page = handle_submenu(
             "sub_option",
-            ["美股期權 US Option", "港股期權 HK Option", "期權策略 Strategy"],  # Added here
+            ["港股期權 HK Option","美股期權 US Option",  "期權策略 Strategy"],  # Added here
             ["currency-dollar", "globe-asia-australia", "cpu"]  # Added icon
         )
 
