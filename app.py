@@ -1058,26 +1058,24 @@ with st.sidebar:
             [
                 "主題籃子 Thematic Basket",
                 "ETF資金流 Smart Money",
-                "標普熱力圖 S&P 500",  # 👈 確保這裡有逗號
-                "板塊熱力圖 Sector Heatmap",  # 👈 確保這裡有逗號
+                "標普熱力圖 S&P 500",
+                "板塊熱力圖 Sector Heatmap",
                 "業績公佈 Earnings",
                 "內部交易 Insider",
                 "挾淡倉 Short Squeeze",
                 "因子模型 Stock DNA",
-                "波動率策略 Volatility Target",  # 👈 這裡也要小心
-                "標普熱力圖 S&P 500"  # (你原代碼最後多了一個重複的項目，如果不想要可以刪除這行)
+                "波動率策略 Volatility Target",
             ],
             [
                 "basket",  # Thematic Basket
                 "graph-up-arrow",  # ETF Smart Money
-                "fire",  # 👈 修正點：補上逗號！ (原本這裡漏了)
-                "grid-3x3",  # 👈 修正點：補上逗號！
+                "fire",  
+                "grid-3x3",
                 "cash-coin",  # Earnings
                 "people",  # Insider Trading
                 "lightning-charge",  # Short Squeeze
                 "radar",  # Stock DNA
                 "bullseye",  # Volatility Target
-                "fire"  # S&P 500 (對應上面的重複項)
             ]
         )
 
@@ -1309,15 +1307,15 @@ if target_page == "首頁 Home":
 
         st.markdown("""
             <h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader</h3>
-            <p style="color: #9CA3AF; font-size: 0.9em;">Quantitative Analyst | Trader</p>
+            <p style="color: #9CA3AF; font-size: 0.9em;">Ex-Ibank Quantitative Trader</p>
             <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
             <p style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #e2e8f0;">
-                Focusing on quantitative factor mining and algorithmic trading. Specialized in transforming complex financial models into executable trading strategies. Providing TradingView indicators and backtesting.
+                專注於量化因子挖掘與程式化交易。擅長將複雜的金融模型轉化為可執行的實戰策略，並提供獨家 TradingView 指標與回測數據。
                 <br><br>
-                <b>Main Strategies:</b><br>
-                • Multi-Factor Long/Short<br>
-                • Future Scapling on HSI/NQ/GC <br>
-                • Unusual Options Activity Trading Strategies on U.S. market<br>
+                <b>擅長策略 Core Strategies:</b><br>
+                • 美股多因子長短倉 (Multi-Factor L/S)<br>
+                • 期貨NQ黃金HSI Scalping (Future Scalping)<br>
+                • 美股期權異動簍略 (Unusual Options)<br>
             </p>
             <a href="https://t.me/ParisTrader" target="_blank" style="text-decoration: none;">
                 <button style="background-color:#2563EB; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; font-weight:bold;">
