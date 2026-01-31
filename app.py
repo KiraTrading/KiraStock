@@ -1047,8 +1047,10 @@ with st.sidebar:
         st.caption("MARKET MODULES")
         target_page = handle_submenu(
             "sub_market",
-            ["風險指標 Market Risk", "市寬 Market Breadth"],
-            ["activity", "bar-chart-line"]
+            # ↓↓↓ 修改這裡：加入 "CFTC 持倉報告 Position" ↓↓↓
+            ["風險指標 Market Risk", "市寬 Market Breadth", "CFTC 持倉報告 Position"],
+            # ↓↓↓ 修改這裡：加入對應 Icon (例如 "bank" 代表機構) ↓↓↓
+            ["activity", "bar-chart-line", "bank"]
         )
 
     elif selected_nav == "美股數據 Stock":
@@ -1086,6 +1088,7 @@ with st.sidebar:
             ["日內波幅 Volatility", "成交分佈 Volume Profile", "牛熊重貨區 CBBC Ladder"],
             ["bar-chart-steps", "lightning-charge", "distribute-vertical"]
         )
+
 
     elif selected_nav == "期權分析 Option":
         st.caption("DERIVATIVES ANALYTICS")
@@ -1464,6 +1467,26 @@ elif target_page == "風險指標 Market Risk":
         st.warning("⚠️ No risk reports found.")
         st.info("Please ensure `ImpliedParameters/implied_params_*.html` exists.")
 
+# [PAGE] CFTC Position (新增的頁面)
+elif target_page == "CFTC 持倉報告 Position":
+    st.title("🐋 CFTC Institutional Positioning")
+    st.caption("Commitment of Traders (COT) Report - Smart Money vs Retail")
+
+    # 設定檔案路徑
+    # 建議將生成的 html 放入 MarketDashboard 資料夾
+    # 如果檔案在根目錄，請改為 path = "."
+    path = "MarketDashboard"
+
+    # 讀取檔案
+    html_content, filename = get_latest_file_content(path, "cftc_pro_report.html")
+
+    if html_content:
+        st.caption(f"📅 Report Date: {filename}")
+        # 設定高度，確保報告能完整顯示
+        components.html(html_content, height=2200, scrolling=True)
+    else:
+        st.warning("⚠️ CFTC Report not found.")
+        st.info(f"Please ensure `cftc_pro_report.html` is located in the `{path}` folder.")
 # [PAGE] Market Breadth
 elif target_page == "市寬 Market Breadth":
     st.title("🌊 Market Breadth")
