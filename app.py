@@ -1478,7 +1478,7 @@ elif target_page == "CFTC 持倉報告 Position":
     path = "MarketDashboard"
 
     # 讀取檔案
-    html_content, filename = get_latest_file_content(path, "cftc_pro_report.html")
+    html_content, filename = get_latest_file_content(path, "cftc_pro_report*.html")
 
     if html_content:
         st.caption(f"📅 Report Date: {filename}")
