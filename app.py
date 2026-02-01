@@ -1071,7 +1071,7 @@ with st.sidebar:
             [
                 "basket",  # Thematic Basket
                 "graph-up-arrow",  # ETF Smart Money
-                "fire",  
+                "fire",
                 "grid-3x3",
                 "cash-coin",  # Earnings
                 "people",  # Insider Trading
@@ -1281,7 +1281,7 @@ if target_page == "首頁 Home":
 
         st.link_button(
             label="📊 點擊閱讀：下周大市分析 (Weekly Market Analysis)",
-            url="https://parisprogram.uk/zh/member/post/RPT-20260117202415071?hash=c2894152df242ddf36604b022a1fbf98fe6b210be085496dba758628c35ebbc4",
+            url="https://parisprogram.uk/zh/member/post/RPT-20260131182122129?hash=e71209296eb426dd311b01d899a5615e5c858f30f34d39be3e589d137227761f",
             type="primary",
             use_container_width=True
         )
