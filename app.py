@@ -1062,6 +1062,7 @@ with st.sidebar:
                 "ETF資金流 Smart Money",
                 "標普熱力圖 S&P 500",
                 "板塊熱力圖 Sector Heatmap",
+                "技術評分 TA Score",  # <--- [新增這一行]
                 "業績公佈 Earnings",
                 "內部交易 Insider",
                 "挾淡倉 Short Squeeze",
@@ -1073,6 +1074,7 @@ with st.sidebar:
                 "graph-up-arrow",  # ETF Smart Money
                 "fire",
                 "grid-3x3",
+                "stoplights",  # <--- [新增對應圖標]
                 "cash-coin",  # Earnings
                 "people",  # Insider Trading
                 "lightning-charge",  # Short Squeeze
@@ -1514,6 +1516,26 @@ elif target_page == "板塊熱力圖 Sector Heatmap":
     else:
         st.warning("⚠️ Sector Heatmap not found.")
         st.info(f"Please ensure `{path}/{pattern}` exists.")
+
+# [PAGE] TA Score Heatmap (New)
+elif target_page == "技術評分 TA Score":
+    st.title("🚦 TA Score Heatmap")
+    st.caption("Technical Analysis Score & Market Cap Filter")
+
+    # 請確保這裡的路徑與 st_tt.py 的 output_dir 一致
+    # 如果 st_tt.py 儲存在根目錄，這裡設為 "."
+    # 如果 st_tt.py 儲存在 "Stock" 資料夾，這裡設為 "Stock"
+    path = "Stock"
+
+    html_content, filename = get_latest_file_content(path, "TA_score_heatmap_*.html")
+
+    if html_content:
+        st.caption(f"📅 Report Date: {filename}")
+        # Height 設為 1200 或更高以適應長列表
+        components.html(html_content, height=1200, scrolling=True)
+    else:
+        st.warning("⚠️ TA Score Heatmap not found.")
+        st.info(f"Please run `st_tt.py` to generate the report in `{os.path.abspath(path)}`.")
 
 # [PAGE] Earnings
 elif target_page == "業績公佈 Earnings":
