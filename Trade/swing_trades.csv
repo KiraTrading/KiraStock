@@ -1,16 +1,16 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice
-GOOGL,LONG,2025/11/19,298.0,339.71,500,169855.0,OPEN,20855.0,Gemini 3 AI dominance. Fundamental value gap.,-1990.01,343.69
-RKLB,LONG,2025/12/9,53.4,81.27,750,60952.5,OPEN,20902.5,SpaceX sympathy play. Options flow bullish.,5340.0,74.15
+GOOGL,LONG,2025/11/19,298.0,333.04,500,166520.0,OPEN,17520.0,Gemini 3 AI dominance. Fundamental value gap.,-5325.0,343.69
+RKLB,LONG,2025/12/9,53.4,73.11,750,54832.5,OPEN,14782.5,SpaceX sympathy play. Options flow bullish.,-780.0,74.15
 AMC,SHORT,2025/12/9,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49
-ALB,LONG,2025/12/17,135.0,170.64,500,85320.0,OPEN,17820.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,2855.0,164.93
-RTX,LONG,2025/12/19,181.76,203.5,500,101750.0,OPEN,10870.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
-",1205.0,201.09
-STT,LONG,2025/12/23,129.74,130.09,600,78054.0,OPEN,210.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-1494.0,132.58
-BABA,LONG,2026/1/2,153.45,163.65,700,114555.0,OPEN,7140.0,Day chart call tp in fate,-3318.0,168.39
+ALB,LONG,2025/12/17,135.0,168.66,500,84330.0,OPEN,16830.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,1865.01,164.93
+RTX,LONG,2025/12/19,181.76,196.74,500,98370.0,OPEN,7490.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
+",-2175.0,201.09
+STT,LONG,2025/12/23,129.74,132.03,600,79218.0,OPEN,1374.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-330.0,132.58
+BABA,LONG,2026/1/2,153.45,159.14,700,111398.0,OPEN,3983.0,Day chart call tp in fate,-6475.0,168.39
 PLTR,LONG,2026/1/5,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47
-ASML,LONG,2026/1/5,1215.0,1395.88,75,104691.0,OPEN,13566.0,day gap up,-3413.25,1441.39
-MU,LONG,2026/1/28,400.0,419.44,450,188748.0,OPEN,8748.0,day cc tp new,-8261.99,437.8
-WDC,LONG,2026/1/28,266.0,290.24,300,87072.0,OPEN,7272.0,day cc tp new,6002.99,270.23
+ASML,LONG,2026/1/5,1215.0,1339.13,75,100434.75,OPEN,9309.75,day gap up,-7669.5,1441.39
+MU,LONG,2026/1/28,400.0,379.4,450,170730.0,OPEN,-9270.0,day cc tp new,-26280.0,437.8
+WDC,LONG,2026/1/28,266.0,269.41,300,80823.0,OPEN,1023.0,day cc tp new,-246.0,270.23
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6
 NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0
 USDJPY,LONG,2025/12/18,155.714,157.0,20000,20000.0,CLOSED,25720.0,Betting on Friday event on raising interest rate.dovish hike,0.0,0.0
@@ -24,4 +24,4 @@ AVGO,LONG,2025/12/24,350.2,351.71,250,87927.5,CLOSED,-1300.0,"Rebound play:Valua
 ",-1300.0,352.21
 ASML,LONG,2026/1/5,1215.0,1350.0,75,182250.0,CLOSED,10000.0,day gap up,10000.0,1256.0
 RKLB,LONG,2025/12/9,53.4,96.3,750,144450.0,CLOSED,34350.0,SpaceX sympathy play. Options flow bullish.,12600.0,87.9
-KO,LONG,2026/2/3,75.0,76.89,1200,92268.0,OPEN,2268.0,earning play,2268.0,75.33
+KO,LONG,2026/2/3,75.0,77.35,1200,92820.0,OPEN,2820.0,earning play,2820.0,75.33
