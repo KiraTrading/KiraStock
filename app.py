@@ -1517,25 +1517,41 @@ elif target_page == "板塊熱力圖 Sector Heatmap":
         st.warning("⚠️ Sector Heatmap not found.")
         st.info(f"Please ensure `{path}/{pattern}` exists.")
 
-# [PAGE] TA Score Heatmap (New)
+
+# [PAGE] TA Score Heatmap
 elif target_page == "技術評分 TA Score":
     st.title("🚦 TA Score Heatmap")
     st.caption("Technical Analysis Score & Market Cap Filter")
 
-    # 請確保這裡的路徑與 st_tt.py 的 output_dir 一致
-    # 如果 st_tt.py 儲存在根目錄，這裡設為 "."
-    # 如果 st_tt.py 儲存在 "Stock" 資料夾，這裡設為 "Stock"
+    # Path to Stock folder
     path = "Stock"
 
-    html_content, filename = get_latest_file_content(path, "TA_score_heatmap_*.html")
+    # Create Tabs for US and HK Markets
+    tab_us, tab_hk = st.tabs(["🇺🇸 US Market", "🇭🇰 HK Market"])
 
-    if html_content:
-        st.caption(f"📅 Report Date: {filename}")
-        # Height 設為 1200 或更高以適應長列表
-        components.html(html_content, height=1200, scrolling=True)
-    else:
-        st.warning("⚠️ TA Score Heatmap not found.")
-        st.info(f"Please run `st_tt.py` to generate the report in `{os.path.abspath(path)}`.")
+    # --- Tab 1: US Market ---
+    with tab_us:
+        # Load US Heatmap (TA_score_heatmap_*.html)
+        html_content, filename = get_latest_file_content(path, "TA_score_heatmap_*.html")
+
+        if html_content:
+            st.caption(f"📅 US Report Date: {filename}")
+            components.html(html_content, height=1200, scrolling=True)
+        else:
+            st.warning("⚠️ US TA Score Heatmap not found.")
+            st.info(f"Please run `st_tt.py` (US Mode) to generate the report in `{os.path.abspath(path)}`.")
+
+    # --- Tab 2: HK Market ---
+    with tab_hk:
+        # Load HK Heatmap (HK_TA_score_heatmap_*.html)
+        html_content_hk, filename_hk = get_latest_file_content(path, "HK_TA_score_heatmap_*.html")
+
+        if html_content_hk:
+            st.caption(f"📅 HK Report Date: {filename_hk}")
+            components.html(html_content_hk, height=1200, scrolling=True)
+        else:
+            st.warning("⚠️ HK TA Score Heatmap not found.")
+            st.info(f"Please run `st_tt.py` (HK Mode) to generate the report in `{os.path.abspath(path)}`.")
 
 # [PAGE] Earnings
 elif target_page == "業績公佈 Earnings":
