@@ -1527,7 +1527,7 @@ elif target_page == "技術評分 TA Score":
     path = "Stock"
 
     # Create Tabs for US and HK Markets
-    tab_us, tab_hk = st.tabs(["🇺🇸 US Market", "🇭🇰 HK Market"])
+    tab_us, tab_hk = st.tabs(["US Market", "HK Market"])
 
     # --- Tab 1: US Market ---
     with tab_us:
