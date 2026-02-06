@@ -2131,6 +2131,18 @@ elif target_page == "交易學院 Education":
             "icon": "🤫",
             "desc": "揭開投行如何利用 Totem 進行 OTC 衍生品估值與風控的內幕。"
         },
+        "daily_chart_scorecard": {
+            "title": "第45課 | [量化] 日圖計分表：將盤感數據化 📝",
+            "file": "45_Daily_Chart_Scorecard.md",
+            "icon": "✅",
+            "desc": "學會將主觀的圖表分析轉化為客觀的數據評分，建立機械化的進場標準，拒絕情緒交易。"
+        },
+        "factor_mri": {
+            "title": "第46課 | [量化] 市場 MRI：解讀 Pure Factor Z-Score 🧬",
+            "file": "46_factor_mri.md",
+            "icon": "📊",
+            "desc": "教你如何透過「因子 Z-Score」看穿大市漲跌背後的資金流向，識別板塊輪動與避險模式。"
+        },
     }
 
     # 準備選單需要的標題列表和圖標列表
