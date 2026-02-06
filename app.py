@@ -14,6 +14,7 @@ import utils  # Helper functions (File loading, Security)
 import education_page  # Education Page Logic
 import stock_page  # Stock Page Logic
 import strategy_logic  # Option Strategy Math & Charts
+import recap_page
 
 maxMessageSize = 600
 
@@ -66,6 +67,7 @@ with st.sidebar:
     # [REBRANDED CHINESE MENU]
     main_options = [
         "首頁",
+        "每日復盤",  # <--- 新增這裡 (High Engagement)
         "研究專欄",
         "大市雷達",  # Market Radar
         "實戰持倉",  # Portfolio
@@ -88,7 +90,7 @@ with st.sidebar:
     selected_nav = option_menu(
         menu_title="導航選單",
         options=main_options,
-        icons=["house", "globe", "activity", "briefcase", "crosshair", "layers",
+        icons=["house", "journal-bookmark", "globe", "activity", "briefcase", "crosshair", "layers",
                "graph-up-arrow", "robot", "mortarboard", "people-fill", "collection", "gem"],
         menu_icon="compass",
         default_index=main_default_index,
@@ -253,6 +255,12 @@ elif target_page == "Market Dashboard":  # 如果 URL 舊連結還在
         components.html(html_content, height=2500, scrolling=True)
     else:
         st.warning(f"⚠️ No dashboard files found. Error: {filename}")
+
+# [PAGE] Trade Recap (New Section)
+elif target_page == "每日復盤":
+    # 這裡可以選擇性加入 VIP 鎖 (例如只給 VIP 看最新的，免費看舊的)
+    # 目前先設為公開，吸引流量
+    recap_page.render_recap_page(utils.load_markdown_with_images)
 
 # [PAGE] Research
 elif target_page == "研究專欄":
