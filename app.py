@@ -4,6 +4,9 @@ import streamlit.components.v1 as components
 import os
 import sys
 import glob
+import pandas as pd
+import json
+import base64  # 用於處理圖片顯示
 
 # --- Custom Modules ---
 import styles  # CSS Logic
@@ -25,8 +28,8 @@ except ImportError:
 # 1. Page Configuration & CSS
 # ==========================================
 st.set_page_config(
-    page_title="ParisTrader - Quant Trading & Market Analysis | 2026香港投資銀行學習",
-    page_icon="📈",
+    page_title="ParisTrader - Smart Money Tracker | 散戶救星",
+    page_icon="🦅",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -43,7 +46,7 @@ with st.sidebar:
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
         <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>ParisTrader</h2>
-        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Quant Research</p>
+        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Follow The Smart Money</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -57,14 +60,23 @@ with st.sidebar:
 
 
     query_params = st.query_params
-    url_main_page = query_params.get("page", "首頁 Home")
+    url_main_page = query_params.get("page", "首頁")
     url_sub_page = query_params.get("sub", None)
 
+    # [REBRANDED CHINESE MENU]
     main_options = [
-        "首頁 Home", "研究專欄 Research", "大市情報 Intelligence", "實戰持倉 Portfolio",
-        "美股數據 Stock", "期權分析 Option", "期貨/牛熊 Future",
-        "自動交易 MT5 EA", "交易學院 Education", "交易社群 Community",
-        "工具資源 Resources", "升級會員 VIP"
+        "首頁",
+        "研究專欄",
+        "大市雷達",  # Market Radar
+        "實戰持倉",  # Portfolio
+        "美股獵人",  # Stock Hunter
+        "期權佈局",  # Option Flow
+        "期貨牛熊",  # Futures
+        "自動鈔能力",  # EA (Auto-Trading)
+        "交易學院",
+        "交易社群",
+        "工具資源",
+        "升級會員"  # VIP
     ]
 
     try:
@@ -74,9 +86,9 @@ with st.sidebar:
         main_default_index = matches[0] if matches else 0
 
     selected_nav = option_menu(
-        menu_title="Navigation",
+        menu_title="導航選單",
         options=main_options,
-        icons=["house", "globe", "search", "briefcase", "list-task", "layers",
+        icons=["house", "globe", "activity", "briefcase", "crosshair", "layers",
                "graph-up-arrow", "robot", "mortarboard", "people-fill", "collection", "gem"],
         menu_icon="compass",
         default_index=main_default_index,
@@ -113,10 +125,10 @@ with st.sidebar:
         )
 
 
-    # Note: Stock, Intelligence, Future, Option submenus are removed (handled by Tabs in main area)
-    if selected_nav == "自動交易 MT5 EA":
+    # [FIXED LOGIC] 自動鈔能力 Submenu
+    if selected_nav == "自動鈔能力":
         st.caption("AUTOMATED TRADING")
-        target_page = handle_submenu("sub_ea", ["EA 介紹 Introduction"], ["robot"])
+        target_page = handle_submenu("sub_ea", ["EA 介紹"], ["robot"])
 
     # Update URL for deep linking
     if selected_nav != target_page:
@@ -129,13 +141,13 @@ with st.sidebar:
     # VIP Button
     st.markdown("""
         <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
-            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">👑 升級 VIP 會員</h3>
-            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">解鎖機構級數據 (Stock DNA)<br>& 實戰倉位 (Portfolio)</p>
-            <a href="?page=升級會員 VIP" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">🚀 立即加入 (Join Now)</a>
+            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">👑 解鎖大戶底牌</h3>
+            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">偷看機構持倉 (Insider)<br>& 聰明錢流向 (Flow)</p>
+            <a href="?page=升級會員" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">🚀 立即加入 (Join Now)</a>
         </div>
     """, unsafe_allow_html=True)
 
-if url_main_page == "Legal" and selected_nav == "首頁 Home":
+if url_main_page == "Legal" and selected_nav == "首頁":
     target_page = "Legal"
 
 # ==========================================
@@ -143,7 +155,6 @@ if url_main_page == "Legal" and selected_nav == "首頁 Home":
 # ==========================================
 locked_pages = []  # Currently handled inside tabs
 if target_page in locked_pages:
-    # We call the util function for security check
     if not utils.check_access_or_show_teaser(target_page):
         st.stop()
 
@@ -152,13 +163,20 @@ if target_page in locked_pages:
 # ==========================================
 
 # [PAGE] HOME
-if target_page == "首頁 Home":
+if target_page == "首頁":
     col_main, col_profile = st.columns([0.7, 0.3], gap="large")
     with col_main:
-        st.markdown(
-            "<h1 style='color:white;'>Ex-Ibanker開發-首個機構級黑科技</h1><h3 style='color:#94a3b8;'>美股期權策略|NQ HSI 金期貨自動交易EA </h3>",
-            unsafe_allow_html=True)
+        st.markdown("""
+        <h1 style='color:white; font-weight:800; font-size: 2.5em;'>不再做韭菜 | 直接跟蹤大戶聰明錢</h1>
+        <h3 style='color:#94a3b8; font-size: 1.3em;'>揭秘華爾街底牌：期權異動 | 莊家成本 | 趨勢預判</h3>
+        <p style='font-size: 1.1em; color: #64748b; line-height: 1.6; margin-top: 15px;'>
+        傳統圖表只告訴你「過去」發生什麼，我們的數據告訴你<b>「未來」大戶想去哪裡</b>。<br>
+        Stop guessing. See the cards the dealer is holding.
+        </p>
+        """, unsafe_allow_html=True)
+
         st.markdown("---")
+
         components.html("""
         <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -167,32 +185,67 @@ if target_page == "首頁 Home":
                         height=100)
 
         st.markdown("<br>", unsafe_allow_html=True)
+
+        # [FIXED] YouTube Tutorial is BACK here
         st.subheader("📺 網站使用教學")
         st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
         st.markdown("<br>", unsafe_allow_html=True)
 
-        st.link_button(label="📊 點擊閱讀：下周大市分析 (Weekly Market Analysis)",
-                       url="https://parisprogram.uk/zh/member/post/RPT-20260131182122129?hash=e71209296eb426dd311b01d899a5615e5c858f30f34d39be3e589d137227761f",
-                       type="primary", use_container_width=True)
+        st.link_button(
+            label="📊 偷看本週大戶部署 (Weekly Analysis)",
+            url="https://parisprogram.uk/zh/member/post/RPT-20260131182122129?hash=e71209296eb426dd311b01d899a5615e5c858f30f34d39be3e589d137227761f",
+            type="primary",
+            use_container_width=True
+        )
+
         st.markdown("---")
-        st.subheader("🧠 Week Ahead")
+
+        st.subheader("🧠 Week Ahead Strategy")
         with st.container():
             analysis_content = utils.load_weekly_analysis()
-            with st.expander("📖 Click to expand/collapse full analysis", expanded=True):
+            with st.expander("📖 點擊展開：大市前瞻與劇本", expanded=True):
                 st.markdown(analysis_content)
 
     with col_profile:
+        # [FIXED] Profile Image Logic using Base64
         img_path = "static/profile.jpg"
-        img_src = img_path if os.path.exists(
-            img_path) else "https://ui-avatars.com/api/?name=Paris+Trader&background=0D8ABC&color=fff&size=150"
-        st.markdown(f'<div class="profile-card"><img src="{img_src}" width="120" style="border-radius:50%;">',
-                    unsafe_allow_html=True)
-        st.markdown(
-            """<h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader</h3><p style="color: #9CA3AF; font-size: 0.9em;">Ex-Ibank Quantitative Trader</p><hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);"><p style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #e2e8f0;">專注於量化因子挖掘與程式化交易。<br><br><b>擅長策略 Core Strategies:</b><br>• 美股多因子長短倉<br>• 期貨NQ黃金HSI Scalping<br>• 美股期權異動簍略</p><a href="https://t.me/ParisTrader" target="_blank"><button style="background-color:#2563EB; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; font-weight:bold;">Contact Me</button></a></div>""",
-            unsafe_allow_html=True)
+
+
+        # Function to convert image to base64
+        def get_image_base64(path):
+            if os.path.exists(path):
+                with open(path, "rb") as f:
+                    data = f.read()
+                return f"data:image/jpeg;base64,{base64.b64encode(data).decode()}"
+            return "https://ui-avatars.com/api/?name=Paris+Trader&background=0D8ABC&color=fff&size=150"
+
+
+        img_src = get_image_base64(img_path)
+
+        st.markdown(f"""
+        <div class="profile-card">
+            <img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
+            <h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader</h3>
+            <p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Ex-Ibank Derivative Trader</p>
+            <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
+                我將投資銀行的機構級數據平民化，幫你避開散戶陷阱。
+                <br><br>
+                <b>核心武器 (My Edge):</b><br>
+                • 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
+                • ⚡ <b>Futures Scalping:</b> NQ/HSI/黃金短線<br>
+                • 🎯 <b>Option Flow:</b> 異動期權狙擊<br>
+            </p>
+            <a href="https://t.me/ParisTrader" target="_blank">
+                <button style="background-color:#2563EB; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; font-weight:bold; box-shadow: 0 4px 6px rgba(37,99,235,0.3);">
+                    聯絡我 Contact Me
+                </button>
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
 
 # [PAGE] Market Dashboard
-elif target_page == "Market Dashboard":
+elif target_page == "Market Dashboard":  # 如果 URL 舊連結還在
     st.title("Market Dashboard")
     path = os.path.join("MarketDashboard", "main_auto", "output")
     html_content, filename = utils.get_latest_file_content(path)
@@ -202,7 +255,7 @@ elif target_page == "Market Dashboard":
         st.warning(f"⚠️ No dashboard files found. Error: {filename}")
 
 # [PAGE] Research
-elif target_page == "研究專欄 Research":
+elif target_page == "研究專欄":
     st.title("🦅 Research Paper from Paris")
     st.caption("Institutional Perspectives on Daily Flows")
     files = sorted(glob.glob(os.path.join("DailyInsights", "*.md")), reverse=True)
@@ -233,11 +286,12 @@ elif target_page == "研究專欄 Research":
                     st.markdown(body)
                     st.markdown("---")
 
-# [PAGE] Intelligence (Tabs)
-elif target_page == "大市情報 Intelligence":
-    st.title("📡 Market Intelligence")
-    st.caption("Risk Metrics, Market Breadth & Positioning")
-    tab_risk, tab_breadth, tab_cftc = st.tabs(["⚠️ Market Risk", "🌊 Market Breadth", "🐋 CFTC Position"])
+# [PAGE] Market Radar
+elif target_page == "大市雷達":
+    st.title("📡 Market Radar (大市雷達)")
+    st.caption("識別市場轉勢訊號 | Detect Market Reversals")
+
+    tab_risk, tab_breadth, tab_cftc = st.tabs(["⚠️ 恐慌指數 Risk Meter", "🌊 市場寬度 Breadth", "🐋 莊家持倉 COT"])
 
     with tab_risk:
         st.subheader("Market Implied Risk")
@@ -265,25 +319,16 @@ elif target_page == "大市情報 Intelligence":
         else:
             st.warning("⚠️ CFTC Report not found.")
 
-# [PAGE] Stock Analytics (Refactored to external module)
-elif target_page == "美股數據 Stock":
+# [PAGE] Stock Hunter
+elif target_page == "美股獵人":
     stock_page.render_stock_page()
 
-# [PAGE] Reddit Sentiment
-elif target_page == "Reddit Sentiment":
-    path = "Rddt"
-    html_content, filename = utils.get_latest_file_content(path, "reddit_scanner_*.html")
-    if html_content:
-        st.caption(f"📅 Report Date: {filename}")
-        components.html(html_content, height=2000, scrolling=True)
-    else:
-        st.warning("⚠️ No Reddit reports found.")
+# [PAGE] Options
+elif target_page == "期權佈局":
+    st.title("🎯 Options Flow Analytics")
+    st.caption("跟蹤聰明錢異動 | Track Smart Money Flow")
 
-# [PAGE] Options (Tabs)
-elif target_page == "期權分析 Option":
-    st.title("🎯 Options Analytics")
-    st.caption("Flows, Heatmaps & Strategy Builder")
-    tab_hk, tab_us, tab_strat = st.tabs(["🇭🇰 HK Option", "🇺🇸 US Option", "🛠️ Strategy"])
+    tab_hk, tab_us, tab_strat = st.tabs(["🇭🇰 港股期權佈局", "🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy"])
 
     with tab_hk:
         st.subheader("HK Option Market Analysis")
@@ -295,7 +340,8 @@ elif target_page == "期權分析 Option":
 
     with tab_us:
         st.subheader("US Option Strike Analysis")
-        if utils.check_access_or_show_teaser("美股期權 US Option", description="Real-time unusual options activity."):
+        if utils.check_access_or_show_teaser("美股期權 US Option",
+                                             description="Follow the Smart Money. Real-time unusual options activity and gamma exposure levels."):
             html, _ = utils.get_latest_file_content("Option", "option_strike_*.html")
             if html:
                 components.html(html, height=2000, scrolling=True)
@@ -313,7 +359,6 @@ elif target_page == "期權分析 Option":
                 put_itm = c4.number_input("Put ITM %", 0.97, step=0.01, key="strat_put")
                 if st.button("🚀 Generate", type="primary", use_container_width=True, key="strat_btn"):
                     with st.status(f"Processing {ticker}...", expanded=True) as status:
-                        # Use strategy_logic module
                         try:
                             _, _, date = strategy_logic.get_local_data(ticker)
                             status.write(f"✅ Loaded data: {date}")
@@ -327,11 +372,13 @@ elif target_page == "期權分析 Option":
                         except Exception as e:
                             st.error(f"Error: {e}")
 
-# [PAGE] Future (Tabs)
-elif target_page == "期貨/牛熊 Future":
+# [PAGE] Futures
+elif target_page == "期貨牛熊":
     st.title("🎢 Futures & Trends")
-    st.caption("Volatility, Volume & Heavy Zones")
-    tab_vol, tab_vp, tab_cbbc = st.tabs(["⚡ Intraday Volatility", "📊 Volume Profile", "🐻 CBBC Ladder"])
+    st.caption("短線波幅與牛熊重貨區 | Volatility & Heavy Zones")
+
+    tab_vol, tab_vp, tab_cbbc = st.tabs(
+        ["⚡ 日內波幅 (Volatility)", "📊 成交分佈 (Volume Profile)", "🐻 牛熊重貨區 (CBBC)"])
 
     with tab_vol:
         st.subheader("Intraday Volatility Analysis")
@@ -352,7 +399,8 @@ elif target_page == "期貨/牛熊 Future":
 
     with tab_cbbc:
         st.subheader("HSI CBBC Heavy Zone")
-        if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder"):
+        if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder",
+                                             description="看穿大戶屠牛/殺熊目標價 (Predict Dealer Hedging Targets)"):
             html = utils.load_html_file(os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html"))
             if "File not found" not in html:
                 components.html(html, height=1200, scrolling=True)
@@ -360,8 +408,8 @@ elif target_page == "期貨/牛熊 Future":
                 st.warning("⚠️ Report not found")
 
 # [PAGE] Portfolio
-elif target_page == "實戰持倉 Portfolio":
-    st.title("💼 Paris Picks")
+elif target_page == "實戰持倉":
+    st.title("💼 Paris Picks (實戰倉位)")
     path = "Trade"
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
     is_vip = st.session_state.get("authentication_status", False)
@@ -373,9 +421,9 @@ elif target_page == "實戰持倉 Portfolio":
             if is_vip:
                 components.html(html, height=1200, scrolling=True)
             else:
-                st.info("👀 Preview Mode")
+                st.info("👀 Preview Mode (Showing Top Holdings Only)")
                 components.html(html, height=600, scrolling=False)
-                utils.check_access_or_show_teaser("Stock Journal Full Access", description="Unlock full journal.")
+                utils.check_access_or_show_teaser("Stock Journal Full Access", description="Unlock full trade journal.")
         else:
             st.warning("⚠️ Report not found.")
 
@@ -387,17 +435,18 @@ elif target_page == "實戰持倉 Portfolio":
             else:
                 st.warning("⚠️ Report not found.")
 
-# [PAGE] MT5 EA
-elif target_page == "EA 介紹 Introduction":
-    st.title("🤖 MT5 Expert Advisor")
+# [PAGE] MT5 EA (Fixed Routing)
+# 這裡對應 handle_submenu 回傳的 submenu item name
+elif target_page == "EA 介紹":
+    st.title("🤖 MT5 Expert Advisor (EA)")
     html = utils.load_html_file(os.path.join("MT5EA", "ea_marketing.html"))
     if "File not found" not in html:
         components.html(html, height=3000, scrolling=True)
     else:
         st.warning("⚠️ Content not found.")
 
-# [PAGE] Education (External Module)
-elif target_page == "交易學院 Education":
+# [PAGE] Education
+elif target_page == "交易學院":
     education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
 # [PAGE] Legal
@@ -412,7 +461,7 @@ elif target_page == "Legal":
         st.html(utils.load_html_file(os.path.join("Legal", "terms.html")))
 
 # [PAGE] Resources
-elif target_page == "工具資源 Resources":
+elif target_page == "工具資源":
     st.title("🔗 Trading Resources")
     html = utils.load_html_file(os.path.join("Resources", "external_links.html"))
     if "File not found" not in html:
@@ -421,7 +470,7 @@ elif target_page == "工具資源 Resources":
         st.warning("⚠️ Content not found.")
 
 # [PAGE] Community
-elif target_page == "交易社群 Community":
+elif target_page == "交易社群":
     html = utils.load_html_file(os.path.join("Community", "community_promo.html"))
     if "File not found" not in html:
         components.html(html, height=1200, scrolling=True)
@@ -429,7 +478,7 @@ elif target_page == "交易社群 Community":
         st.error("⚠️ Content not found")
 
 # [PAGE] Membership
-elif target_page == "升級會員 VIP":
+elif target_page == "升級會員":
     st.title("💎 升級機構級數據")
     html = utils.load_html_file(os.path.join("Community", "membership_pricing.html"))
     if "File not found" not in html:
