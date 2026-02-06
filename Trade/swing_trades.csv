@@ -1,5 +1,5 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice
-GOOGL,LONG,2025/11/19,298.0,338.0,500,169000.0,OPEN,20000.0,Gemini 3 AI dominance. Fundamental value gap.,2370.0,333.26
+GOOGL,LONG,2025/11/19,298.0,331.25,500,165625.0,OPEN,16625.0,Gemini 3 AI dominance. Fundamental value gap.,-6220.0,343.69
 RKLB,LONG,2025/12/9,53.4,66.32,750,49740.0,OPEN,9690.0,SpaceX sympathy play. Options flow bullish.,-5872.5,74.15
 AMC,SHORT,2025/12/9,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49
 ALB,LONG,2025/12/17,135.0,156.48,500,78240.0,OPEN,10740.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-4225.0,164.93
@@ -9,7 +9,7 @@ STT,LONG,2025/12/23,129.74,128.71,600,77226.0,OPEN,-618.0,"Option abnormal move 
 BABA,LONG,2026/1/2,153.45,157.76,700,110432.0,OPEN,3017.0,Day chart call tp in fate,-7441.0,168.39
 PLTR,LONG,2026/1/5,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47
 ASML,LONG,2026/1/5,1215.0,1350.16,75,101262.0,OPEN,10137.0,day gap up,-6842.25,1441.39
-MU,LONG,2026/1/28,400.0,382.89,450,172300.51,OPEN,-7699.49,day cc tp new,-24709.49,437.8
+MU,LONG,2026/1/28,200.0,382.89,450,172300.51,OPEN,82300.51,day cc tp new,-24709.49,437.8
 WDC,LONG,2026/1/28,266.0,260.19,300,78057.0,OPEN,-1743.0,day cc tp new,-3012.0,270.23
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6
 NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0
