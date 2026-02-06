@@ -399,7 +399,7 @@ elif target_page == "期貨牛熊":
     with tab_vp:
         st.subheader("Volume Profile Analysis")
         if utils.check_access_or_show_teaser("成交分佈 Volume Profile"):
-            html, _ = utils.get_latest_file_content("VP")
+            html, filename = utils.get_latest_file_content("VP", "volume_profile_dashboard_*.html")
             if html:
                 components.html(html, height=1000, scrolling=True)
             else:
