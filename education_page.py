@@ -80,13 +80,17 @@ def render_winning_roadmap():
     # Step 6
     with st.expander("第六步：確認訊號 (期權異動) 🐳", expanded=False):
         st.markdown("""
-        **目標：** 看看「大戶 (Whales)」是否與你看法一致。
+        **目標：** 看看「大戶 (Whales)」是否與你看法一致，並快速制定期權策略。
 
         * **前往：** `🎯 Option Flow (期權佈局)`
         * **檢查：** `Unusual Activity (異動)`
             * 有大戶在買入 Call 嗎？
         * **檢查：** `Gamma Levels`
             * 上方是否有 "Call Wall" 形成磁鐵效應？
+        * **實戰佈局：** `🛠️ Strategy Simulator (策略模擬器)`
+            * **自動生成：** 根據你的看好/看淡方向，一鍵生成對應的期權組合（如 Bull Call Spread）。
+            * **智能選股：** 系統會自動篩選最合適的 **行使價 (Strike)** 與 **到期日 (Expiry)**。
+            * **可視化決策：** 實時查看 **Payoff Diagram (損益圖)** 與 **Breakeven Point (盈虧平衡點)**，確保在進場前對風險回報比瞭然於胸，實現更快、更專業的交易決策。
         """)
 
     # Step 7
