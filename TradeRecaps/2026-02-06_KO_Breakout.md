@@ -7,9 +7,7 @@
 昨日大市回調時，我發現防守板塊 (XLP) 異常抗跌。
 Stock DNA 顯示 KO 的 **Momentum Z-Score** 突破了 2.0，且 Smart Money Flow 出現明顯的 Call 買入異動。
 
-![Chart](images/ko_chart_example.jpg)
-
-
+![Chart](TradeRecaps/images/ko_chart_example.jpg)
 
 ## ⚙️ 我的部署 (My Setup)
 * **Entry Reason:** 突破 50 天線 + 2倍均量
