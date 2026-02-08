@@ -1,27 +1,22 @@
-Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice
-GOOGL,LONG,2025/11/19,298.0,331.25,500,165625.0,OPEN,16625.0,Gemini 3 AI dominance. Fundamental value gap.,-6220.0,343.69
-RKLB,LONG,2025/12/9,53.4,66.32,750,49740.0,OPEN,9690.0,SpaceX sympathy play. Options flow bullish.,-5872.5,74.15
-AMC,SHORT,2025/12/9,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49
-ALB,LONG,2025/12/17,135.0,156.48,500,78240.0,OPEN,10740.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-4225.0,164.93
-RTX,LONG,2025/12/19,181.76,195.97,500,97985.0,OPEN,7105.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
-",-2560.0,201.09
-STT,LONG,2025/12/23,129.74,128.71,600,77226.0,OPEN,-618.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-2322.0,132.58
-BABA,LONG,2026/1/2,153.45,157.76,700,110432.0,OPEN,3017.0,Day chart call tp in fate,-7441.0,168.39
-PLTR,LONG,2026/1/5,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47
-ASML,LONG,2026/1/5,1215.0,1350.16,75,101262.0,OPEN,10137.0,day gap up,-6842.25,1441.39
-MU,LONG,2026/1/28,200.0,382.89,450,172300.51,OPEN,82300.51,day cc tp new,-24709.49,437.8
-WDC,LONG,2026/1/28,266.0,260.19,300,78057.0,OPEN,-1743.0,day cc tp new,-3012.0,270.23
-SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6
-NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0
-USDJPY,LONG,2025/12/18,155.714,157.0,20000,20000.0,CLOSED,25720.0,Betting on Friday event on raising interest rate.dovish hike,0.0,0.0
-NQ=F,SHORT,2025/12/17,25358.0,25750.0,1,507160.0,CLOSED,-7840.0,"day chart tp break to tp2.(March future),SL on 22Dec",0.0,0.0
-META,LONG,2025/12/23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move,0.0,0.0
-SI=F,LONG,2025/12/5,53.36,79.0,1000,76486.0,CLOSED,25640.0,Breakout at resistance with new US policy.,0.0,0.0
-SI=F,LONG,2026/1/9,78.2,85.0,1,396705.02,CLOSED,6800.0,"Retry on engulfing pattarn ,bet on gap up play on 12Jan Monday, potential war is one of the reason as well
-",6800.0,76.164
-SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-2320.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",0.0,0.0
+Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice,ExitDate
+GOOGL,LONG,2025/11/19,298.0,322.86,500,161429.99,OPEN,12429.99,Gemini 3 AI dominance. Fundamental value gap.,-10415.01,343.69,
+RKLB,LONG,2025/12/9,53.4,72.32,750,54240.0,OPEN,14190.0,SpaceX sympathy play. Options flow bullish.,-1372.5,74.15,
+AMC,SHORT,2025/12/9,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49,2026/2/4
+ALB,LONG,2025/12/17,135.0,163.37,500,81685.0,OPEN,14185.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-780.0,164.93,
+RTX,LONG,2025/12/19,181.76,198.66,500,99330.0,OPEN,8450.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
+",-1215.0,201.09,
+STT,LONG,2025/12/23,129.74,132.35,600,79410.0,OPEN,1566.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-138.0,132.58,
+BABA,LONG,2026/1/2,153.45,162.51,700,113757.0,OPEN,6342.0,Day chart call tp in fate,-4116.0,168.39,
+PLTR,LONG,2026/1/5,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47,2026/2/4
+ASML,LONG,2026/1/5,1215.0,1413.01,75,105975.75,OPEN,14850.75,day gap up,-2128.5,1441.39,
+MU,LONG,2026/1/28,200.0,394.69,450,177610.5,OPEN,87610.5,day cc tp new,-19399.49,437.8,
+WDC,LONG,2026/1/28,266.0,282.58,300,84774.0,OPEN,4974.0,day cc tp new,3704.99,270.23,
+SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6,2026/2/4
+NVDA,SHORT,2025/11/18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0,2025/12/18
+META,LONG,2025/12/23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move,0.0,0.0,2025/12/29
+SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-2320.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",0.0,0.0,2025/12/28
 AVGO,LONG,2025/12/24,350.2,351.71,250,87927.5,CLOSED,-1300.0,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.
-",-1300.0,352.21
-ASML,LONG,2026/1/5,1215.0,1350.0,75,182250.0,CLOSED,10000.0,day gap up,10000.0,1256.0
-RKLB,LONG,2025/12/9,53.4,96.3,750,144450.0,CLOSED,34350.0,SpaceX sympathy play. Options flow bullish.,12600.0,87.9
-KO,LONG,2026/2/3,75.0,78.51,1200,94212.0,OPEN,4212.0,earning play,4212.0,75.33
+",-1300.0,352.21,2026/2/2
+ASML,LONG,2026/1/5,1215.0,1350.0,75,182250.0,CLOSED,10000.0,day gap up,10000.0,1256.0,2026/2/5
+RKLB,LONG,2025/12/9,53.4,96.3,750,144450.0,CLOSED,34350.0,SpaceX sympathy play. Options flow bullish.,12600.0,87.9,2026/2/4
+KO,LONG,2026/2/3,75.0,79.03,1200,94836.0,OPEN,4836.0,earning play,4836.0,75.33,
