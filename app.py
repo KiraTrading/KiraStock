@@ -417,7 +417,7 @@ elif target_page == "期貨牛熊":
 
 # [PAGE] Portfolio
 elif target_page == "實戰持倉":
-    st.title("💼 Paris Picks (實戰倉位)")
+    st.title("💼 Paris Picks (百萬美金實戰倉位)")
     path = "Trade"
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
     is_vip = st.session_state.get("authentication_status", False)
