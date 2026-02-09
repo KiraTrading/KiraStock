@@ -15,6 +15,7 @@ import education_page  # Education Page Logic
 import stock_page  # Stock Page Logic
 import strategy_logic  # Option Strategy Math & Charts
 import recap_page
+import admin_page
 
 maxMessageSize = 600
 
@@ -64,7 +65,6 @@ with st.sidebar:
     url_main_page = query_params.get("page", "首頁")
     url_sub_page = query_params.get("sub", None)
 
-    # [REBRANDED CHINESE MENU]
     main_options = [
         "首頁",
         "每日復盤",  # <--- 新增這裡 (High Engagement)
@@ -81,11 +81,15 @@ with st.sidebar:
         "升級會員"  # VIP
     ]
 
-    try:
-        main_default_index = main_options.index(url_main_page)
-    except ValueError:
-        matches = [i for i, opt in enumerate(main_options) if url_main_page in opt]
-        main_default_index = matches[0] if matches else 0
+    if url_main_page == "SecretAdmin":
+        # 如果是隱藏後台，Sidebar 隨便選一個 (例如 0: 首頁)，或者不做任何選中
+        main_default_index = 0
+    else:
+        try:
+            main_default_index = main_options.index(url_main_page)
+        except ValueError:
+            matches = [i for i, opt in enumerate(main_options) if url_main_page in opt]
+            main_default_index = matches[0] if matches else 0
 
     selected_nav = option_menu(
         menu_title="導航選單",
@@ -107,7 +111,8 @@ with st.sidebar:
 
     # --- Submenu Handling ---
     target_page = selected_nav
-
+    if url_main_page == "SecretAdmin" or url_sub_page == "SecretAdmin":
+        target_page = "SecretAdmin"
 
     def handle_submenu(key_name, options, icons):
         default_sub_index = 0
@@ -164,8 +169,9 @@ if target_page in locked_pages:
 # 4. Content Routing
 # ==========================================
 
-# [PAGE] HOME
-if target_page == "首頁":
+if target_page == "SecretAdmin":
+    admin_page.render_admin_console() # 呼叫 admin_page.py 裡的函數
+elif target_page == "首頁":
     col_main, col_profile = st.columns([0.7, 0.3], gap="large")
     with col_main:
         st.markdown("""
@@ -255,6 +261,9 @@ elif target_page == "Market Dashboard":  # 如果 URL 舊連結還在
         components.html(html_content, height=2500, scrolling=True)
     else:
         st.warning(f"⚠️ No dashboard files found. Error: {filename}")
+
+
+
 
 # [PAGE] Trade Recap (New Section)
 elif target_page == "每日復盤":
