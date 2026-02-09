@@ -1,10 +1,8 @@
-# Title (標題): ONDS反彈？咪衝動，唔係趨勢轉向，係死貓彈！
+ONDS反彈？咪衝動，唔係趨勢轉向，係死貓彈！
 **Date:** 2026-02-07
 
 
-**The Stance (立場):** **觀望 (Noise)** — #ONDS 反彈僅屬技術性修正，關鍵阻力未破，新資金入場機會欠奉。
-
-**Key Bullet Points (關鍵要點):**
+*觀望 (Noise)** — #ONDS 反彈僅屬技術性修正，關鍵阻力未破，新資金入場機會欠奉。
 
 *   大盤 SPX 週五強勢反彈，收復多條均線，廣度 (breadth) 創高，但係 #ONDS 屬前期 Momentum 股，性質有別。
 *   ONDS 週五錄得14%反彈，於 MA100 位置止跌，MACD 柱體負值收窄，RSI 企穩，成交量呈跌縮漲放，暗示短期沽壓耗盡。
@@ -12,7 +10,6 @@
 *   2/4 股價曾出現「趨勢加速跌穿 (trend acceleration breakdown)」，而非基本面崩壞，係「資金結構切換」Signal。
 *   目前持有 Cover Calls，反映對短期反彈持審慎對沖態度。
 
-**The Paris Take (核心觀點):**
 
 睇完呢堆嘢，老實講，仲係一堆噪音。SPX 反彈係一回事，#ONDS 呢類 momentum play 係另一回事。市場話你知，資金已經從呢啲 Growth 股輪動去 Defensive，咁你仲諗住衝入去做英雄？
 
