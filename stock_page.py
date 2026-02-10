@@ -8,11 +8,13 @@ def render_stock_page():
     # 頁面主標題
     st.title("美股市場深度分析系統")
     st.markdown("""
-    <div style='background-color: #f0f2f6; padding: 10px; border-radius: 5px; margin-bottom: 20px;'>
-        <b>🎯 交易工作流 (Workflow):</b> <br>
-        1. <b>宏觀、熱度與業績</b> (觀察板塊輪動、財報雷區與大市氣氛) ➡ 
-        2. <b>選股與資金訊號</b> (在該板塊找尋強勢股/聰明錢/內部人) ➡ 
-        3. <b>深度分析與執行</b> (進場前的價位與倉位確認)
+    <div style='background-color: #f0f2f6; padding: 15px; border-radius: 10px; margin-bottom: 20px; color: black;'>
+        <b style='color: black;'>🎯 交易工作流 (Workflow):</b> <br>
+        <ol style='color: black; margin-top: 10px;'>
+            <li><b>宏觀、熱度與業績</b> (觀察板塊輪動、財報雷區與大市氣氛) ➡ </li>
+            <li><b>選股與資金訊號</b> (在該板塊找尋強勢股/聰明錢/內部人) ➡ </li>
+            <li><b>深度分析與執行</b> (進場前的價位與倉位確認)</li>
+        </ol>
     </div>
     """, unsafe_allow_html=True)
 
