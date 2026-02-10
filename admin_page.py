@@ -3,13 +3,58 @@ import google.generativeai as genai
 import os
 import requests
 import base64
+import pandas as pd
+import io
 from datetime import datetime
 
 
-# 把原本的邏輯包裝成一個函數
+# ==========================================
+# 1. GitHub Helper Functions (讀寫分離)
+# ==========================================
+def get_github_file(repo, path, token, branch="main"):
+    """從 GitHub 讀取原始文件"""
+    url = f"https://api.github.com/repos/{repo}/contents/{path}?ref={branch}"
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        content = base64.b64decode(response.json()['content']).decode('utf-8')
+        sha = response.json()['sha']
+        return content, sha
+    return None, None
+
+
+def push_to_github(repo, path, token, content, sha, message, branch="main"):
+    """推送到 GitHub"""
+    url = f"https://api.github.com/repos/{repo}/contents/{path}"
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+
+    message_bytes = content.encode('utf-8')
+    base64_bytes = base64.b64encode(message_bytes)
+    base64_content = base64_bytes.decode('ascii')
+
+    data = {
+        "message": message,
+        "content": base64_content,
+        "branch": branch
+    }
+    if sha:
+        data["sha"] = sha
+
+    response = requests.put(url, json=data, headers=headers)
+    return response
+
+
+# ==========================================
+# 2. Main Render Function
+# ==========================================
 def render_admin_console():
-    # --- 0. 安全驗證 (簡單密碼鎖) ---
-    # 請在 .streamlit/secrets.toml 加入: ADMIN_PASSWORD = "你的密碼"
+    # --- 安全驗證 ---
     password = st.text_input("🔒 Enter Admin Password", type="password")
 
     if "ADMIN_PASSWORD" in st.secrets:
@@ -22,13 +67,13 @@ def render_admin_console():
         st.warning("⛔ Access Denied")
         st.stop()
 
-    # --- 驗證通過後才顯示內容 ---
-
-    # CONFIGURATION
-    LOCAL_SAVE_FOLDER = r"E:\ALGO_Snake\Website\DailyInsights"  # 如果是部署到雲端，這個路徑可能無效，建議只用 GitHub Upload
-    REPO_OWNER = "ParisTrader"
-    REPO_NAME = "paristrader-terminal"
+    # --- CONFIGURATION ---
+    REPO_OWNER = "ParisTrader"  # 你的 GitHub 用戶名
+    REPO_NAME = "paristrader-terminal"  # 你的 Repo 名稱
     BRANCH = "main"
+
+    # CSV Path inside the repo
+    TRADE_CSV_PATH = "Trade/swing_trades.csv"
 
     try:
         GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
@@ -39,116 +84,182 @@ def render_admin_console():
 
     genai.configure(api_key=GEMINI_API_KEY)
 
-    st.title("🕵️‍♂️ Paris Content Generator (Admin Only)")
-    st.markdown("---")
+    st.title("🕵️‍♂️ Paris Admin Console")
 
-    # Input Area
-    col_input, col_preview = st.columns([1, 1])
+    # 使用 Tabs 分隔功能
+    tab_writer, tab_trader = st.tabs(["✍️ AI Content Generator", "📊 Trade Manager"])
 
-    with col_input:
-        st.header("1. Source Material")
-        raw_text = st.text_area("Paste News/Article Here:", height=300)
-        user_instruction = st.text_input("Extra Instructions:", "")
-        generate_btn = st.button("🚀 Generate Draft", type="primary")
+    # =========================================================
+    # TAB 1: AI Content Generator (你原本的代碼)
+    # =========================================================
+    with tab_writer:
+        st.subheader("Daily Insight Generator")
+        col_input, col_preview = st.columns([1, 1])
 
-    # Session State Initialization
-    if "draft_content" not in st.session_state: st.session_state.draft_content = ""
-    if "draft_title" not in st.session_state: st.session_state.draft_title = ""
+        with col_input:
+            raw_text = st.text_area("Paste News/Article Here:", height=300)
+            user_instruction = st.text_input("Extra Instructions:", "")
+            generate_btn = st.button("🚀 Generate Draft", type="primary")
 
-    # PARIS PERSONA (保持你修改後的版本)
-    PARIS_PERSONA = """
-    You are Paris Trader. You are a Senior Portfolio Manager and Ex-Prop Trader. You write concise, high-impact market memos for institutional desks.
+        # Session State for Draft
+        if "draft_content" not in st.session_state: st.session_state.draft_content = ""
+        if "draft_title" not in st.session_state: st.session_state.draft_title = ""
 
-    ROLE & TONE:
-    - **Identity:** Cynical, sharp, "Smart Money" veteran.
-    - **Tone:** Direct, condensed, judgmental. No fluff.
-    - **Language:** Traditional Chinese (Hong Kong Finance Style) mixed with English financial terminology (e.g., "Yield Curve", "Supply Indigestion", "Risk Premium").
-    - **Style:** Write like a Bloomberg Terminal chat or an internal Hedge Fund memo. Short sentences. High information density.
+        PARIS_PERSONA = """
+        You are Paris Trader. You are a Senior Portfolio Manager and Ex-Prop Trader. You write concise, high-impact market memos for institutional desks.
 
-    CRITICAL FORMATTING RULES (DO NOT IGNORE):
-    1. **NO HEADERS:** Do NOT output text like "Key Bullet Points:", "The Paris Take:", or "Introduction".
-    2. **NO FILLER WORDS:** Do NOT use "Firstly", "Secondly", "In conclusion", "It is worth noting".
-    3. **STRUCTURE:**
-       - Line 1: A punchy, HK-style Title.
-       - Line 2: A clear Directional Tag (e.g., 【看淡 - Bearish】).
-       - Body: A seamless blend of facts and analysis. Use bullet points *only* if listing specific data, otherwise use short paragraphs.
+        ROLE & TONE:
+        - **Identity:** Cynical, sharp, "Smart Money" veteran.
+        - **Tone:** Direct, condensed, judgmental. No fluff.
+        - **Language:** Traditional Chinese (Hong Kong Finance Style) mixed with English financial terminology.
+        - **Style:** Bloomberg Terminal chat style. Short sentences. High information density.
 
-    CORE OBJECTIVE:
-    **Don't summarize the news. Interpret the PnL impact.**
-    - If supply is up, don't just say "supply is increasing." Say "Supply indigestion is crushing the long end."
-    - Focus on: Liquidity, structure, flows, and positioning.
-    """
-    # Generation Logic
-    if generate_btn and raw_text:
-        with st.spinner("Gemini is working..."):
-            try:
-                model = genai.GenerativeModel('gemini-2.5-flash')
-                prompt = f"{PARIS_PERSONA}\n\nINPUT TEXT:\n{raw_text}\n\nINSTRUCTIONS: {user_instruction}"
-                response = model.generate_content(prompt)
-                content = response.text
+        CRITICAL FORMATTING RULES:
+        1. **NO HEADERS:** No "Key Bullet Points" or "Introduction".
+        2. **STRUCTURE:**
+           - Line 1: Punchy Title.
+           - Line 2: Directional Tag (e.g., 【看淡 - Bearish】).
+           - Body: Seamless blend of facts and analysis.
 
-                lines = content.split('\n')
-                title = lines[0].replace('#', '').replace('*', '').strip()
-                body = "\n".join(lines[1:])
+        CORE OBJECTIVE:
+        **Interpret PnL impact.** Focus on Liquidity, structure, flows, and positioning.
+        """
 
-                st.session_state.draft_title = title
-                st.session_state.draft_content = body
-            except Exception as e:
-                st.error(f"API Error: {e}")
+        if generate_btn and raw_text:
+            with st.spinner("Gemini is working..."):
+                try:
+                    model = genai.GenerativeModel('gemini-2.5-flash')
+                    prompt = f"{PARIS_PERSONA}\n\nINPUT TEXT:\n{raw_text}\n\nINSTRUCTIONS: {user_instruction}"
+                    response = model.generate_content(prompt)
+                    content = response.text
+                    lines = content.split('\n')
+                    title = lines[0].replace('#', '').replace('*', '').strip()
+                    body = "\n".join(lines[1:])
+                    st.session_state.draft_title = title
+                    st.session_state.draft_content = body
+                except Exception as e:
+                    st.error(f"API Error: {e}")
 
-    # Review & Publish Section
-    with col_preview:
-        st.header("2. Review & Publish")
-        final_title = st.text_input("Title", value=st.session_state.draft_title)
-        final_content = st.text_area("Markdown Content", value=st.session_state.draft_content, height=500)
+        with col_preview:
+            final_title = st.text_input("Title", value=st.session_state.draft_title)
+            final_content = st.text_area("Markdown Content", value=st.session_state.draft_content, height=500)
 
-        st.markdown("### Preview")
-        if final_title: st.markdown(f"## {final_title}")
-        if final_content: st.markdown(final_content)
+            if st.button("✅ Upload Insight to GitHub", type="primary"):
+                if final_title and final_content:
+                    date_str = datetime.now().strftime("%Y-%m-%d")
+                    safe_title = "".join([c if c.isalnum() else "_" for c in final_title])[:50]
+                    filename = f"{date_str}_{safe_title}.md"
+                    full_content = f"# {final_title}\n**Date:** {date_str}\n\n{final_content}"
 
-        st.divider()
-        upload_btn = st.button("✅ Upload to GitHub", type="primary", use_container_width=True)
+                    try:
+                        # Upload Logic
+                        git_path = f"DailyInsights/{filename}"
+                        # Check existing
+                        _, sha = get_github_file(f"{REPO_OWNER}/{REPO_NAME}", git_path, GITHUB_TOKEN)
 
-        if upload_btn and final_title and final_content:
-            date_str = datetime.now().strftime("%Y-%m-%d")
-            safe_title = "".join([c if c.isalnum() else "_" for c in final_title])[:50]
-            filename = f"{date_str}_{safe_title}.md"
-            full_file_content = f"# {final_title}\n**Date:** {date_str}\n\n{final_content}"
+                        resp = push_to_github(
+                            f"{REPO_OWNER}/{REPO_NAME}",
+                            git_path,
+                            GITHUB_TOKEN,
+                            full_content,
+                            sha,
+                            f"Add insight: {safe_title}",
+                            BRANCH
+                        )
 
-            # GitHub Upload Logic
-            try:
-                with st.status("☁️ Uploading to GitHub...", expanded=True) as status:
-                    git_path = f"DailyInsights/{filename}"
-                    url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{git_path}"
+                        if resp.status_code in [200, 201]:
+                            st.success("🎉 Published successfully!")
+                        else:
+                            st.error(f"Upload failed: {resp.status_code}")
+                    except Exception as e:
+                        st.error(f"Error: {e}")
 
-                    message_bytes = full_file_content.encode('utf-8')
-                    base64_bytes = base64.b64encode(message_bytes)
-                    base64_content = base64_bytes.decode('ascii')
+    # =========================================================
+    # TAB 2: Trade Manager (新功能)
+    # =========================================================
+    with tab_trader:
+        st.subheader("📊 Manage Swing Trades")
+        st.info("Directly edit the CSV below. Click 'Save Changes' to push to GitHub.")
 
-                    data = {
-                        "message": f"Add insight: {safe_title}",
-                        "content": base64_content,
-                        "branch": BRANCH
-                    }
+        # 1. Load Data Button
+        if "trade_df" not in st.session_state:
+            st.session_state.trade_df = None
+        if "trade_sha" not in st.session_state:
+            st.session_state.trade_sha = None
 
-                    headers = {
-                        "Authorization": f"token {GITHUB_TOKEN}",
-                        "Accept": "application/vnd.github.v3+json"
-                    }
+        # 自動加載或手動刷新
+            # 自動加載或手動刷新
+        if st.button("🔄 Refresh Data from GitHub") or st.session_state.trade_df is None:
+            with st.spinner("Fetching latest CSV..."):
+                content, sha = get_github_file(f"{REPO_OWNER}/{REPO_NAME}", TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
+                if content:
+                    st.session_state.trade_sha = sha
+                    # Read into Pandas
+                    df = pd.read_csv(io.StringIO(content))
 
-                    # Check if file exists to update or create
-                    get_resp = requests.get(url, headers=headers)
-                    if get_resp.status_code == 200:
-                        data["sha"] = get_resp.json()["sha"]
+                    # 🔥 [關鍵修正] 強制將日期欄位轉為 datetime 格式，否則編輯器會報錯
+                    # errors='coerce' 會把空的日期變成 NaT (Not a Time)，Streamlit 能正確處理
+                    if 'EntryDate' in df.columns:
+                        df['EntryDate'] = pd.to_datetime(df['EntryDate'], errors='coerce')
+                    if 'ExitDate' in df.columns:
+                        df['ExitDate'] = pd.to_datetime(df['ExitDate'], errors='coerce')
 
-                    response = requests.put(url, json=data, headers=headers)
+                    st.session_state.trade_df = df
+                else:
+                    st.error("Failed to fetch CSV. Check path and token.")
 
-                    if response.status_code in [200, 201]:
-                        status.update(label="🎉 Upload Complete!", state="complete", expanded=False)
+        # 2. Data Editor
+        if st.session_state.trade_df is not None:
+            df = st.session_state.trade_df
+
+            # 配置編輯器 (讓輸入更方便)
+            edited_df = st.data_editor(
+                df,
+                num_rows="dynamic",  # 允許新增行
+                use_container_width=True,
+                column_config={
+                    "Ticker": st.column_config.TextColumn("Ticker", required=True),
+                    "EntryDate": st.column_config.DateColumn("Entry Date", format="YYYY-MM-DD"),
+                    "ExitDate": st.column_config.DateColumn("Exit Date", format="YYYY-MM-DD"),
+                    "EntryPrice": st.column_config.NumberColumn("Entry Price", format="%.2f"),
+                    "ExitPrice": st.column_config.NumberColumn("Exit Price", format="%.2f"),
+                    "Type": st.column_config.SelectboxColumn("Type", options=["Long", "Short"], required=True),
+                    "Status": st.column_config.SelectboxColumn("Status", options=["Open", "Closed", "Pending"],
+                                                               required=True),
+                    "Notes": st.column_config.TextColumn("Notes", width="large"),
+                    "PnL": st.column_config.TextColumn("PnL %")
+                },
+                hide_index=True
+            )
+
+            # 3. Save Button
+            if st.button("💾 Save Changes to GitHub", type="primary"):
+                try:
+                    # Convert DF back to CSV
+                    csv_buffer = io.StringIO()
+                    edited_df.to_csv(csv_buffer, index=False)
+                    new_csv_content = csv_buffer.getvalue()
+
+                    # Push to GitHub
+                    resp = push_to_github(
+                        f"{REPO_OWNER}/{REPO_NAME}",
+                        TRADE_CSV_PATH,
+                        GITHUB_TOKEN,
+                        new_csv_content,
+                        st.session_state.trade_sha,
+                        f"Update trades via Admin Console {datetime.now().strftime('%Y-%m-%d')}",
+                        BRANCH
+                    )
+
+                    if resp.status_code in [200, 201]:
+                        st.success("✅ Trade log updated successfully!")
+                        # 更新 Session State 和 SHA
+                        st.session_state.trade_df = edited_df
+                        st.session_state.trade_sha = resp.json()['content']['sha']
                         st.balloons()
                     else:
-                        st.error(f"❌ Upload Failed: {response.status_code}")
-                        st.json(response.json())
+                        st.error(f"❌ Update failed: {resp.status_code}")
+                        st.json(resp.json())
 
-            except Exception as e:
-                st.error(f"❌ API Connection Error: {str(e)}")
+                except Exception as e:
+                    st.error(f"Error saving: {e}")
