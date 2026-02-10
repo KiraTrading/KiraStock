@@ -39,6 +39,23 @@ st.set_page_config(
 # Apply CSS from styles.py
 styles.apply_custom_css()
 
+# --- [NEW] Global CSS to Enlarge Tabs Everywhere ---
+st.markdown("""
+<style>
+    /* Force all Streamlit Tabs to be larger and bold */
+    .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+        font-size: 20px !important;
+        font-weight: 700 !important;
+    }
+    /* Optional: Add a subtle active state color if needed, though option_menu handles nav */
+    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+        color: #2563EB !important;
+        border-bottom-color: #2563EB !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+# ----------------------------------------------------
+
 # ==========================================
 # 2. Main App Interface (Navigation)
 # ==========================================
