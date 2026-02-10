@@ -178,111 +178,128 @@ def render_admin_console():
     # =========================================================
     # TAB 2: Trade Manager (新功能)
     # =========================================================
-    with tab_trader:
-        st.subheader("📊 Manage Swing Trades")
-        st.info("Directly edit the CSV below. Click 'Save Changes' to push to GitHub.")
+        # =========================================================
+        # TAB 2: Trade Manager (修復版)
+        # =========================================================
+        with tab_trader:
+            st.subheader("📊 Manage Swing Trades")
+            st.info("Directly edit the CSV below. Click 'Save Changes' to push to GitHub.")
 
-        # 1. Load Data Button
-        if "trade_df" not in st.session_state:
-            st.session_state.trade_df = None
-        if "trade_sha" not in st.session_state:
-            st.session_state.trade_sha = None
+            # 1. Load Data Button
+            if "trade_df" not in st.session_state:
+                st.session_state.trade_df = None
 
-        # 自動加載或手動刷新
+            # 這裡不需要 session_state.trade_sha，因為我們在存檔時會重新抓取最新的 SHA，這樣更安全
+
             # 自動加載或手動刷新
-        if st.button("🔄 Refresh Data from GitHub") or st.session_state.trade_df is None:
-            with st.spinner("Fetching latest CSV..."):
-                content, sha = get_github_file(f"{REPO_OWNER}/{PUBLIC_REPO}", TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
-                if content:
-                    st.session_state.trade_sha = sha
-                    # Read into Pandas
-                    df = pd.read_csv(io.StringIO(content))
+            if st.button("🔄 Refresh Data from GitHub") or st.session_state.trade_df is None:
+                with st.spinner("Fetching latest CSV..."):
+                    content, sha = get_github_file(f"{REPO_OWNER}/{PUBLIC_REPO}", TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
+                    if content:
+                        # Read into Pandas
+                        df = pd.read_csv(io.StringIO(content))
 
-                    # 🔥 [關鍵修正] 強制將日期欄位轉為 datetime 格式，否則編輯器會報錯
-                    # errors='coerce' 會把空的日期變成 NaT (Not a Time)，Streamlit 能正確處理
-                    if 'EntryDate' in df.columns:
-                        df['EntryDate'] = pd.to_datetime(df['EntryDate'], errors='coerce')
-                    if 'ExitDate' in df.columns:
-                        df['ExitDate'] = pd.to_datetime(df['ExitDate'], errors='coerce')
+                        # 強制轉換日期格式，避免編輯器報錯
+                        if 'EntryDate' in df.columns:
+                            df['EntryDate'] = pd.to_datetime(df['EntryDate'], errors='coerce')
+                        if 'ExitDate' in df.columns:
+                            df['ExitDate'] = pd.to_datetime(df['ExitDate'], errors='coerce')
 
-                    st.session_state.trade_df = df
-                else:
-                    st.error("Failed to fetch CSV. Check path and token.")
+                        st.session_state.trade_df = df
+                    else:
+                        st.error("Failed to fetch CSV. Check path and token.")
 
-        # 2. Data Editor
-        if st.session_state.trade_df is not None:
-            df = st.session_state.trade_df
+            # 2. Data Editor
+            if st.session_state.trade_df is not None:
+                df = st.session_state.trade_df
 
-            # 配置編輯器 (讓輸入更方便)
-            edited_df = st.data_editor(
-                df,
-                num_rows="dynamic",  # 允許新增行
-                use_container_width=True,
-                column_config={
-                    "Ticker": st.column_config.TextColumn("Ticker", required=True),
-                    "EntryDate": st.column_config.DateColumn("Entry Date", format="YYYY-MM-DD"),
-                    "ExitDate": st.column_config.DateColumn("Exit Date", format="YYYY-MM-DD"),
-                    "EntryPrice": st.column_config.NumberColumn("Entry Price", format="%.2f"),
-                    "ExitPrice": st.column_config.NumberColumn("Exit Price", format="%.2f"),
-                    "Type": st.column_config.SelectboxColumn("Type", options=["Long", "Short"], required=True),
-                    "Status": st.column_config.SelectboxColumn("Status", options=["Open", "Closed", "Pending"],
-                                                               required=True),
-                    "Notes": st.column_config.TextColumn("Notes", width="large"),
-                    "PnL": st.column_config.TextColumn("PnL %")
-                },
-                hide_index=True
-            )
-            # 3. Save Button (Dual Push Logic)
-            if st.button("💾 Save Changes to BOTH Repos", type="primary"):
-                try:
-                    # A. Convert DF back to CSV string
-                    csv_buffer = io.StringIO()
-                    edited_df.to_csv(csv_buffer, index=False)
-                    new_csv_content = csv_buffer.getvalue()
+                # 配置編輯器
+                # 🔥 [修正 1] 加入 key="trade_editor"，這能幫助 Streamlit 在 Rerun 時保持狀態穩定
+                edited_df = st.data_editor(
+                    df,
+                    key="trade_editor",
+                    num_rows="dynamic",
+                    use_container_width=True,
+                    column_config={
+                        "Ticker": st.column_config.TextColumn("Ticker", required=True),
+                        "EntryDate": st.column_config.DateColumn("Entry Date", format="YYYY-MM-DD"),
+                        "ExitDate": st.column_config.DateColumn("Exit Date", format="YYYY-MM-DD"),
+                        "EntryPrice": st.column_config.NumberColumn("Entry Price", format="%.2f"),
+                        "ExitPrice": st.column_config.NumberColumn("Exit Price", format="%.2f"),
+                        "Type": st.column_config.SelectboxColumn("Type", options=["Long", "Short"], required=True),
+                        "Status": st.column_config.SelectboxColumn("Status", options=["Open", "Closed", "Pending"],
+                                                                   required=True),
+                        "Notes": st.column_config.TextColumn("Notes", width="large"),
+                        "PnL": st.column_config.TextColumn("PnL %")
+                    },
+                    hide_index=True
+                )
 
-                    # B. Define targets (Public & Private)
-                    targets = [
-                        {"name": "Public", "repo": f"{REPO_OWNER}/{PUBLIC_REPO}"},
-                        {"name": "Private", "repo": f"{REPO_OWNER}/{PRIVATE_REPO}"}
-                    ]
+                # 3. Save Button
+                if st.button("💾 Save Changes to BOTH Repos", type="primary"):
+                    try:
+                        # 🔥 [修正 2] 數據清洗：移除 Ticker 為空的「幽靈行」
+                        # 當你按 + 新增行但沒打字時，Ticker 會是 None/NaN，這會導致 CSV 出錯或存入空行
+                        clean_df = edited_df.dropna(subset=["Ticker"])
 
-                    success_count = 0
-                    status_msg = st.empty()  # 用來顯示進度
+                        # 二次過濾：移除 Ticker 為空字串的情況
+                        clean_df = clean_df[clean_df["Ticker"].astype(str).str.strip() != ""]
 
-                    # C. Loop through targets and push
-                    for target in targets:
-                        repo_full_name = target['repo']
-                        status_msg.info(f"⏳ Updating {target['name']} ({repo_full_name})...")
+                        if clean_df.empty:
+                            st.warning("⚠️ Dataframe is empty or Ticker is missing. Nothing to save.")
+                            st.stop()
 
-                        # STEP 1: 必須先獲取該 Repo 該檔案當下的 SHA
-                        # (不能用 session_state.trade_sha，因為那是讀取時那個 Repo 的 SHA)
-                        _, current_sha = get_github_file(repo_full_name, TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
+                        # Debug 預覽：讓你知道你到底存了什麼
+                        with st.expander("🕵️‍♂️ Debug: Preview data being saved", expanded=False):
+                            st.dataframe(clean_df)
 
-                        # STEP 2: 推送更新
-                        resp = push_to_github(
-                            repo_full_name,
-                            TRADE_CSV_PATH,
-                            GITHUB_TOKEN,
-                            new_csv_content,
-                            current_sha,  # 使用剛抓到的 SHA
-                            f"Sync trades {datetime.now().strftime('%Y-%m-%d %H:%M')}",
-                            BRANCH
-                        )
+                        # A. Convert DF back to CSV string
+                        csv_buffer = io.StringIO()
+                        clean_df.to_csv(csv_buffer, index=False)
+                        new_csv_content = csv_buffer.getvalue()
 
-                        if resp.status_code in [200, 201]:
-                            st.toast(f"✅ {target['name']} Repo Updated!", icon="🎉")
-                            success_count += 1
-                        else:
-                            st.error(f"❌ Failed to update {target['name']}: {resp.status_code} - {resp.text}")
+                        # B. Define targets
+                        targets = [
+                            {"name": "Public", "repo": f"{REPO_OWNER}/{PUBLIC_REPO}"},
+                            {"name": "Private", "repo": f"{REPO_OWNER}/{PRIVATE_REPO}"}
+                        ]
 
-                    # D. Final Result
-                    if success_count == len(targets):
-                        st.success(f"🏆 All Repos Synced Successfully! ({success_count}/{len(targets)})")
-                        st.balloons()
+                        success_count = 0
+                        status_msg = st.empty()
 
-                        # 更新 Session State (通常我們只要更新顯示用的那個)
-                        st.session_state.trade_df = edited_df
-                        # 這裡不需要更新 trade_sha，因為下次存檔會重新抓新的 SHA
+                        # C. Loop through targets and push
+                        for target in targets:
+                            repo_full_name = target['repo']
+                            status_msg.info(f"⏳ Updating {target['name']} ({repo_full_name})...")
 
-                except Exception as e:
-                    st.error(f"System Error: {e}")
+                            # STEP 1: 獲取最新的 SHA (Concurrency Control)
+                            _, current_sha = get_github_file(repo_full_name, TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
+
+                            # STEP 2: 推送更新
+                            resp = push_to_github(
+                                repo_full_name,
+                                TRADE_CSV_PATH,
+                                GITHUB_TOKEN,
+                                new_csv_content,
+                                current_sha,
+                                f"Sync trades {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+                                BRANCH
+                            )
+
+                            if resp.status_code in [200, 201]:
+                                st.toast(f"✅ {target['name']} Repo Updated!", icon="🎉")
+                                success_count += 1
+                            else:
+                                st.error(f"❌ Failed to update {target['name']}: {resp.status_code} - {resp.text}")
+
+                        # D. Final Result
+                        if success_count == len(targets):
+                            st.success(f"🏆 All Repos Synced Successfully! ({success_count}/{len(targets)})")
+
+                            # 🔥 [修正 3] 只有成功存檔後，才更新 session_state
+                            # 這樣下次 Rerun 時，編輯器會顯示剛存好的、乾淨的數據
+                            st.session_state.trade_df = clean_df
+                            st.balloons()
+
+                    except Exception as e:
+                        st.error(f"System Error: {e}")
