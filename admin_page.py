@@ -69,7 +69,7 @@ def render_admin_console():
 
     # --- CONFIGURATION ---
     REPO_OWNER = "ParisTrader"  # 你的 GitHub 用戶名
-    REPO_NAME = "paristrader-terminal"  # 你的 Repo 名稱
+    PUBLIC_REPO = "paristrader-terminal"  # 你的 Repo 名稱
     PRIVATE_REPO = "paristrader-private"
     BRANCH = "main"
 
@@ -156,10 +156,10 @@ def render_admin_console():
                         # Upload Logic
                         git_path = f"DailyInsights/{filename}"
                         # Check existing
-                        _, sha = get_github_file(f"{REPO_OWNER}/{REPO_NAME}", git_path, GITHUB_TOKEN)
+                        _, sha = get_github_file(f"{REPO_OWNER}/{PUBLIC_REPO}", git_path, GITHUB_TOKEN)
 
                         resp = push_to_github(
-                            f"{REPO_OWNER}/{REPO_NAME}",
+                            f"{REPO_OWNER}/{PUBLIC_REPO}",
                             git_path,
                             GITHUB_TOKEN,
                             full_content,
@@ -192,7 +192,7 @@ def render_admin_console():
             # 自動加載或手動刷新
         if st.button("🔄 Refresh Data from GitHub") or st.session_state.trade_df is None:
             with st.spinner("Fetching latest CSV..."):
-                content, sha = get_github_file(f"{REPO_OWNER}/{REPO_NAME}", TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
+                content, sha = get_github_file(f"{REPO_OWNER}/{PUBLIC_REPO}", TRADE_CSV_PATH, GITHUB_TOKEN, BRANCH)
                 if content:
                     st.session_state.trade_sha = sha
                     # Read into Pandas
