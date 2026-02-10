@@ -1,10 +1,3 @@
----
-title: "【散戶覺醒】拒絕「一年十倍」的賭徒陷阱：上班族如何靠「機構思維」實現財務增值？"
-date: 2026-02-10
-author: Paris Trader
-tags: [Trading Psychology, Risk Management, Institutional Investing, 13F, US Market]
----
-
 # 【散戶覺醒】拒絕「一年十倍」的賭徒陷阱：上班族如何靠「機構思維」實現財務自由？
 
 在金融市場打滾這麼多年，見過無數散戶（Retail Investors）都有一個通病：**沉迷於「絕對回報」（Absolute Return），而無視「風險」（Risk）。**
@@ -163,3 +156,4 @@ tags: [Trading Psychology, Risk Management, Institutional Investing, 13F, US Mar
 ---
 **Paris Trader**
 *Ex-IB Derivative Trader | Founder of Paris Capital Group*
+tags: [Trading Psychology, Risk Management, Institutional Investing, 13F, US Market]
