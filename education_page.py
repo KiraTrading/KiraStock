@@ -190,34 +190,40 @@ def render_education_page(check_access_func, load_markdown_func):
                 "icon": "⚡",
                 "desc": "大戶船大難轉彎，散戶船小好調頭。利用「靈活性」成為市場中的游擊隊。"
             },
+            "risk_adjusted_return": {
+                "title": "第11課 | [心法] 散戶覺醒：拒絕「一年十倍」的賭徒陷阱",
+                "file": "47_risk_adjusted_return.md",
+                "icon": "🛡️",
+                "desc": "為何上班族不應追求暴利？了解 Risk-Adjusted Return 與機構選股思維。"
+            },
 
             # --- 第三階段：工欲善其事 (Setup & Risk - VIP) ---
             "tv_setup": {
-                "title": "第11課 | [工具] 打造你的戰情室：TradingView 專業設定 🔒",
+                "title": "第12課 | [工具] 打造你的戰情室：TradingView 專業設定 🔒",
                 "file": "11_TradingView Setup Guide.md",
                 "icon": "⚙️",
                 "desc": "別用預設圖表交易！從零開始搭建「四圖流」監控系統，一眼看穿市場全貌。"
             },
             "ib_hotkeys": {
-                "title": "第12課 | [工具] 極速下單：IB TWS 快捷鍵設定攻略 🔒",
+                "title": "第13課 | [工具] 極速下單：IB TWS 快捷鍵設定攻略 🔒",
                 "file": "28_ib_hotkeys_setup.md",
                 "icon": "⌨️",
                 "desc": "炒末日輪必備！設定一鍵 Buy/Sell，比散戶快 2 秒進場，滑價也能變利潤。"
             },
             "risk_sizing": {
-                "title": "第13課 | [風控] 拒絕爆倉：ATR 動態注碼管理 ",
+                "title": "第14課 | [風控] 拒絕爆倉：ATR 動態注碼管理 ",
                 "file": "8_volatility_sizing.md",
                 "icon": "⚖️",
                 "desc": "為什麼你的止損總是太窄？學會根據市場波動率調整倉位，像基金經理一樣控盤。"
             },
             "risk_calculator": {
-                "title": "第14課 | [風控] 保命神器：動態手數計算機 (Excel) 🔒",
+                "title": "第15課 | [風控] 保命神器：動態手數計算機 (Excel) 🔒",
                 "file": "14_dynamic_lot_size_guide.md",
                 "icon": "🧮",
                 "desc": "工具下載：輸入淨值與止損點，自動計算安全手數。交易納指、黃金必備。"
             },
             "sharpe_ratio": {
-                "title": "第15課 | [風控] 賺錢是運氣還是實力？Sharpe Ratio 詳解 ",
+                "title": "第16課 | [風控] 賺錢是運氣還是實力？Sharpe Ratio 詳解 ",
                 "file": "41_sharpe_ratio_explained.md",
                 "icon": "📊",
                 "desc": "如何分辨「運氣好的賭徒」與「穩定的交易員」？用數學驗證你的策略能否長存。"
@@ -225,61 +231,61 @@ def render_education_page(check_access_func, load_markdown_func):
 
             # --- 第四階段：ParisTrader 核心系統 (System - VIP) ---
             "paris_manual": {
-                "title": "第16課 | [系統] ParisTrader 實戰手冊：四圖流操盤法 🔒",
+                "title": "第17課 | [系統] ParisTrader 實戰手冊：四圖流操盤法 🔒",
                 "file": "15_paris_system_manual.md",
                 "icon": "📘",
                 "desc": "完整收錄我的核心系統：如何結合 ST/VV 指標，在單邊行情中吃到最長的一段。"
             },
             "vp_tutorial": {
-                "title": "第17課 | [指標] 尋找大戶成本區：Volume Profile (VP) 實戰 🔒",
+                "title": "第18課 | [指標] 尋找大戶成本區：Volume Profile (VP) 實戰 🔒",
                 "file": "13_Volume Profile Tutorial.md",
                 "icon": "📊",
                 "desc": "價格會騙人，成交量不會。找出機構的「吸籌區」與「派發區」，精準抄底逃頂。"
             },
             "volume_v2": {
-                "title": "第18課 | [指標] 識破假突破：Volume v2 買賣盤分析 🔒",
+                "title": "第19課 | [指標] 識破假突破：Volume v2 買賣盤分析 🔒",
                 "file": "17_volume_indicator_v2.md",
                 "icon": "📶",
                 "desc": "獨家指標：將成交量拆解為「主動買」與「主動賣」，一眼識破主力誘多誘空。"
             },
             "vv_tutorial": {
-                "title": "第19課 | [指標] 捕捉暴漲前夕：VV 與 ST 的黃金交叉 🔒",
+                "title": "第20課 | [指標] 捕捉暴漲前夕：VV 與 ST 的黃金交叉 🔒",
                 "file": "12_VV Indicator Tutorial.md",
                 "icon": "📈",
                 "desc": "學會觀察波動率 (VV) 與趨勢 (ST) 的共振點，在行情發動的第一秒進場。"
             },
             "bull_diamond_strategy": {
-                "title": "第20課 | [戰法] 鑽石形態：高勝率右側交易策略 🔒",
+                "title": "第21課 | [戰法] 鑽石形態：高勝率右側交易策略 🔒",
                 "file": "40_bull_diamond_strategy.md",
                 "icon": "💎",
                 "desc": "什麼是「晨鑽」訊號？如何利用這套戰法，在回調結束時精準切入。"
             },
             "st_table": {
-                "title": "第21課 | [神器] 趨勢儀表板：ST Table 多時框監控 🔒",
+                "title": "第22課 | [神器] 趨勢儀表板：ST Table 多時框監控 🔒",
                 "file": "16_st_table_guide.md",
                 "icon": "🗓️",
                 "desc": "不用切換圖表，一眼看清 1m 到 4h 的趨勢方向，順勢交易必備工具。"
             },
             "trend_table": {
-                "title": "第22課 | [神器] 全市場雷達：Trend Table 搵食訊號 🔒",
+                "title": "第23課 | [神器] 全市場雷達：Trend Table 搵食訊號 🔒",
                 "file": "20_trend_table_guide.md",
                 "icon": "🧭",
                 "desc": "自動掃描全市場。當 EMA, VV, ST 同時亮綠燈，就是最強的「全共識」進場點。"
             },
             "trendtable_alert": {
-                "title": "第23課 | [神器] 盯盤救星：設定 TrendTable 手機警報 🔒",
+                "title": "第24課 | [神器] 盯盤救星：設定 TrendTable 手機警報 🔒",
                 "file": "33_trendtable_alert_setup.md",
                 "icon": "🔔",
                 "desc": "上班族必學！如何讓 TradingView 自動監控，訊號出現直接推送到手機。"
             },
             "rsi_table": {
-                "title": "第24課 | [神器] 短線爆發力：RSI 當炒股掃描 🔒",
+                "title": "第25課 | [神器] 短線爆發力：RSI 當炒股掃描 🔒",
                 "file": "19_rsi_hot_table.md",
                 "icon": "🔥",
                 "desc": "每日掃描 RSI 強勢區資產。一眼找出這幾天資金最集中、最易炒作的標的。"
             },
             "tv_heatmap": {
-                "title": "第25課 | [神器] 資金流向圖：期貨動能 Heatmap 🔒",
+                "title": "第26課 | [神器] 資金流向圖：期貨動能 Heatmap 🔒",
                 "file": "7_tv_volume_heatmap.md",
                 "icon": "🗺️",
                 "desc": "一眼看穿全球資金在買什麼？利用 Z-Score 找出當日最強與最弱的板塊。"
@@ -287,19 +293,19 @@ def render_education_page(check_access_func, load_markdown_func):
 
             # --- 第五階段：期貨與衍生品基礎 (Futures - VIP) ---
             "cfd_basis": {
-                "title": "第26課 | [期貨] 差價陷阱：Future vs CFD 換算攻略 🔒",
+                "title": "第27課 | [期貨] 差價陷阱：Future vs CFD 換算攻略 🔒",
                 "file": "18_cfd_basis_calculator.md",
                 "icon": "💱",
                 "desc": "解決看期貨做 CFD 的點差難題，避免因為「水位」問題而被掃止損。"
             },
             "basis_theory": {
-                "title": "第27課 | [期貨] 水位理論：為何牛牛報價跟期貨不同？ 🔒",
+                "title": "第28課 | [期貨] 水位理論：為何牛牛報價跟期貨不同？ 🔒",
                 "file": "29_basis_theory_manual.md",
                 "icon": "🌊",
                 "desc": "深入理解基差 (Basis) 變動原理，利用轉倉期捕捉套利空間。"
             },
             "cbbc_street_map": {
-                "title": "第28課 | [牛熊] 屠牛殺熊：解讀街貨圖與投行對沖 🔒",
+                "title": "第29課 | [牛熊] 屠牛殺熊：解讀街貨圖與投行對沖 🔒",
                 "file": "31_cbbc_street_map.md",
                 "icon": "🎯",
                 "desc": "為什麼「打靶」後市況會反轉？從投行 Delta Hedging 角度，預測莊家的殺跌目標價。"
@@ -307,61 +313,61 @@ def render_education_page(check_access_func, load_markdown_func):
 
             # --- 第六階段：期權大師班 (Options - VIP) ---
             "option_pricing_101": {
-                "title": "第29課 | [期權] 拒絕做水魚！拆解 BS Model 定價原理 🔒",
+                "title": "第30課 | [期權] 拒絕做水魚！拆解 BS Model 定價原理 🔒",
                 "file": "21_option_pricing_101.md",
                 "icon": "🎓",
                 "desc": "別被莊家報價忽悠。學會分辨期權是「平」還是「貴」，只在值博率高時出手。"
             },
             "bs_model_excel": {
-                "title": "第30課 | [期權] 定價計算機：一鍵算出合理期權價 (Excel) 🔒",
+                "title": "第31課 | [期權] 定價計算機：一鍵算出合理期權價 (Excel) 🔒",
                 "file": "27_bs_model_excel.md",
                 "icon": "🧮",
                 "desc": "工具下載：輸入股價與 IV，立即知道莊家有沒有「食價」。"
             },
             "bull_call": {
-                "title": "第31課 | [期權] 降低成本：Bull Call Spread 實戰攻略 ",
+                "title": "第32課 | [期權] 降低成本：Bull Call Spread 實戰攻略 ",
                 "file": "2_bull_call_spread.md",
                 "icon": "🐂",
                 "desc": "看對市卻輸時間值？學會價差策略，用低成本博取倍數回報。"
             },
             "naked_long": {
-                "title": "第32課 | [期權] 買 Call 必死？Naked Long 的生存法則 ",
+                "title": "第33課 | [期權] 買 Call 必死？Naked Long 的生存法則 ",
                 "file": "3_naked_long_strategy.md",
                 "icon": "⏳",
                 "desc": "為什麼橫盤不要買 Weekly？Python 數據回測告訴你，何時才適合「單邊下注」。"
             },
             "option_t0_strategy": {
-                "title": "第33課 | [期權] T+0 戰法：利用 Gamma 暴漲賺快錢 🔒",
+                "title": "第34課 | [期權] T+0 戰法：利用 Gamma 暴漲賺快錢 🔒",
                 "file": "22_option_t0_strategy.md",
                 "icon": "🚀",
                 "desc": "利用期權非線性特性，在單日內實現極致風險回報比的即日鮮技術。"
             },
             "itm_vs_otm": {
-                "title": "第34課 | [期權] 價內 vs 價外：末日輪選股心法 🔒",
+                "title": "第35課 | [期權] 價內 vs 價外：末日輪選股心法 🔒",
                 "file": "23_itm_vs_otm_puts.md",
                 "icon": "📐",
                 "desc": "深度解析 Delta 與 Gamma。想博十倍回報，該選哪一個行使價 (Strike)？"
             },
             "iv_expected_move": {
-                "title": "第35課 | [期權] 預測波幅：如何用 IV 算出目標價？ 🔒",
+                "title": "第36課 | [期權] 預測波幅：如何用 IV 算出目標價？ 🔒",
                 "file": "45_iv_expected_move.md",
                 "icon": "⚡",
                 "desc": "莊家已經把答案寫在 IV 裡了。學會公式，計算股票今日的「預期最高/最低點」。"
             },
             "vol_crush": {
-                "title": "第36課 | [期權] 避開 IV Crush：財報季生存指南 ",
+                "title": "第37課 | [期權] 避開 IV Crush：財報季生存指南 ",
                 "file": "24_vol_crush_explained.md",
                 "icon": "📉",
                 "desc": "為什麼業績大升，你的 Call 卻輸錢？詳解波動率暴跌現象與對策。"
             },
             "oi_settlement": {
-                "title": "第37課 | [期權] 最大痛點：利用 OI 預測結算價 🔒",
+                "title": "第38課 | [期權] 最大痛點：利用 OI 預測結算價 🔒",
                 "file": "25_oi_settlement_logic.md",
                 "icon": "📍",
                 "desc": "為什麼股價總是在某個區間結算？看穿莊家 Max Pain，跟著莊家收租。"
             },
             "dividend_marking": {
-                "title": "第38課 | [期權] 除息陷阱：股息如何影響期權價格 🔒",
+                "title": "第39課 | [期權] 除息陷阱：股息如何影響期權價格 🔒",
                 "file": "26_dividend_marking.md",
                 "icon": "🔖",
                 "desc": "了解 Forward Curve。別讓股息除淨導致你的 Put/Call 莫名虧損。"
@@ -369,49 +375,49 @@ def render_education_page(check_access_func, load_markdown_func):
 
             # --- 第七階段：機構級量化 (Quant - VIP) ---
             "risk_monitor_guide": {
-                "title": "第39課 | [量化] 逃頂訊號：Risk Dashboard 使用指南 ",
+                "title": "第40課 | [量化] 逃頂訊號：Risk Dashboard 使用指南 ",
                 "file": "9_risk_dashboard_guide.md",
                 "icon": "📟",
                 "desc": "學會解讀 VIX, Skew 與 Z-Score。在大跌發生前，識別市場的恐慌訊號。"
             },
             "stock_dna": {
-                "title": "第40課 | [量化] 揀股黑科技：Stock DNA 因子掃描 ",
+                "title": "第41課 | [量化] 揀股黑科技：Stock DNA 因子掃描 ",
                 "file": "1_stock_dna_guide.md",
                 "icon": "🧬",
                 "desc": "如何使用 Fama-French 模型，拆解股票的「基因」，找出被低估的優質股。"
             },
             "cftc_cot_report": {
-                "title": "第41課 | [量化] 跟蹤聰明錢：CFTC 倉位報告實戰 🔒",
+                "title": "第42課 | [量化] 跟蹤聰明錢：CFTC 倉位報告實戰 🔒",
                 "file": "42_cftc_cot_report.md",
                 "icon": "🐋",
                 "desc": "每週更新。教你解讀 Commercials (大戶) 持倉，看穿長線資金流向。"
             },
             "dispersion_trading": {
-                "title": "第42課 | [量化] 投行秘技：Dispersion Trading (分散度交易) 🔒",
+                "title": "第43課 | [量化] 投行秘技：Dispersion Trading (分散度交易) 🔒",
                 "file": "43_dispersion_trading.md",
                 "icon": "⚖️",
                 "desc": "無需預測方向也能賺錢？揭秘投行如何利用指數與個股的波動率錯價進行套利。"
             },
             "bergomi_model": {
-                "title": "第43課 | [量化] 波動率模型：Bergomi Model 簡介 🔒",
+                "title": "第44課 | [量化] 波動率模型：Bergomi Model 簡介 🔒",
                 "file": "44_bergomi_model.md",
                 "icon": "♾️",
                 "desc": "高階視角：描述波動率動態與微笑曲線的數學模型，適合量化發燒友。"
             },
             "totem_valuation": {
-                "title": "第44課 | [量化] 大戶的答案紙：Totem 估值揭秘 🔒",
+                "title": "第45課 | [量化] 大戶的答案紙：Totem 估值揭秘 🔒",
                 "file": "30_totem_valuation.md",
                 "icon": "🤫",
                 "desc": "揭開投行如何利用 Totem 服務，為 OTC 衍生品進行定價與風控。"
             },
             "daily_chart_scorecard": {
-                "title": "第45課 | [量化] 拒絕憑感覺：日圖計分表 (Scorecard) 📝",
+                "title": "第46課 | [量化] 拒絕憑感覺：日圖計分表 (Scorecard) 📝",
                 "file": "45_Daily_Chart_Scorecard.md",
                 "icon": "✅",
                 "desc": "將盤感數據化。建立一套機械化的進場標準，分數不夠絕不出手。"
             },
             "factor_mri": {
-                "title": "第46課 | [量化] 市場 MRI：用因子 Z-Score 看穿板塊輪動 🧬",
+                "title": "第47課 | [量化] 市場 MRI：用因子 Z-Score 看穿板塊輪動 🧬",
                 "file": "46_factor_mri.md",
                 "icon": "📊",
                 "desc": "資金正在流向價值股還是成長股？用數據識別當下的市場主線。"
