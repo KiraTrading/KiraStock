@@ -6,14 +6,14 @@ import sys
 import glob
 import pandas as pd
 import json
-import base64  # 用於處理圖片顯示
+import base64
 
 # --- Custom Modules ---
-import styles  # CSS Logic
-import utils  # Helper functions (File loading, Security)
-import education_page  # Education Page Logic
-import stock_page  # Stock Page Logic
-import strategy_logic  # Option Strategy Math & Charts
+import styles
+import utils
+import education_page
+import stock_page
+import strategy_logic
 import recap_page
 import admin_page
 
@@ -38,7 +38,8 @@ st.set_page_config(
 
 # --- Language Setup ---
 if 'language' not in st.session_state:
-    st.session_state['language'] = 'zh'  # 默認中文
+    st.session_state['language'] = 'zh'
+
 
 def toggle_language():
     if st.session_state['language'] == 'zh':
@@ -46,7 +47,9 @@ def toggle_language():
     else:
         st.session_state['language'] = 'zh'
 
-# 翻譯字典：定義所有需要切換的文字
+
+# 翻譯字典
+# [重要修正] profile_text 內的文字必須 "頂格靠左"，不能有任何縮排
 translations = {
     "zh": {
         "slogan_title": "不再做韭菜 | 直接跟蹤大戶聰明錢",
@@ -61,7 +64,13 @@ translations = {
         "vip_promo_desc": "偷看機構持倉 (Insider)<br>& 聰明錢流向 (Flow)",
         "vip_join": "🚀 立即加入 (Join Now)",
         "nav_title": "導航選單",
-        "settings": "語言設定 / Settings"
+        "settings": "語言設定 / Settings",
+        "profile_text": """我將投資銀行的機構級數據平民化，幫你避開散戶陷阱。
+<br><br>
+<b>核心武器 (My Edge):</b><br>
+• 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
+• ⚡ <b>Futures Scalping:</b> NQ/HSI/黃金短線<br>
+• 🎯 <b>Option Flow:</b> 異動期權狙擊<br>"""
     },
     "en": {
         "slogan_title": "Stop Retail Trading | Follow Smart Money",
@@ -76,33 +85,52 @@ translations = {
         "vip_promo_desc": "Insider Holdings<br>& Smart Money Flow",
         "vip_join": "🚀 Join Now",
         "nav_title": "Navigation",
-        "settings": "Settings"
+        "settings": "Settings",
+        "profile_text": """Democratizing institutional data to help you avoid retail traps.
+<br><br>
+<b>My Edge:</b><br>
+• 🐳 <b>Stock Hunter:</b> Track Institutional Builds<br>
+• ⚡ <b>Futures Scalping:</b> NQ/HSI/Gold Scalping<br>
+• 🎯 <b>Option Flow:</b> Sniper Unusual Activity<br>"""
     }
 }
 
-# 獲取當前語言文字的 Helper function
+
 def t(key):
     return translations[st.session_state['language']].get(key, key)
 
-# Apply CSS from styles.py
-styles.apply_custom_css()
 
-# --- [NEW] Global CSS to Enlarge Tabs Everywhere ---
+# Helper Function: Handle Submenu
+def handle_submenu(key_name, options, icons, default_url_sub=None):
+    default_sub_index = 0
+    if default_url_sub and (default_url_sub in options):
+        default_sub_index = options.index(default_url_sub)
+    elif default_url_sub:
+        matches = [i for i, opt in enumerate(options) if default_url_sub in opt]
+        if matches: default_sub_index = matches[0]
+
+    return option_menu(
+        menu_title=None, options=options, icons=icons, default_index=default_sub_index,
+        styles={"container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
+                              "border-radius": "10px"},
+                "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
+                "nav-link-selected": {"background-color": "#4B5563"}},
+        key=key_name
+    )
+
+
+# Apply CSS
+styles.apply_custom_css()
 st.markdown("""
 <style>
-    /* Force all Streamlit Tabs to be larger and bold */
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-        font-size: 20px !important;
-        font-weight: 700 !important;
+        font-size: 20px !important; font-weight: 700 !important;
     }
-    /* Optional: Add a subtle active state color if needed, though option_menu handles nav */
     .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
-        color: #2563EB !important;
-        border-bottom-color: #2563EB !important;
+        color: #2563EB !important; border-bottom-color: #2563EB !important;
     }
 </style>
 """, unsafe_allow_html=True)
-# ----------------------------------------------------
 
 # ==========================================
 # 2. Main App Interface (Navigation)
@@ -110,17 +138,13 @@ st.markdown("""
 
 # --- Sidebar ---
 with st.sidebar:
-    # 1. 加入語言切換按鈕
     col_lang1, col_lang2 = st.columns([1, 3])
     with col_lang1:
         st.write("🌐")
     with col_lang2:
-        # 使用 Radio 或 Button 切換
         lang_choice = st.radio("Language", ["中文", "English"],
                                index=0 if st.session_state['language'] == 'zh' else 1,
                                horizontal=True, label_visibility="collapsed")
-
-        # 檢測狀態改變並更新 Session
         new_lang = 'zh' if lang_choice == "中文" else 'en'
         if new_lang != st.session_state['language']:
             st.session_state['language'] = new_lang
@@ -133,7 +157,6 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    # --- 定義導航菜單的 中英對照 ---
     nav_map_zh = {
         "首頁": "首頁", "每日復盤": "每日復盤", "研究專欄": "研究專欄",
         "大市雷達": "大市雷達", "實戰持倉": "實戰持倉", "美股獵人": "美股獵人",
@@ -150,18 +173,14 @@ with st.sidebar:
         "升級會員": "Go VIP"
     }
 
-    # 選擇當前使用的 Map
     current_nav_map = nav_map_zh if st.session_state['language'] == 'zh' else nav_map_en
-    # 創建顯示用的 List
     display_options = list(current_nav_map.values())
-
 
     # --- Navigation Logic ---
     query_params = st.query_params
     url_main_page = query_params.get("page", "首頁")
-    url_sub_page = query_params.get("sub", None)  # 獲取 sub 參數
+    url_sub_page = query_params.get("sub", None)
 
-    # 處理 URL 參數與預設索引
     try:
         main_default_index = list(nav_map_zh.keys()).index(url_main_page)
     except ValueError:
@@ -184,52 +203,21 @@ with st.sidebar:
         }
     )
 
-    # --- 關鍵轉換：將顯示文字 (Home) 轉回 邏輯 Key (首頁) ---
     selected_nav = [k for k, v in current_nav_map.items() if v == selected_display][0]
-
-    # --- Submenu Function (修復缺失的函數) ---
-    def handle_submenu(key_name, options, icons):
-        default_sub_index = 0
-        # 簡單判斷：如果目前的 sub page 在選項裡，就設為預設
-        if url_sub_page and (url_sub_page in options):
-            default_sub_index = options.index(url_sub_page)
-        elif url_sub_page:
-             # 模糊匹配
-             matches = [i for i, opt in enumerate(options) if url_sub_page in opt]
-             if matches: default_sub_index = matches[0]
-
-        return option_menu(
-            menu_title=None, options=options, icons=icons, default_index=default_sub_index,
-            styles={"container": {"padding": "0!important", "background-color": "rgba(255,255,255,0.03)",
-                                  "border-radius": "10px"},
-                    "nav-link": {"font-size": "14px", "margin": "3px", "--hover-color": "#374151"},
-                    "nav-link-selected": {"background-color": "#4B5563"}},
-            key=key_name
-        )
-
-    # --- Submenu Handling ---
     target_page = selected_nav
 
     if selected_nav == "自動鈔能力":
         st.caption("AUTOMATED TRADING")
         ea_options_display = ["EA 介紹"] if st.session_state['language'] == 'zh' else ["EA Intro"]
-        target_sub = handle_submenu("sub_ea", ea_options_display, ["robot"])
+        target_sub = handle_submenu("sub_ea", ea_options_display, ["robot"], url_sub_page)
 
-        # Mapping back
         if target_sub == "EA Intro":
             target_page = "EA 介紹"
         elif target_sub == "EA 介紹":
             target_page = "EA 介紹"
 
-    # Update URL for deep linking (Optional logic)
-    if selected_nav != target_page:
-        # 簡單更新 query params (Streamlit 新版寫法)
-        # st.query_params["page"] = selected_nav # 視需要開啟
-        pass
-
     st.markdown("---")
 
-    # VIP Button
     st.markdown(f"""
         <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
             <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
@@ -242,7 +230,7 @@ if url_main_page == "Legal" and selected_nav == "首頁":
     target_page = "Legal"
 
 # ==========================================
-# 3. Security Check for Standalone Pages
+# 3. Security Check
 # ==========================================
 locked_pages = []
 if target_page in locked_pages:
@@ -255,7 +243,7 @@ if target_page in locked_pages:
 
 if target_page == "SecretAdmin":
     admin_page.render_admin_console()
-# [修復] 這裡原本縮進錯誤，現在拉回最左邊
+
 elif target_page == "首頁":
     col_main, col_profile = st.columns([0.7, 0.3], gap="large")
     with col_main:
@@ -277,7 +265,6 @@ elif target_page == "首頁":
                         height=100)
 
         st.markdown("<br>", unsafe_allow_html=True)
-
         st.subheader(t('tutorial'))
         st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
         st.markdown("<br>", unsafe_allow_html=True)
@@ -290,7 +277,6 @@ elif target_page == "首頁":
         )
 
         st.markdown("---")
-
         st.subheader(t('week_ahead'))
         with st.container():
             analysis_content = utils.load_weekly_analysis()
@@ -299,6 +285,8 @@ elif target_page == "首頁":
 
     with col_profile:
         img_path = "static/profile.jpg"
+
+
         def get_image_base64(path):
             if os.path.exists(path):
                 with open(path, "rb") as f:
@@ -306,29 +294,25 @@ elif target_page == "首頁":
                 return f"data:image/jpeg;base64,{base64.b64encode(data).decode()}"
             return "https://ui-avatars.com/api/?name=Paris+Trader&background=0D8ABC&color=fff&size=150"
 
+
         img_src = get_image_base64(img_path)
 
         st.markdown(f"""
-        <div class="profile-card">
-            <img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
-            <h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader</h3>
-            <p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Ex-Ibank Derivative Trader</p>
-            <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
-                我將投資銀行的機構級數據平民化，幫你避開散戶陷阱。
-                <br><br>
-                <b>核心武器 (My Edge):</b><br>
-                • 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
-                • ⚡ <b>Futures Scalping:</b> NQ/HSI/黃金短線<br>
-                • 🎯 <b>Option Flow:</b> 異動期權狙擊<br>
-            </p>
-            <a href="https://t.me/ParisTrader" target="_blank">
-                <button style="background-color:#2563EB; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; font-weight:bold; box-shadow: 0 4px 6px rgba(37,99,235,0.3);">
-                    {t('contact_btn')}
-                </button>
-            </a>
-        </div>
-        """, unsafe_allow_html=True)
+<div class="profile-card">
+<img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
+<h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader(Jacky.H)</h3>
+<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Ex-Ibank Derivative Trader</p>
+<hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
+<div style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
+{t('profile_text')}
+</div>
+<a href="https://t.me/ParisTrader" target="_blank">
+<button style="background-color:#2563EB; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; font-weight:bold; box-shadow: 0 4px 6px rgba(37,99,235,0.3);">
+{t('contact_btn')}
+</button>
+</a>
+</div>
+""", unsafe_allow_html=True)
 
 elif target_page == "Market Dashboard":
     st.title("Market Dashboard")
@@ -376,7 +360,6 @@ elif target_page == "研究專欄":
 elif target_page == "大市雷達":
     st.title("📡 Market Radar (大市雷達)")
     st.caption("識別市場轉勢訊號 | Detect Market Reversals")
-
     tab_risk, tab_breadth, tab_cftc = st.tabs(["⚠️ 恐慌指數 Risk Meter", "🌊 市場寬度 Breadth", "🐋 莊家持倉 COT"])
 
     with tab_risk:
@@ -387,7 +370,6 @@ elif target_page == "大市雷達":
             components.html(html_content.replace("<head>", "<head>" + fix_style), height=2200, scrolling=True)
         else:
             st.warning("⚠️ No risk reports found.")
-
     with tab_breadth:
         st.subheader("Market Breadth")
         html_content, _ = utils.get_latest_file_content(os.path.join("MarketDashboard", "MarketBreadth"),
@@ -396,7 +378,6 @@ elif target_page == "大市雷達":
             components.html(html_content, height=2200, scrolling=True)
         else:
             st.warning("⚠️ Market Breadth report not found.")
-
     with tab_cftc:
         st.subheader("CFTC Institutional Positioning")
         html_content, _ = utils.get_latest_file_content("MarketDashboard", "cftc_pro_report*.html")
@@ -411,7 +392,6 @@ elif target_page == "美股獵人":
 elif target_page == "期權佈局":
     st.title("🎯 Options Flow Analytics")
     st.caption("跟蹤聰明錢異動 | Track Smart Money Flow")
-
     tab_hk, tab_us, tab_strat = st.tabs(["🇭🇰 港股期權佈局", "🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy"])
 
     with tab_hk:
@@ -421,17 +401,14 @@ elif target_page == "期權佈局":
             components.html(html, height=2000, scrolling=True)
         else:
             st.warning("⚠️ No HK reports found.")
-
     with tab_us:
         st.subheader("US Option Strike Analysis")
-        if utils.check_access_or_show_teaser("美股期權 US Option",
-                                             description="Follow the Smart Money. Real-time unusual options activity and gamma exposure levels."):
+        if utils.check_access_or_show_teaser("美股期權 US Option", description="Follow the Smart Money."):
             html, _ = utils.get_latest_file_content("Option", "option_strike_*.html")
             if html:
                 components.html(html, height=2000, scrolling=True)
             else:
                 st.warning("⚠️ No US reports found.")
-
     with tab_strat:
         st.subheader("Interactive Option Strategy Builder")
         if utils.check_access_or_show_teaser("期權策略 Strategy", description="Quantitative Analysis."):
@@ -459,7 +436,6 @@ elif target_page == "期權佈局":
 elif target_page == "期貨牛熊":
     st.title("🎢 Futures & Trends")
     st.caption("短線波幅與牛熊重貨區 | Volatility & Heavy Zones")
-
     tab_vol, tab_vp, tab_cbbc = st.tabs(
         ["⚡ 日內波幅 (Volatility)", "📊 成交分佈 (Volume Profile)", "🐻 牛熊重貨區 (CBBC)"])
 
@@ -470,7 +446,6 @@ elif target_page == "期貨牛熊":
             components.html(html, height=1200, scrolling=True)
         else:
             st.warning("⚠️ Report not found")
-
     with tab_vp:
         st.subheader("Volume Profile Analysis")
         if utils.check_access_or_show_teaser("成交分佈 Volume Profile"):
@@ -479,11 +454,9 @@ elif target_page == "期貨牛熊":
                 components.html(html, height=1000, scrolling=True)
             else:
                 st.warning("⚠️ No VP reports found")
-
     with tab_cbbc:
         st.subheader("HSI CBBC Heavy Zone")
-        if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder",
-                                             description="看穿大戶屠牛/殺熊目標價 (Predict Dealer Hedging Targets)"):
+        if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder", description="看穿大戶屠牛/殺熊目標價"):
             html = utils.load_html_file(os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html"))
             if "File not found" not in html:
                 components.html(html, height=1200, scrolling=True)
@@ -508,7 +481,6 @@ elif target_page == "實戰持倉":
                 utils.check_access_or_show_teaser("Stock Journal Full Access", description="Unlock full trade journal.")
         else:
             st.warning("⚠️ Report not found.")
-
     with tab2:
         if utils.check_access_or_show_teaser("Option Desk"):
             html, filename = utils.get_latest_file_content(path, "option_record_*.html")
