@@ -2,19 +2,46 @@ import streamlit as st
 import os
 import glob
 
+# --- Language Setup ---
+if 'language' not in st.session_state:
+    st.session_state['language'] = 'zh'
+
+translations = {
+    "zh": {
+        "title": "♟️ 每日操盤日記 (Trade Recap)",
+        "caption": "回顧市場邏輯 | 驗證交易系統 | 僅供教學參考",
+        "disclaimer_title": "⚠️ 免責聲明 (Disclaimer):",
+        "disclaimer_text": """
+        本頁面內容僅為個人交易紀錄與學術研究分享，**並非投資建議 (Not Financial Advice)**。
+        所有圖表、點位與分析僅用於驗證量化策略的有效性。過往績效不代表未來表現。請勿盲目跟單，投資涉及風險，請自行評估。
+        即時的個人操作會在TG群,這裡會有t+1 delay
+        """,
+        "no_files": "📭 暫無復盤日記，請稍後再來。",
+        "folder_info": "請在 `{}` 資料夾中放入 .md 檔案"
+    },
+    "en": {
+        "title": "♟️ Daily Trade Recap",
+        "caption": "Review Market Logic | Verify System | Educational Purpose Only",
+        "disclaimer_title": "⚠️ Disclaimer:",
+        "disclaimer_text": """
+        The content on this page is for personal trading records and academic research sharing only, **Not Financial Advice**.
+        All charts, levels, and analyses are for verifying the effectiveness of quantitative strategies. Past performance is not indicative of future results. Do not blindly copy trades. Investment involves risk, please assess it yourself.
+        Real-time operations are in the TG group; this page has a T+1 delay.
+        """,
+        "no_files": "📭 No recaps available yet. Please check back later.",
+        "folder_info": "Please place .md files in the `{}` folder"
+    }
+}
+
+def t(key):
+    return translations[st.session_state['language']].get(key, key)
 
 def render_recap_page(load_markdown_func):
-    st.title("♟️ 每日操盤日記 (Trade Recap)")
-    st.caption("回顧市場邏輯 | 驗證交易系統 | 僅供教學參考")
+    st.title(t("title"))
+    st.caption(t("caption"))
 
     # --- ⚠️ 合規免責聲明 (Compliance Shield) ---
-    st.warning("""
-    **⚠️ 免責聲明 (Disclaimer):**
-
-    本頁面內容僅為個人交易紀錄與學術研究分享，**並非投資建議 (Not Financial Advice)**。
-    所有圖表、點位與分析僅用於驗證量化策略的有效性。過往績效不代表未來表現。請勿盲目跟單，投資涉及風險，請自行評估。
-    即時的個人操作會在TG群,這裡會有t+1 delay
-    """)
+    st.warning(f"**{t('disclaimer_title')}**\n{t('disclaimer_text')}")
 
     st.markdown("---")
 
@@ -25,13 +52,13 @@ def render_recap_page(load_markdown_func):
     # 確保資料夾存在
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
-        st.info(f"請在 `{folder_path}` 資料夾中放入 .md 檔案")
+        st.info(t("folder_info").format(folder_path))
         return
 
     files = sorted(glob.glob(os.path.join(folder_path, "*.md")), reverse=True)
 
     if not files:
-        st.info("📭 暫無復盤日記，請稍後再來。")
+        st.info(t("no_files"))
     else:
         # Timeline 樣式顯示
         for file_path in files:
