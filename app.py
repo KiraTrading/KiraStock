@@ -175,17 +175,23 @@ with st.sidebar:
 
     current_nav_map = nav_map_zh if st.session_state['language'] == 'zh' else nav_map_en
     display_options = list(current_nav_map.values())
-
-    # --- Navigation Logic ---
+    # --- Navigation Logic Fix ---
     query_params = st.query_params
+    # 獲取 URL 參數，默認為 "首頁"
     url_main_page = query_params.get("page", "首頁")
+
+    # 處理 Sub Page 參數
     url_sub_page = query_params.get("sub", None)
 
+    # 1. 計算 Menu 的 Default Index
+    # 如果 URL 是 "SecretAdmin" 這種不在菜單裡的，index 設為 0 (顯示在首頁位置，但不影響內容)
     try:
+        # 這裡必須用 nav_map_zh 的 key 來對照，因為你的 url_main_page 邏輯是基於中文 Key
         main_default_index = list(nav_map_zh.keys()).index(url_main_page)
     except ValueError:
         main_default_index = 0
 
+    # 2. 渲染 Option Menu
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
@@ -203,9 +209,26 @@ with st.sidebar:
         }
     )
 
+    # 3. 反向查找：將 Menu 顯示的文字 (中/英) 轉回系統內部的 Key (中文)
+    # 例如：顯示 "Home" -> 轉回 "首頁"
     selected_nav = [k for k, v in current_nav_map.items() if v == selected_display][0]
-    target_page = selected_nav
 
+    # 4. 關鍵修復：處理隱藏頁面邏輯 & URL 同步
+    # 如果 URL 是 SecretAdmin 且 Menu 停留在首頁 (因為找不到 index)，則保持 SecretAdmin
+    if url_main_page == "SecretAdmin" and selected_nav == "首頁":
+        target_page = "SecretAdmin"
+    elif url_main_page == "Legal" and selected_nav == "首頁":
+        target_page = "Legal"
+    else:
+        # 正常導航情況
+        target_page = selected_nav
+
+        # [Bug Fix] 如果點擊了菜單，這裡必須主動更新 URL，否則連結不會變
+        if target_page != url_main_page:
+            st.query_params["page"] = target_page
+            # 某些情況下可能需要 st.rerun() 來強制刷新 URL 顯示，但在 Streamlit 新版通常會自動處理
+
+    # 處理 EA 子菜單邏輯 (保持原本 Logic)
     if selected_nav == "自動鈔能力":
         st.caption("AUTOMATED TRADING")
         ea_options_display = ["EA 介紹"] if st.session_state['language'] == 'zh' else ["EA Intro"]
@@ -217,7 +240,6 @@ with st.sidebar:
             target_page = "EA 介紹"
 
     st.markdown("---")
-
     st.markdown(f"""
         <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
             <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
