@@ -414,15 +414,9 @@ elif target_page == "美股獵人":
 elif target_page == "期權佈局":
     st.title("🎯 Options Flow Analytics")
     st.caption("跟蹤聰明錢異動 | Track Smart Money Flow")
-    tab_hk, tab_us, tab_strat = st.tabs(["🇭🇰 港股期權佈局", "🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy"])
+    tab_hk, tab_us, tab_strat = st.tabs(["🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy","🇭🇰 港股期權佈局"])
 
-    with tab_hk:
-        st.subheader("HK Option Market Analysis")
-        html, _ = utils.get_latest_file_content("Option", "HK_Option_Market_*.html")
-        if html:
-            components.html(html, height=2000, scrolling=True)
-        else:
-            st.warning("⚠️ No HK reports found.")
+
     with tab_us:
         st.subheader("US Option Strike Analysis")
         if utils.check_access_or_show_teaser("美股期權 US Option", description="Follow the Smart Money."):
@@ -454,6 +448,13 @@ elif target_page == "期權佈局":
                                 st.error(msg)
                         except Exception as e:
                             st.error(f"Error: {e}")
+    with tab_hk:
+        st.subheader("HK Option Market Analysis")
+        html, _ = utils.get_latest_file_content("Option", "HK_Option_Market_*.html")
+        if html:
+            components.html(html, height=2000, scrolling=True)
+        else:
+            st.warning("⚠️ No HK reports found.")
 
 elif target_page == "期貨牛熊":
     st.title("🎢 Futures & Trends")
