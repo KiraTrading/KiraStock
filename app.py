@@ -349,66 +349,72 @@ elif target_page == "每日復盤":
     recap_page.render_recap_page(utils.load_markdown_with_images)
 
 elif target_page == "研究專欄":
-    # --- Custom CSS: IG-able Cards & Clean Archive ---
+    # --- Custom CSS: Mobile Optimized & Clean Archive ---
     st.markdown("""
     <style>
-        /* 1. Global Card Style */
+        /* 1. Global Card Style - 縮小 Padding */
         .ig-card-container {
             background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 12px; /* 稍微減小圓角 */
+            padding: 15px; /* 從 20px 減小到 15px */
+            margin-bottom: 15px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
         }
 
         /* 2. Featured Card (Top) */
         .featured-header {
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            padding-bottom: 10px; /* 減小底部間距 */
+            margin-bottom: 10px;
         }
         .featured-tag {
             background-color: #2563EB;
             color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 3px 10px; /* 縮小 Tag */
+            border-radius: 15px;
+            font-size: 0.75rem; /* 縮小字體 */
             font-weight: 600;
             text-transform: uppercase;
         }
         .featured-title {
             color: #F8FAFC; 
-            font-size: 1.8rem; 
-            font-weight: 800; 
-            margin-top: 10px;
-            line-height: 1.3;
+            font-size: 1.25rem; /* 從 1.8rem 改為 1.25rem (適合手機) */
+            font-weight: 700; 
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* 手機版特別優化 (螢幕寬度小於 600px) */
+        @media (max-width: 600px) {
+            .featured-title { font-size: 1.1rem; } /* 手機上標題更小 */
+            .ig-card-container { padding: 12px; }  /* 手機上內距更緊湊 */
         }
 
         /* 3. Archive Expander Styling */
         .streamlit-expanderHeader {
             background-color: #1e293b !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 12px !important;
+            border-radius: 8px !important;
             color: #E2E8F0 !important;
             font-weight: 600 !important;
-            font-size: 1.05rem !important; /* 字體稍微調大 */
+            font-size: 0.95rem !important; /* 列表標題字體縮小 */
             transition: all 0.2s;
+            padding: 10px !important; /* 縮小列表高度 */
         }
         .streamlit-expanderHeader:hover {
             border-color: #3b82f6 !important;
             color: #3b82f6 !important;
-            transform: translateY(-2px);
         }
         .streamlit-expanderContent {
             background-color: #0f172a !important;
-            border-radius: 0 0 12px 12px !important;
+            border-radius: 0 0 8px 8px !important;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-top: none;
-            padding: 20px !important;
+            padding: 15px !important;
         }
         .streamlit-expanderHeader p {
-            font-size: 1.05rem !important;
+            font-size: 0.95rem !important;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -427,8 +433,6 @@ elif target_page == "研究專欄":
                 raw = f.read()
             lines = raw.split('\n')
 
-            # Default Metadata
-            # 如果舊文章沒有 Tag，預設顯示 "MEMO"
             meta = {
                 "title": lines[0].replace('#', '').replace('*', '').strip(),
                 "date": "Recent",
@@ -440,16 +444,11 @@ elif target_page == "研究專欄":
             for idx, line in enumerate(lines):
                 line = line.strip()
                 if "**Date:**" in line: meta["date"] = line.replace("**Date:**", "").strip()
-
-                # 增強 Tag 讀取：同時兼容 "**Tag:**" 和 "Tag:"
                 if "**Tag:**" in line:
                     meta["tag"] = line.replace("**Tag:**", "").strip()
                 elif line.startswith("Tag:"):
                     meta["tag"] = line.replace("Tag:", "").strip()
-
                 if "**Sentiment:**" in line: meta["sentiment"] = line.replace("**Sentiment:**", "").strip()
-
-                # 尋找正文開始處 (跳過 Metadata 區塊)
                 if idx > 0 and idx < 8 and line == "":
                     body_start = idx + 1
 
@@ -464,7 +463,6 @@ elif target_page == "研究專欄":
         meta, full_body = parse_insight(latest_file)
 
         with st.container():
-            # A. Header (HTML Style)
             icon = "🦅"
             if "Bullish" in meta['sentiment']:
                 icon = "🐂"
@@ -473,34 +471,29 @@ elif target_page == "研究專欄":
             elif "Warning" in meta['sentiment']:
                 icon = "⚠️"
 
-            # 🔥🔥🔥 MODIFIED HEADER WITH LARGE DATE 🔥🔥🔥
+            # 🔥🔥🔥 MODIFIED HEADER: 小字體 & 緊湊排版 🔥🔥🔥
             header_html = f"""
             <div class="ig-card-container">
                 <div class="featured-header">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span class="featured-tag">{meta['tag']}</span>
                         <span style="
-                            color: #FFFFFF; 
-                            font-size: 1.3rem; 
-                            font-weight: 800; 
-                            letter-spacing: 0.5px;
-                            text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
+                            color: #94a3b8; /* 顏色改淡一點，不搶眼 */
+                            font-size: 0.85rem; /* 從 1.3rem 改為 0.85rem */
+                            font-weight: 600; 
                         ">
                             🗓️ {meta['date']}
                         </span>
                     </div>
                     <div class="featured-title">{icon} {meta['title']}</div>
-                    <div style="color:#60A5FA; font-weight:bold; margin-top:5px;">{meta['sentiment']}</div>
+                    <div style="color:#60A5FA; font-weight:bold; margin-top:5px; font-size: 0.85rem;">{meta['sentiment']}</div>
                 </div>
             """
             st.markdown(header_html, unsafe_allow_html=True)
-
-            # B. Body (Markdown)
             st.markdown(full_body)
 
-            # C. Footer
             footer_html = """
-                <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #334155; text-align:right; font-size:0.8rem; color:#64748b;">
+                <div style="margin-top:15px; padding-top:10px; border-top:1px dashed #334155; text-align:right; font-size:0.75rem; color:#64748b;">
                     @ParisTrader | Institutional Data
                 </div>
             </div>
@@ -515,23 +508,23 @@ elif target_page == "研究專欄":
         # ==========================================
         if len(files) > 1:
             cols = st.columns(2)
-
             for i, file_path in enumerate(files[1:]):
                 meta, full_body = parse_insight(file_path)
                 col = cols[i % 2]
-
                 with col:
-                    # Emoji Logic
                     emoji_map = {"Bullish": "🟢", "Bearish": "🔴", "Neutral": "⚪", "Warning": "⚠️"}
                     sent_key = meta['sentiment'].split('(')[0].strip()
                     status_icon = emoji_map.get(sent_key, "📄")
 
-                    # 🔥 修改這裡：將日期直接加入標題後方
-                    # 格式：[ICON] [標題] ..... [日期]
-                    card_title = f"{status_icon} {meta['title']} 🗓️ {meta['date']}"
+                    # 列表標題也縮小日期顯示
+                    card_title = f"{status_icon} {meta['title']} <span style='font-size:0.8em; color:#9ca3af'>({meta['date']})</span>"
 
-                    with st.expander(card_title, expanded=False):
-                        # 展開後顯示詳細標籤
+                    # 使用 st.expander
+                    # 注意：Streamlit 的 expander label 不支援 HTML，所以這裡只能純文字
+                    # 如果要縮短標題，可以只顯示 日期
+                    expander_label = f"{status_icon} {meta['title']} | {meta['date']}"
+
+                    with st.expander(expander_label, expanded=False):
                         st.caption(f"📌 {meta['tag']} | {meta['sentiment']}")
                         st.markdown(full_body)
 
