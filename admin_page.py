@@ -110,11 +110,11 @@ def render_admin_console():
         if "draft_title" not in st.session_state: st.session_state.draft_title = ""
 
         PARIS_PERSONA = """
-            You are Paris Trader. You are a Senior Portfolio Manager and Ex-Prop Trader. You write concise, high-impact market memos for institutional desks.
+            You are Paris Trader. You are a financial blogger. Based on the material I provided. Rewrite blog.The content need to be in paragraphs and summarize 2 sentences as article title
             ROLE & TONE:
             - **Identity:** Cynical, sharp, "Smart Money" veteran.
-            - **Tone:** Direct, condensed, judgmental. No fluff.
-            - **Language:** Traditional Chinese (Hong Kong Finance Style) mixed with English financial terminology.
+            - **Tone:** Direct, condensed, include details.
+            - **Language:** Traditional Chinese (Hong Kong Finance Style), polite tone. written chinese, not cantonese.
             """
 
         if generate_btn and raw_text:
@@ -188,7 +188,7 @@ def render_admin_console():
                             st.error(f"Upload failed: {resp.status_code}")
                     except Exception as e:
                         st.error(f"Error: {e}")
-    
+
 
     # =========================================================
     # TAB 2: Trade Manager (新功能)

@@ -7,6 +7,7 @@ import glob
 import pandas as pd
 import json
 import base64
+import html
 
 # --- Custom Modules ---
 import styles
@@ -49,7 +50,6 @@ def toggle_language():
 
 
 # 翻譯字典
-# [重要修正] profile_text 內的文字必須 "頂格靠左"，不能有任何縮排
 translations = {
     "zh": {
         "slogan_title": "不再做韭菜 | 直接跟蹤大戶聰明錢",
@@ -349,8 +349,6 @@ elif target_page == "每日復盤":
     recap_page.render_recap_page(utils.load_markdown_with_images)
 
 elif target_page == "研究專欄":
-    import html  # 確保引入
-
     # --- Custom CSS: IG-able Cards & Clean Archive ---
     st.markdown("""
     <style>
@@ -475,12 +473,21 @@ elif target_page == "研究專欄":
             elif "Warning" in meta['sentiment']:
                 icon = "⚠️"
 
+            # 🔥🔥🔥 MODIFIED HEADER WITH LARGE DATE 🔥🔥🔥
             header_html = f"""
             <div class="ig-card-container">
                 <div class="featured-header">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span class="featured-tag">{meta['tag']}</span>
-                        <span style="color:#94a3b8; font-size:0.9rem;">{meta['date']}</span>
+                        <span style="
+                            color: #FFFFFF; 
+                            font-size: 1.3rem; 
+                            font-weight: 800; 
+                            letter-spacing: 0.5px;
+                            text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
+                        ">
+                            🗓️ {meta['date']}
+                        </span>
                     </div>
                     <div class="featured-title">{icon} {meta['title']}</div>
                     <div style="color:#60A5FA; font-weight:bold; margin-top:5px;">{meta['sentiment']}</div>
@@ -533,27 +540,58 @@ elif target_page == "大市雷達":
     st.caption("識別市場轉勢訊號 | Detect Market Reversals")
     tab_risk, tab_breadth, tab_cftc = st.tabs(["⚠️ 恐慌指數 Risk Meter", "🌊 市場寬度 Breadth", "🐋 莊家持倉 COT"])
 
+    # 獲取 VIP 狀態
+    is_vip = st.session_state.get("authentication_status", False)
+
     with tab_risk:
         st.subheader("Market Implied Risk")
         html_content, _ = utils.get_latest_file_content("ImpliedParameters")
+
         if html_content:
+            # CSS 修復，確保深色模式顯示正確
             fix_style = "<style>body {display: block !important; height: auto !important; min-height: 100vh; padding-top: 50px; background-color: #020617 !important;} .card { margin: 0 auto !important; }</style>"
-            components.html(html_content.replace("<head>", "<head>" + fix_style), height=2200, scrolling=True)
+            final_html = html_content.replace("<head>", "<head>" + fix_style)
+
+            if is_vip:
+                # VIP: 完整顯示
+                components.html(final_html, height=2200, scrolling=True)
+            else:
+                # Free: 預覽模式 (Preview Mode)
+                st.info("👀 Preview Mode (Showing Partial Data)")
+                components.html(final_html, height=800, scrolling=False)  # 限制高度且不能捲動
+                utils.check_access_or_show_teaser("Risk Meter Full Access",
+                                                  description="Unlock full implied volatility data.")
         else:
             st.warning("⚠️ No risk reports found.")
+
     with tab_breadth:
         st.subheader("Market Breadth")
         html_content, _ = utils.get_latest_file_content(os.path.join("MarketDashboard", "MarketBreadth"),
                                                         "market_breadth_*.html")
+
         if html_content:
-            components.html(html_content, height=2200, scrolling=True)
+            if is_vip:
+                components.html(html_content, height=2200, scrolling=True)
+            else:
+                st.info("👀 Preview Mode (Showing Partial Data)")
+                components.html(html_content, height=800, scrolling=False)
+                utils.check_access_or_show_teaser("Market Breadth Full Access",
+                                                  description="Unlock full breadth indicators.")
         else:
             st.warning("⚠️ Market Breadth report not found.")
+
     with tab_cftc:
         st.subheader("CFTC Institutional Positioning")
         html_content, _ = utils.get_latest_file_content("MarketDashboard", "cftc_pro_report*.html")
+
         if html_content:
-            components.html(html_content, height=2200, scrolling=True)
+            if is_vip:
+                components.html(html_content, height=2200, scrolling=True)
+            else:
+                st.info("👀 Preview Mode (Showing Top Positions)")
+                components.html(html_content, height=800, scrolling=False)
+                utils.check_access_or_show_teaser("CFTC Report Full Access",
+                                                  description="See all institutional positioning.")
         else:
             st.warning("⚠️ CFTC Report not found.")
 
@@ -611,23 +649,40 @@ elif target_page == "期貨牛熊":
     tab_vol, tab_vp, tab_cbbc = st.tabs(
         ["⚡ 日內波幅 (Volatility)", "📊 成交分佈 (Volume Profile)", "🐻 牛熊重貨區 (CBBC)"])
 
+    # 獲取 VIP 狀態
+    is_vip = st.session_state.get("authentication_status", False)
+
     with tab_vol:
         st.subheader("Intraday Volatility Analysis")
         html = utils.load_html_file(os.path.join("MarketDashboard", "Intraday_Volatility.html"))
+
         if "File not found" not in html:
-            components.html(html, height=1200, scrolling=True)
+            if is_vip:
+                # VIP: 完整顯示
+                components.html(html, height=1200, scrolling=True)
+            else:
+                # Free: 預覽模式
+                st.info("👀 Preview Mode (Recent Volatility Only)")
+                components.html(html, height=600, scrolling=False)  # 限制高度
+                utils.check_access_or_show_teaser("Volatility Full Access",
+                                                  description="Unlock real-time volatility levels.")
         else:
             st.warning("⚠️ Report not found")
+
     with tab_vp:
         st.subheader("Volume Profile Analysis")
+        # Volume Profile 保持原本的完全鎖定 (因為圖表很難做 Preview，通常直接鎖更有吸引力)
+        # 如果你想把這個也改成 Preview，可以告訴我
         if utils.check_access_or_show_teaser("成交分佈 Volume Profile"):
             html, filename = utils.get_latest_file_content("VP", "volume_profile_dashboard_*.html")
             if html:
                 components.html(html, height=1000, scrolling=True)
             else:
                 st.warning("⚠️ No VP reports found")
+
     with tab_cbbc:
         st.subheader("HSI CBBC Heavy Zone")
+        # 牛熊證保持完全鎖定
         if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder", description="看穿大戶屠牛/殺熊目標價"):
             html = utils.load_html_file(os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html"))
             if "File not found" not in html:
