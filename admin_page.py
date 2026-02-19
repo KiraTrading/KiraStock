@@ -132,7 +132,7 @@ def render_admin_console():
             with st.spinner("Gemini is analyzing market data..."):
                 try:
                     # 使用最新的 Flash 模型 (速度快且適合這類短文本)
-                    model = genai.GenerativeModel('gemini-2.0-flash')
+                    model = genai.GenerativeModel('gemini-2.5-flash')
 
                     # 優化 Prompt 結構，讓 AI 清楚區分 "人設" 和 "素材"
                     prompt = (
