@@ -1,16 +1,16 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice,ExitDate
-GOOGL,LONG,2025-11-19,298.0,311.49,500,155745.0,OPEN,6745.0,Gemini 3 AI dominance. Fundamental value gap.,-1745.01,314.98,
-RKLB,LONG,2025-12-09,53.4,70.21,750,52657.5,OPEN,12607.5,SpaceX sympathy play. Options flow bullish.,-487.5,70.86,
+GOOGL,LONG,2025-11-19,298.0,310.9,500,155450.0,OPEN,6450.0,Gemini 3 AI dominance. Fundamental value gap.,-2040.01,314.98,
+RKLB,LONG,2025-12-09,53.4,69.97,750,52477.5,OPEN,12427.5,SpaceX sympathy play. Options flow bullish.,-667.5,70.86,
 AMC,SHORT,2025-12-09,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49,2026-02-04
-ALB,LONG,2025-12-17,135.0,177.52,500,88760.0,OPEN,21260.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,4550.0,168.42,
-RTX,LONG,2025-12-19,181.76,201.92,500,100960.0,OPEN,10080.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
-",-1500.0,204.92,
-STT,LONG,2025-12-23,129.74,125.13,600,75078.0,OPEN,-2766.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-1686.0,127.94,
-BABA,LONG,2026-01-02,153.45,152.78,700,106946.0,OPEN,-469.0,Day chart call tp in fate,-1169.0,154.45,
+ALB,LONG,2025-12-17,135.0,186.83,500,93415.0,OPEN,25915.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,9205.0,168.42,
+RTX,LONG,2025-12-19,181.76,198.46,500,99230.0,OPEN,8350.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
+",-3230.0,204.92,
+STT,LONG,2025-12-23,129.74,127.23,600,76338.0,OPEN,-1506.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",-426.0,127.94,
+BABA,LONG,2026-01-02,153.45,153.11,700,107177.0,OPEN,-238.0,Day chart call tp in fate,-938.0,154.45,
 PLTR,LONG,2026-01-05,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47,2026-02-04
-ASML,LONG,2026-01-05,1215.0,1485.99,75,111449.25,OPEN,20324.25,day gap up,1230.0,1469.59,
+ASML,LONG,2026-01-05,1215.0,1497.8,75,112335.0,OPEN,21210.0,day gap up,2115.76,1469.59,
 MU,LONG,2026-01-28,200.0,383.5,200,76700.0,CLOSED,36700.0,day cc tp new,-2238.0,394.69,2026-02-10
-WDC,LONG,2026-01-28,266.0,280.42,300,84126.0,OPEN,4326.0,day cc tp new,-1529.99,285.52,
+WDC,LONG,2026-01-28,266.0,270.57,300,81171.0,OPEN,1371.0,day cc tp new,-4484.99,285.52,
 SOFI,LONG,2025-11-25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6,2026-02-04
 NVDA,SHORT,2025-11-18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0,2025-12-18
 META,LONG,2025-12-23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move,0.0,0.0,2025-12-29
@@ -19,9 +19,9 @@ AVGO,LONG,2025-12-24,350.2,351.71,250,87927.5,CLOSED,-1300.0,"Rebound play:Valua
 ",-1300.0,352.21,2026-02-02
 ASML,LONG,2026-01-05,1215.0,1350.0,75,182250.0,CLOSED,10000.0,day gap up,10000.0,1256.0,2026-02-05
 RKLB,LONG,2025-12-09,53.4,96.3,750,144450.0,CLOSED,34350.0,SpaceX sympathy play. Options flow bullish.,12600.0,87.9,2026-02-04
-KO,LONG,2026-02-03,75.0,80.56,1200,96672.0,OPEN,6672.0,earning play,864.0,79.84,
-DELL,LONG,2026-02-09,120.3,119.14,450,53613.0,OPEN,-522.0,"supercycle of enterprise PC replacements triggered by the retirement of Windows 10,undervalued leading position in AI infrastructure are bound to prompt a market re-rating of its value",-1408.5,122.27,
-MU,LONG,2026-01-28,200.0,420.97,250,105242.5,OPEN,55242.5,day cc tp new,-1800.0,428.17,
-NCLH,LONG,2026-02-10,23.7,23.49,2000,46980.0,Open,-420.0,day cc tp new,-1640.0,24.31,
-MSFT,LONG,2026-02-18,398.69,384.47,100,38447.0,Open,-1422.0,insider buy back and 400 key support level,-1276.0,397.23,
-OTIS,LONG,2026-02-17,92.3,90.55,400,36220.0,Open,-700.0,"TA socre, day cc tp, Modernization Boom",-848.0,92.67,
+KO,LONG,2026-02-03,75.0,80.72,1200,96864.0,OPEN,6864.0,earning play,1056.01,79.84,
+DELL,LONG,2026-02-09,120.3,119.78,450,53901.0,OPEN,-234.0,"supercycle of enterprise PC replacements triggered by the retirement of Windows 10,undervalued leading position in AI infrastructure are bound to prompt a market re-rating of its value",-1120.5,122.27,
+MU,LONG,2026-01-28,200.0,418.01,250,104502.5,OPEN,54502.5,day cc tp new,-2540.0,428.17,
+NCLH,LONG,2026-02-10,23.7,23.96,2000,47920.0,Open,520.0,day cc tp new,-700.0,24.31,
+MSFT,LONG,2026-02-18,398.69,389.0,100,38900.0,Open,-969.0,insider buy back and 400 key support level,-823.0,397.23,
+OTIS,LONG,2026-02-17,92.3,89.91,400,35964.0,Open,-956.0,"TA socre, day cc tp, Modernization Boom",-1104.0,92.67,
