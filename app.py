@@ -158,18 +158,18 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     nav_map_zh = {
-        "首頁": "首頁", "每日復盤": "每日復盤", "研究專欄": "研究專欄",
+        "首頁": "首頁", "股票研究": "股票研究", "宏觀專欄": "宏觀專欄",
         "大市雷達": "大市雷達", "實戰持倉": "實戰持倉", "美股獵人": "美股獵人",
         "期權佈局": "期權佈局", "期貨牛熊": "期貨牛熊", "自動鈔能力": "自動鈔能力",
-        "交易學院": "交易學院", "交易社群": "交易社群", "CFD開戶優惠": "CFD開戶優惠",
+        "交易學院": "交易學院", "CFD開戶優惠": "CFD開戶優惠",
         "升級會員": "升級會員"
     }
 
     nav_map_en = {
-        "首頁": "Home", "每日復盤": "Daily Recap", "研究專欄": "Research",
+        "首頁": "Home", "股票研究": "Daily Recap", "宏觀專欄": "Research",
         "大市雷達": "Market Radar", "實戰持倉": "Portfolio", "美股獵人": "Stock Hunter",
         "期權佈局": "Option Flow", "期貨牛熊": "Futures & Vol", "自動鈔能力": "Auto-Trading (EA)",
-        "交易學院": "Academy", "交易社群": "Community", "CFD開戶優惠": "Broker Offer",
+        "交易學院": "Academy", "CFD開戶優惠": "Broker Offer",
         "升級會員": "Go VIP"
     }
 
@@ -345,10 +345,10 @@ elif target_page == "Market Dashboard":
     else:
         st.warning(f"⚠️ No dashboard files found. Error: {filename}")
 
-elif target_page == "每日復盤":
+elif target_page == "股票研究":
     recap_page.render_recap_page(utils.load_markdown_with_images)
 
-elif target_page == "研究專欄":
+elif target_page == "宏觀專欄":
     # --- Custom CSS: Mobile Optimized & Clean Archive ---
     st.markdown("""
     <style>
@@ -713,7 +713,7 @@ elif target_page == "EA 介紹":
     st.title("🤖 MT5 Expert Advisor (EA)")
     html = utils.load_html_file(os.path.join("MT5EA", "ea_marketing.html"))
     if "File not found" not in html:
-        components.html(html, height=3000, scrolling=True)
+        components.html(html, height=3000, scrolling=False)
     else:
         st.warning("⚠️ Content not found.")
 
@@ -734,22 +734,17 @@ elif target_page == "CFD開戶優惠":
     st.title("🔗 Trading Resources")
     html = utils.load_html_file(os.path.join("Resources", "external_links.html"))
     if "File not found" not in html:
-        components.html(html, height=1000, scrolling=True)
+        components.html(html, height=5300, scrolling=False)
     else:
         st.warning("⚠️ Content not found.")
 
-elif target_page == "交易社群":
-    html = utils.load_html_file(os.path.join("Community", "community_promo.html"))
-    if "File not found" not in html:
-        components.html(html, height=1200, scrolling=True)
-    else:
-        st.error("⚠️ Content not found")
 
 elif target_page == "升級會員":
     st.title("💎 升級機構級數據")
-    html = utils.load_html_file(os.path.join("Community", "membership_pricing.html"))
+    html = utils.load_html_file(os.path.join("Community", "community_promo.html"))
     if "File not found" not in html:
-        components.html(html, height=1100, scrolling=True)
+        # 將 height 加大到 1800 (或視乎你的內容增減)，並將 scrolling 設為 False
+        components.html(html, height=2500, scrolling=False)
     else:
         st.error("⚠️ Content not found")
 
