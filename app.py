@@ -286,6 +286,69 @@ elif target_page == "首頁":
         "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en"}</script></div>""",
                         height=100)
 
+        # =========== 實戰成績與會員反饋 (Social Proof) 區塊 開始 ===========
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.subheader("🔥 實戰成績與會員反饋")
+        st.caption("真實數據說話，見證機構級數據與資金流的威力")
+
+        # 【防呆機制】：這裡面的 HTML 程式碼完全沒有任何縮排，確保不會觸發 Streamlit Markdown Code Block 解析錯誤
+        social_proof_html = """
+<style>
+.social-proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; margin-bottom: 20px; }
+.sp-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; }
+.sp-card:hover { transform: translateY(-8px); border-color: #F59E0B; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.15); }
+.sp-img-container { width: 100%; height: 180px; background-color: #0f172a; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.sp-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.sp-card:hover .sp-img { transform: scale(1.08); }
+.sp-content { padding: 16px; }
+.sp-tag { font-size: 0.75rem; background: rgba(37, 99, 235, 0.2); color: #60A5FA; padding: 4px 8px; border-radius: 4px; font-weight: 700; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px; }
+.sp-tag.gold { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
+.sp-text { color: #cbd5e1; font-size: 0.95rem; font-weight: 500; line-height: 1.5; margin: 0; min-height: 42px; }
+.sp-author { margin-top: 15px; font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 5px; }
+.sp-disclaimer { font-size: 0.75rem; color: #475569; text-align: right; margin-top: 10px; font-style: italic; }
+</style>
+<div class="social-proof-grid">
+<div class="sp-card">
+<div class="sp-img-container">
+<img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl1.jpg" class="sp-img" alt="Member PnL 1" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
+</div>
+<div class="sp-content">
+<div class="sp-tag">📊 波段捕捉</div>
+<p class="sp-text">「執行力與紀律的展現 - 運用大市雷達成功捕捉波段起漲點。」</p>
+<div class="sp-author">👤 VIP 群組實戰回單</div>
+</div>
+</div>
+<div class="sp-card">
+<div class="sp-img-container" style="background: #0f172a; padding: 20px; display:flex; flex-direction: column; justify-content:center;">
+<div style="background: rgba(255,255,255,0.05); padding: 12px 15px; border-radius: 12px; border-left: 3px solid #F59E0B; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; font-weight:bold;">Member-老登</div>
+<div style="font-size: 0.9rem; color: #f8fafc; line-height: 1.4;">這速度太誇張了... 剛才那波油價拉升直接抓到。🚀</div>
+<div style="font-size: 0.7rem; color: #64748b; text-align: right; margin-top: 5px;">10:45 AM</div>
+</div>
+</div>
+<div class="sp-content">
+<div class="sp-tag gold">⚡ 情報領先</div>
+<p class="sp-text">「比散戶新聞快最少 5 分鐘！即時捕捉機構 Block Trade 佈局和突發新聞。」</p>
+<div class="sp-author">💬 內部交易員交流群</div>
+</div>
+</div>
+<div class="sp-card">
+<div class="sp-img-container">
+<img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl2.jpg" class="sp-img" alt="Member PnL 2" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
+</div>
+<div class="sp-content">
+<div class="sp-tag">🎯 數據反轉</div>
+<p class="sp-text">「群組即時提示驗證 - 把握非農數據後的反轉，避開假突破。」</p>
+<div class="sp-author">👤 VIP 群組實戰回單</div>
+</div>
+</div>
+</div>
+<div class="sp-disclaimer">* 過去績效不代表未來收益，交易皆具風險，請自行評估。</div>
+"""
+        st.markdown(social_proof_html, unsafe_allow_html=True)
+        st.markdown("---")
+        # =========== 實戰成績與會員反饋 (Social Proof) 區塊 結束 ===========
+
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader(t('tutorial'))
         st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
@@ -297,13 +360,6 @@ elif target_page == "首頁":
             type="primary",
             use_container_width=True
         )
-
-        st.markdown("---")
-        st.subheader(t('week_ahead'))
-        with st.container():
-            analysis_content = utils.load_weekly_analysis()
-            with st.expander(t('expander_title'), expanded=True):
-                st.markdown(analysis_content)
 
     with col_profile:
         img_path = "static/profile.jpg"
@@ -519,9 +575,6 @@ elif target_page == "宏觀專欄":
                     # 列表標題也縮小日期顯示
                     card_title = f"{status_icon} {meta['title']} <span style='font-size:0.8em; color:#9ca3af'>({meta['date']})</span>"
 
-                    # 使用 st.expander
-                    # 注意：Streamlit 的 expander label 不支援 HTML，所以這裡只能純文字
-                    # 如果要縮短標題，可以只顯示 日期
                     expander_label = f"{status_icon} {meta['title']} | {meta['date']}"
 
                     with st.expander(expander_label, expanded=False):
@@ -533,7 +586,6 @@ elif target_page == "大市雷達":
     st.caption("識別市場轉勢訊號 | Detect Market Reversals")
     tab_risk, tab_breadth, tab_cftc = st.tabs(["⚠️ 恐慌指數 Risk Meter", "🌊 市場寬度 Breadth", "🐋 莊家持倉 COT"])
 
-    # 獲取 VIP 狀態
     is_vip = st.session_state.get("authentication_status", False)
 
     with tab_risk:
@@ -541,17 +593,14 @@ elif target_page == "大市雷達":
         html_content, _ = utils.get_latest_file_content("ImpliedParameters")
 
         if html_content:
-            # CSS 修復，確保深色模式顯示正確
             fix_style = "<style>body {display: block !important; height: auto !important; min-height: 100vh; padding-top: 50px; background-color: #020617 !important;} .card { margin: 0 auto !important; }</style>"
             final_html = html_content.replace("<head>", "<head>" + fix_style)
 
             if is_vip:
-                # VIP: 完整顯示
                 components.html(final_html, height=2200, scrolling=True)
             else:
-                # Free: 預覽模式 (Preview Mode)
                 st.info("👀 Preview Mode (Showing Partial Data)")
-                components.html(final_html, height=800, scrolling=False)  # 限制高度且不能捲動
+                components.html(final_html, height=800, scrolling=False)
                 utils.check_access_or_show_teaser("Risk Meter Full Access",
                                                   description="Unlock full implied volatility data.")
         else:
@@ -594,8 +643,7 @@ elif target_page == "美股獵人":
 elif target_page == "期權佈局":
     st.title("🎯 Options Flow Analytics")
     st.caption("跟蹤聰明錢異動 | Track Smart Money Flow")
-    tab_us, tab_strat,tab_hk = st.tabs(["🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy","🇭🇰 港股期權佈局"])
-
+    tab_us, tab_strat, tab_hk = st.tabs(["🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy", "🇭🇰 港股期權佈局"])
 
     with tab_us:
         st.subheader("US Option Strike Analysis")
@@ -619,10 +667,10 @@ elif target_page == "期權佈局":
                         try:
                             _, _, date = strategy_logic.get_local_data(ticker)
                             status.write(f"✅ Loaded data: {date}")
-                            html, msg = strategy_logic.generate_strategy_html(ticker, width, call_otm, put_itm)
-                            if html:
+                            html_str, msg = strategy_logic.generate_strategy_html(ticker, width, call_otm, put_itm)
+                            if html_str:
                                 status.update(label="Done!", state="complete")
-                                components.html(html, height=1400, scrolling=True)
+                                components.html(html_str, height=1400, scrolling=True)
                             else:
                                 status.update(label="Failed", state="error")
                                 st.error(msg)
@@ -630,9 +678,9 @@ elif target_page == "期權佈局":
                             st.error(f"Error: {e}")
     with tab_hk:
         st.subheader("HK Option Market Analysis")
-        html, _ = utils.get_latest_file_content("Option", "HK_Option_Market_*.html")
-        if html:
-            components.html(html, height=2000, scrolling=True)
+        html_str, _ = utils.get_latest_file_content("Option", "HK_Option_Market_*.html")
+        if html_str:
+            components.html(html_str, height=2000, scrolling=True)
         else:
             st.warning("⚠️ No HK reports found.")
 
@@ -642,21 +690,18 @@ elif target_page == "期貨牛熊":
     tab_vol, tab_vp, tab_cbbc = st.tabs(
         ["⚡ 日內波幅 (Volatility)", "📊 成交分佈 (Volume Profile)", "🐻 牛熊重貨區 (CBBC)"])
 
-    # 獲取 VIP 狀態
     is_vip = st.session_state.get("authentication_status", False)
 
     with tab_vol:
         st.subheader("Intraday Volatility Analysis")
-        html = utils.load_html_file(os.path.join("MarketDashboard", "Intraday_Volatility.html"))
+        html_content = utils.load_html_file(os.path.join("MarketDashboard", "Intraday_Volatility.html"))
 
-        if "File not found" not in html:
+        if "File not found" not in html_content:
             if is_vip:
-                # VIP: 完整顯示
-                components.html(html, height=1200, scrolling=True)
+                components.html(html_content, height=1200, scrolling=True)
             else:
-                # Free: 預覽模式
                 st.info("👀 Preview Mode (Recent Volatility Only)")
-                components.html(html, height=600, scrolling=False)  # 限制高度
+                components.html(html_content, height=600, scrolling=False)
                 utils.check_access_or_show_teaser("Volatility Full Access",
                                                   description="Unlock real-time volatility levels.")
         else:
@@ -664,22 +709,19 @@ elif target_page == "期貨牛熊":
 
     with tab_vp:
         st.subheader("Volume Profile Analysis")
-        # Volume Profile 保持原本的完全鎖定 (因為圖表很難做 Preview，通常直接鎖更有吸引力)
-        # 如果你想把這個也改成 Preview，可以告訴我
         if utils.check_access_or_show_teaser("成交分佈 Volume Profile"):
-            html, filename = utils.get_latest_file_content("VP", "volume_profile_dashboard_*.html")
-            if html:
-                components.html(html, height=1000, scrolling=True)
+            html_content, filename = utils.get_latest_file_content("VP", "volume_profile_dashboard_*.html")
+            if html_content:
+                components.html(html_content, height=1000, scrolling=True)
             else:
                 st.warning("⚠️ No VP reports found")
 
     with tab_cbbc:
         st.subheader("HSI CBBC Heavy Zone")
-        # 牛熊證保持完全鎖定
         if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder", description="看穿大戶屠牛/殺熊目標價"):
-            html = utils.load_html_file(os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html"))
-            if "File not found" not in html:
-                components.html(html, height=1200, scrolling=True)
+            html_content = utils.load_html_file(os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html"))
+            if "File not found" not in html_content:
+                components.html(html_content, height=1200, scrolling=True)
             else:
                 st.warning("⚠️ Report not found")
 
@@ -690,30 +732,30 @@ elif target_page == "實戰持倉":
     is_vip = st.session_state.get("authentication_status", False)
 
     with tab1:
-        html, filename = utils.get_latest_file_content(path, "trade_record_*.html")
-        if html:
+        html_content, filename = utils.get_latest_file_content(path, "trade_record_*.html")
+        if html_content:
             st.caption(f"📅 Report: {filename}")
             if is_vip:
-                components.html(html, height=1200, scrolling=True)
+                components.html(html_content, height=1200, scrolling=True)
             else:
                 st.info("👀 Preview Mode (Showing Top Holdings Only)")
-                components.html(html, height=800, scrolling=False)
+                components.html(html_content, height=800, scrolling=False)
                 utils.check_access_or_show_teaser("Stock Journal Full Access", description="Unlock full trade journal.")
         else:
             st.warning("⚠️ Report not found.")
     with tab2:
         if utils.check_access_or_show_teaser("Option Desk"):
-            html, filename = utils.get_latest_file_content(path, "option_record_*.html")
-            if html:
-                components.html(html, height=1200, scrolling=True)
+            html_content, filename = utils.get_latest_file_content(path, "option_record_*.html")
+            if html_content:
+                components.html(html_content, height=1200, scrolling=True)
             else:
                 st.warning("⚠️ Report not found.")
 
 elif target_page == "EA 介紹":
     st.title("🤖 MT5 Expert Advisor (EA)")
-    html = utils.load_html_file(os.path.join("MT5EA", "ea_marketing.html"))
-    if "File not found" not in html:
-        components.html(html, height=3000, scrolling=False)
+    html_content = utils.load_html_file(os.path.join("MT5EA", "ea_marketing.html"))
+    if "File not found" not in html_content:
+        components.html(html_content, height=3000, scrolling=False)
     else:
         st.warning("⚠️ Content not found.")
 
@@ -732,19 +774,18 @@ elif target_page == "Legal":
 
 elif target_page == "CFD開戶優惠":
     st.title("🔗 Trading Resources")
-    html = utils.load_html_file(os.path.join("Resources", "external_links.html"))
-    if "File not found" not in html:
-        components.html(html, height=5300, scrolling=False)
+    html_content = utils.load_html_file(os.path.join("Resources", "external_links.html"))
+    if "File not found" not in html_content:
+        components.html(html_content, height=5300, scrolling=False)
     else:
         st.warning("⚠️ Content not found.")
 
 
 elif target_page == "升級會員":
     st.title("💎 升級機構級數據")
-    html = utils.load_html_file(os.path.join("Community", "community_promo.html"))
-    if "File not found" not in html:
-        # 將 height 加大到 1800 (或視乎你的內容增減)，並將 scrolling 設為 False
-        components.html(html, height=2500, scrolling=False)
+    html_content = utils.load_html_file(os.path.join("Community", "community_promo.html"))
+    if "File not found" not in html_content:
+        components.html(html_content, height=2500, scrolling=False)
     else:
         st.error("⚠️ Content not found")
 
