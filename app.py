@@ -158,19 +158,35 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     nav_map_zh = {
-        "首頁": "首頁", "股票研究": "股票研究", "宏觀專欄": "宏觀專欄",
-        "大市雷達": "大市雷達", "實戰持倉": "實戰持倉", "美股獵人": "美股獵人",
-        "期權佈局": "期權佈局", "期貨牛熊": "期貨牛熊", "自動鈔能力": "自動鈔能力",
-        "交易學院": "交易學院", "CFD開戶優惠": "CFD開戶優惠",
-        "升級會員": "升級會員"
+        "升級會員": "💎 升級會員 (VIP)",
+        "CFD開戶優惠": "🎁 開戶專屬優惠",
+        "試用指標": "🔥 試用指標教學",
+        "首頁": "首頁",
+        "股票研究": "股票研究",
+        "宏觀專欄": "宏觀專欄",
+        "大市雷達": "大市雷達",
+        "實戰持倉": "實戰持倉",
+        "美股獵人": "美股獵人",
+        "期權佈局": "期權佈局",
+        "期貨牛熊": "期貨牛熊",
+        "自動鈔能力": "自動鈔能力",
+        "交易學院": "交易學院"
     }
 
     nav_map_en = {
-        "首頁": "Home", "股票研究": "Daily Recap", "宏觀專欄": "Research",
-        "大市雷達": "Market Radar", "實戰持倉": "Portfolio", "美股獵人": "Stock Hunter",
-        "期權佈局": "Option Flow", "期貨牛熊": "Futures & Vol", "自動鈔能力": "Auto-Trading (EA)",
-        "交易學院": "Academy", "CFD開戶優惠": "Broker Offer",
-        "升級會員": "Go VIP"
+        "升級會員": "💎 Go VIP",
+        "CFD開戶優惠": "🎁 Broker Offer",
+        "試用指標": "🔥 Trial Indicator",
+        "首頁": "Home",
+        "股票研究": "Daily Recap",
+        "宏觀專欄": "Research",
+        "大市雷達": "Market Radar",
+        "實戰持倉": "Portfolio",
+        "美股獵人": "Stock Hunter",
+        "期權佈局": "Option Flow",
+        "期貨牛熊": "Futures & Vol",
+        "自動鈔能力": "Auto-Trading (EA)",
+        "交易學院": "Academy"
     }
 
     current_nav_map = nav_map_zh if st.session_state['language'] == 'zh' else nav_map_en
@@ -195,8 +211,9 @@ with st.sidebar:
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
-        icons=["house", "journal-bookmark", "globe", "activity", "briefcase", "crosshair", "layers",
-               "graph-up-arrow", "robot", "mortarboard", "people-fill", "collection", "gem"],
+        # 圖標對應：gem(VIP), gift(優惠), lightning-charge(指標), house(首頁)...
+        icons=["gem", "gift", "lightning-charge", "house", "journal-bookmark", "globe", "activity", "briefcase",
+               "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
         menu_icon="compass",
         default_index=main_default_index,
         key="main_nav_key",
@@ -580,6 +597,18 @@ elif target_page == "宏觀專欄":
                     with st.expander(expander_label, expanded=False):
                         st.caption(f"📌 {meta['tag']} | {meta['sentiment']}")
                         st.markdown(full_body)
+
+elif target_page == "試用指標":
+    st.title("🔥 獨家指標試用與教學")
+    st.caption("透過量化指標，捕捉最佳進出場!捉頂捉底時機")
+    html_content = utils.load_html_file(os.path.join("Community", "indicator.html"))
+
+
+    if "File not found" not in html_content:
+        # 開啟 scrolling=True 確保長內容可以完整滾動閱讀
+        components.html(html_content, height=1800, scrolling=True)
+    else:
+        st.error("⚠️ 找不到 indicator.html，請檢查檔案是否已上傳或路徑是否正確。")
 
 elif target_page == "大市雷達":
     st.title("📡 Market Radar (大市雷達)")
