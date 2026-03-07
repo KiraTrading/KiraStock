@@ -788,7 +788,7 @@ elif target_page == "EA 介紹":
     st.title("🤖 MT5 Expert Advisor (EA)")
     html_content = utils.load_html_file(os.path.join("MT5EA", "ea_marketing.html"))
     if "File not found" not in html_content:
-        components.html(html_content, height=3000, scrolling=False)
+        st.html(html_content) # ✅ 讓系統自動適應高度
     else:
         st.warning("⚠️ Content not found.")
 
@@ -809,7 +809,7 @@ elif target_page == "CFD開戶優惠":
     st.title("🔗 Trading Resources")
     html_content = utils.load_html_file(os.path.join("Resources", "external_links.html"))
     if "File not found" not in html_content:
-        components.html(html_content, height=5300, scrolling=False)
+        st.html(html_content) # ✅ 讓系統自動適應高度
     else:
         st.warning("⚠️ Content not found.")
 
@@ -818,10 +818,9 @@ elif target_page == "升級會員":
     st.title("💎 升級機構級數據")
     html_content = utils.load_html_file(os.path.join("Community", "community_promo.html"))
     if "File not found" not in html_content:
-        components.html(html_content, height=2500, scrolling=False)
+        st.html(html_content)
     else:
         st.error("⚠️ Content not found")
-
 # Footer
 st.markdown("""
 <div class="custom-footer">
