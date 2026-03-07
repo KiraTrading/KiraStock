@@ -56,6 +56,77 @@
             margin: 0 auto;
         }
 
+        /* --- SECTION 4: Pricing (The Offer) --- */
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            max-width: 900px; /* Limit width to focus on VIP */
+            margin: 0 auto 50px auto;
+        }
+
+        .plan-card {
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            display: flex; flex-direction: column;
+            transition: transform 0.3s;
+        }
+
+        /* VIP Specifics */
+        .plan-card.vip {
+            border: 2px solid var(--gold);
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.2) 0%, rgba(17, 24, 39, 0.8) 100%);
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.1);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+        .plan-card.vip:hover { transform: scale(1.04); }
+
+        .badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--gold), #d97706);
+            color: #000; font-weight: 800; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;
+            box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4);
+        }
+
+        .plan-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .plan-subtitle { font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px; }
+        .plan-price { font-size: 2.5rem; font-weight: 700; color: #60a5fa; margin: 10px 0 20px 0; }
+        .plan-price.vip-price { color: var(--gold); }
+        .plan-price .original-price { font-size: 1.1rem; color: #64748b; text-decoration: line-through; display: block; margin-bottom: -5px; font-weight: 400;}
+        .plan-price span { font-size: 1rem; color: #9ca3af; font-weight: 400; }
+
+        .feature-list { list-style: none; padding: 0; text-align: left; margin: 0 0 30px 0; flex-grow: 1; }
+        .feature-list li { margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.4; font-size: 0.95rem; color: #cbd5e1; }
+        .feature-list li.unlocked::before { content: "✓"; color: #10b981; margin-right: 10px; font-weight: bold; flex-shrink: 0; }
+        .feature-list li.locked { color: #64748b; }
+        .feature-list li.locked::before { content: "🔒"; margin-right: 10px; filter: grayscale(1); flex-shrink: 0; }
+        .vip-desc { font-size: 0.8rem; color: #94a3b8; display: block; margin-top: 2px; }
+        .highlight { color: #fff; font-weight: 600; }
+
+        .cta-button {
+            display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: 700; text-decoration: none;
+            transition: all 0.2s; text-align: center; box-sizing: border-box;
+        }
+        .btn-free { background: rgba(255,255,255,0.05); color: #64748b; border: 1px solid rgba(255,255,255,0.1); cursor: default; }
+        .btn-vip {
+            background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
+            color: white; font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            animation: pulse-gold 2s infinite;
+        }
+        .btn-vip:hover { transform: scale(1.02); color: #fff; }
+        .social-proof { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-style: italic; }
+
         /* --- SECTION 1: Results Gallery (From Community) --- */
         .results-section {
             margin-bottom: 60px;
@@ -174,77 +245,6 @@
         .value-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; }
         .gold-text { color: var(--gold); font-weight: bold; }
 
-        /* --- SECTION 4: Pricing (The Offer) --- */
-        .pricing-container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            max-width: 900px; /* Limit width to focus on VIP */
-            margin: 0 auto 50px auto;
-        }
-
-        .plan-card {
-            background: rgba(17, 24, 39, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            flex: 1;
-            min-width: 300px;
-            max-width: 450px;
-            backdrop-filter: blur(10px);
-            position: relative;
-            display: flex; flex-direction: column;
-            transition: transform 0.3s;
-        }
-
-        /* VIP Specifics */
-        .plan-card.vip {
-            border: 2px solid var(--gold);
-            background: linear-gradient(180deg, rgba(30, 58, 138, 0.2) 0%, rgba(17, 24, 39, 0.8) 100%);
-            box-shadow: 0 0 40px rgba(251, 191, 36, 0.1);
-            transform: scale(1.02);
-            z-index: 10;
-        }
-        .plan-card.vip:hover { transform: scale(1.04); }
-
-        .badge {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(90deg, var(--gold), #d97706);
-            color: #000; font-weight: 800; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;
-            box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4);
-        }
-
-        .plan-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
-        .plan-subtitle { font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px; }
-        .plan-price { font-size: 2.5rem; font-weight: 700; color: #60a5fa; margin: 10px 0 20px 0; }
-        .plan-price.vip-price { color: var(--gold); }
-        .plan-price .original-price { font-size: 1.1rem; color: #64748b; text-decoration: line-through; display: block; margin-bottom: -5px; font-weight: 400;}
-        .plan-price span { font-size: 1rem; color: #9ca3af; font-weight: 400; }
-
-        .feature-list { list-style: none; padding: 0; text-align: left; margin: 0 0 30px 0; flex-grow: 1; }
-        .feature-list li { margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.4; font-size: 0.95rem; color: #cbd5e1; }
-        .feature-list li.unlocked::before { content: "✓"; color: #10b981; margin-right: 10px; font-weight: bold; flex-shrink: 0; }
-        .feature-list li.locked { color: #64748b; }
-        .feature-list li.locked::before { content: "🔒"; margin-right: 10px; filter: grayscale(1); flex-shrink: 0; }
-        .vip-desc { font-size: 0.8rem; color: #94a3b8; display: block; margin-top: 2px; }
-        .highlight { color: #fff; font-weight: 600; }
-
-        .cta-button {
-            display: block; width: 100%; padding: 15px; border-radius: 8px; font-weight: 700; text-decoration: none;
-            transition: all 0.2s; text-align: center; box-sizing: border-box;
-        }
-        .btn-free { background: rgba(255,255,255,0.05); color: #64748b; border: 1px solid rgba(255,255,255,0.1); cursor: default; }
-        .btn-vip {
-            background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
-            color: white; font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-            animation: pulse-gold 2s infinite;
-        }
-        .btn-vip:hover { transform: scale(1.02); color: #fff; }
-        .social-proof { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-style: italic; }
-
     </style>
 </head>
 <body>
@@ -252,6 +252,72 @@
     <div class="header-section">
         <div class="header-title">升級機構級視野 Institutional Edge</div>
         <div class="header-subtitle">別再做資訊滯後的散戶。掌握投行交易員的底牌，比市場快一步行動。</div>
+    </div>
+
+    <div class="pricing-container">
+        <div class="plan-card">
+            <div class="plan-title">免費訪客 Basic</div>
+            <div class="plan-subtitle">適合觀望及學習基礎知識的新手</div>
+            <div class="plan-price">$0 <span>/ month</span></div>
+            <ul class="feature-list">
+                <li class="unlocked">每日大市風險儀表板 (Risk Dashboard)</li>
+                <li class="unlocked">每週大市分析文章</li>
+                <li class="locked">VIP 即市討論區</li>
+                <li class="locked">期權聰明資金流分析(Ibank級)</li>
+                <li class="locked">Paris 實戰持倉 & 交易日誌</li>
+                <li class="locked">TradingView 獨家策略指標</li>
+            </ul>
+            <a href="#" class="cta-button btn-free">CURRENT PLAN</a>
+        </div>
+
+        <div class="plan-card vip">
+            <div class="badge">LIMITED OFFER 🔥</div>
+            <div class="plan-title">VIP 全面通行證</div>
+            <div class="plan-subtitle">解鎖「散戶黑科技」，專為實戰交易員打造</div>
+
+            <div class="plan-price vip-price">
+                <span class="original-price">HK$2400</span>
+                HK$1200 <span>/ month</span>
+            </div>
+
+            <ul class="feature-list">
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">🧬 VIP技術交流群 即市投知資訊</span>
+                        <span class="vip-desc">與高手交流股票及期貨操作</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">⚡ 期權異動 Option Flow及自動化策略組合tool</span>
+                        <span class="vip-desc">全港獨家！即時捕捉大戶 Block 與 Greeks 佈局並生成自己的期權組合</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">💼 Paris 實戰持倉 (My Portfolio)</span>
+                        <span class="vip-desc">不只是理論！直接參考我的買賣點位與倉位管理學習</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">🎯 TradingView & MT5 獨家指標</span>
+                        <span class="vip-desc">自家的準神級判方向工具 支持/阻力位透視於你的圖表</span>
+                    </div>
+                </li>
+                <li class="unlocked">
+                    <div>
+                        <span class="highlight">🕴️ 美股內部交易 & 挾淡倉雷達</span>
+                        <span class="vip-desc">監控 巨頭CEO 買賣與 Short Squeeze 爆發潛力股</span>
+                    </div>
+                </li>
+            </ul>
+
+            <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-button btn-vip">
+                🚀 立即加入 (JOIN NOW)
+            </a>
+            <div class="social-proof">⚡ 已有 400+ 交易員加入 · 隨時發財車</div>
+        </div>
     </div>
 
     <div class="results-section">
@@ -376,72 +442,6 @@
                 <span class="value-title">完整交易員培訓</span>
                 <p class="value-text">解鎖 40+ 篇 VIP 文章。從 <span class="gold-text">心法</span> 到 <span class="gold-text">系統</span>，建立可盈利的交易架構。</p>
             </div>
-        </div>
-    </div>
-
-    <div class="pricing-container">
-        <div class="plan-card">
-            <div class="plan-title">免費訪客 Basic</div>
-            <div class="plan-subtitle">適合觀望及學習基礎知識的新手</div>
-            <div class="plan-price">$0 <span>/ month</span></div>
-            <ul class="feature-list">
-                <li class="unlocked">每日大市風險儀表板 (Risk Dashboard)</li>
-                <li class="unlocked">每週大市分析文章</li>
-                <li class="locked">VIP 即市討論區</li>
-                <li class="locked">期權聰明資金流分析(Ibank級)</li>
-                <li class="locked">Paris 實戰持倉 & 交易日誌</li>
-                <li class="locked">TradingView 獨家策略指標</li>
-            </ul>
-            <a href="#" class="cta-button btn-free">CURRENT PLAN</a>
-        </div>
-
-        <div class="plan-card vip">
-            <div class="badge">LIMITED OFFER 🔥</div>
-            <div class="plan-title">VIP 全面通行證</div>
-            <div class="plan-subtitle">解鎖「散戶黑科技」，專為實戰交易員打造</div>
-
-            <div class="plan-price vip-price">
-                <span class="original-price">HK$2400</span>
-                HK$1200 <span>/ month</span>
-            </div>
-
-            <ul class="feature-list">
-                <li class="unlocked">
-                    <div>
-                        <span class="highlight">🧬 VIP技術交流群 即市投知資訊</span>
-                        <span class="vip-desc">與高手交流股票及期貨操作</span>
-                    </div>
-                </li>
-                <li class="unlocked">
-                    <div>
-                        <span class="highlight">⚡ 期權異動 Option Flow及自動化策略組合tool</span>
-                        <span class="vip-desc">全港獨家！即時捕捉大戶 Block 與 Greeks 佈局並生成自己的期權組合</span>
-                    </div>
-                </li>
-                <li class="unlocked">
-                    <div>
-                        <span class="highlight">💼 Paris 實戰持倉 (My Portfolio)</span>
-                        <span class="vip-desc">不只是理論！直接參考我的買賣點位與倉位管理學習</span>
-                    </div>
-                </li>
-                <li class="unlocked">
-                    <div>
-                        <span class="highlight">🎯 TradingView & MT5 獨家指標</span>
-                        <span class="vip-desc">自家的準神級判方向工具 支持/阻力位透視於你的圖表</span>
-                    </div>
-                </li>
-                <li class="unlocked">
-                    <div>
-                        <span class="highlight">🕴️ 美股內部交易 & 挾淡倉雷達</span>
-                        <span class="vip-desc">監控 巨頭CEO 買賣與 Short Squeeze 爆發潛力股</span>
-                    </div>
-                </li>
-            </ul>
-
-            <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-button btn-vip">
-                🚀 立即加入 (JOIN NOW)
-            </a>
-            <div class="social-proof">⚡ 已有 400+ 交易員加入 · 隨時發財車</div>
         </div>
     </div>
 
