@@ -1,549 +1,187 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParisTrader | 年度感恩祭 & 官方資源</title>
+    <title>Vantage X ParisTrader 獨家福利 | 送周大福 Chiikawa 金章</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-        /* --- Global Variables & Reset --- */
-        :root {
-            --bg-color: #0B0E14;
-            --card-bg: #1E293B;
-            --text-primary: #F3F4F6;
-            --text-secondary: #9CA3AF;
-            --gold-primary: #F59E0B;
-            --gold-gradient: linear-gradient(135deg, #FDE68A 0%, #D97706 100%);
-            --accent-blue: #3B82F6;
-            --border-light: rgba(255, 255, 255, 0.1);
-        }
-
         body {
-            font-family: 'Inter', 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #121212;
+            color: #f5f5f5;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
-
-        a { text-decoration: none; }
-
-        /* --- Layout Container --- */
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
-
-        /* --- Header / Hero Section --- */
-        header {
+        .header {
             text-align: center;
-            padding: 80px 20px 60px;
-            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.8) 0%, rgba(11, 14, 20, 1) 70%);
-            border-bottom: 1px solid var(--border-light);
-            margin-bottom: 40px;
+            padding: 40px 0 20px;
         }
-
-        .brand {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            display: block;
-            font-weight: 600;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            margin: 10px 0;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-top: 15px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .date-badge {
-            display: inline-block;
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--gold-primary);
-            padding: 6px 18px;
-            border-radius: 50px;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            margin-top: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* --- Event Cards (Vertical Layout) --- */
-        .event-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event-card.highlight {
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            background: linear-gradient(to bottom right, rgba(30, 41, 59, 1), rgba(20, 25, 35, 1));
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .card-content {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .highlight-text {
-            color: var(--gold-primary);
-            font-weight: 700;
-        }
-
-        .promo-img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            display: block;
-        }
-
-        /* --- Lists within Event Cards --- */
-        ul.promo-list {
-            list-style: none;
-            padding: 0;
-            background: rgba(0,0,0,0.2);
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        ul.promo-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        ul.promo-list li:last-child { margin-bottom: 0; }
-
-        ul.promo-list li::before {
-            content: '✓';
-            color: var(--gold-primary);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* --- Buttons --- */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            margin-top: 25px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .btn-gold {
-            background: var(--gold-gradient);
-            color: #1a0f00;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #fff;
-        }
-
-        .btn-dashed { border-style: dashed; }
-
-        /* --- Q&A Section --- */
-        .qa-section {
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            margin-top: 50px;
-            border: 1px solid var(--border-light);
-        }
-
-        .qa-item { margin-bottom: 25px; }
-        .qa-item:last-child { margin-bottom: 0; }
-
-        .question {
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .answer {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            padding-left: 20px;
-            border-left: 2px solid rgba(255,255,255,0.1);
-        }
-
-        /* --- DIVIDER --- */
-        .section-divider {
-            margin: 60px 0 40px 0;
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-        }
-
-        /* --- RESOURCES & TOOLS (Grid System) --- */
-        .resource-header {
-            margin: 40px 0 25px 0;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-light);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .header-title-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #e2e8f0;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .resource-card {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 24px;
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 140px;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(96, 165, 250, 0.5);
-            background: rgba(30, 41, 59, 0.9);
-        }
-
-        .resource-card h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.1rem;
-            color: #f8fafc;
-        }
-
-        .resource-card p {
-            margin: 8px 0 0 0;
-            font-size: 0.9rem;
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-
-        .card-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .header h1 {
+            color: #FFD700;
+            font-size: 28px;
             margin-bottom: 10px;
         }
-
-        .card-icon { font-size: 1.6rem; }
-
-        .arrow {
-            align-self: flex-end;
-            color: #3b82f6;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-top: 20px;
+        .header p {
+            font-size: 18px;
+            color: #cccccc;
         }
-
-        /* Broker Specifics */
-        .broker-card {
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(234, 179, 8, 0.2);
-        }
-
-        .broker-card:hover {
-            border-color: rgba(234, 179, 8, 0.8);
-            box-shadow: 0 10px 30px rgba(234, 179, 8, 0.1);
-        }
-
-        .broker-arrow {
-            color: #fbbf24;
-            align-self: flex-end;
-            font-weight: 600;
-            margin-top: 20px;
-        }
-
-        .badge-promo {
-            background: rgba(234, 179, 8, 0.15);
-            color: #fbbf24;
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            white-space: nowrap;
-        }
-
-        .highlight-code {
-            color: #fbbf24;
-            font-weight: 500;
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
             display: block;
-            margin-top: 8px;
-            font-size: 0.85rem;
-            background: rgba(0,0,0,0.3);
-            padding: 4px 8px;
-            border-radius: 4px;
-            width: fit-content;
+            margin: 0 auto 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
         }
-
-        /* --- Footer --- */
-        footer {
+        .deadline-banner {
+            background-color: #d32f2f;
+            color: white;
             text-align: center;
-            padding: 60px 20px;
-            color: #6B7280;
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-light);
-            margin-top: 60px;
-            background: #080a0f;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
         }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 15px; }
-            .header-title-row { flex-wrap: wrap; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+        }
+        .content-section {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .content-section h2 {
+            color: #FFD700;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            font-size: 22px;
+        }
+        .step {
+            margin-bottom: 20px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #FFD700;
+            color: #121212;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #e6c200;
+        }
+        .btn-secondary {
+            background-color: #333;
+            color: #FFD700;
+            border: 1px solid #FFD700;
+        }
+        .btn-secondary:hover {
+            background-color: #444;
+        }
+        .notes {
+            font-size: 14px;
+            color: #999;
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-left: 4px solid #FFD700;
+            border-radius: 4px;
+        }
+        .notes ul {
+            padding-left: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <span class="brand">ParisTrader Quant Research</span>
-            <h1>足金馬到功成<br>年度感恩大行動</h1>
-            <p class="subtitle">
-                感謝戰友 2025 全年支持！配合金價新高，我們送出足金飾物與升級大禮，與您喜迎馬年。
-            </p>
-            <div class="date-badge">📅 活動日期：2026年3月1日 - 30日</div>
-        </div>
-    </header>
-
-    <div class="container">
-
-        <div class="resource-header" style="margin-top: 10px;">
-            <div class="header-title-row">
-                <span>💎 嚴選券商參考</span>
-                <span class="badge-promo">全港獨家獎勵</span>
-            </div>
-            <p style="margin: 0; color: #fbbf24; font-size: 0.95rem;">
-                🎁 任何券商開戶後 PM 我們，即可獲得券商的禮物 999 開運金牌一塊！
-            </p>
-        </div>
-
-        <div class="grid-container">
-            <a href="https://vigco.co/la-com/LyingFlat" target="_blank" class="resource-card broker-card">
-                <div>
-                    <div class="card-top">
-                        <span class="card-icon">🚀</span>
-                        <h3>Vantage Markets</h3>
-                    </div>
-                    <p>全球領先 CFD 券商，透過此連結開戶享額外獨家獎勵。</p>
-                    <span class="highlight-code">Code: ParisTrader</span>
-                </div>
-                <span class="broker-arrow">Open Account &nearr;</span>
-            </a>
-
-            <a href="https://icmarkets.com/?camp=77018" target="_blank" class="resource-card broker-card">
-                <div>
-                    <div class="card-top">
-                        <span class="card-icon">🌍</span>
-                        <h3>IC Markets</h3>
-                    </div>
-                    <p>極低點差與頂級流動性，Paris Trader 專屬開戶優惠。</p>
-                </div>
-                <span class="broker-arrow">Open Account &nearr;</span>
-            </a>
-
-            <a href="https://ultgo.com/r63qYb" target="_blank" class="resource-card broker-card">
-                <div>
-                    <div class="card-top">
-                        <span class="card-icon">🌟</span>
-                        <h3>Ultima Markets</h3>
-                    </div>
-                    <p>低交易成本、高槓桿 (1:2000)。</p>
-                    <span class="highlight-code">Referred By: paristrader</span>
-                </div>
-                <span class="broker-arrow">Open Account &nearr;</span>
-            </a>
-        </div>
-
-        <hr class="section-divider" style="margin: 20px 0 50px 0;">
-
-        <div class="event-card">
-            <div class="card-title">
-                🌟 第一重：全員感恩禮 (人人有份)
-            </div>
-
-            <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Resources/horse_pro1.jpg" alt="999足金馬年開運飾物" class="promo-img">
-
-            <div class="card-content">
-                <p>為答謝現有會員的一路相伴，只需填寫表格，即可獲贈：</p>
-                <h3 class="highlight-text" style="font-size: 1.3rem;">🎁 999 足金馬年開運飾物 一件</h3>
-                <p>寓意：金玉滿堂，明年倉位金光閃閃！</p>
-            </div>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4gY_B2KXpAcQ1T7wjQRt9CX4yAgAx9pJ6wULCRFGOYLZmag/viewform?pli=1" target="_blank" class="btn btn-gold">👉 立即填表領取</a>
-        </div>
-
-        <div class="event-card highlight">
-            <div style="position: absolute; top: 0; right: 0; background: #F59E0B; color: #000; font-size: 0.8rem; padding: 6px 12px; font-weight: 700; border-bottom-left-radius: 12px;">RECOMMENDED</div>
-
-            <div class="card-title">
-                🚀 第二重：升級續費．鎖定優惠
-            </div>
-
-            <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Resources/horse_pro2.jpg" alt="馬年風水擺設" class="promo-img">
-
-            <div class="card-content">
-                <p>2026 年系統將全面升級（Swing Trade 工具 + EA 優化），年費即將調整。把握現在，鎖定未來！</p>
-
-                <ul class="promo-list">
-                    <li><strong style="color:#fff">資格：</strong>趁漲價前「續約下一年」或「月費轉年費」</li>
-                    <li><strong style="color:#fff">承諾：</strong>舊制會員享有 <span class="highlight-text">永遠沿用舊價</span> 之權益</li>
-                    <li><strong style="color:#fff">加碼禮：</strong>額外獲贈 <span class="highlight-text">精美馬年風水擺設</span> 一座 (如上圖)</li>
-                </ul>
-            </div>
-            <a href="https://t.me/Ho777ggg" target="_blank" class="btn btn-outline">🔥 聯絡 @Ho777ggg 續費鎖定</a>
-        </div>
-
-        <div class="event-card">
-            <div class="card-title">
-                🤝 第三重：推廣有賞
-            </div>
-            <div class="card-content">
-                <p>好策略要同好朋友分享！</p>
-                <ul class="promo-list" style="background: transparent; padding-left: 0;">
-                    <li><strong>資格：</strong>成功推薦一位新朋友加入 ParisTrader</li>
-                    <li><strong>禮品：</strong>同享 <span class="highlight-text">馬年風水擺設</span> 一座</li>
-                </ul>
-            </div>
-            <a href="https://t.me/Ho777ggg" target="_blank" class="btn btn-outline btn-dashed">💬 聯絡專員推薦朋友</a>
-        </div>
-
-        <div class="qa-section">
-            <h3 style="text-align: center; color: #fff; margin-top: 0; margin-bottom: 30px;">❓ 常見問題 Q&A</h3>
-
-            <div class="qa-item">
-                <div class="question">Q：我之前已經俾咗年費，會籍未到期，可唔可以參加「升級大禮」？</div>
-                <div class="answer">A：絕對可以！您可以選擇提早續費。新購買的年費會籍將會<strong>自動疊加</strong>在您現有的會期之後（例如：原定2026年3月到期 ➡️ 續費後延長至2027年3月）。</div>
-            </div>
-
-            <div class="qa-item">
-                <div class="question">Q：如何領取足金飾物？</div>
-                <div class="answer">A：請點擊上方的黃色按鈕填寫 Google Form，我們會核對您的會員資料後安排寄出。</div>
-            </div>
-        </div>
-
-        <hr class="section-divider">
-
-        <div class="resource-header">
-            <div class="header-title-row">
-                <span>📚 官方資源 & 常用工具</span>
-            </div>
-            <p style="margin: 0; color: #64748b;">Official Resources & Tools</p>
-        </div>
-
-        <div class="grid-container">
-            <a href="https://parisprogram.uk" target="_blank" class="resource-card">
-                <div>
-                    <div class="card-top">
-                        <span class="card-icon">🎓</span>
-                        <h3>Paris Program 官網</h3>
-                    </div>
-                    <p>我的會員教學官網及 Blog。提供深度量化交易策略與宏觀分析文章。</p>
-                </div>
-                <span class="arrow">Visit Site &nearr;</span>
-            </a>
-
-            <a href="https://t.me/algoparistrader" target="_blank" class="resource-card">
-                <div>
-                    <div class="card-top">
-                        <span class="card-icon">✈️</span>
-                        <h3>Telegram 公眾號</h3>
-                    </div>
-                    <p>即時資訊頻道。發布個人操作 Recap、市場突發新聞與即時觀點。</p>
-                </div>
-                <span class="arrow">Join Channel &nearr;</span>
-            </a>
-
-            <a href="https://www.cmegroup.com/cn-t/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" class="resource-card">
-                <div>
-                    <div class="card-top">
-                        <span class="card-icon">🏦</span>
-                        <h3>CME FedWatch</h3>
-                    </div>
-                    <p>Monitor market expectations for potential Fed rate changes.</p>
-                </div>
-                <span class="arrow">Open Tool &nearr;</span>
-            </a>
-        </div>
-
+<div class="container">
+    <div class="header">
+        <h1>🔥 Vantage X ParisTrader 獨家福利</h1>
+        <p>交易即送周大福 x Chiikawa 999.9 限量金章！</p>
     </div>
 
-    <footer>
-        <p>&copy; 2026 ParisTrader. All rights reserved.</p>
-        <p>Investment involves risk. 本活動最終解釋權歸 ParisTrader 所有。</p>
-    </footer>
+    <img class="hero-image" src="https://github.com/ParisTrader/paristrader-terminal/blob/main/Promotion/chiikawa3.png" alt="周大福 Chiikawa 金章">
+
+    <div class="deadline-banner">
+        ⏳ 活動截止日期：2026年4月1日 (送完即止)
+    </div>
+
+    <div class="content-section">
+        <p>近期黃金波幅極大，絕對係賺錢好時機！工欲善其事，必先利其器！依家透過專屬連結開立 Vantage 戶口，唔單止享有極低點差優勢，只要達成簡單條件，直接送你極具收藏價值嘅 <strong>周大福 Chiikawa 小八、小白、兔兔 999.9 黃金工藝精品金章（價值 $640 HKD）</strong>！😍</p>
+    </div>
+
+    <div class="content-section">
+        <h2>🎁 參加流程 4 步曲，極速拎走金章：</h2>
+
+        <div class="step">
+            <div class="step-title">1️⃣ 專屬開戶</div>
+            <p>透過指定連結成功開立 Vantage 真實交易戶口。<br>
+            <a href="https://vigco.co/mIjiMj" target="_blank" class="btn">👉 立即開戶</a><br>
+            <small><em>(如果已經有 Account，請直接 PM Telegram <a href="https://t.me/Ho777ggg" style="color:#FFD700;">@Ho777ggg</a>)</em></small></p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">2️⃣ 填表登記</div>
+            <p>開戶後，請即填寫表格登記參與活動。成功登記後，Admin 會主動通知並確認你嘅資格！<br>
+            <a href="https://forms.gle/hbA8BcYbKawfu4sP6" target="_blank" class="btn btn-secondary">📝 填寫登記表</a></p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">3️⃣ 入金交易</div>
+            <p>首次單筆入金達 <strong>$500 USD</strong>，並於活動期內累積完成 <strong>2 手</strong>黃金（XAUUSD）交易。</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title">4️⃣ 坐等收禮</div>
+            <p>完成交易條件後，Admin 核實後台數據就會與你聯絡，直接安排寄出實體金章！</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🏆 獨家獎品</h2>
+        <p><strong>周大福 Chiikawa 聯乘金章一枚（款式隨機）。</strong></p>
+    </div>
+
+    <div class="notes">
+        <strong>⚠️ 活動注意事項（必睇）：</strong>
+        <ul>
+            <li><strong>名額極度有限，達標即送，先到先得，送完即止！</strong></li>
+            <li>活動截止日期為 <strong>2026年4月1日</strong>。</li>
+            <li>交易手數可靈活累積計算（例如：分開落 10 次 0.1 手即為 1 手，累積滿 2 手即可）。</li>
+            <li>為維持活動公平性，嚴禁利用惡意對沖（Hedging）等違規交易手法刷單。一經後台系統發現，將直接取消派獎資格。</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 ParisTrader. All rights reserved. 投資涉及風險，外匯及差價合約交易具有高風險。
+    </div>
+</div>
 
 </body>
 </html>
