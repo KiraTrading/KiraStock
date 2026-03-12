@@ -154,7 +154,7 @@ def render_stock_page():
                 sub_us, sub_hk, sub_jp = st.tabs(["🇺🇸 US Market", "🇭🇰 HK Market", "🇯🇵 JP Market"])
 
                 with sub_us:
-                    html, _ = utils.get_latest_file_content("Stock", "TA_score_heatmap_*.html")
+                    html, _ = utils.get_latest_file_content("Stock", "TA_score_heatmap_us_*.html")
                     if html:
                         components.html(html, height=1200, scrolling=True)
                     else:
