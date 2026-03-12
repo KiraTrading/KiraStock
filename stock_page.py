@@ -150,17 +150,27 @@ def render_stock_page():
             st.subheader(t("p2_headers")[1])
             if utils.check_access_or_show_teaser("技術評分 TA Score",
                                                  description="Composite technical score matrix."):
-                sub_us, sub_hk = st.tabs(["🇺🇸 US Market", "🇭🇰 HK Market"])
+                # 這裡加入了 sub_jp (🇯🇵 JP Market)
+                sub_us, sub_hk, sub_jp = st.tabs(["🇺🇸 US Market", "🇭🇰 HK Market", "🇯🇵 JP Market"])
+
                 with sub_us:
                     html, _ = utils.get_latest_file_content("Stock", "TA_score_heatmap_*.html")
                     if html:
                         components.html(html, height=1200, scrolling=True)
                     else:
                         st.warning(t("err_not_found"))
+
                 with sub_hk:
                     html_hk, _ = utils.get_latest_file_content("Stock", "HK_TA_score_heatmap_*.html")
                     if html_hk:
                         components.html(html_hk, height=1200, scrolling=True)
+                    else:
+                        st.warning(t("err_not_found"))
+
+                with sub_jp:
+                    html_jp, _ = utils.get_latest_file_content("Stock", "TA_score_heatmap_jp_*.html")
+                    if html_jp:
+                        components.html(html_jp, height=1200, scrolling=True)
                     else:
                         st.warning(t("err_not_found"))
 
