@@ -1,28 +1,22 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice,ExitDate
-GOOGL,LONG,2025-11-19,298.0,303.55,500,151774.99,OPEN,2774.99,Gemini 3 AI dominance. Fundamental value gap.,2620.0,298.31,
-RKLB,LONG,2025-12-09,53.4,68.37,750,51277.5,OPEN,11227.5,SpaceX sympathy play. Options flow bullish.,-1305.0,70.11,
-AMC,SHORT,2025-12-09,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49,2026-02-04
-ALB,LONG,2025-12-17,135.0,163.89,500,81945.0,OPEN,14445.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,800.0,162.29,
-RTX,LONG,2025-12-19,181.76,203.04,500,101520.0,OPEN,10640.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200
-",-3360.0,209.76,
-STT,LONG,2025-12-23,129.74,123.21,600,73926.0,OPEN,-3918.0,"Option abnormal move + offers exposure to asset servicing and management fees in a rate-cut environment.Benefits from market inflows, digital assets/tokenization trends.",1302.0,121.04,
-BABA,LONG,2026-01-02,153.45,134.2,700,93940.0,OPEN,-13475.0,Day chart call tp in fate,2387.0,130.79,
-PLTR,LONG,2026-01-05,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47,2026-02-04
-ASML,LONG,2026-01-05,1215.0,1351.58,75,101368.5,OPEN,10243.5,day gap up,4408.49,1292.8,
-MU,LONG,2026-01-28,200.0,383.5,200,76700.0,CLOSED,36700.0,day cc tp new,-2238.0,394.69,2026-02-10
-WDC,LONG,2026-01-28,266.0,261.18,300,78354.0,OPEN,-1446.0,day cc tp new,4779.0,245.25,
-SOFI,LONG,2025-11-25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6,2026-02-04
-NVDA,SHORT,2025-11-18,179.28,188.0,1000,179280.0,CLOSED,-8720.0,AI reset theme,0.0,0.0,2025-12-18
-META,LONG,2025-12-23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move,0.0,0.0,2025-12-29
-SOFI,LONG,2025-11-25,28.45,26.13,1000,52260.0,CLOSED,-2320.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",0.0,0.0,2025-12-28
-AVGO,LONG,2025-12-24,350.2,351.71,250,87927.5,CLOSED,-1300.0,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.
-",-1300.0,352.21,2026-02-02
-ASML,LONG,2026-01-05,1215.0,1350.0,75,182250.0,CLOSED,10000.0,day gap up,10000.0,1256.0,2026-02-05
-RKLB,LONG,2025-12-09,53.4,96.3,750,144450.0,CLOSED,34350.0,SpaceX sympathy play. Options flow bullish.,12600.0,87.9,2026-02-04
-KO,LONG,2026-02-03,75.0,77.61,1200,93132.0,OPEN,3132.0,earning play,684.0,77.04,
-DELL,LONG,2026-02-09,120.3,149.91,450,67459.5,OPEN,13324.5,"supercycle of enterprise PC replacements triggered by the retirement of Windows 10,undervalued leading position in AI infrastructure are bound to prompt a market re-rating of its value",1543.5,146.48,
-MU,LONG,2026-01-28,200.0,405.35,250,101337.5,OPEN,51337.5,day cc tp new,8762.5,370.3,
-NCLH,LONG,2026-02-10,23.7,19.46,2000,38920.0,Open,-8480.0,day cc tp new,-1180.0,20.05,
-MSFT,LONG,2026-02-18,398.69,401.86,100,40186.0,Open,317.0,insider buy back and 400 key support level,-710.0,408.96,
-OTIS,LONG,2026-02-17,92.3,82.63,400,33052.0,Open,-3868.0,"TA socre, day cc tp, Modernization Boom",-2636.0,89.22,
-LLY,LONG,2026-02-27,1023.0,977.25,50,48862.5,Open,-2287.5,ER & day cc tp,-654.0,990.33,
+GOOGL,LONG,2025/11/19,298,303.55,500,151774.99,OPEN,2774.99,Gemini 3 AI dominance. Fundamental value gap.,2620,298.31,
+RKLB,LONG,2025/12/9,53.4,68.37,750,51277.5,OPEN,11227.5,SpaceX sympathy play. Options flow bullish.,-1305,70.11,
+AMC,SHORT,2025/12/9,2.33,1.39,53000,73670,CLOSED,49820,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300,1.49,2026/2/4
+ALB,LONG,2025/12/17,135,163.89,500,81945,OPEN,14445,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,800,162.29,
+RTX,LONG,2025/12/19,181.76,203.04,500,101520,OPEN,10640,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200",-3360,209.76,
+RTX,LONG,2026/3/12,203,204.52,500,102260,OPEN,760,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200",760,0,
+BABA,LONG,2026/1/2,153.45,134.2,700,93940,OPEN,-13475,Day chart call tp in fate,2387,130.79,
+PLTR,LONG,2026/1/5,174.7,146.59,500,73295,CLOSED,-14055,war theme venezuela,-10440,167.47,2026/2/4
+ASML,LONG,2026/1/5,1215,1351.58,75,101368.5,OPEN,10243.5,day gap up,4408.49,1292.8,
+MU,LONG,2026/1/28,200,383.5,200,76700,CLOSED,36700,day cc tp new,-2238,394.69,2026/2/10
+WDC,LONG,2026/1/28,266,268,300,78354,CLOSED,600,day cc tp new,4779,245.25,2026/3/12
+SOFI,LONG,2025/11/25,28.45,26.13,1000,52260,CLOSED,-4640,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940,26.6,2026/2/4
+NVDA,SHORT,2025/11/18,179.28,188,1000,179280,CLOSED,-8720,AI reset theme,0,0,2025/12/18
+META,LONG,2025/12/23,671.2,661,100,66100,CLOSED,-1020,Option abnormal move,0,0,2025/12/29
+SOFI,LONG,2025/11/25,28.45,26.13,1000,52260,CLOSED,-2320,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",0,0,2025/12/28
+AVGO,LONG,2025/12/24,350.2,351.71,250,87927.5,CLOSED,-1300,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.",-1300,352.21,2026/2/2
+MU,LONG,2026/1/28,435,413,250,103250,CLOSED,-5500,day cc tp new,-5500,0,2026/3/12
+NCLH,LONG,2026/2/10,23.7,19.46,2000,38920,Open,-8480,day cc tp new,-1180,20.05,
+MSFT,LONG,2026/2/18,398.69,406,100,40186,CLOSED,731,insider buy back and 400 key support level,731,408.96,2026/3/12
+OTIS,LONG,2026/2/17,92.3,82.63,400,33052,Open,-3868,"TA socre, day cc tp, Modernization Boom",-2636,89.22,
+LLY,LONG,2026/2/27,1023,977.25,50,48862.5,Open,-2287.5,ER & day cc tp,-654,990.33,
