@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Import font */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+        /* Variables */
         :root {
             --bg-color: transparent;
             --card-bg: rgba(17, 24, 39, 0.6);
@@ -24,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Animations --- */
+        /* Animations */
         @keyframes pulse-gold {
             0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(251, 191, 36, 0); }
@@ -36,7 +38,7 @@
         }
         @keyframes loadBar { from { width: 0; } }
 
-        /* --- Header Section --- */
+        /* Header Section */
         .header-section {
             text-align: center;
             margin-bottom: 40px;
@@ -56,14 +58,14 @@
             margin: 0 auto;
         }
 
-        /* --- SECTION 4: Pricing (The Offer) --- */
+        /* Pricing Section */
         .pricing-container {
             display: flex;
             justify-content: center;
             gap: 25px;
             flex-wrap: wrap;
-            max-width: 900px; /* Limit width to focus on VIP */
-            margin: 0 auto 50px auto;
+            max-width: 900px;
+            margin: 0 auto 30px auto; /* Reduced margin to connect with ROI section */
         }
 
         .plan-card {
@@ -81,7 +83,7 @@
             transition: transform 0.3s;
         }
 
-        /* VIP Specifics */
+        /* VIP Card Specifics */
         .plan-card.vip {
             border: 2px solid var(--gold);
             background: linear-gradient(180deg, rgba(30, 58, 138, 0.2) 0%, rgba(17, 24, 39, 0.8) 100%);
@@ -100,10 +102,13 @@
 
         .plan-title { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .plan-subtitle { font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px; }
-        .plan-price { font-size: 2.5rem; font-weight: 700; color: #60a5fa; margin: 10px 0 20px 0; }
+        .plan-price { font-size: 2.5rem; font-weight: 700; color: #60a5fa; margin: 10px 0 15px 0; }
         .plan-price.vip-price { color: var(--gold); }
         .plan-price .original-price { font-size: 1.1rem; color: #64748b; text-decoration: line-through; display: block; margin-bottom: -5px; font-weight: 400;}
         .plan-price span { font-size: 1rem; color: #9ca3af; font-weight: 400; }
+
+        /* New ROI text in pricing card */
+        .roi-text { font-size: 0.85rem; color: #10b981; font-weight: 600; margin-bottom: 20px; background: rgba(16, 185, 129, 0.1); padding: 5px 10px; border-radius: 6px; display: inline-block;}
 
         .feature-list { list-style: none; padding: 0; text-align: left; margin: 0 0 30px 0; flex-grow: 1; }
         .feature-list li { margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.4; font-size: 0.95rem; color: #cbd5e1; }
@@ -127,7 +132,45 @@
         .btn-vip:hover { transform: scale(1.02); color: #fff; }
         .social-proof { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-style: italic; }
 
-        /* --- SECTION 1: Results Gallery (From Community) --- */
+        /* ROI Breakdown Section (New) */
+        .roi-breakdown {
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 25px 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .roi-breakdown h4 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+        .roi-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .roi-list li {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 28px;
+        }
+        .roi-list li::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Results Gallery */
         .results-section {
             margin-bottom: 60px;
             text-align: center;
@@ -160,7 +203,7 @@
         }
         .gallery-caption { margin-top: 10px; font-size: 0.85rem; color: #94a3b8; font-style: italic; }
 
-        /* --- SECTION 2: Chat Simulator & Speed (From Community) --- */
+        /* Simulator & Speed features */
         .features-container {
             display: flex;
             flex-wrap: wrap;
@@ -218,7 +261,7 @@
         .user-name { font-size: 0.7rem; color: #64748b; margin-bottom: 3px; }
         .time { font-size: 0.65rem; color: #475569; float: right; margin-top: 4px; }
 
-        /* --- SECTION 3: Value Grid (From Pricing) --- */
+        /* Value Grid */
         .value-section {
             max-width: 1100px;
             margin: 0 auto 40px auto;
@@ -280,6 +323,8 @@
                 HK$1200 <span>/ month</span>
             </div>
 
+            <div class="roi-text">🔥 每日約 HK$40，捕捉一次波段即回本</div>
+
             <ul class="feature-list">
                 <li class="unlocked">
                     <div>
@@ -289,26 +334,26 @@
                 </li>
                 <li class="unlocked">
                     <div>
-                        <span class="highlight">⚡ 期權異動 Option Flow及自動化策略組合tool</span>
-                        <span class="vip-desc">全港獨家！即時捕捉大戶 Block 與 Greeks 佈局並生成自己的期權組合</span>
+                        <span class="highlight">⚡ 期權異動 Option Flow及自動化策略組合</span>
+                        <span class="vip-desc">全港獨家！即時捕捉大戶 Block 與 Greeks 佈局</span>
                     </div>
                 </li>
                 <li class="unlocked">
                     <div>
                         <span class="highlight">💼 Paris 實戰持倉 (My Portfolio)</span>
-                        <span class="vip-desc">不只是理論！直接參考我的買賣點位與倉位管理學習</span>
+                        <span class="vip-desc">直接參考我的買賣點位與倉位管理學習</span>
                     </div>
                 </li>
                 <li class="unlocked">
                     <div>
                         <span class="highlight">🎯 TradingView & MT5 獨家指標</span>
-                        <span class="vip-desc">自家的準神級判方向工具 支持/阻力位透視於你的圖表</span>
+                        <span class="vip-desc">自家的準神級判方向工具，支持/阻力透視圖表</span>
                     </div>
                 </li>
                 <li class="unlocked">
                     <div>
                         <span class="highlight">🕴️ 美股內部交易 & 挾淡倉雷達</span>
-                        <span class="vip-desc">監控 巨頭CEO 買賣與 Short Squeeze 爆發潛力股</span>
+                        <span class="vip-desc">監控巨頭CEO買賣與 Short Squeeze 潛力股</span>
                     </div>
                 </li>
             </ul>
@@ -316,8 +361,17 @@
             <a href="https://parisprogram.uk/zh/member-dash/plans/" target="_blank" class="cta-button btn-vip">
                 🚀 立即加入 (JOIN NOW)
             </a>
-            <div class="social-proof">⚡ 已有 400+ 交易員加入 · 隨時發財車</div>
+            <div class="social-proof">⚡ 結合 9 年投行衍生工具經驗 · 逾 200+ 活躍客戶見證</div>
         </div>
+    </div>
+
+    <div class="roi-breakdown">
+        <h4>為何 HK$1200 是極具性價比的投資？</h4>
+        <ul class="roi-list">
+            <li><b>機構級數據成本：</b> 坊間彭博或期權 Flow 終端每月動輒過千美元，我們為你整合並提煉訊號，直接省下高昂訂閱費。</li>
+            <li><b>前投行 VP 領航：</b> 汲取 9 年市場衍生工具實戰精華，直接複製贏家思維與量化選股模型。</li>
+            <li><b>極高回本率 (ROI)：</b> 憑藉快市場 15 分鐘的資金流，捕捉一次精準的期權異動或挾淡倉，利潤已足夠覆蓋數月會費。</li>
+        </ul>
     </div>
 
     <div class="results-section">
@@ -402,15 +456,6 @@
                             <span class="time">04:05 PM</span>
                         </div>
                     </div>
-                    <div class="message admin-msg">
-                        <div class="user-name">Paris Trader 👑</div>
-                        <div class="msg-bubble">
-                            【Trade Idea】關注 NVDA。<br>
-                            剛才 1分鐘圖出現大量 Institution Block Trade。<br>
-                            現價 885.5 BLOCK嘗試 Long，❌882，✅895。
-                            <span class="time">10:32 AM</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -430,7 +475,7 @@
             <div class="value-card">
                 <span class="value-icon">🧬</span>
                 <span class="value-title">量化選股 Alpha</span>
-                <p class="value-text">利用 <span class="gold-text">Stock DNA</span> (Fama-French) 模型，科學化篩選優質股。資金輪動一目了然。</p>
+                <p class="value-text">利用 <span class="gold-text">Stock DNA</span> 模型，科學化篩選優質股。資金輪動一目了然。</p>
             </div>
             <div class="value-card">
                 <span class="value-icon">🛡️</span>
@@ -440,7 +485,7 @@
             <div class="value-card">
                 <span class="value-icon">🎓</span>
                 <span class="value-title">完整交易員培訓</span>
-                <p class="value-text">解鎖 40+ 篇 VIP 文章。從 <span class="gold-text">心法</span> 到 <span class="gold-text">系統</span>，建立可盈利的交易架構。</p>
+                <p class="value-text">解鎖 VIP 文章。從 <span class="gold-text">心法</span> 到 <span class="gold-text">系統</span>，建立可盈利的交易架構。</p>
             </div>
         </div>
     </div>
