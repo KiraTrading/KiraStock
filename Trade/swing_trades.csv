@@ -1,13 +1,13 @@
 Ticker,Direction,EntryDate,EntryPrice,LastPrice,Quantity,USDNotional,Status,PnLUSD,Notes,WeeklyPnL,WeekStartPrice,ExitDate
-GOOGL,LONG,2025/11/19,298.0,317.32,500,158660.0,OPEN,9660.0,Gemini 3 AI dominance. Fundamental value gap.,10775.01,295.77,
-RKLB,LONG,2025/12/9,53.4,69.08,750,51810.0,OPEN,11760.0,SpaceX sympathy play. Options flow bullish.,1012.5,67.73,
+GOOGL,LONG,2025/11/19,298.0,318.49,500,159245.0,OPEN,10245.0,Gemini 3 AI dominance. Fundamental value gap.,11360.0,295.77,
+RKLB,LONG,2025/12/9,53.4,66.74,750,50055.0,OPEN,10005.0,SpaceX sympathy play. Options flow bullish.,-742.5,67.73,
 AMC,SHORT,2025/12/9,2.33,1.39,53000,73670.0,CLOSED,49820.0,"Persistent revenue declines vs. pre-COVID levels, Heavy debt burden.Share dilution risks. financing long on space stock(memes to high beta)",5300.0,1.49,2026/2/4
-ALB,LONG,2025/12/17,135.0,177.44,500,88720.0,OPEN,21220.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-325.0,178.09,
-RTX,LONG,2025/12/19,181.76,203.48,500,101740.0,OPEN,10860.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200",3634.99,196.21,
-RTX,LONG,2026/3/12,203.0,203.48,500,101740.0,OPEN,240.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200",3634.99,196.21,
-BABA,LONG,2026/1/2,153.45,125.32,700,87724.0,OPEN,-19691.0,Day chart call tp in fate,2289.0,122.05,
+ALB,LONG,2025/12/17,135.0,172.35,500,86175.0,OPEN,18675.0,late 2025 on recovering lithium prices and demand signals.The stock remains undervalued relative to cycle recovery upside.,-2870.0,178.09,
+RTX,LONG,2025/12/19,181.76,203.19,500,101595.0,OPEN,10715.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200",3490.0,196.21,
+RTX,LONG,2026/3/12,203.0,203.19,500,101595.0,OPEN,95.0,"day chart TA (engulfing),multiple new defense contract awards for its Raytheon business,analyst upgrade from JPMorgan raising its price target to $200",3490.0,196.21,
+BABA,LONG,2026/1/2,153.45,127.68,700,89376.0,OPEN,-18039.0,Day chart call tp in fate,3941.0,122.05,
 PLTR,LONG,2026/1/5,174.7,146.59,500,73295.0,CLOSED,-14055.0,war theme venezuela,-10440.0,167.47,2026/2/4
-ASML,LONG,2026/1/5,1215.0,1421.05,75,106578.75,OPEN,15453.75,day gap up,7786.51,1317.23,
+ASML,LONG,2026/1/5,1215.0,1448.64,75,108648.0,OPEN,17523.0,day gap up,9855.75,1317.23,
 MU,LONG,2026/1/28,200.0,383.5,200,76700.0,CLOSED,36700.0,day cc tp new,-2238.0,394.69,2026/2/10
 WDC,LONG,2026/1/28,266.0,268.0,300,78354.0,CLOSED,600.0,day cc tp new,4779.0,245.25,2026/3/12
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-4640.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",-940.0,26.6,2026/2/4
@@ -16,7 +16,7 @@ META,LONG,2025/12/23,671.2,661.0,100,66100.0,CLOSED,-1020.0,Option abnormal move
 SOFI,LONG,2025/11/25,28.45,26.13,1000,52260.0,CLOSED,-2320.0,"Fundamentals remained robust: accelerating revenue growth (~38% YoY), improving profitability, and new products like SoFi Crypto positioned the company for long-term gains in digital banking and fintech.",0.0,0.0,2025/12/28
 AVGO,LONG,2025/12/24,350.2,351.71,250,87927.5,CLOSED,-1300.0,"Rebound play:Valuation appeared more attractive after the correction, despite premium multiples.",-1300.0,352.21,2026/2/2
 MU,LONG,2026/1/28,435.0,413.0,250,103250.0,CLOSED,-5500.0,day cc tp new,-5500.0,0.0,2026/3/12
-NCLH,LONG,2026/2/10,23.7,20.16,2000,40320.0,Open,-7080.0,day cc tp new,2460.0,18.93,
+NCLH,LONG,2026/2/10,23.7,19.96,2000,39920.0,Open,-7480.0,day cc tp new,2060.0,18.93,
 MSFT,LONG,2026/2/18,398.69,406.0,100,40186.0,CLOSED,731.0,insider buy back and 400 key support level,731.0,408.96,2026/3/12
-OTIS,LONG,2026/2/17,92.3,79.55,400,31820.0,Open,-5100.0,"TA socre, day cc tp, Modernization Boom",676.0,77.86,
-LLY,LONG,2026/2/27,1023.0,953.3,50,47665.0,Open,-3485.0,ER & day cc tp,886.0,935.58,
+OTIS,LONG,2026/2/17,92.3,81.25,400,32500.0,Open,-4420.0,"TA socre, day cc tp, Modernization Boom",1356.0,77.86,
+LLY,LONG,2026/2/27,1023.0,955.19,50,47759.5,Open,-3390.5,ER & day cc tp,980.5,935.58,
