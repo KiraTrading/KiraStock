@@ -31,7 +31,7 @@ except ImportError:
 # 1. Page Configuration & CSS
 # ==========================================
 st.set_page_config(
-    page_title="ParisTrader - Smart Money Tracker | 散戶救星",
+    page_title="ParisTrader - Smart Money Tracker | 量化終端",
     page_icon="🦅",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -49,49 +49,49 @@ def toggle_language():
         st.session_state['language'] = 'zh'
 
 
-# 翻譯字典
+# 翻譯字典 (已更新為合規的中性、客觀字眼)
 translations = {
     "zh": {
-        "slogan_title": "不再做韭菜 | 直接跟蹤大戶聰明錢",
-        "slogan_sub": "揭秘華爾街底牌：期權異動 | 莊家成本 | 趨勢預判",
-        "intro_text": "傳統圖表只告訴你「過去」發生什麼，我們的數據告訴你<b>「未來」大戶想去哪裡</b>。<br>Stop guessing. See the cards the dealer is holding.",
-        "tutorial": "📺 網站使用教學",
-        "weekly_btn": "📊 偷看本週大戶部署 (Weekly Analysis)",
-        "week_ahead": "🧠 Week Ahead Strategy",
-        "expander_title": "📖 點擊展開：大市前瞻與劇本",
-        "contact_btn": "聯絡我 Contact Me",
+        "slogan_title": "量化期權與市場數據終端",
+        "slogan_sub": "客觀追蹤期權異動與宏觀資金流向",
+        "intro_text": "利用數據模型與 API 整合公開資訊，提供即時的市場深度與期權數據視覺化分析。<br>A quantitative approach to market data.",
+        "tutorial": "📺 系統操作說明",
+        "weekly_btn": "📊 本週宏觀數據整理 (Weekly Data)",
+        "week_ahead": "🧠 Week Ahead Data",
+        "expander_title": "📖 點擊展開：宏觀經濟日曆",
+        "contact_btn": "聯絡系統管理員",
         "vip_promo_title": "👑 解鎖大戶底牌",
         "vip_promo_desc": "偷看機構持倉 (Insider)<br>& 聰明錢流向 (Flow)",
         "vip_join": "🚀 立即加入 (Join Now)",
         "nav_title": "導航選單",
         "settings": "語言設定 / Settings",
-        "profile_text": """我將投資銀行的機構級數據平民化，幫你避開散戶陷阱。
+        "profile_text": """我們致力於將機構級市場數據視覺化，提供客觀的量化分析工具。
 <br><br>
-<b>核心武器 (My Edge):</b><br>
-• 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
-• ⚡ <b>Futures Scalping:</b> NQ/HSI/黃金短線<br>
-• 🎯 <b>Option Flow:</b> 異動期權狙擊<br>"""
+<b>系統核心模組:</b><br>
+• 🐳 <b>Stock Hunter:</b> 機構建倉數據追蹤<br>
+• ⚡ <b>Futures Dashboard:</b> 宏觀期貨數據整合<br>
+• 🎯 <b>Option Flow:</b> 異動期權掃描與統計<br>"""
     },
     "en": {
-        "slogan_title": "Stop Retail Trading | Follow Smart Money",
-        "slogan_sub": "Reveal Wall St Cards: Option Flow | Dealer Cost | Trend Prediction",
-        "intro_text": "Traditional charts only show you the 'Past'. Our data tells you <b>where Smart Money is going in the 'Future'</b>.<br>Stop guessing. See the cards the dealer is holding.",
-        "tutorial": "📺 Platform Tutorial",
-        "weekly_btn": "📊 Weekly Institutional Analysis",
-        "week_ahead": "🧠 Week Ahead Strategy",
-        "expander_title": "📖 Click to Expand: Market Outlook",
-        "contact_btn": "Contact Me",
+        "slogan_title": "Quantitative Options & Market Data Terminal",
+        "slogan_sub": "Objective tracking of option anomalies and macro flow",
+        "intro_text": "Integrating public information via data models and APIs to provide real-time market depth and options data visualization.<br>A quantitative approach to market data.",
+        "tutorial": "📺 System Documentation",
+        "weekly_btn": "📊 Weekly Macro Data Summary",
+        "week_ahead": "🧠 Week Ahead Data",
+        "expander_title": "📖 Click to Expand: Macro Calendar",
+        "contact_btn": "Contact Administrator",
         "vip_promo_title": "👑 Unlock Institutional Data",
         "vip_promo_desc": "Insider Holdings<br>& Smart Money Flow",
         "vip_join": "🚀 Join Now",
         "nav_title": "Navigation",
         "settings": "Settings",
-        "profile_text": """Democratizing institutional data to help you avoid retail traps.
+        "profile_text": """Dedicated to visualizing institutional market data and providing objective quantitative tools.
 <br><br>
-<b>My Edge:</b><br>
-• 🐳 <b>Stock Hunter:</b> Track Institutional Builds<br>
-• ⚡ <b>Futures Scalping:</b> NQ/HSI/Gold Scalping<br>
-• 🎯 <b>Option Flow:</b> Sniper Unusual Activity<br>"""
+<b>Core Modules:</b><br>
+• 🐳 <b>Stock Hunter:</b> Institutional Build Tracking<br>
+• ⚡ <b>Futures Dashboard:</b> Macro Futures Integration<br>
+• 🎯 <b>Option Flow:</b> Unusual Options Scanning<br>"""
     }
 }
 
@@ -154,15 +154,15 @@ with st.sidebar:
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
         <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>ParisTrader</h2>
-        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Follow The Smart Money</p>
+        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Quantitative Data Terminal</p>
         <p style='color: #6B7280; font-size: 0.7em; margin-top:5px; font-weight: 600;'>Operated by ParisCap Limited</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # 修改 1：隱藏升級會員與個人持倉 (加入 # 註釋)
+    # 合規處理：隱藏升級、持倉、以及 CFD 開戶優惠
     nav_map_zh = {
         # "升級會員": "💎 升級會員 (VIP)",
-        "CFD開戶優惠": "🎁 開戶專屬優惠",
+        # "CFD開戶優惠": "🎁 開戶專屬優惠",
         "試用指標": "🔥 試用指標教學",
         "首頁": "首頁",
         "大市雷達": "大市雷達",
@@ -176,7 +176,7 @@ with st.sidebar:
 
     nav_map_en = {
         # "升級會員": "💎 Go VIP",
-        "CFD開戶優惠": "🎁 Broker Offer",
+        # "CFD開戶優惠": "🎁 Broker Offer",
         "試用指標": "🔥 Trial Indicator",
         "首頁": "Home",
         "大市雷達": "Market Radar",
@@ -206,12 +206,11 @@ with st.sidebar:
         main_default_index = 0
 
     # 2. 渲染 Option Menu
-    # 修改 2：移除 "gem" (升級) 與 "briefcase" (持倉) 的圖標，對應隱藏的選單
+    # 移除了 "gem", "gift", "briefcase" 圖標
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
-        icons=["gift", "lightning-charge", "house", "activity", 
-               "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
+        icons=["lightning-charge", "house", "activity", "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
         menu_icon="compass",
         default_index=main_default_index,
         key="main_nav_key",
@@ -250,6 +249,16 @@ with st.sidebar:
 
     st.markdown("---")
     
+    # 暫時隱藏側邊欄的 VIP Promo 卡片，避免新客點擊進入升級頁面
+    '''
+    st.markdown(f"""
+        <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
+            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
+            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">{t('vip_promo_desc')}</p>
+            <a href="?page=升級會員" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">{t('vip_join')}</a>
+        </div>
+    """, unsafe_allow_html=True)
+    '''
 
 if url_main_page == "Legal" and selected_nav == "首頁":
     target_page = "Legal"
@@ -271,6 +280,10 @@ if target_page == "SecretAdmin":
     admin_page.render_admin_console()
 
 elif target_page == "首頁":
+    # 合規設定：加入非常清晰的停止收生公告
+    st.info("📌 **系統公告：** 感謝各界支持，ParisCap Limited 目前**已停止招收新會員**。現有 VIP 會員的系統存取權限及數據更新服務將維持正常運作直至會期結束。本系統僅提供客觀市場數據作學術與教育用途。")
+    st.markdown("<br>", unsafe_allow_html=True)
+
     col_main, col_profile = st.columns([0.7, 0.3], gap="large")
     with col_main:
         st.markdown(f"""
@@ -291,6 +304,8 @@ elif target_page == "首頁":
                         height=100)
 
         # =========== 實戰成績與會員反饋 (Social Proof) 區塊 ===========
+        # ⚠️ 合規考量：因停止收生且需強調「純數據/教育」性質，強烈建議隱藏獲利截圖與帶單對話，避免被視為投資建議
+        '''
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader("🔥 實戰成績與會員反饋")
         st.caption("真實數據說話，見證機構級數據與資金流的威力")
@@ -350,6 +365,7 @@ elif target_page == "首頁":
 """
         st.markdown(social_proof_html, unsafe_allow_html=True)
         st.markdown("---")
+        '''
 
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader(t('tutorial'))
@@ -378,8 +394,8 @@ elif target_page == "首頁":
         st.markdown(f"""
 <div class="profile-card">
 <img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
-<h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader(Jacky.H)</h3>
-<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Derivative Expert</p>
+<h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader</h3>
+<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Data & Analytics</p>
 <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
 <div style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
 {t('profile_text')}
@@ -403,7 +419,7 @@ elif target_page == "Market Dashboard":
 
 elif target_page == "試用指標":
     st.title("🔥 獨家指標試用與教學")
-    st.caption("透過量化指標，捕捉最佳進出場時機")
+    st.caption("透過量化指標，客觀評估市場結構")
     html_content = utils.load_html_file(os.path.join("Community", "indicator.html"))
     if "File not found" not in html_content:
         st.html(html_content)
@@ -538,7 +554,7 @@ elif target_page == "期貨牛熊":
 
     with tab_cbbc:
         st.subheader("HSI CBBC Heavy Zone")
-        if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder", description="看穿大戶屠牛/殺熊目標價"):
+        if utils.check_access_or_show_teaser("牛熊重貨區 CBBC Ladder", description="客觀呈現市場重貨區分佈"):
             html_content = utils.load_html_file(os.path.join("MarketDashboard", "HSI_CBBC_Ladder.html"))
             if "File not found" not in html_content:
                 components.html(html_content, height=1200, scrolling=True)
@@ -546,7 +562,7 @@ elif target_page == "期貨牛熊":
                 st.warning("⚠️ Report not found")
 
 elif target_page == "個人持倉":
-    st.title("💼 Paris Picks (百萬美金個人倉位)")
+    st.title("💼 Paris Picks (內部量化倉位紀錄)")
     path = "Trade"
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
     is_vip = st.session_state.get("authentication_status", False)
@@ -582,7 +598,7 @@ elif target_page == "EA 介紹":
 # 交易學院：嚴格鎖定內容，未解鎖前只會顯示標題與大鎖頭提示
 elif target_page == "交易學院":
     st.title("🎓 交易學院 (Academy)")
-    if utils.check_access_or_show_teaser("交易學院", description="此為會員專屬內容，解鎖進階交易教學與量化策略。"):
+    if utils.check_access_or_show_teaser("交易學院", description="此為會員專屬內容，解鎖進階量化策略文獻。"):
         education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
 elif target_page == "Legal":
@@ -611,11 +627,12 @@ elif target_page == "升級會員":
     else:
         st.error("⚠️ Content not found")
 
-# Footer (加入營運公司聲明，確保合規)
+# Footer (加入營運公司聲明，確保合規，並加入極強烈的免責聲明)
 st.markdown("""
 <div class="custom-footer" style="border-top: 1px solid #374151; padding-top: 20px; margin-top: 40px; text-align: center;">
     <p style="color: #D1D5DB; font-weight: 600; margin-bottom: 5px;">Operated by ParisCap Limited</p>
-    <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
-    <p><a href="https://t.me/algoparistrader" target="_blank" style="color: #60A5FA;">@ParisTrader on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
+    <p style="color: #9CA3AF; font-size: 0.8em; margin-bottom: 5px;">All data and tools provided are for educational and quantitative research purposes only and do not constitute financial or investment advice.</p>
+    <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Strictly no investment advisory services provided.</span></p>
+    <p><a href="https://t.me/algoparistrader" target="_blank" style="color: #60A5FA;">@ParisTrader Admin</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
 </div>
 """, unsafe_allow_html=True)
