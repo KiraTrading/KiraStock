@@ -160,12 +160,12 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     nav_map_zh = {
-        "升級會員": "💎 升級會員 (VIP)",
+# "升級會員": "💎 升級會員 (VIP)",  # 暫時隱藏，不收新生
         "CFD開戶優惠": "🎁 開戶專屬優惠",
         "試用指標": "🔥 試用指標教學",
         "首頁": "首頁",
         "大市雷達": "大市雷達",
-        "個人持倉": "個人持倉",
+        # "個人持倉": "個人持倉",         # 暫時隱藏
         "美股獵人": "美股獵人",
         "期權佈局": "期權佈局",
         "期貨牛熊": "期貨牛熊",
@@ -174,12 +174,12 @@ with st.sidebar:
     }
 
     nav_map_en = {
-        "升級會員": "💎 Go VIP",
+ # "升級會員": "💎 Go VIP",         # 暫時隱藏，不收新生
         "CFD開戶優惠": "🎁 Broker Offer",
         "試用指標": "🔥 Trial Indicator",
         "首頁": "Home",
         "大市雷達": "Market Radar",
-        "個人持倉": "Portfolio",
+   # "個人持倉": "Portfolio",         # 暫時隱藏
         "美股獵人": "Stock Hunter",
         "期權佈局": "Option Flow",
         "期貨牛熊": "Futures & Vol",
@@ -205,22 +205,22 @@ with st.sidebar:
         main_default_index = 0
 
     # 2. 渲染 Option Menu
-    selected_display = option_menu(
-        menu_title=t("nav_title"),
-        options=display_options,
-        icons=["gem", "gift", "lightning-charge", "house", "activity", "briefcase",
-               "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
-        menu_icon="compass",
-        default_index=main_default_index,
-        key="main_nav_key",
-        styles={
-            "container": {"padding": "0!important", "background-color": "transparent"},
-            "icon": {"color": "#9CA3AF", "font-size": "15px"},
-            "nav-link": {"font-size": "15px", "text-align": "left", "margin": "5px", "color": "#D1D5DB",
-                         "--hover-color": "#1F2937"},
-            "nav-link-selected": {"background-color": "#2563EB", "color": "#FFFFFF", "font-weight": "600"},
-        }
-    )
+    selected_display = option_menu(
+        menu_title=t("nav_title"),
+        options=display_options,
+        # 移除了代表升級會員的 "gem" 和代表個人持倉的 "briefcase"
+        icons=["gift", "lightning-charge", "house", "activity", "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
+        menu_icon="compass",
+        default_index=main_default_index,
+        key="main_nav_key",
+        styles={
+            "container": {"padding": "0!important", "background-color": "transparent"},
+            "icon": {"color": "#9CA3AF", "font-size": "15px"},
+            "nav-link": {"font-size": "15px", "text-align": "left", "margin": "5px", "color": "#D1D5DB",
+                         "--hover-color": "#1F2937"},
+            "nav-link-selected": {"background-color": "#2563EB", "color": "#FFFFFF", "font-weight": "600"},
+        }
+    )
 
     # 3. 反向查找：將 Menu 顯示的文字轉回系統內部的 Key
     selected_nav = [k for k, v in current_nav_map.items() if v == selected_display][0]
@@ -247,13 +247,16 @@ with st.sidebar:
             target_page = "EA 介紹"
 
     st.markdown("---")
-    st.markdown(f"""
-        <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
-            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
-            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">{t('vip_promo_desc')}</p>
-            <a href="?page=升級會員" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">{t('vip_join')}</a>
-        </div>
-    """, unsafe_allow_html=True)
+    # 暫時隱藏側邊欄的 VIP Promo 卡片，避免新客點擊進入升級頁面
+    '''
+    st.markdown(f"""
+        <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
+            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
+            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">{t('vip_promo_desc')}</p>
+            <a href="?page=升級會員" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">{t('vip_join')}</a>
+        </div>
+    """, unsafe_allow_html=True)
+    '''
 
 if url_main_page == "Legal" and selected_nav == "首頁":
     target_page = "Legal"
