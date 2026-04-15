@@ -150,10 +150,12 @@ with st.sidebar:
             st.session_state['language'] = new_lang
             st.rerun()
 
+    # 在選單頂部當眼處加入營運公司資訊 (稅局要求)
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
         <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>ParisTrader</h2>
         <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Follow The Smart Money</p>
+        <p style='color: #6B7280; font-size: 0.7em; margin-top:5px; font-weight: 600;'>Operated by ParisCap Limited</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -167,7 +169,8 @@ with st.sidebar:
         "美股獵人": "美股獵人",
         "期權佈局": "期權佈局",
         "期貨牛熊": "期貨牛熊",
-        "自動鈔能力": "自動鈔能力"
+        "自動鈔能力": "自動鈔能力",
+        "交易學院": "交易學院" # 放回交易學院
     }
 
     nav_map_en = {
@@ -180,7 +183,8 @@ with st.sidebar:
         "美股獵人": "Stock Hunter",
         "期權佈局": "Option Flow",
         "期貨牛熊": "Futures & Vol",
-        "自動鈔能力": "Auto-Trading (EA)"
+        "自動鈔能力": "Auto-Trading (EA)",
+        "交易學院": "Academy" # 放回交易學院
     }
 
     current_nav_map = nav_map_zh if st.session_state['language'] == 'zh' else nav_map_en
@@ -200,12 +204,12 @@ with st.sidebar:
     except ValueError:
         main_default_index = 0
 
-    # 2. 渲染 Option Menu
+    # 2. 渲染 Option Menu (新增 mortarboard 圖示對應學院)
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
         icons=["gem", "gift", "lightning-charge", "house", "activity", "briefcase",
-               "crosshair", "layers", "graph-up-arrow", "robot"],
+               "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
         menu_icon="compass",
         default_index=main_default_index,
         key="main_nav_key",
@@ -257,7 +261,7 @@ if url_main_page == "Legal" and selected_nav == "首頁":
 # ==========================================
 # 3. Security Check
 # ==========================================
-locked_pages = ["美股獵人"] # 整個 page 必須登入會員才可看
+locked_pages = ["美股獵人", "交易學院"] # 加入交易學院，必須登入會員才可看
 if target_page in locked_pages:
     if not utils.check_access_or_show_teaser(target_page):
         st.stop()
@@ -374,11 +378,12 @@ elif target_page == "首頁":
 
         img_src = get_image_base64(img_path)
 
+        # 改為 Derivative Expert
         st.markdown(f"""
 <div class="profile-card">
 <img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
 <h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader(Jacky.H)</h3>
-<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Ex-Ibank Derivative Trader</p>
+<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Derivative Expert</p>
 <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
 <div style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
 {t('profile_text')}
@@ -578,6 +583,10 @@ elif target_page == "EA 介紹":
     else:
         st.warning("⚠️ Content not found.")
 
+# 將交易學院路由加回來
+elif target_page == "交易學院":
+    education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
+
 elif target_page == "Legal":
     st.title("📜 Legal & Compliance")
     t1, t2, t3 = st.tabs(["Disclaimer", "Privacy", "Terms"])
@@ -604,10 +613,11 @@ elif target_page == "升級會員":
     else:
         st.error("⚠️ Content not found")
 
-# Footer
+# Footer (加入營運公司聲明，確保合規)
 st.markdown("""
-<div class="custom-footer">
+<div class="custom-footer" style="border-top: 1px solid #374151; padding-top: 20px; margin-top: 40px; text-align: center;">
+    <p style="color: #D1D5DB; font-weight: 600; margin-bottom: 5px;">Operated by ParisCap Limited</p>
     <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
-    <p><a href="https://t.me/algoparistrader" target="_blank">@ParisTrader on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
+    <p><a href="https://t.me/algoparistrader" target="_blank" style="color: #60A5FA;">@ParisTrader on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
 </div>
 """, unsafe_allow_html=True)
