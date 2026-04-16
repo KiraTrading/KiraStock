@@ -530,14 +530,14 @@ elif target_page == "交易學院":
 
 elif target_page == "Legal":
     st.title("📜 法律條款及細則 (Legal & Terms)")
-    file_path = os.path.join("legal", "paris_terms.html")
+    file_path = os.path.join("Legal", "paris_terms.html")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             html_string = f.read()
         # 加入 components.html 渲染，高度設為 1200 讓內容能充分顯示，支援滾動
         components.html(html_string, height=1200, scrolling=True)
     except FileNotFoundError:
-        st.error(f"⚠️ 找不到檔案 {file_path}。請確認檔案已放置於 legal 資料夾內。")
+        st.error(f"⚠️ 找不到檔案 {file_path}。請確認檔案已放置於 Legal 資料夾內。")
     except Exception as e:
         st.error(f"⚠️ 讀取條款檔案時發生錯誤: {e}")
 
