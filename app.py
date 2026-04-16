@@ -159,7 +159,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    # 合規處理：隱藏升級、持倉、以及 CFD 開戶優惠
+    # 合規處理：隱藏升級、持倉、以及 CFD 開戶優惠，加入法律條款
     nav_map_zh = {
         # "升級會員": "💎 升級會員 (VIP)",
         # "CFD開戶優惠": "🎁 開戶專屬優惠",
@@ -171,7 +171,8 @@ with st.sidebar:
         "期權佈局": "期權佈局",
         "期貨牛熊": "期貨牛熊",
         "EA程式回測": "EA程式回測",
-        "交易學院": "交易學院"
+        "交易學院": "交易學院",
+        "Legal": "📜 條款及細則"
     }
 
     nav_map_en = {
@@ -185,7 +186,8 @@ with st.sidebar:
         "期權佈局": "Option Flow",
         "期貨牛熊": "Futures & Vol",
         "EA程式回測": "EA Backtesting",
-        "交易學院": "Academy"
+        "交易學院": "Academy",
+        "Legal": "📜 Legal & Terms"
     }
 
     current_nav_map = nav_map_zh if st.session_state['language'] == 'zh' else nav_map_en
@@ -206,11 +208,11 @@ with st.sidebar:
         main_default_index = 0
 
     # 2. 渲染 Option Menu
-    # 移除了 "gem", "gift", "briefcase" 圖標
+    # 加入了 "shield-check" 圖標用於法律條款
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
-        icons=["lightning-charge", "house", "activity", "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
+        icons=["lightning-charge", "house", "activity", "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard", "shield-check"],
         menu_icon="compass",
         default_index=main_default_index,
         key="main_nav_key",
@@ -248,15 +250,6 @@ with st.sidebar:
             target_page = "EA 介紹"
 
     st.markdown("---")
-    
-    # 【修復：使用 # 進行真正註釋，避免 Streamlit Magic 將其印出】
-    # st.markdown(f"""
-    #     <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
-    #         <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
-    #         <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">{t('vip_promo_desc')}</p>
-    #         <a href="?page=升級會員" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">{t('vip_join')}</a>
-    #     </div>
-    # """, unsafe_allow_html=True)
 
 if url_main_page == "Legal" and selected_nav == "首頁":
     target_page = "Legal"
@@ -300,69 +293,6 @@ elif target_page == "首頁":
         {"symbols": [{"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"}, {"proName": "FOREXCOM:NSXUSD", "title": "US 100"}, {"description": "Gold", "proName": "OANDA:XAUUSD"}],
         "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en"}</script></div>""",
                         height=100)
-
-        # =========== 實戰成績與會員反饋 (Social Proof) 區塊 ===========
-        # ⚠️ 合規考量：因停止收生且需強調「純數據/教育」性質，強烈建議隱藏獲利截圖與帶單對話，避免被視為投資建議
-        # 【修復：使用 # 進行真正註釋，避免 Streamlit Magic 將其印出】
-        # st.markdown("<br>", unsafe_allow_html=True)
-        # st.subheader("🔥 實戰成績與會員反饋")
-        # st.caption("真實數據說話，見證機構級數據與資金流的威力")
-        #
-        # social_proof_html = """
-        # <style>
-        # .social-proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; margin-bottom: 20px; }
-        # .sp-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; overflow: hidden; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; }
-        # .sp-card:hover { transform: translateY(-8px); border-color: #F59E0B; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.15); }
-        # .sp-img-container { width: 100%; height: 180px; background-color: #0f172a; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        # .sp-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        # .sp-card:hover .sp-img { transform: scale(1.08); }
-        # .sp-content { padding: 16px; }
-        # .sp-tag { font-size: 0.75rem; background: rgba(37, 99, 235, 0.2); color: #60A5FA; padding: 4px 8px; border-radius: 4px; font-weight: 700; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px; }
-        # .sp-tag.gold { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
-        # .sp-text { color: #cbd5e1; font-size: 0.95rem; font-weight: 500; line-height: 1.5; margin: 0; min-height: 42px; }
-        # .sp-author { margin-top: 15px; font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 5px; }
-        # .sp-disclaimer { font-size: 0.75rem; color: #475569; text-align: right; margin-top: 10px; font-style: italic; }
-        # </style>
-        # <div class="social-proof-grid">
-        # <div class="sp-card">
-        # <div class="sp-img-container">
-        # <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl1.jpg" class="sp-img" alt="Member PnL 1" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
-        # </div>
-        # <div class="sp-content">
-        # <div class="sp-tag">📊 波段捕捉</div>
-        # <p class="sp-text">「執行力與紀律的展現 - 運用大市雷達成功捕捉波段起漲點。」</p>
-        # <div class="sp-author">👤 VIP 群組實戰回單</div>
-        # </div>
-        # </div>
-        # <div class="sp-card">
-        # <div class="sp-img-container" style="background: #0f172a; padding: 20px; display:flex; flex-direction: column; justify-content:center;">
-        # <div style="background: rgba(255,255,255,0.05); padding: 12px 15px; border-radius: 12px; border-left: 3px solid #F59E0B; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        # <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; font-weight:bold;">Member-老登</div>
-        # <div style="font-size: 0.9rem; color: #f8fafc; line-height: 1.4;">這速度太誇張了... 剛才那波油價拉升直接抓到。🚀</div>
-        # <div style="font-size: 0.7rem; color: #64748b; text-align: right; margin-top: 5px;">10:45 AM</div>
-        # </div>
-        # </div>
-        # <div class="sp-content">
-        # <div class="sp-tag gold">⚡ 情報領先</div>
-        # <p class="sp-text">「比散戶新聞快最少 5 分鐘！即時捕捉機構 Block Trade 佈局和突發新聞。」</p>
-        # <div class="sp-author">💬 內部交易員交流群</div>
-        # </div>
-        # </div>
-        # <div class="sp-card">
-        # <div class="sp-img-container">
-        # <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl2.jpg" class="sp-img" alt="Member PnL 2" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
-        # </div>
-        # <div class="sp-content">
-        # <div class="sp-tag">🎯 數據反轉</div>
-        # <p class="sp-text">「群組即時提示驗證 - 把握非農數據後的反轉，避開假突破。」</p>
-        # <div class="sp-author">👤 VIP 群組實戰回單</div>
-        # </div>
-        # </div>
-        # </div>
-        # <div class="sp-disclaimer">* 過去績效不代表未來收益，交易皆具風險，請自行評估。</div>
-        # """
-        # st.markdown(social_proof_html, unsafe_allow_html=True)
-        # st.markdown("---")
 
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader(t('tutorial'))
@@ -599,14 +529,17 @@ elif target_page == "交易學院":
         education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
 elif target_page == "Legal":
-    st.title("📜 Legal & Compliance")
-    t1, t2, t3 = st.tabs(["Disclaimer", "Privacy", "Terms"])
-    with t1:
-        st.html(utils.load_html_file(os.path.join("Legal", "disclaimer.html")))
-    with t2:
-        st.html(utils.load_html_file(os.path.join("Legal", "privacy.html")))
-    with t3:
-        st.html(utils.load_html_file(os.path.join("Legal", "terms.html")))
+    st.title("📜 法律條款及細則 (Legal & Terms)")
+    file_path = os.path.join("legal", "paris_terms.html")
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            html_string = f.read()
+        # 加入 components.html 渲染，高度設為 1200 讓內容能充分顯示，支援滾動
+        components.html(html_string, height=1200, scrolling=True)
+    except FileNotFoundError:
+        st.error(f"⚠️ 找不到檔案 {file_path}。請確認檔案已放置於 legal 資料夾內。")
+    except Exception as e:
+        st.error(f"⚠️ 讀取條款檔案時發生錯誤: {e}")
 
 elif target_page == "CFD開戶優惠":
     st.title("🔗 Trading Resources")
