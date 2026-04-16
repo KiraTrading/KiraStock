@@ -563,6 +563,6 @@ st.markdown("""
     <p style="color: #D1D5DB; font-weight: 600; margin-bottom: 5px;">Operated by ParisCap Limited</p>
     <p style="color: #9CA3AF; font-size: 0.8em; margin-bottom: 5px;">All data and tools provided are for educational and quantitative research purposes only and do not constitute financial or investment advice.</p>
     <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Strictly no investment advisory services provided.</span></p>
-    <p><a href="https://t.me/algoparistrader" target="_blank" style="color: #60A5FA;">@ParisTrader Admin</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
+    <p><a href="https://t.me/Ho777ggg" target="_blank" style="color: #60A5FA;">@ParisTrader Admin</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
 </div>
 """, unsafe_allow_html=True)
