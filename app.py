@@ -272,7 +272,7 @@ if target_page == "SecretAdmin":
 
 elif target_page == "首頁":
     # 合規設定：加入非常清晰的停止收生公告
-    st.info("📌 **系統公告：** 感謝各界支持，ParisCap Limited 目前**已停止招收新會員**。現有 VIP 會員的系統存取權限及數據更新服務將維持正常運作直至會期結束。本系統僅提供客觀市場數據作學術與教育用途。")
+    st.info("📌 **本系統僅提供客觀市場數據作學術與教育用途。")
     st.markdown("<br>", unsafe_allow_html=True)
 
     col_main, col_profile = st.columns([0.7, 0.3], gap="large")
@@ -557,10 +557,10 @@ elif target_page == "升級會員":
     else:
         st.error("⚠️ Content not found")
 
-# Footer (加入營運公司聲明，確保合規，並加入極強烈的免責聲明)
+# Footer 
 st.markdown("""
 <div class="custom-footer" style="border-top: 1px solid #374151; padding-top: 20px; margin-top: 40px; text-align: center;">
-    <p style="color: #D1D5DB; font-weight: 600; margin-bottom: 5px;">Operated by ParisCap Limited</p>
+    <p style="color: #D1D5DB; font-weight: 600; margin-bottom: 5px;">O</p>
     <p style="color: #9CA3AF; font-size: 0.8em; margin-bottom: 5px;">All data and tools provided are for educational and quantitative research purposes only and do not constitute financial or investment advice.</p>
     <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Strictly no investment advisory services provided.</span></p>
     <p><a href="https://t.me/Ho777ggg" target="_blank" style="color: #60A5FA;">@ParisTrader Admin</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
