@@ -155,7 +155,7 @@ with st.sidebar:
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
         <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>ParisTrader</h2>
         <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Quantitative Data Terminal</p>
-        <p style='color: #6B7280; font-size: 0.7em; margin-top:5px; font-weight: 600;'>Operated by ParisCap Limited</p>
+        <p style='color: #6B7280; font-size: 0.7em; margin-top:5px; font-weight: 600;'></p>
     </div>
     """, unsafe_allow_html=True)
 
