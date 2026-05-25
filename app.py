@@ -166,7 +166,7 @@ with st.sidebar:
         "試用指標": "🔥 試用指標教學",
         "首頁": "首頁",
         "大市雷達": "大市雷達",
-        # "個人持倉": "個人持倉",
+         "個人持倉": "個人持倉",
         "美股獵人": "美股獵人",
         "期權佈局": "期權佈局",
         "期貨牛熊": "期貨牛熊",
@@ -181,7 +181,7 @@ with st.sidebar:
         "試用指標": "🔥 Trial Indicator",
         "首頁": "Home",
         "大市雷達": "Market Radar",
-        # "個人持倉": "Portfolio",
+         "個人持倉": "Portfolio",
         "美股獵人": "Stock Hunter",
         "期權佈局": "Option Flow",
         "期貨牛熊": "Futures & Vol",
@@ -212,7 +212,8 @@ with st.sidebar:
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
-        icons=["lightning-charge", "house", "activity", "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard", "shield-check"],
+        # 在 "activity" 後面加入了 "briefcase" 保持一一對應
+        icons=["lightning-charge", "house", "activity", "briefcase", "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard", "shield-check"],
         menu_icon="compass",
         default_index=main_default_index,
         key="main_nav_key",
@@ -223,7 +224,6 @@ with st.sidebar:
                          "--hover-color": "#1F2937"},
             "nav-link-selected": {"background-color": "#2563EB", "color": "#FFFFFF", "font-weight": "600"},
         }
-    )
 
     # 3. 反向查找：將 Menu 顯示的文字轉回系統內部的 Key
     selected_nav = [k for k, v in current_nav_map.items() if v == selected_display][0]
