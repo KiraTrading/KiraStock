@@ -248,13 +248,7 @@ with st.sidebar:
             target_page = "EA 介紹"
 
     st.markdown("---")
-    st.markdown(f"""
-        <div class="vip-promo-card" style="background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%); padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid #FCD34D;">
-            <h3 style="color: #FFFFFF; margin:0; font-size: 18px; font-weight: 800;">{t('vip_promo_title')}</h3>
-            <p style="color: #FEF3C7; font-size: 12px; margin: 8px 0;">{t('vip_promo_desc')}</p>
-            <a href="?page=升級會員" target="_self" style="display: block; width: 100%; background: #FFFFFF; color: #B45309; padding: 10px; border-radius: 6px; font-weight: 800; text-decoration: none;">{t('vip_join')}</a>
-        </div>
-    """, unsafe_allow_html=True)
+
 
 if url_main_page == "Legal" and selected_nav == "首頁":
     target_page = "Legal"
