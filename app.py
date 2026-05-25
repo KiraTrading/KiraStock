@@ -771,15 +771,6 @@ elif target_page == "交易學院":
     if utils.check_access_or_show_teaser("交易學院", description="此為會員專屬內容，解鎖進階量化策略與教學。"):
         education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
-elif target_page == "Legal":
-    st.title("📜 Legal & Compliance")
-    t1, t2, t3 = st.tabs(["Disclaimer", "Privacy", "Terms"])
-    with t1:
-        st.html(utils.load_html_file(os.path.join("Legal", "disclaimer.html")))
-    with t2:
-        st.html(utils.load_html_file(os.path.join("Legal", "privacy.html")))
-    with t3:
-        st.html(utils.load_html_file(os.path.join("Legal", "terms.html")))
 
 elif target_page == "CFD開戶優惠":
     st.title("🔗 Trading Resources")
