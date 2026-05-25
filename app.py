@@ -772,14 +772,15 @@ elif target_page == "交易學院":
         education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
 elif target_page == "Legal":
-    st.title("📜 Legal & Compliance")
-    t1, t2, t3 = st.tabs(["Disclaimer", "Privacy", "Terms"])
-    with t1:
-        st.html(utils.load_html_file(os.path.join("Legal", "disclaimer.html")))
-    with t2:
-        st.html(utils.load_html_file(os.path.join("Legal", "privacy.html")))
-    with t3:
-        st.html(utils.load_html_file(os.path.join("Legal", "terms.html")))
+    st.title("📜 法律條款及細則 (Legal & Terms)")
+    file_path = os.path.join("Legal", "paris_terms.html")
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            html_string = f.read()
+        # 設置足夠的高度並開啟滾動條，讓條款能完整顯示
+        components.html(html_string, height=1200, scrolling=True)
+    except FileNotFoundError:
+        st.error(f"⚠️ 找不到檔案 {file_path}。請確認檔案已放置於 Legal 資料夾內。")
 
 elif target_page == "CFD開戶優惠":
     st.title("🔗 Trading Resources")
@@ -797,10 +798,3 @@ elif target_page == "升級會員":
         st.html(html_content)
     else:
         st.error("⚠️ Content not found")
-# Footer
-st.markdown("""
-<div class="custom-footer">
-    <p>© 2026 Kira Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
-    <p><a href="https://t.me/kira_stocknote" target="_blank">@kira_stocknote on TG</a> | <a href="https://github.com/ParisTrader/paristrader-terminal/blob/main/Legal/paris_terms.html" target="_blank" style="color: #6B7280; text-decoration: none;">Legal</a></p>
-</div>
-""", unsafe_allow_html=True)
