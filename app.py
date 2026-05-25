@@ -158,12 +158,12 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     nav_map_zh = {
-        "升級會員": "💎 升級會員 (VIP)",
-        "CFD開戶優惠": "🎁 開戶專屬優惠",
+        # "升級會員": "💎 升級會員 (VIP)",
+        # "CFD開戶優惠": "🎁 開戶專屬優惠",
         "試用指標": "🔥 試用指標教學",
         "首頁": "首頁",
         "股票研究": "股票研究",
-        "宏觀專欄": "宏觀專欄",
+        # "宏觀專欄": "宏觀專欄",
         "大市雷達": "大市雷達",
         "實戰持倉": "實戰持倉",
         "美股獵人": "美股獵人",
@@ -174,12 +174,12 @@ with st.sidebar:
     }
 
     nav_map_en = {
-        "升級會員": "💎 Go VIP",
-        "CFD開戶優惠": "🎁 Broker Offer",
+        # "升級會員": "💎 Go VIP",
+        # "CFD開戶優惠": "🎁 Broker Offer",
         "試用指標": "🔥 Trial Indicator",
         "首頁": "Home",
         "股票研究": "Daily Recap",
-        "宏觀專欄": "Research",
+        # "宏觀專欄": "Research",
         "大市雷達": "Market Radar",
         "實戰持倉": "Portfolio",
         "美股獵人": "Stock Hunter",
@@ -200,19 +200,16 @@ with st.sidebar:
     url_sub_page = query_params.get("sub", None)
 
     # 1. 計算 Menu 的 Default Index
-    # 如果 URL 是 "SecretAdmin" 這種不在菜單裡的，index 設為 0 (顯示在首頁位置，但不影響內容)
     try:
-        # 這裡必須用 nav_map_zh 的 key 來對照，因為你的 url_main_page 邏輯是基於中文 Key
         main_default_index = list(nav_map_zh.keys()).index(url_main_page)
     except ValueError:
         main_default_index = 0
 
-    # 2. 渲染 Option Menu
+    # 2. 渲染 Option Menu (已移除 gem, gift, globe 圖標以符合選單數量)
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
-        # 圖標對應：gem(VIP), gift(優惠), lightning-charge(指標), house(首頁)...
-        icons=["gem", "gift", "lightning-charge", "house", "journal-bookmark", "globe", "activity", "briefcase",
+        icons=["lightning-charge", "house", "journal-bookmark", "activity", "briefcase",
                "crosshair", "layers", "graph-up-arrow", "robot", "mortarboard"],
         menu_icon="compass",
         default_index=main_default_index,
@@ -227,25 +224,19 @@ with st.sidebar:
     )
 
     # 3. 反向查找：將 Menu 顯示的文字 (中/英) 轉回系統內部的 Key (中文)
-    # 例如：顯示 "Home" -> 轉回 "首頁"
     selected_nav = [k for k, v in current_nav_map.items() if v == selected_display][0]
 
     # 4. 關鍵修復：處理隱藏頁面邏輯 & URL 同步
-    # 如果 URL 是 SecretAdmin 且 Menu 停留在首頁 (因為找不到 index)，則保持 SecretAdmin
     if url_main_page == "SecretAdmin" and selected_nav == "首頁":
         target_page = "SecretAdmin"
     elif url_main_page == "Legal" and selected_nav == "首頁":
         target_page = "Legal"
     else:
-        # 正常導航情況
         target_page = selected_nav
-
-        # [Bug Fix] 如果點擊了菜單，這裡必須主動更新 URL，否則連結不會變
         if target_page != url_main_page:
             st.query_params["page"] = target_page
-            # 某些情況下可能需要 st.rerun() 來強制刷新 URL 顯示，但在 Streamlit 新版通常會自動處理
 
-    # 處理 EA 子菜單邏輯 (保持原本 Logic)
+    # 處理 EA 子菜單邏輯
     if selected_nav == "自動鈔能力":
         st.caption("AUTOMATED TRADING")
         ea_options_display = ["EA 介紹"] if st.session_state['language'] == 'zh' else ["EA Intro"]
@@ -419,7 +410,9 @@ elif target_page == "Market Dashboard":
         st.warning(f"⚠️ No dashboard files found. Error: {filename}")
 
 elif target_page == "股票研究":
-    recap_page.render_recap_page(utils.load_markdown_with_images)
+    st.title("📈 股票研究 (Daily Recap)")
+    if utils.check_access_or_show_teaser("股票研究", description="此為會員專屬內容，解鎖深度每日覆盤與個股解析。"):
+        recap_page.render_recap_page(utils.load_markdown_with_images)
 
 elif target_page == "宏觀專欄":
     # --- Custom CSS: Mobile Optimized & Clean Archive ---
@@ -793,7 +786,9 @@ elif target_page == "EA 介紹":
         st.warning("⚠️ Content not found.")
 
 elif target_page == "交易學院":
-    education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
+    st.title("🎓 交易學院 (Academy)")
+    if utils.check_access_or_show_teaser("交易學院", description="此為會員專屬內容，解鎖進階量化策略與教學。"):
+        education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
 elif target_page == "Legal":
     st.title("📜 Legal & Compliance")
@@ -825,6 +820,6 @@ elif target_page == "升級會員":
 st.markdown("""
 <div class="custom-footer">
     <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
-    <p><a href="https://t.me/algoparistrader" target="_blank">@ParisTrader on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
+    <p><a href="https://t.me/Ho777ggg" target="_blank">@ParisTrader on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
 </div>
 """, unsafe_allow_html=True)
