@@ -52,9 +52,9 @@ def toggle_language():
 # 翻譯字典
 translations = {
     "zh": {
-        "slogan_title": "不再做韭菜 | 直接跟蹤大戶聰明錢",
-        "slogan_sub": "揭秘華爾街底牌：期權異動 | 莊家成本 | 趨勢預判",
-        "intro_text": "傳統圖表只告訴你「過去」發生什麼，我們的數據告訴你<b>「未來」大戶想去哪裡</b>。<br>Stop guessing. See the cards the dealer is holding.",
+        "slogan_title": "我是投資美股的夜神月",
+        "slogan_sub": "夜晚我翻開這本筆記本,看透市場結構的底層邏輯",
+        "intro_text": "傳統圖表只告訴你「過去」發生什麼，我的死神之眼看到<b>「未來」大戶想去哪裡</b>。",
         "tutorial": "📺 網站使用教學",
         "weekly_btn": "📊 偷看本週大戶部署 (Weekly Analysis)",
         "week_ahead": "🧠 Week Ahead Strategy",
@@ -65,7 +65,7 @@ translations = {
         "vip_join": "🚀 立即加入 (Join Now)",
         "nav_title": "導航選單",
         "settings": "語言設定 / Settings",
-        "profile_text": """我將投資銀行的機構級數據平民化，幫你避開散戶陷阱。
+        "profile_text": """我將投資銀行的數據平民化，幫你避開散戶陷阱。
 <br><br>
 <b>核心武器 (My Edge):</b><br>
 • 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
