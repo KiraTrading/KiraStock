@@ -798,3 +798,10 @@ elif target_page == "升級會員":
         st.html(html_content)
     else:
         st.error("⚠️ Content not found")
+# Footer
+st.markdown("""
+<div class="custom-footer">
+    <p>© 2026 Kira Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
+    <p><a href="https://t.me/kira_stocknote" target="_blank">@kira_stocknote on TG</a> | <a href="https://goo.com" target="_blank" style="color: #6B7280; text-decoration: none;">Legal</a></p>
+</div>
+""", unsafe_allow_html=True)
