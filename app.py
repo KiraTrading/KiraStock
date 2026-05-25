@@ -31,7 +31,7 @@ except ImportError:
 # 1. Page Configuration & CSS
 # ==========================================
 st.set_page_config(
-    page_title="ParisTrader - Smart Money Tracker | 散戶救星",
+    page_title="Kira Trader - Smart Money Tracker | 散戶救星",
     page_icon="🦅",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -152,7 +152,7 @@ with st.sidebar:
 
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
-        <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>ParisTrader</h2>
+        <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>KiraTrader</h2>
         <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Follow The Smart Money</p>
     </div>
     """, unsafe_allow_html=True)
@@ -349,19 +349,6 @@ elif target_page == "首頁":
 """
         st.markdown(social_proof_html, unsafe_allow_html=True)
         st.markdown("---")
-        # =========== 實戰成績與會員反饋 (Social Proof) 區塊 結束 ===========
-
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.subheader(t('tutorial'))
-        st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        st.link_button(
-            label=t('weekly_btn'),
-            url="https://parisprogram.uk/zh/member/post/RPT-20260131182122129?hash=e71209296eb426dd311b01d899a5615e5c858f30f34d39be3e589d137227761f",
-            type="primary",
-            use_container_width=True
-        )
 
     with col_profile:
         img_path = "static/profile.jpg"
@@ -380,13 +367,13 @@ elif target_page == "首頁":
         st.markdown(f"""
 <div class="profile-card">
 <img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
-<h3 style="margin-top:10px; color:#F3F4F6;">Paris Trader(Jacky.H)</h3>
+<h3 style="margin-top:10px; color:#F3F4F6;">Kira Trader</h3>
 <p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Ex-Ibank Derivative Trader</p>
 <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
 <div style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
 {t('profile_text')}
 </div>
-<a href="https://t.me/ParisTrader" target="_blank">
+<a href="https://t.me/kira_stocknote" target="_blank">
 <button style="background-color:#2563EB; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; font-weight:bold; box-shadow: 0 4px 6px rgba(37,99,235,0.3);">
 {t('contact_btn')}
 </button>
@@ -480,7 +467,7 @@ elif target_page == "宏觀專欄":
     """, unsafe_allow_html=True)
 
     st.title("🦅 知世界事，賺世界錢")
-    st.caption("巴黎炒家-洞察先機 (Paris Trader Prediction)")
+    st.caption("洞察先機 (Kira Trader Prediction)")
 
     files = sorted(glob.glob(os.path.join("DailyInsights", "*.md")), reverse=True)
 
@@ -554,7 +541,7 @@ elif target_page == "宏觀專欄":
 
             footer_html = """
                 <div style="margin-top:15px; padding-top:10px; border-top:1px dashed #334155; text-align:right; font-size:0.75rem; color:#64748b;">
-                    @ParisTrader | Institutional Data
+                    @KiraTrader | Institutional Data
                 </div>
             </div>
             """
@@ -746,7 +733,7 @@ elif target_page == "期貨牛熊":
                 st.warning("⚠️ Report not found")
 
 elif target_page == "實戰持倉":
-    st.title("💼 Paris Picks (百萬美金實戰倉位)")
+    st.title("💼 Kira Picks (百萬美金實戰倉位)")
     path = "Trade"
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
     is_vip = st.session_state.get("authentication_status", False)
@@ -813,7 +800,7 @@ elif target_page == "升級會員":
 # Footer
 st.markdown("""
 <div class="custom-footer">
-    <p>© 2026 Paris Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
-    <p><a href="https://t.me/Ho777ggg" target="_blank">@ParisTrader on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
+    <p>© 2026 Kira Trader. All rights reserved.<br><span style="font-size: 0.75rem; color: #6B7280;">Not financial advice.</span></p>
+    <p><a href="https://t.me/kira_stocknote" target="_blank">@kira_stocknote on TG</a> | <a href="?page=Legal" target="_self" style="color: #6B7280; text-decoration: none;">Legal</a></p>
 </div>
 """, unsafe_allow_html=True)
