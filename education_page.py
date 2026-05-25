@@ -12,7 +12,7 @@ translations = {
         "page_caption": "Institutional Trading Knowledge & Strategies",
         "tabs": ["🚀 致勝地圖 (Roadmap)", "📚 知識庫 (Articles)", "🎥 影片教學 (Videos)"],
         "roadmap_header": "🦅 Alpha 獲利方程式：七步成詩",
-        "roadmap_sub": "如何系統化運用 ParisTrader 工具尋找致勝交易 (SOP)。",
+        "roadmap_sub": "如何系統化運用 Kira 的工具尋找致勝交易 (SOP)。",
         "video_sub": "網站使用教學 (Walkthrough)",
         "video_info": "🔥 更多實戰影片將陸續上架，涵蓋 EA 安裝演示與期權操作實錄。",
         "article_list": "📚 文章列表 (Article List)",
@@ -24,7 +24,7 @@ translations = {
         "page_caption": "Institutional Trading Knowledge & Strategies",
         "tabs": ["🚀 Winning Roadmap", "📚 Knowledge Base", "🎥 Video Tutorials"],
         "roadmap_header": "🦅 The Alpha Formula: 7-Step Roadmap",
-        "roadmap_sub": "Systematic SOP to find winning trades using ParisTrader tools.",
+        "roadmap_sub": "Systematic SOP to find winning trades.",
         "video_sub": "Platform Walkthrough",
         "video_info": "🔥 More videos on EA installation and Options trading coming soon.",
         "article_list": "📚 Article List",
@@ -111,7 +111,7 @@ def render_winning_roadmap():
             st.markdown("""
             **目標：** 與專業操盤手的部署進行對齊。
             * **前往：** `每日復盤` - 閱讀每日分析。
-            * **前往：** `實戰持倉` - 看看 Paris 是在做多、做空，還是正在對沖。
+            * **前往：** `實戰持倉` - 看看 Kira 是在做多、做空，還是正在對沖。
             """)
 
         st.info(
@@ -177,7 +177,7 @@ def render_winning_roadmap():
             st.markdown("""
             **Goal:** Align with professional positioning.
             * **Go To:** `Daily Recap` - Read daily analysis.
-            * **Go To:** `Portfolio` - Is Paris Long, Short, or Hedging?
+            * **Go To:** `Portfolio` - Is Kira Long, Short, or Hedging?
             """)
 
         st.info(
@@ -228,7 +228,7 @@ def render_education_page(check_access_func, load_markdown_func):
                 "desc": "無需編程知識，手把手教你啟動自動交易引擎。" if is_zh else "No coding needed. Step-by-step guide to starting your auto-trading engine."
             },
             "ea_manual": {
-                "title": "第02課 | [EA] 告別手忙腳亂：Paris 摩打手輔助系統" if is_zh else "Lesson 02 | [EA] Paris Assistant System Manual",
+                "title": "第02課 | [EA] 告別手忙腳亂：Kira 摩打手輔助系統" if is_zh else "Lesson 02 | [EA] Kira Assistant System Manual",
                 "file": "4_mt5_ea_manual.md",
                 "icon": "🤖",
                 "desc": "秒速下單、隱形止損、一鍵反手。" if is_zh else "Fast execution, hidden SL, one-click reverse."
@@ -324,7 +324,7 @@ def render_education_page(check_access_func, load_markdown_func):
 
             # --- Phase 4: System (VIP) ---
             "paris_manual": {
-                "title": "第17課 | [系統] ParisTrader 實戰手冊：四圖流操盤法 🔒" if is_zh else "Lesson 17 | [System] Paris Manual: Quad-Chart Method 🔒",
+                "title": "第17課 | [系統] KiraTrader 實戰手冊：四圖流操盤法 🔒" if is_zh else "Lesson 17 | [System] Kira Manual: Quad-Chart Method 🔒",
                 "file": "15_paris_system_manual.md",
                 "icon": "📘",
                 "desc": "在單邊行情中吃到最長的一段。" if is_zh else "Catch the longest trend in one-sided markets."
