@@ -58,7 +58,7 @@ translations = {
         "week_ahead": "SYSTEM DIRECTIVE: Week Ahead",
         "expander_title": ">_ Access Market Intel",
         "contact_btn": "INITIATE COMMS (聯絡我)",
-        "nav_title": "TERMINAL OVERRIDE",
+        "nav_title": "TERMINAL",
         "profile_text": """SYSTEM AUTHORIZATION GRANTED.<br>我將投資銀行的數據平民化，幫你避開散戶陷阱。
 <br><br>
 <b>[CORE.PROTOCOLS]:</b><br>
@@ -75,7 +75,7 @@ translations = {
         "week_ahead": "SYSTEM DIRECTIVE: Week Ahead",
         "expander_title": ">_ Access Market Intel",
         "contact_btn": "INITIATE COMMS",
-        "nav_title": "TERMINAL OVERRIDE",
+        "nav_title": "TERMINAL",
         "profile_text": """SYSTEM AUTHORIZATION GRANTED.<br>Democratizing dark pool mechanics.
 <br><br>
 <b>[CORE.PROTOCOLS]:</b><br>
