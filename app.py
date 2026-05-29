@@ -675,6 +675,6 @@ elif target_page == "升級會員":
 st.markdown("""
 <div class="mono-text" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #222; text-align: center; color: #555; font-size: 0.7rem;">
     <p>[SYS.MEM] © 2026 Kira Protocol. All operations logged.<br>Execution of strategies implies acceptance of terminal risk protocols.</p>
-    <p><a href="https://t.me/Ho777ggg" target="_blank" style="color: #D32F2F;">@kira_stocknote</a> | <a href="?page=Legal" target="_self" style="color: #555;">LEGAL.SYS</a></p>
+    <p><a href="https://t.me/kira_stocknote" target="_blank" style="color: #D32F2F;">@kira_stocknote</a> | <a href="?page=Legal" target="_self" style="color: #555;">LEGAL.SYS</a></p>
 </div>
 """, unsafe_allow_html=True)
