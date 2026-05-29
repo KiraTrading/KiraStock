@@ -43,6 +43,5 @@ TP 2 (最終目標): $131
 
 想自己睇?禁下面連結,再禁 TA Score 即可!
 
-https://paristrader-terminal.streamlit.app/?page=%E7%BE%8E%E8%82%A1%E7%8D%B5%E4%BA%BA
 
 💡 學習點： 估值與動能的結合 (Value + Momentum)。 單看便宜 (Low PE) 不足以構成買入理由，因為便宜可以更便宜。但當「低估值」的股票突然出現 TA Score 高分 (動能爆發)，往往代表市場重新定價 (Re-rating) 的過程已經開始，這就是最具爆發力的時刻。

@@ -44,7 +44,7 @@ HCA 作為醫院營運龍頭，往往是機構資金避險的首選目標。
 
 想自己睇?禁下面連結,再禁TA Score即可!
 
-https://paristrader-terminal.streamlit.app/?page=%E7%BE%8E%E8%82%A1%E7%8D%B5%E4%BA%BA
+
     * 
 > 💡 **學習點：** > 為什麼有些股票大市跌它不跌？因為機構在護盤。
 > 不要只看價格，要看 **TA Score** 背後的綜合評分。當板塊 (Healthcare) 與個股分數產生共振時，勝率最高。
