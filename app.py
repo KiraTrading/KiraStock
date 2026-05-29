@@ -47,24 +47,24 @@ def toggle_language():
     else:
         st.session_state['language'] = 'zh'
 
-# Translations (Terminal Vibe)
+# Translations (Terminal Vibe with Kira identity)
 translations = {
     "zh": {
-        "slogan_title": "> INITIALIZING KIRA PROTOCOL...",
-        "slogan_sub": "[SYS] Decrypting institutional order flow & market structure.",
-        "intro_text": "Retail charts display history. The Kira Terminal visualizes <b>Future Institutional Intent</b>.<br>Cease retail speculation. Execute with Shinigami precision.",
+        "slogan_title": "> 我是投資美股的夜神月...",
+        "slogan_sub": "[SYS] 夜晚我翻開這本筆記本，看透市場結構的底層邏輯。",
+        "intro_text": "傳統圖表只告訴你「過去」發生什麼，我的死神之眼看到<b>「未來」大戶想去哪裡</b>。<br>停止散戶式盲猜。用機構級數據執行判決。",
         "tutorial": "[SYS.TUTORIAL] Initialize Override",
-        "weekly_btn": "[SYS.DECRYPT] Institutional Weekly Deployment",
+        "weekly_btn": "[SYS.DECRYPT] 偷看本週大戶部署",
         "week_ahead": "SYSTEM DIRECTIVE: Week Ahead",
         "expander_title": ">_ Access Market Intel",
-        "contact_btn": "INITIATE COMMS",
+        "contact_btn": "INITIATE COMMS (聯絡我)",
         "nav_title": "TERMINAL OVERRIDE",
-        "profile_text": """SYSTEM AUTHORIZATION GRANTED.<br>Democratizing dark pool mechanics.
+        "profile_text": """SYSTEM AUTHORIZATION GRANTED.<br>我將投資銀行的數據平民化，幫你避開散戶陷阱。
 <br><br>
 <b>[CORE.PROTOCOLS]:</b><br>
-> <b>Hunter_Alg:</b> Institutional Block Tracking<br>
-> <b>Scalp_Net:</b> NQ/HSI/XAU High-Freq Setup<br>
-> <b>Opt_Flow:</b> Gamma & Dark Pool Sniper<br>"""
+> 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
+> ⚡ <b>Futures Scalping:</b> NQ/HSI/黃金短線<br>
+> 🎯 <b>Option Flow:</b> 異動期權狙擊<br>"""
     },
     "en": {
         "slogan_title": "> INITIALIZING KIRA PROTOCOL...",
@@ -79,9 +79,9 @@ translations = {
         "profile_text": """SYSTEM AUTHORIZATION GRANTED.<br>Democratizing dark pool mechanics.
 <br><br>
 <b>[CORE.PROTOCOLS]:</b><br>
-> <b>Hunter_Alg:</b> Institutional Block Tracking<br>
-> <b>Scalp_Net:</b> NQ/HSI/XAU High-Freq Setup<br>
-> <b>Opt_Flow:</b> Gamma & Dark Pool Sniper<br>"""
+> 🐳 <b>Hunter_Alg:</b> Institutional Block Tracking<br>
+> ⚡ <b>Scalp_Net:</b> NQ/HSI/XAU High-Freq Setup<br>
+> 🎯 <b>Opt_Flow:</b> Gamma & Dark Pool Sniper<br>"""
     }
 }
 
@@ -227,29 +227,29 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     nav_map_zh = {
-        "試用指標": "[SYS] 指標試用",
-        "首頁": "[SYS] 終端首頁",
-        "股票研究": "[DATA] 股票研究",
-        "大市雷達": "[DATA] 大市雷達",
-        "實戰持倉": "[DATA] 實戰持倉",
-        "美股獵人": "[ALGO] 美股獵人",
-        "期權佈局": "[ALGO] 期權佈局",
-        "期貨牛熊": "[ALGO] 期貨牛熊",
-        "自動鈔能力": "[AUTO] 自動交易",
-        "交易學院": "[DOCS] 系統文檔"
+        "試用指標": "🔥 指標試用",
+        "首頁": "🏠 終端首頁",
+        "股票研究": "📈 股票研究",
+        "大市雷達": "📡 大市雷達",
+        "實戰持倉": "💼 實戰持倉",
+        "美股獵人": "🐳 美股獵人",
+        "期權佈局": "🎯 期權佈局",
+        "期貨牛熊": "🎢 期貨牛熊",
+        "自動鈔能力": "🤖 自動交易",
+        "交易學院": "🎓 系統文檔"
     }
 
     nav_map_en = {
-        "試用指標": "[SYS] Trial Tools",
-        "首頁": "[SYS] Main Terminal",
-        "股票研究": "[DATA] Daily Recap",
-        "大市雷達": "[DATA] Market Radar",
-        "實戰持倉": "[DATA] Portfolio",
-        "美股獵人": "[ALGO] Stock Hunter",
-        "期權佈局": "[ALGO] Option Flow",
-        "期貨牛熊": "[ALGO] Futures & Vol",
-        "自動鈔能力": "[AUTO] Auto-Trading",
-        "交易學院": "[DOCS] Academy"
+        "試用指標": "🔥 Trial Tools",
+        "首頁": "🏠 Main Terminal",
+        "股票研究": "📈 Daily Recap",
+        "大市雷達": "📡 Market Radar",
+        "實戰持倉": "💼 Portfolio",
+        "美股獵人": "🐳 Stock Hunter",
+        "期權佈局": "🎯 Option Flow",
+        "期貨牛熊": "🎢 Futures & Vol",
+        "自動鈔能力": "🤖 Auto-Trading",
+        "交易學院": "🎓 Academy"
     }
 
     current_nav_map = nav_map_zh if st.session_state['language'] == 'zh' else nav_map_en
@@ -267,14 +267,13 @@ with st.sidebar:
     selected_display = option_menu(
         menu_title=t("nav_title"),
         options=display_options,
-        icons=["terminal", "hdd-network", "server", "activity", "archive", "crosshair", "cpu", "graph-up-arrow", "robot", "book"],
+        icons=["", "", "", "", "", "", "", "", "", ""], # 移除預設 icon，使用文字內建 Emoji
         menu_icon="display",
         default_index=main_default_index,
         key="main_nav_key",
         styles={
             "container": {"padding": "0!important", "background-color": "transparent"},
-            "icon": {"color": "#666", "font-size": "13px"},
-            "nav-link": {"font-size": "13px", "font-family": "'JetBrains Mono', monospace", "text-align": "left", "margin": "2px", "color": "#A0AAB5", "border-radius": "0px"},
+            "nav-link": {"font-size": "14px", "font-family": "'JetBrains Mono', monospace", "text-align": "left", "margin": "2px", "color": "#A0AAB5", "border-radius": "0px"},
             "nav-link-selected": {"background-color": "#111", "color": "#D32F2F", "border-left": "3px solid #D32F2F"},
         }
     )
@@ -337,46 +336,42 @@ elif target_page == "首頁":
         "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en"}</script></div>""",
                         height=100)
 
-        # Social Proof (Dossier Mode)
+        # Social Proof (Dossier Mode) - FIX: Removed indentation to prevent Markdown code block rendering
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("<h3 class='mono-text' style='color:#D32F2F;'>[SEC.CLEARANCE] FIELD REPORTS</h3>", unsafe_allow_html=True)
         
-        dossier_html = """
-        <div class="dossier-grid">
-            <div class="dossier-card">
-                <div class="dossier-img-container">
-                    <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl1.jpg" class="dossier-img" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
-                </div>
-                <div class="dossier-content">
-                    <div class="term-tag">OP: TREND_CATCH</div>
-                    <p class="term-text">> "Execution confirmed. Radar intercepted vector breakout at origin."</p>
-                </div>
-            </div>
-            
-            <div class="dossier-card">
-                <div class="dossier-img-container" style="display:flex; flex-direction:column; justify-content:center; padding: 20px; background: #050505;">
-                    <div style="border-left: 2px solid #D32F2F; padding-left: 10px;">
-                        <span style="color:#666; font-family:monospace; font-size:0.7em;">LOG: 10:45 AM [MEMBER ID: 884]</span>
-                        <p style="color:#ddd; font-family:monospace; font-size:0.85em; margin-top:5px;">> Velocity off the charts. Oil surge detected pre-retail news. 🩸</p>
-                    </div>
-                </div>
-                <div class="dossier-content">
-                    <div class="term-tag">OP: ALPHA_LEAK</div>
-                    <p class="term-text">> "Data propagation 5 mins ahead of retail terminals. Block trade captured."</p>
-                </div>
-            </div>
-            
-            <div class="dossier-card">
-                <div class="dossier-img-container">
-                    <img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl2.jpg" class="dossier-img" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
-                </div>
-                <div class="dossier-content">
-                    <div class="term-tag">OP: DATA_PIVOT</div>
-                    <p class="term-text">> "NFP reversal predicted via options flow matrix. Fakeout avoided."</p>
-                </div>
-            </div>
-        </div>
-        """
+        dossier_html = """<div class="dossier-grid">
+<div class="dossier-card">
+<div class="dossier-img-container">
+<img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl1.jpg" class="dossier-img" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
+</div>
+<div class="dossier-content">
+<div class="term-tag">OP: TREND_CATCH</div>
+<p class="term-text">> "Execution confirmed. Radar intercepted vector breakout at origin."</p>
+</div>
+</div>
+<div class="dossier-card">
+<div class="dossier-img-container" style="display:flex; flex-direction:column; justify-content:center; padding: 20px; background: #050505;">
+<div style="border-left: 2px solid #D32F2F; padding-left: 10px;">
+<span style="color:#666; font-family:monospace; font-size:0.7em;">LOG: 10:45 AM [MEMBER ID: 884]</span>
+<p style="color:#ddd; font-family:monospace; font-size:0.85em; margin-top:5px;">> Velocity off the charts. Oil surge detected pre-retail news. 🩸</p>
+</div>
+</div>
+<div class="dossier-content">
+<div class="term-tag">OP: ALPHA_LEAK</div>
+<p class="term-text">> "Data propagation 5 mins ahead of retail terminals. Block trade captured."</p>
+</div>
+</div>
+<div class="dossier-card">
+<div class="dossier-img-container">
+<img src="https://raw.githubusercontent.com/ParisTrader/paristrader-terminal/main/Community/comm_pnl2.jpg" class="dossier-img" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=500&auto=format&fit=crop';">
+</div>
+<div class="dossier-content">
+<div class="term-tag">OP: DATA_PIVOT</div>
+<p class="term-text">> "NFP reversal predicted via options flow matrix. Fakeout avoided."</p>
+</div>
+</div>
+</div>"""
         st.markdown(dossier_html, unsafe_allow_html=True)
         st.markdown("---")
 
@@ -421,12 +416,11 @@ elif target_page == "Market Dashboard":
         st.warning(f"⚠️ No dashboard files found. Error: {filename}")
 
 elif target_page == "股票研究":
-    st.title("[DATA] 股票研究 (Daily Recap)")
+    st.title("📈 股票研究 (Daily Recap)")
     if utils.check_access_or_show_teaser("股票研究", description="此為會員專屬內容，解鎖深度每日覆盤與個股解析。"):
         recap_page.render_recap_page(utils.load_markdown_with_images)
 
 elif target_page == "宏觀專欄":
-    # 宏觀專欄的 CSS 已經在 global CSS 中覆蓋了 expander 樣式，這裡保留基本的佈局調整
     st.markdown("""
     <style>
         .ig-card-container {
@@ -503,7 +497,7 @@ elif target_page == "宏觀專欄":
                         st.markdown(full_body)
 
 elif target_page == "試用指標":
-    st.title("[SYS] 獨家指標試用與教學")
+    st.title("🔥 獨家指標試用與教學")
     st.caption("透過量化指標，捕捉最佳進出場時機")
     html_content = utils.load_html_file(os.path.join("Community", "indicator.html"))
     if "File not found" not in html_content:
@@ -512,7 +506,7 @@ elif target_page == "試用指標":
         st.error("⚠️ 找不到 indicator.html，請檢查檔案是否已上傳或路徑是否正確。")
 
 elif target_page == "大市雷達":
-    st.title("[DATA] Market Radar")
+    st.title("📡 Market Radar")
     st.caption("識別市場轉勢訊號 | Detect Market Reversals")
     tab_risk, tab_breadth, tab_cftc = st.tabs(["⚠️ 恐慌指數 Risk Meter", "🌊 市場寬度 Breadth", "🐋 莊家持倉 COT"])
     is_vip = st.session_state.get("authentication_status", False)
@@ -562,7 +556,7 @@ elif target_page == "美股獵人":
     stock_page.render_stock_page()
 
 elif target_page == "期權佈局":
-    st.title("[ALGO] Options Flow Analytics")
+    st.title("🎯 Options Flow Analytics")
     st.caption("跟蹤聰明錢異動 | Track Smart Money Flow")
     tab_us, tab_strat, tab_hk = st.tabs(["🇺🇸 美股期權異動", "🛠️ 策略模擬器 Strategy", "🇭🇰 港股期權佈局"])
 
@@ -602,7 +596,7 @@ elif target_page == "期權佈局":
         else: st.warning("⚠️ No HK reports found.")
 
 elif target_page == "期貨牛熊":
-    st.title("[ALGO] Futures & Trends")
+    st.title("🎢 Futures & Trends")
     st.caption("短線波幅與牛熊重貨區 | Volatility & Heavy Zones")
     tab_vol, tab_vp, tab_cbbc = st.tabs(["⚡ 日內波幅 (Volatility)", "📊 成交分佈 (Volume Profile)", "🐻 牛熊重貨區 (CBBC)"])
     is_vip = st.session_state.get("authentication_status", False)
@@ -633,7 +627,7 @@ elif target_page == "期貨牛熊":
             else: st.warning("⚠️ Report not found")
 
 elif target_page == "實戰持倉":
-    st.title("[DATA] Kira Picks (百萬美金實戰倉位)")
+    st.title("💼 Kira Picks (百萬美金實戰倉位)")
     path = "Trade"
     tab1, tab2 = st.tabs(["📉 Stock Journal", "📊 Option Desk"])
     is_vip = st.session_state.get("authentication_status", False)
@@ -655,13 +649,13 @@ elif target_page == "實戰持倉":
             else: st.warning("⚠️ Report not found.")
 
 elif target_page == "EA 介紹":
-    st.title("[AUTO] MT5 Expert Advisor (EA)")
+    st.title("🤖 MT5 Expert Advisor (EA)")
     html_content = utils.load_html_file(os.path.join("MT5EA", "ea_marketing.html"))
     if "File not found" not in html_content: st.html(html_content) 
     else: st.warning("⚠️ Content not found.")
 
 elif target_page == "交易學院":
-    st.title("[DOCS] 交易學院 (Academy)")
+    st.title("🎓 交易學院 (Academy)")
     if utils.check_access_or_show_teaser("交易學院", description="此為會員專屬內容，解鎖進階量化策略與教學。"):
         education_page.render_education_page(utils.check_access_or_show_teaser, utils.load_markdown_with_images)
 
@@ -672,7 +666,7 @@ elif target_page == "CFD開戶優惠":
     else: st.warning("⚠️ Content not found.")
 
 elif target_page == "升級會員":
-    st.title("[UPGRADE] 升級機構級數據")
+    st.title("💎 升級機構級數據")
     html_content = utils.load_html_file(os.path.join("Community", "community_promo.html"))
     if "File not found" not in html_content: st.html(html_content)
     else: st.error("⚠️ Content not found")
