@@ -572,7 +572,7 @@ def render_education_page(check_access_func, load_markdown_func):
     # --- TAB 3: Video Tutorials ---
     with tab_video:
         st.subheader(t("tabs")[2])
-        st.video("https://www.youtube.com/watch?v=qb3XtEPj8cA")
+        st.video("https://www.youtube.com/")
         st.caption(t("video_sub"))
         st.markdown("---")
         st.info(t("video_info"))
