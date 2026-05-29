@@ -51,7 +51,7 @@ def toggle_language():
 translations = {
     "zh": {
         "slogan_title": "> 我是投資美股的夜神月...",
-        "slogan_sub": "[SYS] 夜晚我翻開這本筆記本，看透市場結構的底層邏輯。",
+        "slogan_sub": "夜晚我翻開這本筆記本，看透市場結構的底層邏輯。",
         "intro_text": "傳統圖表只告訴你「過去」發生什麼，我的死神之眼看到<b>「未來」大戶想去哪裡</b>。<br>停止散戶式盲猜。用機構級數據執行判決。",
         "tutorial": "[SYS.TUTORIAL] Initialize Override",
         "weekly_btn": "[SYS.DECRYPT] 偷看本週大戶部署",
@@ -221,8 +221,8 @@ with st.sidebar:
 
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #222; margin-bottom: 20px;'>
-        <h2 class="mono-text" style='color: #fff; margin:0; letter-spacing: 2px;'>KIRA_TERM_v2</h2>
-        <p class="mono-text" style='color: #D32F2F; font-size: 0.7em; margin-top:5px;'>[ SYS.ONLINE ]</p>
+        <h2 class="mono-text" style='color: #fff; margin:0; letter-spacing: 2px;'>Stock Note</h2>
+        <p class="mono-text" style='color: #D32F2F; font-size: 0.7em; margin-top:5px;'>[股票筆記本]</p>
     </div>
     """, unsafe_allow_html=True)
 
