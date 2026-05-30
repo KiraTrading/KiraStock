@@ -120,14 +120,40 @@ def handle_submenu(key_name, options, icons, default_url_sub=None):
 
 
 # Apply CSS
-styles.apply_custom_css()
 st.markdown("""
 <style>
-    .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-        font-size: 20px !important; font-weight: 700 !important;
+    /* 確保全域背景是深色 */
+    .stApp {
+        background-color: #020617;
     }
-    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
-        color: #2563EB !important; border-bottom-color: #2563EB !important;
+
+    /* 調整 sidebar 風格，增加一點紅色的壓迫感 */
+    [data-testid="stSidebar"] {
+        background-color: #0f172a;
+        border-right: 1px solid #7f1d1d;
+    }
+
+    /* 修正 Sidebar 文字顏色 */
+    [data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] {
+        color: #e2e8f0;
+    }
+
+    /* 調整主標題為死神紅 */
+    h1, h2, h3 {
+        color: #ef4444 !important; /* 鮮紅色標題 */
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    /* 修改按鈕風格 */
+    div.stButton > button {
+        background-color: #7f1d1d !important;
+        color: white !important;
+        border: 1px solid #ef4444 !important;
+    }
+
+    /* 調整 Expander 邊框 */
+    .streamlit-expanderHeader {
+        border-color: #7f1d1d !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -220,8 +246,7 @@ with st.sidebar:
             "nav-link": {"font-size": "15px", "text-align": "left", "margin": "5px", "color": "#D1D5DB",
                          "--hover-color": "#1F2937"},
             # 將高亮顏色改為暗血紅色 (#7f1d1d) 配白字，帶出危險與制裁的感覺
-            "nav-link-selected": {"background-color": "#7f1d1d", "color": "#FFFFFF", "font-weight": "600",
-                                  "border-left": "3px solid #dc2626"},
+            "nav-link-selected": {"background-color": "#7f1d1d", "color": "#FFFFFF", "font-weight": "600", "border-left": "3px solid #dc2626"},
         }
     )
 
