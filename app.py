@@ -65,7 +65,7 @@ translations = {
         "vip_join": "🚀 立即加入 (Join Now)",
         "nav_title": "導航選單",
         "settings": "語言設定 / Settings",
-        "profile_text": """我將投資銀行的數據平民化，幫你避開散戶陷阱。
+        "profile_text": """我將專業數據簡單化，捕捉爆升股。
 <br><br>
 <b>核心武器 (My Edge):</b><br>
 • 🐳 <b>Stock Hunter:</b> 捕捉機構建倉股<br>
@@ -88,10 +88,10 @@ translations = {
         "settings": "Settings",
         "profile_text": """Democratizing institutional data to help you avoid retail traps.
 <br><br>
-<b>My Edge:</b><br>
+<b>My Eyes:</b><br>
 • 🐳 <b>Stock Hunter:</b> Track Institutional Builds<br>
-• ⚡ <b>Futures Scalping:</b> NQ/HSI/Gold Scalping<br>
-• 🎯 <b>Option Flow:</b> Sniper Unusual Activity<br>"""
+• ⚡ <b>Futures Scalper:</b> NQ/xau EA Copier<br>
+• 🎯 <b>Abnormal Option Detect:</b> Sniper Unusual Activity<br>"""
     }
 }
 
@@ -179,7 +179,7 @@ with st.sidebar:
     st.markdown("""
     <div style='padding: 20px 0px; text-align: center; border-bottom: 1px solid #374151; margin-bottom: 20px;'>
         <h2 style='color: #F3F4F6; margin:0; letter-spacing: 1px; font-weight: 700;'>KiraTrader</h2>
-        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Follow The Smart Money</p>
+        <p style='color: #9CA3AF; font-size: 0.85em; margin-top:5px;'>Quantitative Research</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -194,7 +194,7 @@ with st.sidebar:
         "股票名單": "股票名單",
         "美股獵捕": "美股獵捕",
         "期權佈局": "期權佈局",
-        "期貨牛熊": "期貨牛熊",
+        "期貨量圖": "期貨量圖",
         "死神EA": "死神EA",
         "交易法則": "交易法則"
     }
@@ -210,7 +210,7 @@ with st.sidebar:
         "股票名單": "Portfolio",
         "美股獵捕": "Stock Hunter",
         "期權佈局": "Option Flow",
-        "期貨牛熊": "Futures & Vol",
+        "期貨量圖": "Futures & Vol",
         "死神EA": "Auto-Trading (EA)",
         "交易法則": "Academy"
     }
@@ -308,13 +308,6 @@ elif target_page == "新世界大門":
 
         st.markdown("---")
 
-        components.html("""
-        <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-        {"symbols": [{"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"}, {"proName": "FOREXCOM:NSXUSD", "title": "US 100"}, {"description": "Gold", "proName": "OANDA:XAUUSD"}],
-        "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en"}</script></div>""",
-                        height=100)
-
         # =========== 實戰成績與會員反饋 (Social Proof) 區塊 開始 ===========
         st.markdown("<br>", unsafe_allow_html=True)
         st.subheader("🔥 實戰成績與會員反饋")
@@ -350,15 +343,15 @@ elif target_page == "新世界大門":
 <div class="sp-card">
 <div class="sp-img-container" style="background: #0f172a; padding: 20px; display:flex; flex-direction: column; justify-content:center;">
 <div style="background: rgba(255,255,255,0.05); padding: 12px 15px; border-radius: 12px; border-left: 3px solid #F59E0B; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-<div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; font-weight:bold;">Member-老登</div>
-<div style="font-size: 0.9rem; color: #f8fafc; line-height: 1.4;">這速度太誇張了... 剛才那波油價拉升直接抓到。🚀</div>
+<div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; font-weight:bold;">會員Simon</div>
+<div style="font-size: 0.9rem; color: #f8fafc; line-height: 1.4;">這速度太誇張了... 剛才NVDA合作新聞直接抓到。🚀</div>
 <div style="font-size: 0.7rem; color: #64748b; text-align: right; margin-top: 5px;">10:45 AM</div>
 </div>
 </div>
 <div class="sp-content">
 <div class="sp-tag gold">⚡ 情報領先</div>
-<p class="sp-text">「比散戶新聞快最少 5 分鐘！即時捕捉機構 Block Trade 佈局和突發新聞。」</p>
-<div class="sp-author">💬 內部交易員交流群</div>
+<p class="sp-text">「比老散aastock新聞快最少 15 分鐘！即市捕捉大手成交!」</p>
+<div class="sp-author">💬 交易官交流群</div>
 </div>
 </div>
 <div class="sp-card">
@@ -367,8 +360,8 @@ elif target_page == "新世界大門":
 </div>
 <div class="sp-content">
 <div class="sp-tag">🎯 數據反轉</div>
-<p class="sp-text">「群組即時提示驗證 - 把握非農數據後的反轉，避開假突破。」</p>
-<div class="sp-author">👤 VIP 群組實戰回單</div>
+<p class="sp-text">「死神Bot即時提示 - 把握FOMC後的反轉，避開假突破。」</p>
+<div class="sp-author">👤 死神戰友群組曬單</div>
 </div>
 </div>
 </div>
@@ -395,7 +388,7 @@ elif target_page == "新世界大門":
 <div class="profile-card">
 <img src="{img_src}" width="120" style="border-radius:50%; border: 3px solid #2563EB;">
 <h3 style="margin-top:10px; color:#F3F4F6;">Kira Trader</h3>
-<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">Ex-Ibank Derivative Trader</p>
+<p style="color: #60A5FA; font-weight: bold; font-size: 0.9em;">千年號對沖基金經理</p>
 <hr style="margin: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);">
 <div style="text-align: left; font-size: 0.9em; line-height: 1.6; color: #cbd5e1;">
 {t('profile_text')}
@@ -718,7 +711,7 @@ elif target_page == "期權佈局":
         else:
             st.warning("⚠️ No HK reports found.")
 
-elif target_page == "期貨牛熊":
+elif target_page == "期貨量圖":
     st.title("🎢 Futures & Trends")
     st.caption("短線波幅與牛熊重貨區 | Volatility & Heavy Zones")
     tab_vol, tab_vp, tab_cbbc = st.tabs(
